@@ -219,6 +219,62 @@ extern unsigned long _binary_tim_TBjump5_tim_start[];
 extern unsigned long _binary_tim_TBjump5_tim_end[];
 extern unsigned long _binary_tim_TBjump5_tim_length;
 
+extern unsigned long _binary_tim_TCjump1_tim_start[];
+extern unsigned long _binary_tim_TCjump1_tim_end[];
+extern unsigned long _binary_tim_TCjump1_tim_length;
+
+extern unsigned long _binary_tim_TCjump2_tim_start[];
+extern unsigned long _binary_tim_TCjump2_tim_end[];
+extern unsigned long _binary_tim_TCjump2_tim_length;
+
+extern unsigned long _binary_tim_TCjump3_tim_start[];
+extern unsigned long _binary_tim_TCjump3_tim_end[];
+extern unsigned long _binary_tim_TCjump3_tim_length;
+
+extern unsigned long _binary_tim_TCjump4_tim_start[];
+extern unsigned long _binary_tim_TCjump4_tim_end[];
+extern unsigned long _binary_tim_TCjump4_tim_length;
+
+extern unsigned long _binary_tim_Cjump1_tim_start[];
+extern unsigned long _binary_tim_Cjump1_tim_end[];
+extern unsigned long _binary_tim_Cjump1_tim_length;
+
+extern unsigned long _binary_tim_Cjump2_tim_start[];
+extern unsigned long _binary_tim_Cjump2_tim_end[];
+extern unsigned long _binary_tim_Cjump2_tim_length;
+
+extern unsigned long _binary_tim_Cjump3_tim_start[];
+extern unsigned long _binary_tim_Cjump3_tim_end[];
+extern unsigned long _binary_tim_Cjump3_tim_length;
+
+extern unsigned long _binary_tim_Cjump4_tim_start[];
+extern unsigned long _binary_tim_Cjump4_tim_end[];
+extern unsigned long _binary_tim_Cjump4_tim_length;
+
+extern unsigned long _binary_tim_Cjump5_tim_start[];
+extern unsigned long _binary_tim_Cjump5_tim_end[];
+extern unsigned long _binary_tim_Cjump5_tim_length;
+
+extern unsigned long _binary_tim_Mjump1_tim_start[];
+extern unsigned long _binary_tim_Mjump1_tim_end[];
+extern unsigned long _binary_tim_Mjump1_tim_length;
+
+extern unsigned long _binary_tim_Mjump2_tim_start[];
+extern unsigned long _binary_tim_Mjump2_tim_end[];
+extern unsigned long _binary_tim_Mjump2_tim_length;
+
+extern unsigned long _binary_tim_Mjump3_tim_start[];
+extern unsigned long _binary_tim_Mjump3_tim_end[];
+extern unsigned long _binary_tim_Mjump3_tim_length;
+
+extern unsigned long _binary_tim_Mjump4_tim_start[];
+extern unsigned long _binary_tim_Mjump4_tim_end[];
+extern unsigned long _binary_tim_Mjump4_tim_length;
+
+extern unsigned long _binary_tim_Mjump5_tim_start[];
+extern unsigned long _binary_tim_Mjump5_tim_end[];
+extern unsigned long _binary_tim_Mjump5_tim_length;
+
 extern unsigned long _binary_tim_jumpTF1_tim_start[];
 extern unsigned long _binary_tim_jumpTF1_tim_end[];
 extern unsigned long _binary_tim_jumpTF1_tim_length;
@@ -415,6 +471,14 @@ extern unsigned long _binary_tim_manglehanging_tim_start[];
 extern unsigned long _binary_tim_manglehanging_tim_end[];
 extern unsigned long _binary_tim_manglehanging_tim_length;
 
+extern unsigned long _binary_tim_danger1_tim_start[];
+extern unsigned long _binary_tim_danger1_tim_end[];
+extern unsigned long _binary_tim_danger1_tim_length;
+
+extern unsigned long _binary_tim_danger2_tim_start[];
+extern unsigned long _binary_tim_danger2_tim_end[];
+extern unsigned long _binary_tim_danger2_tim_length;
+
 /*
 extern unsigned long _binary_tim_fnt_tim_start[];
 extern unsigned long _binary_tim_fnt_tim_end[];
@@ -457,6 +521,7 @@ TIM_IMAGE animatronichallway;
 TIM_IMAGE timermusicbox;
 TIM_IMAGE mutecall;
 TIM_IMAGE manglehanging;
+TIM_IMAGE danger;
 
 TIM_IMAGE officefrontanimatronic;
 
@@ -1165,6 +1230,21 @@ SVECTOR VertPosmanglehanging[4] = {
 
 MATRIX PolyMatrixmanglehanging = {0};     
 
+POLY_FT4 *polydanger = {0};   
+
+SVECTOR RotVectordanger = {0, 0, 0};                
+VECTOR  MovVectordanger = {50, 50, CENTERX/2-10, 0}; 
+VECTOR  ScaleVectordanger = {ONE, ONE, ONE};        
+
+SVECTOR VertPosdanger[4] = {             
+        {0, 0, 1 },                     
+        {0,  32, 1 },                     
+        { 37, 0, 1 },                      
+        { 37,  32, 1  }    
+    };                                        
+
+MATRIX PolyMatrixdanger = {0};     
+
 //This function take in charge a specific polygon OR a set of polygon with related elements, depending on the var "num". (1 is for freddy on the menu for example)
 //Why ? It's Simple, because the game.c was LONG ASF. Longer than my lifetime I'd say. (11 rubies)
 //(and also because it was harder to look for a specific thing and having to scroll like 100000 times to pass by the thing we want. Here, you know you have to look at num 10 for ex.)
@@ -1546,6 +1626,9 @@ void makepoly(int num) {
 		 	addPrim(ot[db], polymanglehanging);                       
 		 	
 		 	nextpri += sizeof(POLY_FT4);    
+        }
+        if (dangerlevel > 0) {
+        	
         }
 
          //first

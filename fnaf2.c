@@ -2,8 +2,14 @@
     TO FIX :
       NOOOOO RAM ISSUESSSS
 
+        bug when new game
 
-      
+      Music box's winding down speed is incorrect
+
+      fan animation a bit weird
+
+      Fixing the positions of the vents (mostly the left one)
+
       hallway : 
         Hallway's animatronic being centered on the cam when they appear
 
@@ -12,14 +18,15 @@
 
     TO MAKE (doing ideas/partially implemented things) : 
 
+      add a warning for music box
+
       Implement GF (& easter eggs animatronics ?)
-      Screamers. (fred, bonn, chik, fox, toy fred, toy chik, mengl, GF)
+      
+      GF Screamer 
 
       Test the game on different hardware than PC and SCPH-9002 PS1
 
     TO DO (only ideas) :
-      location array ?
-      Minigames (maybe not available because of limited ram)
 
     TO FIX ON THE PS1 :
 
@@ -32,7 +39,7 @@
 
     OTHER (info) :
       FNAF2 is a (heavily) modified version of FNAF1
-      V.0.8
+      V.0.9
 */
 
 #include "objects/constant.h"
@@ -412,6 +419,7 @@ void MaskFunc(void) {
 
                 }
                 if (lighthall == 1) {
+                  LightFuncHall();
                 }
             }
             if (ismaskon >= 2) {
@@ -2499,7 +2507,7 @@ void print(int number) {
     if (number == 4) { // TOY Animatronic debug (with access to camera)
         FntPrint("%d AM, IAD %d, RAN %d, musicbox %d, pos %d\n",AM, isalreadydead, RAN, musicboxtimer, MovVectorofficemiddle);
         FntPrint("TOY TFlocFrame %d & location %d,",toyfreddylocationframe, toyfreddylocation);
-        FntPrint("\nTBLocFrame %d & location %d,", toybonnielocationframe, toybonnielocation);
+        FntPrint("\nTBLocFrame %d & location %d %d,", toybonnielocationframe, toybonnielocation, toybonnieframevent);
         FntPrint("\nTCLocFrame %d & location %d,\nMlocFrame %d & location %d. Mattack %d\n",toychicalocationframe, toychicalocation, manglelocationframe, manglelocation, mangleattack);
         FntPrint("BBLocFrame %d & location %d\n",BBlocationframe, BBlocation);
         FntPrint("OLD AI F %d, B %d, C %d,Fo %d.\nTOY AI F %d, B %d, C %d, M %d.",freddydifficulty, bonniedifficulty, chicadifficulty, foxydifficulty, toyfreddydifficulty, toybonniedifficulty, toychicadifficulty, mangledifficulty);
@@ -3903,7 +3911,7 @@ void menuPrint(void) {
 
         FntPrint("   Five Night at Freddy's 2 has been \n   released by Scott Cawton on 2014,\nand has been ported on the PS1 by Soeiz.\n         Again, Thank you, Scott, \n For feeding our imagination with this\n                  world.\n\n");
 
-        FntPrint(">> Back        BURNED CD N*6 V0.8\n"); //Don't even need to do condition, there's only one
+        FntPrint(">> Back        BURNED CD N*7 V0.9\n"); //Don't even need to do condition, there's only one
     }
     if (unlockssubmenu == 1) {
         FntPrint("   Unlocks\n\n   Menu\n\n\n");  // print time
@@ -4200,14 +4208,21 @@ void AImoving(void) {
     
 
     toyfreddylocationframe--; 
-    toybonnielocationframe--; 
+
+    if (!(toybonnielocation == 5 && ismaskon == 1)) {
+        toybonnielocationframe--; 
+    }
+
     toychicalocationframe--; 
+
     if (manglelocation < 7) {
       manglelocationframe--; 
     } else {
       mangleattack--;
       if (mangleattack == 0) {
-        dead = 1;
+        if (camera == 0) {
+            dead = 1;
+        } else {isalreadydead = 1;}
         deadfrom = 8;
       }
     }
@@ -4447,7 +4462,6 @@ void AImoving(void) {
       }
     }
 
-    if (toybonnielocationframe > 60 && toybonnielocation == 5 && ismaskon == 1) {toybonnielocationframe = toybonnielocationframevent;}
     if (toybonnielocationframe < 0) {
           if (toybonniedifficulty != 0) {
             Ran(20);
@@ -4464,24 +4478,23 @@ void AImoving(void) {
               if (toybonnielocation == 4) {ventbanging = 1;}
             }
           }
-
-        if (toybonnielocation == 5 && ismaskon == 1) {toybonnielocationframe = toybonnielocationframevent;} else {toybonnielocationframe = toybonnielocationframelock;}
+        if (!(toybonnielocation == 5 && ismaskon == 1)) {toybonnielocationframe = toybonnielocationframelock;}
     }
 
-    if (toybonnielocation == 5) {
-        if (ismaskon == 1) {
-            Ran(100);
-            if (officequeuetimer != 0) {
+    if (toybonnielocation == 5 && ismaskon == 1) {
+        toybonnieframevent--;
+        
+        if (toybonnieframevent == 0) {
+            toybran = Ran(100);
+            if (officequeuetimer == 0) {
                 if (officequeue[0] == 0) {
-                  toybonnielocationframevent = 30;
-                  if (RAN < 50) {toybonnielocation++;}
+                  toybonnieframevent = 30;
+                  if (toybran < 50) {toybonnielocation++; toybran = 999;}
                 } else {
-                  toybonnielocationframevent = 60;
-                  if (RAN < 33) {toybonnielocation++;}
+                  toybonnieframevent = 60;
+                  if (toybran < 33) {toybonnielocation++; toybran = 999;}
                 }
             }
-        } else {
-            toybonnielocationframevent = 300;
         }
     }
 
@@ -4580,6 +4593,10 @@ void screamer(void) {
         switch(deadfrom) {
             case 1: 
               if (spritesheet > 6) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 4;} break;
+            case 3: 
+              if (spritesheet > 5) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 4;} break;
+            case 7 :
+                if (spritesheet > 4) {spritesheet = 0; screamerframes = 0;} break;
             default :
                 if (spritesheet > 5) {spritesheet = 0; screamerframes = 0;} break;
         } 
@@ -4624,19 +4641,19 @@ void screamer(void) {
         }
         if (deadfrom == 3) {
             if (spritesheet == 1) {
-                LoadTexture(_binary_tim_jumpC2_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_Cjump2_tim_start, &jumpscare);
             }
             if (spritesheet == 2) {
-                LoadTexture(_binary_tim_jumpC3_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_Cjump3_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_jumpC2_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_Cjump4_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                LoadTexture(_binary_tim_jumpC_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_Cjump5_tim_start, &jumpscare);
             }
             if (spritesheet == 0) {
-                LoadTexture(_binary_tim_jumpC_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_Cjump1_tim_start, &jumpscare);
             } 
         }
         if (deadfrom == 4) {
@@ -4655,15 +4672,19 @@ void screamer(void) {
             if (spritesheet == 5) {
                 LoadTexture(_binary_tim_jumpFO5_tim_start, &jumpscare);
             }
-        }
+        }/*
         if (deadfrom == 5) {
             if (spritesheet == 2) {
+                LoadTexture(_binary_tim_jumpTF2_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
+                LoadTexture(_binary_tim_jumpTF3_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
+                LoadTexture(_binary_tim_jumpTF4_tim_start, &jumpscare);
             }
             if (spritesheet == 5) {
+                LoadTexture(_binary_tim_jumpTF5_tim_start, &jumpscare);
             }
             if (spritesheet == 1) {
                 LoadTexture(_binary_tim_jumpTF1_tim_start, &jumpscare);
@@ -4677,10 +4698,10 @@ void screamer(void) {
                 LoadTexture(_binary_tim_TBjump3_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                //LoadTexture(_binary_tim_TBjump4_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_TBjump4_tim_start, &jumpscare);
             }
             if (spritesheet == 5) {
-                //LoadTexture(_binary_tim_TBjump5_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_TBjump5_tim_start, &jumpscare);
             }
             if (spritesheet == 1) {
                 LoadTexture(_binary_tim_TBjump1_tim_start, &jumpscare);
@@ -4701,6 +4722,37 @@ void screamer(void) {
             }
             if (spritesheet == 1) {
                 LoadTexture(_binary_tim_jumpP1_tim_start, &jumpscare);
+            } 
+        }
+        if (deadfrom == 7) { //don't like toy chica so only 4 frames 
+            if (spritesheet == 2) {
+                LoadTexture(_binary_tim_TCjump2_tim_start, &jumpscare);
+            }
+            if (spritesheet == 3) {
+                LoadTexture(_binary_tim_TCjump3_tim_start, &jumpscare);
+            }
+            if (spritesheet == 4) {
+                LoadTexture(_binary_tim_TCjump4_tim_start, &jumpscare);
+            }
+            if (spritesheet == 1) {
+                LoadTexture(_binary_tim_TCjump1_tim_start, &jumpscare);
+            } 
+        }*/
+        if (deadfrom == 8) {
+            if (spritesheet == 2) {
+                LoadTexture(_binary_tim_Mjump2_tim_start, &jumpscare);
+            }
+            if (spritesheet == 3) {
+                LoadTexture(_binary_tim_Mjump3_tim_start, &jumpscare);
+            }
+            if (spritesheet == 4) {
+                LoadTexture(_binary_tim_Mjump4_tim_start, &jumpscare);
+            }
+            if (spritesheet == 5) {
+                LoadTexture(_binary_tim_Mjump5_tim_start, &jumpscare);
+            }
+            if (spritesheet == 1) {
+                LoadTexture(_binary_tim_Mjump1_tim_start, &jumpscare);
             } 
         }
         spriteframes = 4;

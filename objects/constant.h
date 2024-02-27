@@ -244,7 +244,8 @@ int bonnieonetimeskip = 0;
 
 int toybonnielocation = 0;
 int toybonnielocationframe = 300;
-int toybonnielocationframevent = 30;
+int toybonnieframevent = 30;
+int toybran = 0;
 int toybonniedifficulty = 0;
 int toybonnieonetimeskip = 0;
 
@@ -307,6 +308,7 @@ int musicboxunwidingvaludemi = 0;
 int musicboxunwidingvaluthird = -2;
 int musicboxtimer = 2000;
 int ismusicboxatzero = 0;
+int dangerlevel = 0;
 
 int windingframessound = 0; //30
 int windingframe = 1;
