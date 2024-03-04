@@ -9,3 +9,5 @@ Because this demake is not something you have to play on PC with a .exe, you'll 
 If you want to play on real hardware, you'd have to modchip it, use the disc swap method or FreePSXBoot ! (google it)
 
 The game has unique things that were not on the OG game, such as two player mode, Custom night with far more options, easter eggs, and more !
+
+Unfortunately, there's no minigames in this port because of memory issues.
