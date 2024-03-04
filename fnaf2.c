@@ -1,40 +1,34 @@
 /*
+    NOOOOO RAM ISSUESSSS
     TO FIX :
-      NOOOOO RAM ISSUESSSS
+        Not important : 
 
-        bug when new game
+        fan animation a bit weird
 
-      Music box's winding down speed is incorrect
+        (Really) not important :
 
-      fan animation a bit weird
-
-      Fixing the positions of the vents (mostly the left one)
-
-      hallway : 
-        Hallway's animatronic being centered on the cam when they appear
-
-      office left need to be fixed
-      toy bonnie's screamer
+        Music box's winding down speed is incorrect on night 4 & 5 (only ~0.5/1 sec of diff)
+        office left need to be fixed (can not really be seen)
+        Finishing to fix the positions of the vents (hard asf and pos already almost fixed)
 
     TO MAKE (doing ideas/partially implemented things) : 
+        RAM ISSUES RELATED :     
+          Mangle hallway
 
-      add a warning for music box
+          Implement GF & its screamer (& easter eggs animatronics ?) 
 
-      Implement GF (& easter eggs animatronics ?)
-      
-      GF Screamer 
-
+          toy bonnie's screamer
+    
       Test the game on different hardware than PC and SCPH-9002 PS1
 
     TO DO (only ideas) :
 
     TO FIX ON THE PS1 :
 
-
     FIXED ? (it is not doing that anymore but I'm not sure if it's fixed) : 
 
     FIXED (listed here for help if it happens again) :
-      Animatronic's Icon going nutz : Try to place ALL of the sprites BEFORE them. (or on top)
+      Animatronic's Icon camera going nutz : Try to place ALL of the sprites BEFORE them.
       toy chik hallway or animatronics on vents are breaking the right office's sprite : DON'T SPAM "LoadTexture"
 
     OTHER (info) :
@@ -502,6 +496,7 @@ void finishednight(void) {
       setRGB0(polytablemiddle2, fadeoffice, fadeoffice, fadeoffice);
       setRGB0(polytablefan, fadeoffice, fadeoffice, fadeoffice);
       setRGB0(polymanglehanging, fadeoffice, fadeoffice, fadeoffice);
+      setRGB0(polyBB, fadeoffice, fadeoffice, fadeoffice);
     }
     if (camera == 1) {
       setRGB0(polylayout, fadeoffice, fadeoffice, fadeoffice);    
@@ -525,6 +520,7 @@ void finishednight(void) {
       setRGB0(polytablefan, 0, 0, 0);
       setRGB0(polytableleft, 0, 0, 0);
       setRGB0(polymanglehanging, 0, 0, 0);
+      setRGB0(polyBB, 0, 0, 0);
     }
     if (camera == 1) {
       CameraFunc(1);
@@ -534,37 +530,37 @@ void finishednight(void) {
     }
   }
   if (fivetosixamframes == 89){
-      LoadTexture(_binary_tim_5AM1_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_5AM1_tim_start, &fiveam);
   }
   if (fivetosixamframes == 101){
-      LoadTexture(_binary_tim_5AM2_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_5AM2_tim_start, &fiveam);
   }
   if (fivetosixamframes == 113){
-      LoadTexture(_binary_tim_5AM3_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_5AM3_tim_start, &fiveam);
   }
   if (fivetosixamframes == 125){
-      LoadTexture(_binary_tim_5AM4_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_5AM4_tim_start, &fiveam);
   }
   if (fivetosixamframes == 137){
-      LoadTexture(_binary_tim_5AM5_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_5AM5_tim_start, &fiveam);
   }
   if (fivetosixamframes == 181){
-      LoadTexture(_binary_tim_6AM1_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_6AM1_tim_start, &fiveam);
   }
   if (fivetosixamframes == 193){
-      LoadTexture(_binary_tim_6AM2_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_6AM2_tim_start, &fiveam);
   }
   if (fivetosixamframes == 205){
-      LoadTexture(_binary_tim_6AM3_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_6AM3_tim_start, &fiveam);
   }
   if (fivetosixamframes == 217){
-      LoadTexture(_binary_tim_6AM4_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_6AM4_tim_start, &fiveam);
   }
   if (fivetosixamframes == 229){
-      LoadTexture(_binary_tim_6AM5_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_6AM5_tim_start, &fiveam);
   }
   if (fivetosixamframes == 241){
-      LoadTexture(_binary_tim_6AM6_tim_start, &fiveam);
+      LoadTexture(_binary_tim_5am6_6AM6_tim_start, &fiveam);
   }
 }
 
@@ -573,19 +569,19 @@ void checking(void) {
     if (checkframes == 0) {
       switch(officequeue[0]) {
         case 1:
-          LoadTexture(_binary_tim_officeFREDDY_tim_start, &officefrontanimatronic);
+          LoadTexture(_binary_tim_office_officeFREDDY_tim_start, &officefrontanimatronic);
           break;
         case 2:
-          LoadTexture(_binary_tim_officeBONNIE_tim_start, &officefrontanimatronic);
+          LoadTexture(_binary_tim_office_officeBONNIE_tim_start, &officefrontanimatronic);
           break;
         case 3:
-          LoadTexture(_binary_tim_officeCHICA_tim_start, &officefrontanimatronic);
+          LoadTexture(_binary_tim_office_officeCHICA_tim_start, &officefrontanimatronic);
           break;
         case 5:
-          LoadTexture(_binary_tim_officeTOYFREDDY_tim_start, &officefrontanimatronic);
+          LoadTexture(_binary_tim_office_officeTOYFREDDY_tim_start, &officefrontanimatronic);
           break;
         case 6:
-          LoadTexture(_binary_tim_officeTOYBONNIE_tim_start, &officefrontanimatronic);
+          LoadTexture(_binary_tim_office_officeTOYBONNIE_tim_start, &officefrontanimatronic);
           break;
       }
     }
@@ -624,6 +620,7 @@ void checking(void) {
               setRGB0(polytableleft, 0,0,0);
               setRGB0(polytablemiddle2, 0, 0, 0);
               setRGB0(polymanglehanging, 0, 0, 0);
+              setRGB0(polyBB, 0, 0, 0);
           } else {
               setRGB0(polyofficeright1, 128, 128, 128); 
               setRGB0(polyofficeright2, 128, 128, 128); 
@@ -638,6 +635,7 @@ void checking(void) {
               setRGB0(polytablemiddle2, 108, 108, 108);
               setRGB0(polytablefan, 108, 108, 108);    
               setRGB0(polymanglehanging, 128,128,128);
+              setRGB0(polyBB, 128,128,128);
           }
       } else {
           setRGB0(polyofficeright1, 0, 0, 0); 
@@ -653,6 +651,7 @@ void checking(void) {
           setRGB0(polytablemiddle2, 0, 0, 0);
           setRGB0(polytablefan, 0, 0, 0);
           setRGB0(polymanglehanging, 0, 0, 0);    
+          setRGB0(polyBB, 0, 0, 0);
       }
       if (checkframes == 30) {
         if (ismaskon == 0) {
@@ -660,6 +659,9 @@ void checking(void) {
         }
       }
       if (checkframes == 300) {
+        if (ismaskon == 0) {
+            isalreadydead = 4; //Office attack too but only when you lower the cam down
+        }
           officequeuetimer = 600;
           checkframes = 0;
           if (ismaskon == 1 && isalreadydead != 3) {
@@ -770,24 +772,22 @@ int main(void) {
             }
         }
         if (menu == 0) { //Menu Screen
-            if (bonniestared == 0) {
+            if (helpwantedposter == 0) {
+
                 menuPrint();
-
+    
                 menuselectionfunc();
-
+    
                 if (musicframes == 4431){
                     musicframes = 0;
                     sample = 0;
                     filter.chan = soundBank.samples[sample].channel;
                     filter.file = soundBank.samples[sample].file;
                     CdControlF(CdlSetfilter, (u_char *)&filter);
-
                     soundBank.samples[sample].cursor = 0;
                 } else {musicframes++;}
-
-      
-            }
-            if (menuscreeninit == 0) {
+    
+                if (menuscreeninit == 0) {
                 loadFile = "\\MENUS1.TIM;1";
                 CdSearchFile( &filePos, loadFile);
                 dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
@@ -840,40 +840,53 @@ int main(void) {
 
                 menuscreeninit = 1;
                 musicframes = 4431;
-            }
-            if (menuscreeninit == 1) {
+                }
+                if (menuscreeninit == 1) {
 
                 seedrandom++;
                 //TIM toys
                 makepoly(1);
-            }
-        }//Menu Screen
-        if (menu == 1) { //Help wanted screen
-            loadingframe++;
-            if (loadingframe == 1) {
-                musicframes = 880;
-            }
-            if (loadingframe < 360) {
+                }
+            } else {
+                loadingframe++;
 
-                //Help wanted bg
-                makepoly(2);
+                if (loadingframe == 1) {
+                    musicframes = 3787;
+                    if (ambiancesound > 3) {ambiancesound = 1;}
+                }
+                if (loadingframe < 360) {
 
-                if (loadingframe > 100) {
-                    if (pad & PADstart) {
-                        menu = 2;
+                    //Help wanted bg
+                    makepoly(2);
+
+                    if (loadingframe > 100) {
+                        if (pad & PADstart) {
+                            loadingframe = 360;
+                        }
                     }
                 }
+                if (loadingframe > 240) {
+                    if (fadeoffice < 128) {fadeoffice++;}
+
+                    setRGB0(polyhelpwanted, 128 - fadeoffice, 128 - fadeoffice, 128 - fadeoffice);   
+                } else {
+                    if (fadeoffice > 0) {fadeoffice--;}
+
+                    setRGB0(polyhelpwanted, 128 - fadeoffice, 128 - fadeoffice, 128 - fadeoffice);   
+                }
+                if (loadingframe > 360) {
+                    menu = 1;
+                    helpwantedposter = 0;
+                }
             }
-            if (loadingframe > 360) {
-                menu = 2;
-            }
-        }//Help wanted screen
-        if (menu == 2) { //Loading/Starting night screen
+        }//Menu Screen
+        if (menu == 1) { //Loading/Starting night screen
             loadingframe++;
 
             if (loadingframe < 360) {loadingframe = 360;}
 
             if (loadingframe == 370 && onetime == 0) {
+              starting();
               srand(seedrandom); // "truly" "random"
               Ran(seedrandom * 68574 + seedrandom / 2);
               srand(RAN); //Truly random x2
@@ -892,7 +905,7 @@ int main(void) {
             } else {
                 makepoly(13);
             }
-            if (loadingframe == 361) {starting();}
+
             if (loadingframe == 500) {
                 Ran(10000);
                 if (night > 4) {
@@ -908,13 +921,14 @@ int main(void) {
                 }
             }
             if (loadingframe == 560) {
-                LoadTexture(_binary_tim_oLEFTpart2_tim_start, &officeLEFT);//Loading rest of the things
-                LoadTexture(_binary_tim_oRIGHTpart2_tim_start, &officeRIGHT);
-                LoadTexture(_binary_tim_officeMIDDLE_tim_start, &officeMIDDLE);
-                LoadTexture(_binary_tim_officeLEFTlighttoychica_tim_start, &Rvent);
-                LoadTexture(_binary_tim_toychicahallway_tim_start, &animatronichallway);
-                LoadTexture(_binary_tim_mutecall_tim_start, &mutecall);
-                LoadTexture(_binary_tim_officeFREDDY_tim_start, &officefrontanimatronic);
+                LoadTexture(_binary_tim_office_oLEFTpart2_tim_start, &officeLEFT);//Loading rest of the things
+                LoadTexture(_binary_tim_office_oRIGHTpart2_tim_start, &officeRIGHT);
+                LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE);
+                LoadTexture(_binary_tim_office_officeLEFTlighttoychica_tim_start, &Rvent);
+                LoadTexture(_binary_tim_hallway_toychicahallway_tim_start, &animatronichallway);
+                LoadTexture(_binary_tim_office_mutecall_tim_start, &mutecall);
+                LoadTexture(_binary_tim_office_officeFREDDY_tim_start, &officefrontanimatronic);
+                LoadTexture(_binary_tim_office_BB_tim_start, &BB);
             }
             if (loadingframe == 570) {
                 if (initstuff == 1) {
@@ -936,7 +950,7 @@ int main(void) {
                     CDreadResult = CdReadSync(0, 0);
                     LoadTexture(dataBuffer, &tableCENTER); 
                     free(dataBuffer);
-                    LoadTexture(_binary_tim_fan1_tim_start, &tableFAN);
+                    LoadTexture(_binary_tim_office_fan1_tim_start, &tableFAN);
                     loadFile = "\\ORIGHTP1.TIM;1";
                     CdSearchFile( &filePos, loadFile);
                     dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
@@ -997,12 +1011,12 @@ int main(void) {
                 }
            }
             if (loadingframe > 660) {
-                menu = 3;
+                menu = 2;
                 SpuSetKey(SPU_ON, SPU_02CH);
                 loadingframe = 0;
             }
         }//Loading/Starting night screen
-        if (menu == 3) { //Gameplay Screen
+        if (menu == 2) { //Gameplay Screen
             timeFunc();   
 
             if (AM == 6 && FrameCounter == 0) {
@@ -1036,7 +1050,7 @@ int main(void) {
                         }
                         fivetosixamframes = 0;
                         nextnightframes = 0;
-                        menu = 2;
+                        menu = 1;
                     } 
                 } else {
                     if (night == 725255) {
@@ -1044,7 +1058,7 @@ int main(void) {
                     } else {night++;}
                     fivetosixamframes = 0;
                     nextnightframes = 0;
-                    menu = 2; //Load into next night
+                    menu = 1; //Load into next night
                 }
             }
 
@@ -1072,17 +1086,17 @@ int main(void) {
             if (camera == 1) { //Cam things
                 cameraloc();
             }
-            if (tensecondframe == 0 && night != 725255) {
+            if (fivesecondframe == 0 && night != 725255) {
                 if (phoneguytalking == 0) {
                     Ran(10);
                     if (ambiancechance > RAN) {
                         if (ambiancesound == 1) {
                             sample = 1;
-                            tensecondframe = 8580;
+                            fivesecondframe = 8580;
                         }
                         if (ambiancesound == 2) {
                             sample = 3;
-                            tensecondframe = 3600;
+                            fivesecondframe = 3600;
                         }
                         ambiancesound++;
                         ambiancechance = 1;
@@ -1092,7 +1106,7 @@ int main(void) {
                         soundBank.samples[sample].cursor = 0;
                     }else {
                         ambiancesound++;
-                        tensecondframe = 600;
+                        fivesecondframe = 300;
                         ambiancechance++;
                     }   
                     if (ambiancesound > 2) {
@@ -1101,7 +1115,7 @@ int main(void) {
                 }
             }
 
-            if (tensecondframe > 0) {tensecondframe--;}
+            if (fivesecondframe > 0) {fivesecondframe--;}
 
             if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0) {
               if (pad & PADselect || pad >> 16 & PADselect) {
@@ -1180,6 +1194,7 @@ int main(void) {
                       setRGB0(polytableleft, fadeoffice, fadeoffice, fadeoffice);   
                       setRGB0(polytablemiddle2, fadeoffice, fadeoffice, fadeoffice);
                       setRGB0(polymanglehanging, fadeoffice, fadeoffice, fadeoffice);
+                      setRGB0(polyBB, fadeoffice, fadeoffice, fadeoffice);
                 } else {
 
                   if (night != 725255 && fivetosixamframes == 0 && checkframes == 0) {
@@ -1196,10 +1211,15 @@ int main(void) {
                     setRGB0(polytableleft, 108, 108, 108);    
                     setRGB0(polytablemiddle2, 108, 108, 108);    
                     setRGB0(polymanglehanging, 128, 128, 128);
+                    setRGB0(polyBB, 128, 128, 128);
                   }
                 }
 
             if (ismaskon == 0 && isalreadydead == 3 && checkframes == 0) {
+              dead = 1;
+              deadfrom = officequeue[0];
+            }
+            if (camera == 0 && isalreadydead == 4 && cooldowncamera != 0) {
               dead = 1;
               deadfrom = officequeue[0];
             }
@@ -1231,7 +1251,7 @@ int main(void) {
 
             if (AM == 12 && FrameCounter == 1) { //Init Gameplay
                 CdControlF(CdlPause,0);
-                LoadTexture(_binary_tim_timer20_tim_start, &timermusicbox); 
+                LoadTexture(_binary_tim_timer_timer20_tim_start, &timermusicbox); 
             }
             if (enablephoneguy == 1) {
                 if (night == 1) {
@@ -1294,6 +1314,7 @@ int main(void) {
                 setRGB0(polytableleft, 128, 128, 128);    
                 setRGB0(polytablemiddle2, 128, 128, 128);    
                 setRGB0(polymanglehanging, 128, 128, 128);
+                setRGB0(polyBB, 128, 128, 128);
               } else {
                 if (phoneguytalking % 3 == 0 && fadeoffice > 0) {
                   fadeoffice--;
@@ -1306,7 +1327,8 @@ int main(void) {
                   setRGB0(polytablemiddle, fadeoffice, fadeoffice, fadeoffice);             
                   setRGB0(polytablemiddle2, fadeoffice, fadeoffice, fadeoffice);             
                   setRGB0(polytableright, fadeoffice, fadeoffice, fadeoffice);  
-                  setRGB0(polytableleft, fadeoffice, fadeoffice, fadeoffice);    
+                  setRGB0(polytableleft, fadeoffice, fadeoffice, fadeoffice);  
+                  setRGB0(polyBB, fadeoffice, fadeoffice, fadeoffice);  
                   SpuSetVoiceVolume(2, 0x00, 0x00);//officesound     
                 }
               }
@@ -1446,15 +1468,16 @@ int main(void) {
 
                     if(pad & PADLleft || pad >> 16 & PADLleft && twoplayermode == 1) {
                         if (MovVectorofficemiddle.vx < 80) {
+                            MovVectorBB.vx = MovVectorBB.vx + speedoffice;
                             MovVectorofficemiddle.vx = MovVectorofficemiddle.vx + speedoffice;
                             MovVectorofficeright1.vx = MovVectorofficeright1.vx + speedoffice;
                             MovVectorofficegolden.vx = MovVectorofficegolden.vx + speedoffice;
                             MovVectorofficefront.vx = MovVectorofficefront.vx + speedoffice;
                             MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx + speedoffice;
-                            if (animatronicshallway[1] == 1) {MovVectorhallway2.vx = MovVectorhallway2.vx + speedoffice;}
-                            if (animatronicshallway[5] == 1 || animatronicshallway[4] == 1) {MovVectorhallway.vx = MovVectorhallway.vx + speedoffice;}
-                            if (animatronicshallway[0] == 1) {MovVectorhallway3.vx = MovVectorhallway3.vx + speedoffice;}
-                            if (animatronicshallway[3] == 1) {MovVectorhallway4.vx = MovVectorhallway4.vx + speedoffice;}
+                            MovVectorhallway2.vx = MovVectorhallway2.vx + speedoffice;
+                            MovVectorhallway.vx = MovVectorhallway.vx + speedoffice;
+                            MovVectorhallway3.vx = MovVectorhallway3.vx + speedoffice;
+                            MovVectorhallway4.vx = MovVectorhallway4.vx + speedoffice;
                             MovVectortablemiddle.vx = MovVectortablemiddle.vx + speedoffice;
                             MovVectorRvent.vx = MovVectorRvent.vx + speedoffice;
                             MovVectorLvent.vx = MovVectorLvent.vx + speedoffice;
@@ -1463,12 +1486,13 @@ int main(void) {
                     } // left ;)
                     if(pad & PADLright || pad >> 16 & PADLright && twoplayermode == 1) {
                         if (MovVectorofficemiddle.vx > -110) {
+                            MovVectorBB.vx = MovVectorBB.vx - speedoffice;
                             MovVectorofficemiddle.vx = MovVectorofficemiddle.vx - speedoffice;
                             MovVectorofficegolden.vx = MovVectorofficegolden.vx - speedoffice;
-                            if (animatronicshallway[1] == 1) {MovVectorhallway2.vx = MovVectorhallway2.vx - speedoffice;}
-                            if (animatronicshallway[5] == 1 || animatronicshallway[4] == 1 || animatronicshallway[3] == 1) {MovVectorhallway.vx = MovVectorhallway.vx - speedoffice;}
-                            if (animatronicshallway[0] == 1) {MovVectorhallway3.vx = MovVectorhallway3.vx - speedoffice;}
-                            if (animatronicshallway[3] == 1) {MovVectorhallway4.vx = MovVectorhallway4.vx - speedoffice;}
+                            MovVectorhallway2.vx = MovVectorhallway2.vx - speedoffice;
+                            MovVectorhallway.vx = MovVectorhallway.vx - speedoffice;
+                            MovVectorhallway3.vx = MovVectorhallway3.vx - speedoffice;
+                            MovVectorhallway4.vx = MovVectorhallway4.vx - speedoffice;
                             MovVectorofficefront.vx = MovVectorofficefront.vx - speedoffice;
                             MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - speedoffice;
                             MovVectorRvent.vx = MovVectorRvent.vx - speedoffice;
@@ -1541,6 +1565,41 @@ int main(void) {
                     addPrim(ot[db], polymutecall);                       
                     
                     nextpri += sizeof(POLY_FT4);    
+                  }
+
+                  if (dangerlevel > 0) {  
+                      //first
+                      polydanger = (POLY_FT4 *)nextpri;                 
+                              
+                      RotMatrix(&RotVectordanger, &PolyMatrixdanger);    
+                      TransMatrix(&PolyMatrixdanger, &MovVectordanger2);  
+                      ScaleMatrix(&PolyMatrixdanger, &ScaleVectordanger2);
+                      
+                      SetRotMatrix(&PolyMatrixdanger);                  
+                      SetTransMatrix(&PolyMatrixdanger);                
+                      
+                      setClut(polydanger, 960, 201);
+
+                      setPolyFT4(polydanger);         
+
+                      setRGB0(polydanger, 128, 128, 128);                  
+                      
+                      polydanger->tpage = getTPage(danger.mode&0x3, 0, 768, 256); 
+                      
+                      
+                      RotTransPers4(
+                                  &VertPosdanger[0],      &VertPosdanger[1],      &VertPosdanger[2],      &VertPosdanger[3],
+                                  (long*)&polydanger->x0, (long*)&polydanger->x1, (long*)&polydanger->x2, (long*)&polydanger->x3,
+                                  &polydepth,
+                                  &polyflag
+                                  );                               
+                      
+                      setUV4(polydanger, 0, 0, 0, 29, 34, 0, 34, 29);
+                          
+
+                      addPrim(ot[db], polydanger);                       
+                      
+                      nextpri += sizeof(POLY_FT4);    
                   }
 
                   //Layout                
@@ -1842,9 +1901,9 @@ int main(void) {
                     }   
                 }  
 
+            }
                 if (blinkicon < 61) {blinkicon++;}
                 if (blinkicon == 60) {blinkicon = 0;}
-            }
                 //need to add golden freddy hallway 
                 if (freddylocation > 2 || foxylocation > 0 || toyfreddylocation > 1 || bonnielocation > 3 || chicalocation > 2 || toybonnielocation > 3 || toychicalocation > 4 || manglelocation > 3 || BBlocation > 3) { if (weirdnight == 0 && AM != 6) {triggeralarm = 1;}} else {triggeralarm = 0;}
                 if (BBlocation == 6) {BBlol = 1;} else {BBlol = 0;}
@@ -2301,7 +2360,7 @@ int main(void) {
                 }
                 //Might do another route she can pick (hallway)
         }//Gameplay Screen
-        if (menu == 4) { //Game over screen. ALWAYS BEGIN WITH THE STATIC
+        if (menu == 3) { //Game over screen. ALWAYS BEGIN WITH THE STATIC
             if (staticframes > 1) {
                 makepoly(15);
                 if (staticframessheet == 8) {
@@ -2331,7 +2390,7 @@ int main(void) {
 
                 if (pad & PADstart) {
                     resetgame(0);
-                    menu = 2;
+                    menu = 1;
                 }
             } else{staticframes--;}
         }//Game over screen. ALWAYS BEGIN WITH THE STATIC
@@ -2401,6 +2460,8 @@ void resetgame(int hardreset) {
 
     toychicaHere = 0;
     toybonnieHere = 0;
+    mangleHere = 0;
+    BBHere = 0;
     triggeralarm = 0;
 
     for (int i = 0; i < 4; i++){ if (officequeue[i] != 0){ officequeue[i] = 0;}}
@@ -2426,7 +2487,7 @@ void resetgame(int hardreset) {
     noisefootstep = 0;
     framenoisefootstep = 0;
 
-    tensecondframe = 600;
+    fivesecondframe = 600;
 
     mascottune = 0;
     musicmascottune = 1248;
@@ -2476,7 +2537,7 @@ void print(int number) {
             if (side == 1) {
                 FntPrint("\nRight Light: %d", light2);
             }
-            FntPrint("\n\nphoneguytalking %d, ambiancechance %d, tensecondframe %d", phoneguytalking, ambiancechance, tensecondframe); //print cam     
+            FntPrint("\n\nphoneguytalking %d, ambiancechance %d, fivesecondframe %d", phoneguytalking, ambiancechance, fivesecondframe); //print cam     
         }
     }
     if (number == 3) { //Vanilla debug (with access to camera)
@@ -2509,7 +2570,7 @@ void print(int number) {
         FntPrint("TOY TFlocFrame %d & location %d,",toyfreddylocationframe, toyfreddylocation);
         FntPrint("\nTBLocFrame %d & location %d %d,", toybonnielocationframe, toybonnielocation, toybonnieframevent);
         FntPrint("\nTCLocFrame %d & location %d,\nMlocFrame %d & location %d. Mattack %d\n",toychicalocationframe, toychicalocation, manglelocationframe, manglelocation, mangleattack);
-        FntPrint("BBLocFrame %d & location %d\n",BBlocationframe, BBlocation);
+        FntPrint("BBLocFrame %d & location %d sound %d %d\n",BBlocationframe, BBlocation, ambiancesound, ambiancechance);
         FntPrint("OLD AI F %d, B %d, C %d,Fo %d.\nTOY AI F %d, B %d, C %d, M %d.",freddydifficulty, bonniedifficulty, chicadifficulty, foxydifficulty, toyfreddydifficulty, toybonniedifficulty, toychicadifficulty, mangledifficulty);
     }
     if (number == 5) { // Almost same then vanilla but with officequeue array and some things too
@@ -2588,14 +2649,14 @@ void menuselectionfunc(void) { //LONG asf lmaoo
         if (menuselection == 1) {//"Starting" night
             if (pad & PADstart) {
                 night = 1;
-                menu = 1;
+                helpwantedposter = 1;
             } 
         }
 
         if (menuselection == 2) { //Continue nights
             if (pad & PADstart) {
                 loadingframe = 360;
-                menu = 2;
+                menu = 1;
             }//Or...
             if (pad & PADRup && pad & PADRright && pad & PADR1 && pad & PADL2 && activatedmenudebug == 0) //Activate debug !
             {
@@ -2704,7 +2765,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
         if (menuselection == 5) { // LAUNCH NIGHT
             if (pad & PADstart) {
               if (limiterstart == 0) {
-                menu = 2;
+                menu = 1;
                 customnightactivated = 1;
               }
             }
@@ -3670,7 +3731,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
                   night = 725255;
                   onetime++;
                   limiterstart++;
-                  menu = 2;
+                  menu = 1;
                 }
             }
         }
@@ -4013,7 +4074,7 @@ void animatronicFunc(int init) {
           mangledifficulty = 3;
           toyfreddydifficulty = 2;
           BBdifficulty = 3;
-          musicboxunwidingvalue = 1;
+          musicboxunwidingvalue = 2;
           musicboxunwidingvaludemi = 1;
           musicboxunwidingvaluthird = -2; // OK
           windingframe = 2;
@@ -4031,7 +4092,7 @@ void animatronicFunc(int init) {
           chicadifficulty = 1;
           foxydifficulty = 2;
           musicboxunwidingvaludemi = 0;
-          musicboxunwidingvalue = 1;
+          musicboxunwidingvalue = 2;
           musicboxunwidingvaluthird = -2; // OK
           windingframe = 1;
       }
@@ -4048,8 +4109,8 @@ void animatronicFunc(int init) {
           BBdifficulty = 3;
           mangledifficulty = 5;
           musicboxunwidingvaludemi = 1;
-          musicboxunwidingvalue = 1;
-          musicboxunwidingvaluthird = 0; //Curr 22.07 / 25
+          musicboxunwidingvalue = 2;
+          musicboxunwidingvaluthird = 0; //Curr 26.54 / 25
           windingframe = 1;
       }
       if (night == 5 && FrameCounter == 0) { 
@@ -4064,9 +4125,9 @@ void animatronicFunc(int init) {
           toybonniedifficulty = 2;
           toychicadifficulty = 2;
           mangledifficulty = 1;
-          musicboxunwidingvaludemi = 0;
-          musicboxunwidingvalue = 2;
-          musicboxunwidingvaluthird = -2; //Cur 21.88 / 20
+          musicboxunwidingvaludemi = 1;
+          musicboxunwidingvalue = 3;
+          musicboxunwidingvaluthird = 0; //Cur 19.13 / 20
           windingframe = 1;
       }
       if (night == 6 && FrameCounter == 0) { 
@@ -4083,110 +4144,121 @@ void animatronicFunc(int init) {
           mangledifficulty = 3;
           BBdifficulty = 5;
           musicboxunwidingvaludemi = 0;
-          musicboxunwidingvalue = 2; //Cur ~16.33 OK
+          musicboxunwidingvalue = 4; //Cur ~16.55 OK
           windingframe = 1;
       }
   } else {
-      if (doescharlevelup == 1){
-          if (debugging == 1) {
-            if (FrameCounter == 0) {
-              if (AM == 1) {
-              toychicalocation--;
-              freddylocation = 3;
-              }
-              if (AM == 2) {
-                freddylocation--;
-                bonnielocation = 2;
-              }
+    if (debugging == 1) {
+      if (FrameCounter == 0) {
+        if (AM == 12) {
+          toychicalocation = 2;
+        }
+        if (AM == 1) {
+          toychicalocation--;
+          freddylocation = 3;
+        }
+        if (AM == 2) {
+          freddylocation--;
+          bonnielocation = 2;
+        }
+        if (AM == 3) {
+          bonnielocation--;
+          foxylocation = 1;
+        }
+        if (AM == 4) {
+          foxylocation--;
+          toyfreddylocation = 2;
+        }
+      }
+    }
+    if (doescharlevelup == 1){
+        if (FrameCounter == 0) {
+          if (AM == 1) {
+            if (night == 2) {
+              toybonniedifficulty = toybonniedifficulty + 3;
+              toychicadifficulty = toychicadifficulty + 3;
+              toyfreddydifficulty = toyfreddydifficulty + 2;
+              mangledifficulty = mangledifficulty + 3;
+              BBdifficulty = BBdifficulty + 3;
+              foxydifficulty = foxydifficulty + 1;
+            }
+            if (night == 3) {
+              freddydifficulty = freddydifficulty + 2;
+              bonniedifficulty = bonniedifficulty + 2;
+              chicadifficulty++;
+              foxydifficulty++;
+              BBdifficulty++;
+              toybonniedifficulty++;
+              toychicadifficulty++;
+            }
+            if (night == 5) {
+              freddydifficulty = freddydifficulty + 3;
+              bonniedifficulty = bonniedifficulty + 3;
+              chicadifficulty = chicadifficulty + 3;
+              foxydifficulty = foxydifficulty + 2;
+              toyfreddydifficulty = toyfreddydifficulty - 4;
+              mangledifficulty = mangledifficulty + 9;
+              toybonniedifficulty++;
             }
           }
-          if (FrameCounter == 0) {
-            if (AM == 1) {
-              if (night == 2) {
-                toybonniedifficulty = toybonniedifficulty + 3;
-                toychicadifficulty = toychicadifficulty + 3;
-                toyfreddydifficulty = toyfreddydifficulty + 2;
-                mangledifficulty = mangledifficulty + 3;
-                BBdifficulty = BBdifficulty + 3;
-                foxydifficulty = foxydifficulty + 1;
-              }
-              if (night == 3) {
-                freddydifficulty = freddydifficulty + 2;
-                bonniedifficulty = bonniedifficulty + 2;
-                chicadifficulty++;
-                foxydifficulty++;
-                BBdifficulty++;
-                toybonniedifficulty++;
-                toychicadifficulty++;
-              }
-              if (night == 5) {
-                freddydifficulty = freddydifficulty + 3;
-                bonniedifficulty = bonniedifficulty + 3;
-                chicadifficulty = chicadifficulty + 3;
-                foxydifficulty = foxydifficulty + 2;
-                toyfreddydifficulty = toyfreddydifficulty - 4;
-                mangledifficulty = mangledifficulty + 9;
-                toybonniedifficulty++;
-              }
+          if (AM == 2) {
+            if  (night == 1) {
+              toybonniedifficulty = toybonniedifficulty + 2;
+              toychicadifficulty = toychicadifficulty + 2;
+              musicboxunwidingvalue = 1;
+              musicboxunwidingvaludemi = 1;
+              musicboxunwidingvaluthird = -2;
+              windingframe = 2;
             }
-            if (AM == 2) {
-              if  (night == 1) {
-                toybonniedifficulty = toybonniedifficulty + 2;
-                toychicadifficulty = toychicadifficulty + 2;
-                musicboxunwidingvalue = 1;
-                musicboxunwidingvaludemi = 1;
-                musicboxunwidingvaluthird = -2;
-                windingframe = 2;
-              }
-              if (night == 4) {
-                freddydifficulty = freddydifficulty + 3;
-                bonniedifficulty = bonniedifficulty + 3;
-                chicadifficulty = chicadifficulty + 4;
-                toybonniedifficulty++;
-              }
-              if (night == 6) {
-                toybonniedifficulty = toybonniedifficulty + 5;
-                goldenfreddydifficulty = goldenfreddydifficulty + 3;
-                foxydifficulty = foxydifficulty + 5;
-                toyfreddydifficulty = toyfreddydifficulty + 5;
-                toychicadifficulty = toychicadifficulty + 5;
-                mangledifficulty = mangledifficulty + 7;
-                BBdifficulty = BBdifficulty + 4;
-                freddydifficulty = freddydifficulty + 5;
-                bonniedifficulty = bonniedifficulty + 5;
-                chicadifficulty = chicadifficulty + 5;
-              }
+            if (night == 4) {
+              freddydifficulty = freddydifficulty + 3;
+              bonniedifficulty = bonniedifficulty + 3;
+              chicadifficulty = chicadifficulty + 4;
+              toybonniedifficulty++;
             }
-            if (AM == 3) {
-              if (night == 1) {
-                toybonniedifficulty++;
-                toyfreddydifficulty = toyfreddydifficulty + 2;
-              }
+            if (night == 6) {
+              toybonniedifficulty = toybonniedifficulty + 5;
+              goldenfreddydifficulty = goldenfreddydifficulty + 3;
+              foxydifficulty = foxydifficulty + 5;
+              toyfreddydifficulty = toyfreddydifficulty + 5;
+              toychicadifficulty = toychicadifficulty + 5;
+              mangledifficulty = mangledifficulty + 7;
+              BBdifficulty = BBdifficulty + 4;
+              freddydifficulty = freddydifficulty + 5;
+              bonniedifficulty = bonniedifficulty + 5;
+              chicadifficulty = chicadifficulty + 5;
             }
           }
-      }
-      if (isalreadydead == 1) {
-          lastsecondsframes--;
-          if (camera == 0) {lastsecondsframes = 0;}
-          if (lastsecondsframes == 1001) {
-              //Sound moaning ? 
+          if (AM == 3) {
+            if (night == 1) {
+              toybonniedifficulty++;
+              toyfreddydifficulty = toyfreddydifficulty + 2;
+            }
           }
-          if (lastsecondsframes == 480) {
-              //Second moaning ?
-          }
-          if (lastsecondsframes == 0) {
-              dead = 1;
-          }
-      }
-      if (isalreadydeadlow == 1) { //Usually for freddy only
-          if (camera == 0) {
-              dead = 1;
-              deadfrom = 1;
-          }
-      }
-      if (nightwon == 0) {
-        AImoving();
-      }
+        }
+    }
+    if (isalreadydead == 1) {
+        lastsecondsframes--;
+        if (camera == 0) {lastsecondsframes = 0;}
+        if (lastsecondsframes == 1001) {
+            //Sound moaning ? 
+        }
+        if (lastsecondsframes == 480) {
+            //Second moaning ?
+        }
+        if (lastsecondsframes == 0) {
+            dead = 1;
+        }
+    }
+    if (isalreadydeadlow == 1) { //Usually for freddy only
+        if (camera == 0) {
+            dead = 1;
+            deadfrom = 1;
+        }
+    }
+    if (nightwon == 0) {
+      AImoving();
+    }
   }
 }
 void AImoving(void) {
@@ -4230,6 +4302,7 @@ void AImoving(void) {
     if (toybonnielocation == 5) {toybonnieHere = 1;} else {toybonnieHere = 0;}
     if (toychicalocation == 6) {toychicaHere = 1;} else {toychicaHere = 0;}
     if (manglelocation == 6) {mangleHere = 1;} else {mangleHere = 0;}
+    if (BBlocation == 5) {BBHere = 1;} else {BBHere = 0;}
 
     if (toybonnielocation == 6) {
       for (int i = 0; i < 5; i++){ if (officequeue[i] == 0){ officequeue[i] = 6; break;}}
@@ -4261,6 +4334,7 @@ void AImoving(void) {
         musicboxtimer = musicboxtimer - musicboxunwidingvalue;
         if (musicboxunwidingvaluthird == 1) {
           musicboxtimer = musicboxtimer - musicboxunwidingvaluthird;
+          musicboxunwidingvaluthird = -1;
         }
         if (musicboxunwidingvaluthird == 0) {
           musicboxunwidingvaluthird = 1;
@@ -4272,42 +4346,71 @@ void AImoving(void) {
         if (musicboxunwidingvaludemi == 0) {
           musicboxunwidingvaludemi = 1;
         } else {
-          musicboxtimer = musicboxtimer - musicboxunwidingvaludemi;
+            musicboxunwidingvaludemi = 0;
+            musicboxtimer = musicboxtimer - musicboxunwidingvaludemi;
         }
       }
     } else {
       ismusicboxatzero = 1;
     }
+    if (dangerlevel == 1) {LoadTexture(_binary_tim_danger1_tim_start, &danger);}
+    if (dangerlevel == 2) {LoadTexture(_binary_tim_danger2_tim_start, &danger);}
     if (camera == 1) {
-      if (musicboxtimer <= 0) {setRGB0(polytimer,0,0,0);} else {setRGB0(polytimer,128,128,128);}
+      if (musicboxtimer < 0) {setRGB0(polytimer,0,0,0);} else {setRGB0(polytimer,128,128,128);}
 
-      if (musicboxtimer > 0 && musicboxtimer < 90) {LoadTexture(_binary_tim_timer0_tim_start, &timermusicbox);}
-      if (musicboxtimer > 90 && musicboxtimer < 180) {LoadTexture(_binary_tim_timer1_tim_start, &timermusicbox);}
-      if (musicboxtimer > 180 && musicboxtimer < 270) {LoadTexture(_binary_tim_timer2_tim_start, &timermusicbox);}
-      if (musicboxtimer > 270 && musicboxtimer < 360) {LoadTexture(_binary_tim_timer3_tim_start, &timermusicbox);}
-      if (musicboxtimer > 360 && musicboxtimer < 450) {LoadTexture(_binary_tim_timer4_tim_start, &timermusicbox);}
-      if (musicboxtimer > 450 && musicboxtimer < 540) {LoadTexture(_binary_tim_timer5_tim_start, &timermusicbox);}
-      if (musicboxtimer > 540 && musicboxtimer < 630) {LoadTexture(_binary_tim_timer6_tim_start, &timermusicbox);}
-      if (musicboxtimer > 630 && musicboxtimer < 720) {LoadTexture(_binary_tim_timer7_tim_start, &timermusicbox);}
-      if (musicboxtimer > 720 && musicboxtimer < 810) {LoadTexture(_binary_tim_timer8_tim_start, &timermusicbox);}
-      if (musicboxtimer > 810 && musicboxtimer < 900) {LoadTexture(_binary_tim_timer9_tim_start, &timermusicbox);}
-      if (musicboxtimer > 900 && musicboxtimer < 990) {LoadTexture(_binary_tim_timer10_tim_start, &timermusicbox);}
-      if (musicboxtimer > 990 && musicboxtimer < 1080) {LoadTexture(_binary_tim_timer11_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1080 && musicboxtimer < 1170) {LoadTexture(_binary_tim_timer12_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1170 && musicboxtimer < 1260) {LoadTexture(_binary_tim_timer13_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1260 && musicboxtimer < 1350) {LoadTexture(_binary_tim_timer14_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1350 && musicboxtimer < 1440) {LoadTexture(_binary_tim_timer15_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1440 && musicboxtimer < 1530) {LoadTexture(_binary_tim_timer16_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1530 && musicboxtimer < 1620) {LoadTexture(_binary_tim_timer17_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1620 && musicboxtimer < 1710) {LoadTexture(_binary_tim_timer18_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1710 && musicboxtimer < 1800) {LoadTexture(_binary_tim_timer19_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1800 && musicboxtimer < 1890) {LoadTexture(_binary_tim_timer20_tim_start, &timermusicbox);}
-    } else {
-      if (fanframes == 0) {LoadTexture(_binary_tim_fan1_tim_start, &tableFAN);}
-      if (fanframes == 1) {LoadTexture(_binary_tim_fan2_tim_start, &tableFAN);}
-      if (fanframes == 2) {LoadTexture(_binary_tim_fan3_tim_start, &tableFAN);}
-      if (fanframes == 3) {LoadTexture(_binary_tim_fan4_tim_start, &tableFAN);}
+      if (musicboxtimer > 0 && musicboxtimer < 90) {
+        LoadTexture(_binary_tim_timer_timer0_tim_start, &timermusicbox);
+        dangerlevel = 2;
     }
+      if (musicboxtimer > 90 && musicboxtimer < 180) {
+        LoadTexture(_binary_tim_timer_timer1_tim_start, &timermusicbox);
+        dangerlevel = 2;
+    }
+      if (musicboxtimer > 180 && musicboxtimer < 270) {
+        LoadTexture(_binary_tim_timer_timer2_tim_start, &timermusicbox);
+        dangerlevel = 1;
+    }
+      if (musicboxtimer > 270 && musicboxtimer < 360) {
+        LoadTexture(_binary_tim_timer_timer3_tim_start, &timermusicbox);
+        dangerlevel = 1;
+    }
+      if (musicboxtimer > 360 && musicboxtimer < 450) {
+        LoadTexture(_binary_tim_timer_timer4_tim_start, &timermusicbox);
+        dangerlevel = 0;
+    }
+      if (musicboxtimer > 450 && musicboxtimer < 540) {LoadTexture(_binary_tim_timer_timer5_tim_start, &timermusicbox);}
+      if (musicboxtimer > 540 && musicboxtimer < 630) {LoadTexture(_binary_tim_timer_timer6_tim_start, &timermusicbox);}
+      if (musicboxtimer > 630 && musicboxtimer < 720) {LoadTexture(_binary_tim_timer_timer7_tim_start, &timermusicbox);}
+      if (musicboxtimer > 720 && musicboxtimer < 810) {LoadTexture(_binary_tim_timer_timer8_tim_start, &timermusicbox);}
+      if (musicboxtimer > 810 && musicboxtimer < 900) {LoadTexture(_binary_tim_timer_timer9_tim_start, &timermusicbox);}
+      if (musicboxtimer > 900 && musicboxtimer < 990) {LoadTexture(_binary_tim_timer_timer10_tim_start, &timermusicbox);}
+      if (musicboxtimer > 990 && musicboxtimer < 1080) {LoadTexture(_binary_tim_timer_timer11_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1080 && musicboxtimer < 1170) {LoadTexture(_binary_tim_timer_timer12_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1170 && musicboxtimer < 1260) {LoadTexture(_binary_tim_timer_timer13_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1260 && musicboxtimer < 1350) {LoadTexture(_binary_tim_timer_timer14_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1350 && musicboxtimer < 1440) {LoadTexture(_binary_tim_timer_timer15_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1440 && musicboxtimer < 1530) {LoadTexture(_binary_tim_timer_timer16_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1530 && musicboxtimer < 1620) {LoadTexture(_binary_tim_timer_timer17_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1620 && musicboxtimer < 1710) {LoadTexture(_binary_tim_timer_timer18_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1710 && musicboxtimer < 1800) {LoadTexture(_binary_tim_timer_timer19_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1800 && musicboxtimer < 1890) {LoadTexture(_binary_tim_timer_timer20_tim_start, &timermusicbox);}
+    } else {
+      if (fanframes == 0) {LoadTexture(_binary_tim_office_fan1_tim_start, &tableFAN);}
+      if (fanframes == 1) {LoadTexture(_binary_tim_office_fan2_tim_start, &tableFAN);}
+      if (fanframes == 2) {LoadTexture(_binary_tim_office_fan3_tim_start, &tableFAN);}
+      if (fanframes == 3) {LoadTexture(_binary_tim_office_fan4_tim_start, &tableFAN);}
+    }
+
+      if (musicboxtimer < 180) {
+        dangerlevel = 2;
+    }
+      if (musicboxtimer > 180 && musicboxtimer < 360) {
+        dangerlevel = 1;
+    }
+      if (musicboxtimer > 360) {
+        dangerlevel = 0;
+    }
+
     if (windingframessound != 0) {
       windingframessound--;
     }
@@ -4526,7 +4629,7 @@ void AImoving(void) {
           if (manglelocation == 7) { //ur dead
             Ran(6000);
             mangleattack = 300 + RAN; //From 30 seconds to 2 minutes
-            LoadTexture(_binary_tim_manglehanging_tim_start, &manglehanging);
+            LoadTexture(_binary_tim_office_manglehanging_tim_start, &manglehanging);
           }
         }
         manglelocationframe = manglelocationframelock;
@@ -4592,9 +4695,9 @@ void screamer(void) {
         spritesheet++;
         switch(deadfrom) {
             case 1: 
-              if (spritesheet > 6) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 4;} break;
+              if (spritesheet > 6) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 3;} break;
             case 3: 
-              if (spritesheet > 5) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 4;} break;
+              if (spritesheet > 5) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 3;} break;
             case 7 :
                 if (spritesheet > 4) {spritesheet = 0; screamerframes = 0;} break;
             default :
@@ -4604,155 +4707,158 @@ void screamer(void) {
         clearVRAMScreamer();
         if (deadfrom == 1) {
           if (spritesheet == 1) {
-              LoadTexture(_binary_tim_jumpF0_tim_start, &jumpscare);
+              LoadTexture(_binary_tim_screamer_jumpF0_tim_start, &jumpscare);
           }
           if (spritesheet == 2) {
-              LoadTexture(_binary_tim_jumpF1_tim_start, &jumpscare);
+              LoadTexture(_binary_tim_screamer_jumpF1_tim_start, &jumpscare);
           }
           if (spritesheet == 3) {
-              LoadTexture(_binary_tim_jumpF2_tim_start, &jumpscare);
+              LoadTexture(_binary_tim_screamer_jumpF2_tim_start, &jumpscare);
           }
           if (spritesheet == 4) {
-              LoadTexture(_binary_tim_jumpF3_tim_start, &jumpscare);
+              LoadTexture(_binary_tim_screamer_jumpF3_tim_start, &jumpscare);
           }
           if (spritesheet == 5) {
-              LoadTexture(_binary_tim_jumpF4_tim_start, &jumpscare);
+              LoadTexture(_binary_tim_screamer_jumpF4_tim_start, &jumpscare);
           }
           if (spritesheet == 6) {
-              LoadTexture(_binary_tim_jumpF5_tim_start, &jumpscare);
+              LoadTexture(_binary_tim_screamer_jumpF5_tim_start, &jumpscare);
           }
         }
         if (deadfrom == 2) {
             if (spritesheet == 1) {
-                LoadTexture(_binary_tim_jumpB2_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpB2_tim_start, &jumpscare);
             }
             if (spritesheet == 2) {
-                LoadTexture(_binary_tim_jumpB3_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpB3_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_jumpB4_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpB4_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                LoadTexture(_binary_tim_jumpB5_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpB5_tim_start, &jumpscare);
             }
             if (spritesheet == 0) {
-                LoadTexture(_binary_tim_jumpB_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpB_tim_start, &jumpscare);
             } 
         }
         if (deadfrom == 3) {
             if (spritesheet == 1) {
-                LoadTexture(_binary_tim_Cjump2_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Cjump2_tim_start, &jumpscare);
             }
             if (spritesheet == 2) {
-                LoadTexture(_binary_tim_Cjump3_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Cjump3_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_Cjump4_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Cjump4_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                LoadTexture(_binary_tim_Cjump5_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Cjump5_tim_start, &jumpscare);
             }
             if (spritesheet == 0) {
-                LoadTexture(_binary_tim_Cjump1_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Cjump1_tim_start, &jumpscare);
             } 
-        }
+        }/*
         if (deadfrom == 4) {
             if (spritesheet == 1) {
-                LoadTexture(_binary_tim_jumpFO_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpFO_tim_start, &jumpscare);
             }
             if (spritesheet == 2) {
-                LoadTexture(_binary_tim_jumpFO2_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpFO2_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_jumpFO3_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpFO3_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                LoadTexture(_binary_tim_jumpFO4_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpFO4_tim_start, &jumpscare);
             }
             if (spritesheet == 5) {
-                LoadTexture(_binary_tim_jumpFO5_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpFO5_tim_start, &jumpscare);
             }
-        }/*
+        }
         if (deadfrom == 5) {
             if (spritesheet == 2) {
-                LoadTexture(_binary_tim_jumpTF2_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpTF2_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_jumpTF3_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpTF3_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                LoadTexture(_binary_tim_jumpTF4_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpTF4_tim_start, &jumpscare);
             }
             if (spritesheet == 5) {
-                LoadTexture(_binary_tim_jumpTF5_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpTF5_tim_start, &jumpscare);
             }
             if (spritesheet == 1) {
-                LoadTexture(_binary_tim_jumpTF1_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_jumpTF1_tim_start, &jumpscare);
             } 
         }
         if (deadfrom == 6) {
             if (spritesheet == 2) {
-                LoadTexture(_binary_tim_TBjump2_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_TBjump2_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_TBjump3_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_TBjump3_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                LoadTexture(_binary_tim_TBjump4_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_TBjump4_tim_start, &jumpscare);
             }
             if (spritesheet == 5) {
-                LoadTexture(_binary_tim_TBjump5_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_TBjump5_tim_start, &jumpscare);
             }
             if (spritesheet == 1) {
-                LoadTexture(_binary_tim_TBjump1_tim_start, &jumpscare);
-            } 
-        }
-        if (deadfrom == 10) {
-            if (spritesheet == 2) {
-                LoadTexture(_binary_tim_jumpP2_tim_start, &jumpscare);
-            }
-            if (spritesheet == 3) {
-                LoadTexture(_binary_tim_jumpP3_tim_start, &jumpscare);
-            }
-            if (spritesheet == 4) {
-                LoadTexture(_binary_tim_jumpP4_tim_start, &jumpscare);
-            }
-            if (spritesheet == 5) {
-                LoadTexture(_binary_tim_jumpP5_tim_start, &jumpscare);
-            }
-            if (spritesheet == 1) {
-                LoadTexture(_binary_tim_jumpP1_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_TBjump1_tim_start, &jumpscare);
             } 
         }
         if (deadfrom == 7) { //don't like toy chica so only 4 frames 
             if (spritesheet == 2) {
-                LoadTexture(_binary_tim_TCjump2_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_TCjump2_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_TCjump3_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_TCjump3_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                LoadTexture(_binary_tim_TCjump4_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_TCjump4_tim_start, &jumpscare);
             }
             if (spritesheet == 1) {
-                LoadTexture(_binary_tim_TCjump1_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_TCjump1_tim_start, &jumpscare);
             } 
-        }*/
+        }
         if (deadfrom == 8) {
             if (spritesheet == 2) {
-                LoadTexture(_binary_tim_Mjump2_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Mjump2_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_Mjump3_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Mjump3_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                LoadTexture(_binary_tim_Mjump4_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Mjump4_tim_start, &jumpscare);
             }
             if (spritesheet == 5) {
-                LoadTexture(_binary_tim_Mjump5_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Mjump5_tim_start, &jumpscare);
             }
             if (spritesheet == 1) {
-                LoadTexture(_binary_tim_Mjump1_tim_start, &jumpscare);
+                LoadTexture(_binary_tim_screamer_Mjump1_tim_start, &jumpscare);
+            } 
+        }*/
+        if (deadfrom == 9) {
+            LoadTexture(_binary_tim_screamer_jumpGF_tim_start, &jumpscare);
+        }
+        if (deadfrom == 10) {
+            if (spritesheet == 2) {
+                LoadTexture(_binary_tim_screamer_jumpP2_tim_start, &jumpscare);
+            }
+            if (spritesheet == 3) {
+                LoadTexture(_binary_tim_screamer_jumpP3_tim_start, &jumpscare);
+            }
+            if (spritesheet == 4) {
+                LoadTexture(_binary_tim_screamer_jumpP4_tim_start, &jumpscare);
+            }
+            if (spritesheet == 5) {
+                LoadTexture(_binary_tim_screamer_jumpP5_tim_start, &jumpscare);
+            }
+            if (spritesheet == 1) {
+                LoadTexture(_binary_tim_screamer_jumpP1_tim_start, &jumpscare);
             } 
         }
         spriteframes = 4;
@@ -4763,7 +4869,7 @@ void screamer(void) {
         SpuSetKey(SPU_ON, SPU_04CH);
     }
     if (screamerframes == 0) {
-        menu = 4;
+        menu = 3;
     }
 }
 void sideFunc(int number) {side = number;}
@@ -4775,18 +4881,21 @@ void LightFunc(void) {
                 if (light1 == 1) {
                     light2 = 0;
                     lighthall = 0;
-                    LoadTexture(_binary_tim_oRIGHTpart2_tim_start, &officeRIGHT);
-                    LoadTexture(_binary_tim_officeMIDDLE_tim_start, &officeMIDDLE); 
+                    LoadTexture(_binary_tim_office_oRIGHTpart2_tim_start, &officeRIGHT);
+                    LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE); 
                     SpuSetKey(SPU_ON, SPU_00CH);
-                    LoadTexture(_binary_tim_oLEFTpart2light_tim_start, &officeLEFTlight);
+                    LoadTexture(_binary_tim_office_oLEFTpart2light_tim_start, &officeLEFTlight);
                     if (toychicaHere == 1) {
-                        LoadTexture(_binary_tim_officeLEFTlighttoychica_tim_start, &Rvent);
+                        LoadTexture(_binary_tim_office_officeLEFTlighttoychica_tim_start, &Rvent);
+                    }
+                    if (BBHere == 1) {
+                        LoadTexture(_binary_tim_office_officeLEFTlightballonboy_tim_start, &Rvent);
                     }
                 }
                 if (light1 >= 2) {
                     light1 = 0;
                     SpuSetKey(SPU_OFF, SPU_00CH);
-                    LoadTexture(_binary_tim_oLEFTpart2_tim_start, &officeLEFT);                
+                    LoadTexture(_binary_tim_office_oLEFTpart2_tim_start, &officeLEFT);                
                   }   
             }
             if (side == 1) {
@@ -4794,21 +4903,21 @@ void LightFunc(void) {
                 if (light2 == 1) {
                     light1 = 0;
                     lighthall = 0;
-                    LoadTexture(_binary_tim_oLEFTpart2_tim_start, &officeLEFT);
-                    LoadTexture(_binary_tim_officeMIDDLE_tim_start, &officeMIDDLE); 
-                    LoadTexture(_binary_tim_oRIGHTpart2light_tim_start, &officeRIGHTlight);
+                    LoadTexture(_binary_tim_office_oLEFTpart2_tim_start, &officeLEFT);
+                    LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE); 
+                    LoadTexture(_binary_tim_office_oRIGHTpart2light_tim_start, &officeRIGHTlight);
                     SpuSetKey(SPU_ON, SPU_00CH);
                     if (toybonnieHere == 1) {
-                        LoadTexture(_binary_tim_officeRIGHTlighttoybonnie_tim_start, &Lvent);
+                        LoadTexture(_binary_tim_office_officeRIGHTlighttoybonnie_tim_start, &Lvent);
                     }
                     if (mangleHere == 1) {
-                        LoadTexture(_binary_tim_officeRIGHTlightmangle_tim_start, &Lvent);
+                        LoadTexture(_binary_tim_office_officeRIGHTlightmangle_tim_start, &Lvent);
                     }
                 }
                 if (light2 >= 2) {
                     light2 = 0;
                     SpuSetKey(SPU_OFF, SPU_00CH); 
-                    LoadTexture(_binary_tim_oRIGHTpart2_tim_start, &officeRIGHT);
+                    LoadTexture(_binary_tim_office_oRIGHTpart2_tim_start, &officeRIGHT);
                 } 
             }   
         } else {
@@ -4826,27 +4935,27 @@ void LightFuncHall(void) {
                 light2 = 0;
                 SpuSetKey(SPU_ON, SPU_00CH);
                   if (foxylocation == 1) {
-                    LoadTexture(_binary_tim_foxyhallway_tim_start, &animatronichallway); 
+                    LoadTexture(_binary_tim_hallway_foxyhallway_tim_start, &animatronichallway); 
                   }else {
                   if (toyfreddylocation == 2 || toyfreddylocation == 3) {
-                    LoadTexture(_binary_tim_toyfreddyhallway_tim_start, &animatronichallway); 
+                    LoadTexture(_binary_tim_hallway_toyfreddyhallway_tim_start, &animatronichallway); 
                   } else {
                       if (freddylocation == 3) {
-                          LoadTexture(_binary_tim_freddyhallway_tim_start, &animatronichallway); 
+                          LoadTexture(_binary_tim_hallway_freddyhallway_tim_start, &animatronichallway); 
                       } else {
                           if (bonnielocation == 2) {
-                              LoadTexture(_binary_tim_bonniehallway_tim_start, &animatronichallway); 
+                              LoadTexture(_binary_tim_hallway_bonniehallway_tim_start, &animatronichallway); 
                           } else {
                               if (toychicalocation == 2) {
-                                  LoadTexture(_binary_tim_toychicahallway_tim_start, &animatronichallway); 
+                                  LoadTexture(_binary_tim_hallway_toychicahallway_tim_start, &animatronichallway); 
                               }
                           }
                       }
                   }
                 }
-                LoadTexture(_binary_tim_oRIGHTpart2_tim_start, &officeRIGHT);
-                LoadTexture(_binary_tim_oLEFTpart2_tim_start, &officeLEFT);
-                LoadTexture(_binary_tim_officeMIDDLElight_tim_start, &officeMIDDLE); 
+                LoadTexture(_binary_tim_office_oRIGHTpart2_tim_start, &officeRIGHT);
+                LoadTexture(_binary_tim_office_oLEFTpart2_tim_start, &officeLEFT);
+                LoadTexture(_binary_tim_office_officeMIDDLElight_tim_start, &officeMIDDLE); 
 
                 if (foxyreadyattack == 1) {
                       dead = 1;
@@ -4857,7 +4966,7 @@ void LightFuncHall(void) {
             if (lighthall >= 2) {
                 lighthall = 0;
                 SpuSetKey(SPU_OFF, SPU_00CH); 
-                LoadTexture(_binary_tim_officeMIDDLE_tim_start, &officeMIDDLE); 
+                LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE); 
             }
         } else {
             SpuSetKey(SPU_ON, SPU_18CH);
@@ -4919,6 +5028,6 @@ void gamevictory(void) {
     camera = 0;
   }
   SpuSetKey(SPU_OFF, SPU_ALLCH);
-  LoadTexture(_binary_tim_FAM_tim_start, &fiveam); 
+  LoadTexture(_binary_tim_5am6_FAM_tim_start, &fiveam); 
   FrameCounter++;
 }

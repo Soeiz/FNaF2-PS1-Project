@@ -1,91 +1,147 @@
 //TIM
-extern unsigned long _binary_tim_officeMIDDLElight_tim_start[];
-extern unsigned long _binary_tim_officeMIDDLElight_tim_end[];
-extern unsigned long _binary_tim_officeMIDDLElight_tim_length;
+extern unsigned long _binary_tim_office_officeMIDDLElight_tim_start[];
+extern unsigned long _binary_tim_office_officeMIDDLElight_tim_end[];
+extern unsigned long _binary_tim_office_officeMIDDLElight_tim_length;
 
-extern unsigned long _binary_tim_oRIGHTpart2_tim_start[];
-extern unsigned long _binary_tim_oRIGHTpart2_tim_end[];
-extern unsigned long _binary_tim_oRIGHTpart2_tim_length;
+extern unsigned long _binary_tim_office_oRIGHTpart2_tim_start[];
+extern unsigned long _binary_tim_office_oRIGHTpart2_tim_end[];
+extern unsigned long _binary_tim_office_oRIGHTpart2_tim_length;
 
-extern unsigned long _binary_tim_oRIGHTpart2light_tim_start[];
-extern unsigned long _binary_tim_oRIGHTpart2light_tim_end[];
-extern unsigned long _binary_tim_oRIGHTpart2light_tim_length;
+extern unsigned long _binary_tim_office_oRIGHTpart2light_tim_start[];
+extern unsigned long _binary_tim_office_oRIGHTpart2light_tim_end[];
+extern unsigned long _binary_tim_office_oRIGHTpart2light_tim_length;
 
-extern unsigned long _binary_tim_officeRIGHTnolight_tim_start[];
-extern unsigned long _binary_tim_officeRIGHTnolight_tim_end[];
-extern unsigned long _binary_tim_officeRIGHTnolight_tim_length;
+extern unsigned long _binary_tim_office_officeRIGHTnolight_tim_start[];
+extern unsigned long _binary_tim_office_officeRIGHTnolight_tim_end[];
+extern unsigned long _binary_tim_office_officeRIGHTnolight_tim_length;
 
-extern unsigned long _binary_tim_officeRIGHTlighttoybonnie_tim_start[];
-extern unsigned long _binary_tim_officeRIGHTlighttoybonnie_tim_end[];
-extern unsigned long _binary_tim_officeRIGHTlighttoybonnie_tim_length;
+extern unsigned long _binary_tim_office_officeRIGHTlighttoybonnie_tim_start[];
+extern unsigned long _binary_tim_office_officeRIGHTlighttoybonnie_tim_end[];
+extern unsigned long _binary_tim_office_officeRIGHTlighttoybonnie_tim_length;
 
-extern unsigned long _binary_tim_oLEFTpart2_tim_start[];
-extern unsigned long _binary_tim_oLEFTpart2_tim_end[];
-extern unsigned long _binary_tim_oLEFTpart2_tim_length;
+extern unsigned long _binary_tim_office_oLEFTpart2_tim_start[];
+extern unsigned long _binary_tim_office_oLEFTpart2_tim_end[];
+extern unsigned long _binary_tim_office_oLEFTpart2_tim_length;
 
-extern unsigned long _binary_tim_oLEFTpart2light_tim_start[];
-extern unsigned long _binary_tim_oLEFTpart2light_tim_end[];
-extern unsigned long _binary_tim_oLEFTpart2light_tim_length;
+extern unsigned long _binary_tim_office_oLEFTpart2light_tim_start[];
+extern unsigned long _binary_tim_office_oLEFTpart2light_tim_end[];
+extern unsigned long _binary_tim_office_oLEFTpart2light_tim_length;
 
-extern unsigned long _binary_tim_officeLEFTlighttoychica_tim_start[];
-extern unsigned long _binary_tim_officeLEFTlighttoychica_tim_end[];
-extern unsigned long _binary_tim_officeLEFTlighttoychica_tim_length;
+extern unsigned long _binary_tim_office_officeLEFTlighttoychica_tim_start[];
+extern unsigned long _binary_tim_office_officeLEFTlighttoychica_tim_end[];
+extern unsigned long _binary_tim_office_officeLEFTlighttoychica_tim_length;
 
-extern unsigned long _binary_tim_CAMERAMONITOR_tim_start[];
-extern unsigned long _binary_tim_CAMERAMONITOR_tim_end[];
-extern unsigned long _binary_tim_CAMERAMONITOR_tim_length;
+extern unsigned long _binary_tim_office_officeLEFTlightballonboy_tim_start[];
+extern unsigned long _binary_tim_office_officeLEFTlightballonboy_tim_end[];
+extern unsigned long _binary_tim_office_officeLEFTlightballonboy_tim_length;
 
-extern unsigned long _binary_tim_FAM_tim_start[];
-extern unsigned long _binary_tim_FAM_tim_end[];
-extern unsigned long _binary_tim_FAM_tim_length;
+extern unsigned long _binary_tim_office_officeMIDDLE_tim_start[];
+extern unsigned long _binary_tim_office_officeMIDDLE_tim_end[];
+extern unsigned long _binary_tim_office_officeMIDDLE_tim_length;
 
-extern unsigned long _binary_tim_5AM1_tim_start[];
-extern unsigned long _binary_tim_5AM1_tim_end[];
-extern unsigned long _binary_tim_5AM1_tim_length;
+extern unsigned long _binary_tim_office_officeFREDDY_tim_start[];
+extern unsigned long _binary_tim_office_officeFREDDY_tim_end[];
+extern unsigned long _binary_tim_office_officeFREDDY_tim_length;
 
-extern unsigned long _binary_tim_5AM2_tim_start[];
-extern unsigned long _binary_tim_5AM2_tim_end[];
-extern unsigned long _binary_tim_5AM2_tim_length;
+extern unsigned long _binary_tim_office_officeTOYFREDDY_tim_start[];
+extern unsigned long _binary_tim_office_officeTOYFREDDY_tim_end[];
+extern unsigned long _binary_tim_office_officeTOYFREDDY_tim_length;
 
-extern unsigned long _binary_tim_5AM3_tim_start[];
-extern unsigned long _binary_tim_5AM3_tim_end[];
-extern unsigned long _binary_tim_5AM3_tim_length;
+extern unsigned long _binary_tim_office_officeBONNIE_tim_start[];
+extern unsigned long _binary_tim_office_officeBONNIE_tim_end[];
+extern unsigned long _binary_tim_office_officeBONNIE_tim_length;
 
-extern unsigned long _binary_tim_5AM4_tim_start[];
-extern unsigned long _binary_tim_5AM4_tim_end[];
-extern unsigned long _binary_tim_5AM4_tim_length;
+extern unsigned long _binary_tim_office_officeCHICA_tim_start[];
+extern unsigned long _binary_tim_office_officeCHICA_tim_end[];
+extern unsigned long _binary_tim_office_officeCHICA_tim_length;
 
-extern unsigned long _binary_tim_5AM5_tim_start[];
-extern unsigned long _binary_tim_5AM5_tim_end[];
-extern unsigned long _binary_tim_5AM5_tim_length;
+extern unsigned long _binary_tim_office_officeTOYBONNIE_tim_start[];
+extern unsigned long _binary_tim_office_officeTOYBONNIE_tim_end[];
+extern unsigned long _binary_tim_office_officeTOYBONNIE_tim_length;
 
-extern unsigned long _binary_tim_6AM1_tim_start[];
-extern unsigned long _binary_tim_6AM1_tim_end[];
-extern unsigned long _binary_tim_6AM1_tim_length;
+extern unsigned long _binary_tim_office_manglehanging_tim_start[];
+extern unsigned long _binary_tim_office_manglehanging_tim_end[];
+extern unsigned long _binary_tim_office_manglehanging_tim_length;
 
-extern unsigned long _binary_tim_6AM2_tim_start[];
-extern unsigned long _binary_tim_6AM2_tim_end[];
-extern unsigned long _binary_tim_6AM2_tim_length;
+extern unsigned long _binary_tim_office_mutecall_tim_start[];
+extern unsigned long _binary_tim_office_mutecall_tim_end[];
+extern unsigned long _binary_tim_office_mutecall_tim_length;
 
-extern unsigned long _binary_tim_6AM3_tim_start[];
-extern unsigned long _binary_tim_6AM3_tim_end[];
-extern unsigned long _binary_tim_6AM3_tim_length;
+extern unsigned long _binary_tim_office_fan1_tim_start[];
+extern unsigned long _binary_tim_office_fan1_tim_end[];
+extern unsigned long _binary_tim_office_fan1_tim_length;
 
-extern unsigned long _binary_tim_6AM4_tim_start[];
-extern unsigned long _binary_tim_6AM4_tim_end[];
-extern unsigned long _binary_tim_6AM4_tim_length;
+extern unsigned long _binary_tim_office_fan2_tim_start[];
+extern unsigned long _binary_tim_office_fan2_tim_end[];
+extern unsigned long _binary_tim_office_fan2_tim_length;
 
-extern unsigned long _binary_tim_6AM5_tim_start[];
-extern unsigned long _binary_tim_6AM5_tim_end[];
-extern unsigned long _binary_tim_6AM5_tim_length;
+extern unsigned long _binary_tim_office_fan3_tim_start[];
+extern unsigned long _binary_tim_office_fan3_tim_end[];
+extern unsigned long _binary_tim_office_fan3_tim_length;
 
-extern unsigned long _binary_tim_6AM6_tim_start[];
-extern unsigned long _binary_tim_6AM6_tim_end[];
-extern unsigned long _binary_tim_6AM6_tim_length;
+extern unsigned long _binary_tim_office_fan4_tim_start[];
+extern unsigned long _binary_tim_office_fan4_tim_end[];
+extern unsigned long _binary_tim_office_fan4_tim_length;
 
-extern unsigned long _binary_tim_officeMIDDLE_tim_start[];
-extern unsigned long _binary_tim_officeMIDDLE_tim_end[];
-extern unsigned long _binary_tim_officeMIDDLE_tim_length;
+extern unsigned long _binary_tim_office_officeRIGHTlightmangle_tim_start[];
+extern unsigned long _binary_tim_office_officeRIGHTlightmangle_tim_end[];
+extern unsigned long _binary_tim_office_officeRIGHTlightmangle_tim_length;
+
+extern unsigned long _binary_tim_office_BB_tim_start[];
+extern unsigned long _binary_tim_office_BB_tim_end[];
+extern unsigned long _binary_tim_office_BB_tim_length;
+
+extern unsigned long _binary_tim_5am6_FAM_tim_start[];
+extern unsigned long _binary_tim_5am6_FAM_tim_end[];
+extern unsigned long _binary_tim_5am6_FAM_tim_length;
+
+extern unsigned long _binary_tim_5am6_SAM_tim_start[];
+extern unsigned long _binary_tim_5am6_SAM_tim_end[];
+extern unsigned long _binary_tim_5am6_SAM_tim_length;
+
+extern unsigned long _binary_tim_5am6_5AM1_tim_start[];
+extern unsigned long _binary_tim_5am6_5AM1_tim_end[];
+extern unsigned long _binary_tim_5am6_5AM1_tim_length;
+
+extern unsigned long _binary_tim_5am6_5AM2_tim_start[];
+extern unsigned long _binary_tim_5am6_5AM2_tim_end[];
+extern unsigned long _binary_tim_5am6_5AM2_tim_length;
+
+extern unsigned long _binary_tim_5am6_5AM3_tim_start[];
+extern unsigned long _binary_tim_5am6_5AM3_tim_end[];
+extern unsigned long _binary_tim_5am6_5AM3_tim_length;
+
+extern unsigned long _binary_tim_5am6_5AM4_tim_start[];
+extern unsigned long _binary_tim_5am6_5AM4_tim_end[];
+extern unsigned long _binary_tim_5am6_5AM4_tim_length;
+
+extern unsigned long _binary_tim_5am6_5AM5_tim_start[];
+extern unsigned long _binary_tim_5am6_5AM5_tim_end[];
+extern unsigned long _binary_tim_5am6_5AM5_tim_length;
+
+extern unsigned long _binary_tim_5am6_6AM1_tim_start[];
+extern unsigned long _binary_tim_5am6_6AM1_tim_end[];
+extern unsigned long _binary_tim_5am6_6AM1_tim_length;
+
+extern unsigned long _binary_tim_5am6_6AM2_tim_start[];
+extern unsigned long _binary_tim_5am6_6AM2_tim_end[];
+extern unsigned long _binary_tim_5am6_6AM2_tim_length;
+
+extern unsigned long _binary_tim_5am6_6AM3_tim_start[];
+extern unsigned long _binary_tim_5am6_6AM3_tim_end[];
+extern unsigned long _binary_tim_5am6_6AM3_tim_length;
+
+extern unsigned long _binary_tim_5am6_6AM4_tim_start[];
+extern unsigned long _binary_tim_5am6_6AM4_tim_end[];
+extern unsigned long _binary_tim_5am6_6AM4_tim_length;
+
+extern unsigned long _binary_tim_5am6_6AM5_tim_start[];
+extern unsigned long _binary_tim_5am6_6AM5_tim_end[];
+extern unsigned long _binary_tim_5am6_6AM5_tim_length;
+
+extern unsigned long _binary_tim_5am6_6AM6_tim_start[];
+extern unsigned long _binary_tim_5am6_6AM6_tim_end[];
+extern unsigned long _binary_tim_5am6_6AM6_tim_length;
 
 extern unsigned long _binary_tim_GJFIV_tim_start[];
 extern unsigned long _binary_tim_GJFIV_tim_end[];
@@ -103,197 +159,201 @@ extern unsigned long _binary_tim_load_tim_start[];
 extern unsigned long _binary_tim_load_tim_end[];
 extern unsigned long _binary_tim_load_tim_length;
 
-extern unsigned long _binary_tim_jumpC_tim_start[];
-extern unsigned long _binary_tim_jumpC_tim_end[];
-extern unsigned long _binary_tim_jumpC_tim_length;
+extern unsigned long _binary_tim_screamer_jumpC_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpC_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpC_tim_length;
 
-extern unsigned long _binary_tim_jumpC2_tim_start[];
-extern unsigned long _binary_tim_jumpC2_tim_end[];
-extern unsigned long _binary_tim_jumpC2_tim_length;
+extern unsigned long _binary_tim_screamer_jumpC2_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpC2_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpC2_tim_length;
 
-extern unsigned long _binary_tim_jumpC3_tim_start[];
-extern unsigned long _binary_tim_jumpC3_tim_end[];
-extern unsigned long _binary_tim_jumpC3_tim_length;
+extern unsigned long _binary_tim_screamer_jumpC3_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpC3_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpC3_tim_length;
 
-extern unsigned long _binary_tim_jumpB_tim_start[];
-extern unsigned long _binary_tim_jumpB_tim_end[];
-extern unsigned long _binary_tim_jumpB_tim_length;
+extern unsigned long _binary_tim_screamer_jumpB_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpB_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpB_tim_length;
 
-extern unsigned long _binary_tim_jumpB2_tim_start[];
-extern unsigned long _binary_tim_jumpB2_tim_end[];
-extern unsigned long _binary_tim_jumpB2_tim_length;
+extern unsigned long _binary_tim_screamer_jumpB2_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpB2_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpB2_tim_length;
 
-extern unsigned long _binary_tim_jumpB3_tim_start[];
-extern unsigned long _binary_tim_jumpB3_tim_end[];
-extern unsigned long _binary_tim_jumpB3_tim_length;
+extern unsigned long _binary_tim_screamer_jumpB3_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpB3_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpB3_tim_length;
 
-extern unsigned long _binary_tim_jumpB4_tim_start[];
-extern unsigned long _binary_tim_jumpB4_tim_end[];
-extern unsigned long _binary_tim_jumpB4_tim_length;
+extern unsigned long _binary_tim_screamer_jumpB4_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpB4_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpB4_tim_length;
 
-extern unsigned long _binary_tim_jumpB5_tim_start[];
-extern unsigned long _binary_tim_jumpB5_tim_end[];
-extern unsigned long _binary_tim_jumpB5_tim_length;
+extern unsigned long _binary_tim_screamer_jumpB5_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpB5_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpB5_tim_length;
 
-extern unsigned long _binary_tim_jumpF0_tim_start[];
-extern unsigned long _binary_tim_jumpF0_tim_end[];
-extern unsigned long _binary_tim_jumpF0_tim_length;
+extern unsigned long _binary_tim_screamer_jumpF0_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpF0_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpF0_tim_length;
 
-extern unsigned long _binary_tim_jumpF1_tim_start[];
-extern unsigned long _binary_tim_jumpF1_tim_end[];
-extern unsigned long _binary_tim_jumpF1_tim_length;
+extern unsigned long _binary_tim_screamer_jumpF1_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpF1_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpF1_tim_length;
 
-extern unsigned long _binary_tim_jumpF2_tim_start[];
-extern unsigned long _binary_tim_jumpF2_tim_end[];
-extern unsigned long _binary_tim_jumpF2_tim_length;
+extern unsigned long _binary_tim_screamer_jumpF2_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpF2_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpF2_tim_length;
 
-extern unsigned long _binary_tim_jumpF3_tim_start[];
-extern unsigned long _binary_tim_jumpF3_tim_end[];
-extern unsigned long _binary_tim_jumpF3_tim_length;
+extern unsigned long _binary_tim_screamer_jumpF3_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpF3_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpF3_tim_length;
 
-extern unsigned long _binary_tim_jumpF4_tim_start[];
-extern unsigned long _binary_tim_jumpF4_tim_end[];
-extern unsigned long _binary_tim_jumpF4_tim_length;
+extern unsigned long _binary_tim_screamer_jumpF4_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpF4_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpF4_tim_length;
 
-extern unsigned long _binary_tim_jumpF5_tim_start[];
-extern unsigned long _binary_tim_jumpF5_tim_end[];
-extern unsigned long _binary_tim_jumpF5_tim_length;
+extern unsigned long _binary_tim_screamer_jumpF5_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpF5_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpF5_tim_length;
 
-extern unsigned long _binary_tim_jumpFO_tim_start[];
-extern unsigned long _binary_tim_jumpFO_tim_end[];
-extern unsigned long _binary_tim_jumpFO_tim_length;
+extern unsigned long _binary_tim_screamer_jumpFO_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpFO_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpFO_tim_length;
 
-extern unsigned long _binary_tim_jumpFO2_tim_start[];
-extern unsigned long _binary_tim_jumpFO2_tim_end[];
-extern unsigned long _binary_tim_jumpFO2_tim_length;
+extern unsigned long _binary_tim_screamer_jumpFO2_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpFO2_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpFO2_tim_length;
 
-extern unsigned long _binary_tim_jumpFO3_tim_start[];
-extern unsigned long _binary_tim_jumpFO3_tim_end[];
-extern unsigned long _binary_tim_jumpFO3_tim_length;
+extern unsigned long _binary_tim_screamer_jumpFO3_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpFO3_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpFO3_tim_length;
 
-extern unsigned long _binary_tim_jumpFO4_tim_start[];
-extern unsigned long _binary_tim_jumpFO4_tim_end[];
-extern unsigned long _binary_tim_jumpFO4_tim_length;
+extern unsigned long _binary_tim_screamer_jumpFO4_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpFO4_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpFO4_tim_length;
 
-extern unsigned long _binary_tim_jumpFO5_tim_start[];
-extern unsigned long _binary_tim_jumpFO5_tim_end[];
-extern unsigned long _binary_tim_jumpFO5_tim_length;
+extern unsigned long _binary_tim_screamer_jumpFO5_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpFO5_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpFO5_tim_length;
 
-extern unsigned long _binary_tim_jumpP1_tim_start[];
-extern unsigned long _binary_tim_jumpP1_tim_end[];
-extern unsigned long _binary_tim_jumpP1_tim_length;
+extern unsigned long _binary_tim_screamer_jumpP1_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpP1_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpP1_tim_length;
 
-extern unsigned long _binary_tim_jumpP2_tim_start[];
-extern unsigned long _binary_tim_jumpP2_tim_end[];
-extern unsigned long _binary_tim_jumpP2_tim_length;
+extern unsigned long _binary_tim_screamer_jumpP2_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpP2_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpP2_tim_length;
 
-extern unsigned long _binary_tim_jumpP3_tim_start[];
-extern unsigned long _binary_tim_jumpP3_tim_end[];
-extern unsigned long _binary_tim_jumpP3_tim_length;
+extern unsigned long _binary_tim_screamer_jumpP3_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpP3_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpP3_tim_length;
 
-extern unsigned long _binary_tim_jumpP4_tim_start[];
-extern unsigned long _binary_tim_jumpP4_tim_end[];
-extern unsigned long _binary_tim_jumpP4_tim_length;
+extern unsigned long _binary_tim_screamer_jumpP4_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpP4_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpP4_tim_length;
 
-extern unsigned long _binary_tim_jumpP5_tim_start[];
-extern unsigned long _binary_tim_jumpP5_tim_end[];
-extern unsigned long _binary_tim_jumpP5_tim_length;
+extern unsigned long _binary_tim_screamer_jumpP5_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpP5_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpP5_tim_length;
 
-extern unsigned long _binary_tim_TBjump1_tim_start[];
-extern unsigned long _binary_tim_TBjump1_tim_end[];
-extern unsigned long _binary_tim_TBjump1_tim_length;
+extern unsigned long _binary_tim_screamer_jumpGF_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpGF_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpGF_tim_length;
 
-extern unsigned long _binary_tim_TBjump2_tim_start[];
-extern unsigned long _binary_tim_TBjump2_tim_end[];
-extern unsigned long _binary_tim_TBjump2_tim_length;
+extern unsigned long _binary_tim_screamer_TBjump1_tim_start[];
+extern unsigned long _binary_tim_screamer_TBjump1_tim_end[];
+extern unsigned long _binary_tim_screamer_TBjump1_tim_length;
 
-extern unsigned long _binary_tim_TBjump3_tim_start[];
-extern unsigned long _binary_tim_TBjump3_tim_end[];
-extern unsigned long _binary_tim_TBjump3_tim_length;
+extern unsigned long _binary_tim_screamer_TBjump2_tim_start[];
+extern unsigned long _binary_tim_screamer_TBjump2_tim_end[];
+extern unsigned long _binary_tim_screamer_TBjump2_tim_length;
 
-extern unsigned long _binary_tim_TBjump4_tim_start[];
-extern unsigned long _binary_tim_TBjump4_tim_end[];
-extern unsigned long _binary_tim_TBjump4_tim_length;
+extern unsigned long _binary_tim_screamer_TBjump3_tim_start[];
+extern unsigned long _binary_tim_screamer_TBjump3_tim_end[];
+extern unsigned long _binary_tim_screamer_TBjump3_tim_length;
 
-extern unsigned long _binary_tim_TBjump5_tim_start[];
-extern unsigned long _binary_tim_TBjump5_tim_end[];
-extern unsigned long _binary_tim_TBjump5_tim_length;
+extern unsigned long _binary_tim_screamer_TBjump4_tim_start[];
+extern unsigned long _binary_tim_screamer_TBjump4_tim_end[];
+extern unsigned long _binary_tim_screamer_TBjump4_tim_length;
 
-extern unsigned long _binary_tim_TCjump1_tim_start[];
-extern unsigned long _binary_tim_TCjump1_tim_end[];
-extern unsigned long _binary_tim_TCjump1_tim_length;
+extern unsigned long _binary_tim_screamer_TBjump5_tim_start[];
+extern unsigned long _binary_tim_screamer_TBjump5_tim_end[];
+extern unsigned long _binary_tim_screamer_TBjump5_tim_length;
 
-extern unsigned long _binary_tim_TCjump2_tim_start[];
-extern unsigned long _binary_tim_TCjump2_tim_end[];
-extern unsigned long _binary_tim_TCjump2_tim_length;
+extern unsigned long _binary_tim_screamer_TCjump1_tim_start[];
+extern unsigned long _binary_tim_screamer_TCjump1_tim_end[];
+extern unsigned long _binary_tim_screamer_TCjump1_tim_length;
 
-extern unsigned long _binary_tim_TCjump3_tim_start[];
-extern unsigned long _binary_tim_TCjump3_tim_end[];
-extern unsigned long _binary_tim_TCjump3_tim_length;
+extern unsigned long _binary_tim_screamer_TCjump2_tim_start[];
+extern unsigned long _binary_tim_screamer_TCjump2_tim_end[];
+extern unsigned long _binary_tim_screamer_TCjump2_tim_length;
 
-extern unsigned long _binary_tim_TCjump4_tim_start[];
-extern unsigned long _binary_tim_TCjump4_tim_end[];
-extern unsigned long _binary_tim_TCjump4_tim_length;
+extern unsigned long _binary_tim_screamer_TCjump3_tim_start[];
+extern unsigned long _binary_tim_screamer_TCjump3_tim_end[];
+extern unsigned long _binary_tim_screamer_TCjump3_tim_length;
 
-extern unsigned long _binary_tim_Cjump1_tim_start[];
-extern unsigned long _binary_tim_Cjump1_tim_end[];
-extern unsigned long _binary_tim_Cjump1_tim_length;
+extern unsigned long _binary_tim_screamer_TCjump4_tim_start[];
+extern unsigned long _binary_tim_screamer_TCjump4_tim_end[];
+extern unsigned long _binary_tim_screamer_TCjump4_tim_length;
 
-extern unsigned long _binary_tim_Cjump2_tim_start[];
-extern unsigned long _binary_tim_Cjump2_tim_end[];
-extern unsigned long _binary_tim_Cjump2_tim_length;
+extern unsigned long _binary_tim_screamer_Cjump1_tim_start[];
+extern unsigned long _binary_tim_screamer_Cjump1_tim_end[];
+extern unsigned long _binary_tim_screamer_Cjump1_tim_length;
 
-extern unsigned long _binary_tim_Cjump3_tim_start[];
-extern unsigned long _binary_tim_Cjump3_tim_end[];
-extern unsigned long _binary_tim_Cjump3_tim_length;
+extern unsigned long _binary_tim_screamer_Cjump2_tim_start[];
+extern unsigned long _binary_tim_screamer_Cjump2_tim_end[];
+extern unsigned long _binary_tim_screamer_Cjump2_tim_length;
 
-extern unsigned long _binary_tim_Cjump4_tim_start[];
-extern unsigned long _binary_tim_Cjump4_tim_end[];
-extern unsigned long _binary_tim_Cjump4_tim_length;
+extern unsigned long _binary_tim_screamer_Cjump3_tim_start[];
+extern unsigned long _binary_tim_screamer_Cjump3_tim_end[];
+extern unsigned long _binary_tim_screamer_Cjump3_tim_length;
 
-extern unsigned long _binary_tim_Cjump5_tim_start[];
-extern unsigned long _binary_tim_Cjump5_tim_end[];
-extern unsigned long _binary_tim_Cjump5_tim_length;
+extern unsigned long _binary_tim_screamer_Cjump4_tim_start[];
+extern unsigned long _binary_tim_screamer_Cjump4_tim_end[];
+extern unsigned long _binary_tim_screamer_Cjump4_tim_length;
 
-extern unsigned long _binary_tim_Mjump1_tim_start[];
-extern unsigned long _binary_tim_Mjump1_tim_end[];
-extern unsigned long _binary_tim_Mjump1_tim_length;
+extern unsigned long _binary_tim_screamer_Cjump5_tim_start[];
+extern unsigned long _binary_tim_screamer_Cjump5_tim_end[];
+extern unsigned long _binary_tim_screamer_Cjump5_tim_length;
 
-extern unsigned long _binary_tim_Mjump2_tim_start[];
-extern unsigned long _binary_tim_Mjump2_tim_end[];
-extern unsigned long _binary_tim_Mjump2_tim_length;
+extern unsigned long _binary_tim_screamer_Mjump1_tim_start[];
+extern unsigned long _binary_tim_screamer_Mjump1_tim_end[];
+extern unsigned long _binary_tim_screamer_Mjump1_tim_length;
 
-extern unsigned long _binary_tim_Mjump3_tim_start[];
-extern unsigned long _binary_tim_Mjump3_tim_end[];
-extern unsigned long _binary_tim_Mjump3_tim_length;
+extern unsigned long _binary_tim_screamer_Mjump2_tim_start[];
+extern unsigned long _binary_tim_screamer_Mjump2_tim_end[];
+extern unsigned long _binary_tim_screamer_Mjump2_tim_length;
 
-extern unsigned long _binary_tim_Mjump4_tim_start[];
-extern unsigned long _binary_tim_Mjump4_tim_end[];
-extern unsigned long _binary_tim_Mjump4_tim_length;
+extern unsigned long _binary_tim_screamer_Mjump3_tim_start[];
+extern unsigned long _binary_tim_screamer_Mjump3_tim_end[];
+extern unsigned long _binary_tim_screamer_Mjump3_tim_length;
 
-extern unsigned long _binary_tim_Mjump5_tim_start[];
-extern unsigned long _binary_tim_Mjump5_tim_end[];
-extern unsigned long _binary_tim_Mjump5_tim_length;
+extern unsigned long _binary_tim_screamer_Mjump4_tim_start[];
+extern unsigned long _binary_tim_screamer_Mjump4_tim_end[];
+extern unsigned long _binary_tim_screamer_Mjump4_tim_length;
 
-extern unsigned long _binary_tim_jumpTF1_tim_start[];
-extern unsigned long _binary_tim_jumpTF1_tim_end[];
-extern unsigned long _binary_tim_jumpTF1_tim_length;
+extern unsigned long _binary_tim_screamer_Mjump5_tim_start[];
+extern unsigned long _binary_tim_screamer_Mjump5_tim_end[];
+extern unsigned long _binary_tim_screamer_Mjump5_tim_length;
 
-extern unsigned long _binary_tim_jumpTF2_tim_start[];
-extern unsigned long _binary_tim_jumpTF2_tim_end[];
-extern unsigned long _binary_tim_jumpTF2_tim_length;
+extern unsigned long _binary_tim_screamer_jumpTF1_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpTF1_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpTF1_tim_length;
 
-extern unsigned long _binary_tim_jumpTF3_tim_start[];
-extern unsigned long _binary_tim_jumpTF3_tim_end[];
-extern unsigned long _binary_tim_jumpTF3_tim_length;
+extern unsigned long _binary_tim_screamer_jumpTF2_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpTF2_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpTF2_tim_length;
 
-extern unsigned long _binary_tim_jumpTF4_tim_start[];
-extern unsigned long _binary_tim_jumpTF4_tim_end[];
-extern unsigned long _binary_tim_jumpTF4_tim_length;
+extern unsigned long _binary_tim_screamer_jumpTF3_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpTF3_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpTF3_tim_length;
 
-extern unsigned long _binary_tim_jumpTF5_tim_start[];
-extern unsigned long _binary_tim_jumpTF5_tim_end[];
-extern unsigned long _binary_tim_jumpTF5_tim_length;
+extern unsigned long _binary_tim_screamer_jumpTF4_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpTF4_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpTF4_tim_length;
+
+extern unsigned long _binary_tim_screamer_jumpTF5_tim_start[];
+extern unsigned long _binary_tim_screamer_jumpTF5_tim_end[];
+extern unsigned long _binary_tim_screamer_jumpTF5_tim_length;
 
 extern unsigned long _binary_tim_static1_tim_start[];
 extern unsigned long _binary_tim_static1_tim_end[];
@@ -319,157 +379,109 @@ extern unsigned long _binary_tim_map_select_tim_start[];
 extern unsigned long _binary_tim_map_select_tim_end[];
 extern unsigned long _binary_tim_map_select_tim_length;
 
-extern unsigned long _binary_tim_foxyhallway_tim_start[];
-extern unsigned long _binary_tim_foxyhallway_tim_end[];
-extern unsigned long _binary_tim_foxyhallway_tim_length;
+extern unsigned long _binary_tim_hallway_foxyhallway_tim_start[];
+extern unsigned long _binary_tim_hallway_foxyhallway_tim_end[];
+extern unsigned long _binary_tim_hallway_foxyhallway_tim_length;
 
-extern unsigned long _binary_tim_toychicahallway_tim_start[];
-extern unsigned long _binary_tim_toychicahallway_tim_end[];
-extern unsigned long _binary_tim_toychicahallway_tim_length;
+extern unsigned long _binary_tim_hallway_toychicahallway_tim_start[];
+extern unsigned long _binary_tim_hallway_toychicahallway_tim_end[];
+extern unsigned long _binary_tim_hallway_toychicahallway_tim_length;
 
-extern unsigned long _binary_tim_toyfreddyhallway_tim_start[];
-extern unsigned long _binary_tim_toyfreddyhallway_tim_end[];
-extern unsigned long _binary_tim_toyfreddyhallway_tim_length;
+extern unsigned long _binary_tim_hallway_toyfreddyhallway_tim_start[];
+extern unsigned long _binary_tim_hallway_toyfreddyhallway_tim_end[];
+extern unsigned long _binary_tim_hallway_toyfreddyhallway_tim_length;
 
-extern unsigned long _binary_tim_freddyhallway_tim_start[];
-extern unsigned long _binary_tim_freddyhallway_tim_end[];
-extern unsigned long _binary_tim_freddyhallway_tim_length;
+extern unsigned long _binary_tim_hallway_freddyhallway_tim_start[];
+extern unsigned long _binary_tim_hallway_freddyhallway_tim_end[];
+extern unsigned long _binary_tim_hallway_freddyhallway_tim_length;
 
-extern unsigned long _binary_tim_bonniehallway_tim_start[];
-extern unsigned long _binary_tim_bonniehallway_tim_end[];
-extern unsigned long _binary_tim_bonniehallway_tim_length;
+extern unsigned long _binary_tim_hallway_bonniehallway_tim_start[];
+extern unsigned long _binary_tim_hallway_bonniehallway_tim_end[];
+extern unsigned long _binary_tim_hallway_bonniehallway_tim_length;
 
-extern unsigned long _binary_tim_officeRIGHTlightmangle_tim_start[];
-extern unsigned long _binary_tim_officeRIGHTlightmangle_tim_end[];
-extern unsigned long _binary_tim_officeRIGHTlightmangle_tim_length;
+extern unsigned long _binary_tim_timer_timer0_tim_start[];
+extern unsigned long _binary_tim_timer_timer0_tim_end[];
+extern unsigned long _binary_tim_timer_timer0_tim_length;
 
-extern unsigned long _binary_tim_fan1_tim_start[];
-extern unsigned long _binary_tim_fan1_tim_end[];
-extern unsigned long _binary_tim_fan1_tim_length;
+extern unsigned long _binary_tim_timer_timer1_tim_start[];
+extern unsigned long _binary_tim_timer_timer1_tim_end[];
+extern unsigned long _binary_tim_timer_timer1_tim_length;
 
-extern unsigned long _binary_tim_fan2_tim_start[];
-extern unsigned long _binary_tim_fan2_tim_end[];
-extern unsigned long _binary_tim_fan2_tim_length;
+extern unsigned long _binary_tim_timer_timer2_tim_start[];
+extern unsigned long _binary_tim_timer_timer2_tim_end[];
+extern unsigned long _binary_tim_timer_timer2_tim_length;
 
-extern unsigned long _binary_tim_fan3_tim_start[];
-extern unsigned long _binary_tim_fan3_tim_end[];
-extern unsigned long _binary_tim_fan3_tim_length;
+extern unsigned long _binary_tim_timer_timer3_tim_start[];
+extern unsigned long _binary_tim_timer_timer3_tim_end[];
+extern unsigned long _binary_tim_timer_timer3_tim_length;
 
-extern unsigned long _binary_tim_fan4_tim_start[];
-extern unsigned long _binary_tim_fan4_tim_end[];
-extern unsigned long _binary_tim_fan4_tim_length;
+extern unsigned long _binary_tim_timer_timer4_tim_start[];
+extern unsigned long _binary_tim_timer_timer4_tim_end[];
+extern unsigned long _binary_tim_timer_timer4_tim_length;
 
-extern unsigned long _binary_tim_timer0_tim_start[];
-extern unsigned long _binary_tim_timer0_tim_end[];
-extern unsigned long _binary_tim_timer0_tim_length;
+extern unsigned long _binary_tim_timer_timer5_tim_start[];
+extern unsigned long _binary_tim_timer_timer5_tim_end[];
+extern unsigned long _binary_tim_timer_timer5_tim_length;
 
-extern unsigned long _binary_tim_timer1_tim_start[];
-extern unsigned long _binary_tim_timer1_tim_end[];
-extern unsigned long _binary_tim_timer1_tim_length;
+extern unsigned long _binary_tim_timer_timer6_tim_start[];
+extern unsigned long _binary_tim_timer_timer6_tim_end[];
+extern unsigned long _binary_tim_timer_timer6_tim_length;
 
-extern unsigned long _binary_tim_timer2_tim_start[];
-extern unsigned long _binary_tim_timer2_tim_end[];
-extern unsigned long _binary_tim_timer2_tim_length;
+extern unsigned long _binary_tim_timer_timer7_tim_start[];
+extern unsigned long _binary_tim_timer_timer7_tim_end[];
+extern unsigned long _binary_tim_timer_timer7_tim_length;
 
-extern unsigned long _binary_tim_timer3_tim_start[];
-extern unsigned long _binary_tim_timer3_tim_end[];
-extern unsigned long _binary_tim_timer3_tim_length;
+extern unsigned long _binary_tim_timer_timer8_tim_start[];
+extern unsigned long _binary_tim_timer_timer8_tim_end[];
+extern unsigned long _binary_tim_timer_timer8_tim_length;
 
-extern unsigned long _binary_tim_timer4_tim_start[];
-extern unsigned long _binary_tim_timer4_tim_end[];
-extern unsigned long _binary_tim_timer4_tim_length;
+extern unsigned long _binary_tim_timer_timer9_tim_start[];
+extern unsigned long _binary_tim_timer_timer9_tim_end[];
+extern unsigned long _binary_tim_timer_timer9_tim_length;
 
-extern unsigned long _binary_tim_timer5_tim_start[];
-extern unsigned long _binary_tim_timer5_tim_end[];
-extern unsigned long _binary_tim_timer5_tim_length;
+extern unsigned long _binary_tim_timer_timer10_tim_start[];
+extern unsigned long _binary_tim_timer_timer10_tim_end[];
+extern unsigned long _binary_tim_timer_timer10_tim_length;
 
-extern unsigned long _binary_tim_timer6_tim_start[];
-extern unsigned long _binary_tim_timer6_tim_end[];
-extern unsigned long _binary_tim_timer6_tim_length;
+extern unsigned long _binary_tim_timer_timer11_tim_start[];
+extern unsigned long _binary_tim_timer_timer11_tim_end[];
+extern unsigned long _binary_tim_timer_timer11_tim_length;
 
-extern unsigned long _binary_tim_timer7_tim_start[];
-extern unsigned long _binary_tim_timer7_tim_end[];
-extern unsigned long _binary_tim_timer7_tim_length;
+extern unsigned long _binary_tim_timer_timer12_tim_start[];
+extern unsigned long _binary_tim_timer_timer12_tim_end[];
+extern unsigned long _binary_tim_timer_timer12_tim_length;
 
-extern unsigned long _binary_tim_timer8_tim_start[];
-extern unsigned long _binary_tim_timer8_tim_end[];
-extern unsigned long _binary_tim_timer8_tim_length;
+extern unsigned long _binary_tim_timer_timer13_tim_start[];
+extern unsigned long _binary_tim_timer_timer13_tim_end[];
+extern unsigned long _binary_tim_timer_timer13_tim_length;
 
-extern unsigned long _binary_tim_timer9_tim_start[];
-extern unsigned long _binary_tim_timer9_tim_end[];
-extern unsigned long _binary_tim_timer9_tim_length;
+extern unsigned long _binary_tim_timer_timer14_tim_start[];
+extern unsigned long _binary_tim_timer_timer14_tim_end[];
+extern unsigned long _binary_tim_timer_timer14_tim_length;
 
-extern unsigned long _binary_tim_timer10_tim_start[];
-extern unsigned long _binary_tim_timer10_tim_end[];
-extern unsigned long _binary_tim_timer10_tim_length;
+extern unsigned long _binary_tim_timer_timer15_tim_start[];
+extern unsigned long _binary_tim_timer_timer15_tim_end[];
+extern unsigned long _binary_tim_timer_timer15_tim_length;
 
-extern unsigned long _binary_tim_timer11_tim_start[];
-extern unsigned long _binary_tim_timer11_tim_end[];
-extern unsigned long _binary_tim_timer11_tim_length;
+extern unsigned long _binary_tim_timer_timer16_tim_start[];
+extern unsigned long _binary_tim_timer_timer16_tim_end[];
+extern unsigned long _binary_tim_timer_timer16_tim_length;
 
-extern unsigned long _binary_tim_timer12_tim_start[];
-extern unsigned long _binary_tim_timer12_tim_end[];
-extern unsigned long _binary_tim_timer12_tim_length;
+extern unsigned long _binary_tim_timer_timer17_tim_start[];
+extern unsigned long _binary_tim_timer_timer17_tim_end[];
+extern unsigned long _binary_tim_timer_timer17_tim_length;
 
-extern unsigned long _binary_tim_timer13_tim_start[];
-extern unsigned long _binary_tim_timer13_tim_end[];
-extern unsigned long _binary_tim_timer13_tim_length;
+extern unsigned long _binary_tim_timer_timer18_tim_start[];
+extern unsigned long _binary_tim_timer_timer18_tim_end[];
+extern unsigned long _binary_tim_timer_timer18_tim_length;
 
-extern unsigned long _binary_tim_timer14_tim_start[];
-extern unsigned long _binary_tim_timer14_tim_end[];
-extern unsigned long _binary_tim_timer14_tim_length;
+extern unsigned long _binary_tim_timer_timer19_tim_start[];
+extern unsigned long _binary_tim_timer_timer19_tim_end[];
+extern unsigned long _binary_tim_timer_timer19_tim_length;
 
-extern unsigned long _binary_tim_timer15_tim_start[];
-extern unsigned long _binary_tim_timer15_tim_end[];
-extern unsigned long _binary_tim_timer15_tim_length;
-
-extern unsigned long _binary_tim_timer16_tim_start[];
-extern unsigned long _binary_tim_timer16_tim_end[];
-extern unsigned long _binary_tim_timer16_tim_length;
-
-extern unsigned long _binary_tim_timer17_tim_start[];
-extern unsigned long _binary_tim_timer17_tim_end[];
-extern unsigned long _binary_tim_timer17_tim_length;
-
-extern unsigned long _binary_tim_timer18_tim_start[];
-extern unsigned long _binary_tim_timer18_tim_end[];
-extern unsigned long _binary_tim_timer18_tim_length;
-
-extern unsigned long _binary_tim_timer19_tim_start[];
-extern unsigned long _binary_tim_timer19_tim_end[];
-extern unsigned long _binary_tim_timer19_tim_length;
-
-extern unsigned long _binary_tim_timer20_tim_start[];
-extern unsigned long _binary_tim_timer20_tim_end[];
-extern unsigned long _binary_tim_timer20_tim_length;
-
-extern unsigned long _binary_tim_officeFREDDY_tim_start[];
-extern unsigned long _binary_tim_officeFREDDY_tim_end[];
-extern unsigned long _binary_tim_officeFREDDY_tim_length;
-
-extern unsigned long _binary_tim_officeTOYFREDDY_tim_start[];
-extern unsigned long _binary_tim_officeTOYFREDDY_tim_end[];
-extern unsigned long _binary_tim_officeTOYFREDDY_tim_length;
-
-extern unsigned long _binary_tim_officeBONNIE_tim_start[];
-extern unsigned long _binary_tim_officeBONNIE_tim_end[];
-extern unsigned long _binary_tim_officeBONNIE_tim_length;
-
-extern unsigned long _binary_tim_officeCHICA_tim_start[];
-extern unsigned long _binary_tim_officeCHICA_tim_end[];
-extern unsigned long _binary_tim_officeCHICA_tim_length;
-
-extern unsigned long _binary_tim_officeTOYBONNIE_tim_start[];
-extern unsigned long _binary_tim_officeTOYBONNIE_tim_end[];
-extern unsigned long _binary_tim_officeTOYBONNIE_tim_length;
-
-extern unsigned long _binary_tim_mutecall_tim_start[];
-extern unsigned long _binary_tim_mutecall_tim_end[];
-extern unsigned long _binary_tim_mutecall_tim_length;
-
-extern unsigned long _binary_tim_manglehanging_tim_start[];
-extern unsigned long _binary_tim_manglehanging_tim_end[];
-extern unsigned long _binary_tim_manglehanging_tim_length;
+extern unsigned long _binary_tim_timer_timer20_tim_start[];
+extern unsigned long _binary_tim_timer_timer20_tim_end[];
+extern unsigned long _binary_tim_timer_timer20_tim_length;
 
 extern unsigned long _binary_tim_danger1_tim_start[];
 extern unsigned long _binary_tim_danger1_tim_end[];
@@ -504,7 +516,6 @@ TIM_IMAGE tableLEFT;
 TIM_IMAGE tableRIGHT;
 TIM_IMAGE Rvent;
 TIM_IMAGE Lvent;
-TIM_IMAGE CAMERAMONITOR;
 TIM_IMAGE layout;
 TIM_IMAGE gameover;
 TIM_IMAGE goodjob;
@@ -522,6 +533,7 @@ TIM_IMAGE timermusicbox;
 TIM_IMAGE mutecall;
 TIM_IMAGE manglehanging;
 TIM_IMAGE danger;
+TIM_IMAGE BB;
 
 TIM_IMAGE officefrontanimatronic;
 
@@ -861,7 +873,7 @@ MATRIX PolyMatrixtablefan = {0};
 POLY_FT4 *polyRvent = {0};     
 
 SVECTOR RotVectorRvent = {0, 0, 0};                 
-VECTOR  MovVectorRvent = {-146, 22, CENTERX/2-10, 0};  
+VECTOR  MovVectorRvent = {-146, 20, CENTERX/2-10, 0};  
 VECTOR  ScaleVectorRvent = {ONE, ONE, ONE};    
 
 SVECTOR VertPosRvent[4] = {              
@@ -1173,7 +1185,7 @@ MATRIX PolyMatrixtimer = {0};
 POLY_FT4 *polyofficefront = {0};   
 
 SVECTOR RotVectorofficefront = {0, 0, 0};                
-VECTOR  MovVectorofficefront = {-50, -60, CENTERX/2-10, 0}; 
+VECTOR  MovVectorofficefront = {-30, -60, CENTERX/2-10, 0}; 
 VECTOR  ScaleVectorofficefront = {ONE, ONE, ONE};        
 
 SVECTOR VertPosofficefront[4] = {             
@@ -1233,8 +1245,11 @@ MATRIX PolyMatrixmanglehanging = {0};
 POLY_FT4 *polydanger = {0};   
 
 SVECTOR RotVectordanger = {0, 0, 0};                
-VECTOR  MovVectordanger = {50, 50, CENTERX/2-10, 0}; 
-VECTOR  ScaleVectordanger = {ONE, ONE, ONE};        
+VECTOR  MovVectordanger = {57, 42, CENTERX/2-10, 0}; 
+VECTOR  ScaleVectordanger = {2048, 2048, 2048};      
+
+VECTOR  ScaleVectordanger2 = {1024, 1024, 1024};      
+VECTOR  MovVectordanger2 = {50, -15, CENTERX/2-10, 0};   
 
 SVECTOR VertPosdanger[4] = {             
         {0, 0, 1 },                     
@@ -1244,6 +1259,21 @@ SVECTOR VertPosdanger[4] = {
     };                                        
 
 MATRIX PolyMatrixdanger = {0};     
+
+POLY_FT4 *polyBB = {0};   
+
+SVECTOR RotVectorBB = {0, 0, 0};                
+VECTOR  MovVectorBB = {-90, -20, CENTERX/2-10, 0}; 
+VECTOR  ScaleVectorBB = {2048, 2048, 2048};      
+
+SVECTOR VertPosBB[4] = {             
+        {0, 0, 1 },                     
+        {0,  175, 1 },                     
+        { 152, 0, 1 },                      
+        { 152,  175, 1  }    
+    };                                        
+
+MATRIX PolyMatrixBB = {0};     
 
 //This function take in charge a specific polygon OR a set of polygon with related elements, depending on the var "num". (1 is for freddy on the menu for example)
 //Why ? It's Simple, because the game.c was LONG ASF. Longer than my lifetime I'd say. (11 rubies)
@@ -1508,7 +1538,7 @@ void makepoly(int num) {
                 nextpri += sizeof(POLY_FT4);      
         }
 
-        if (light1 == 1 && toychicaHere == 1) {
+        if (light1 == 1 && toychicaHere == 1 || light1 == 1 && BBHere == 1) {
             //R.vent 
             polyRvent = (POLY_FT4 *)nextpri;                 
                     
@@ -1627,8 +1657,69 @@ void makepoly(int num) {
 		 	
 		 	nextpri += sizeof(POLY_FT4);    
         }
-        if (dangerlevel > 0) {
-        	
+        if (dangerlevel > 0 && blinkicon > 30) {	
+	        polydanger = (POLY_FT4 *)nextpri;                 
+	                
+	        RotMatrix(&RotVectordanger, &PolyMatrixdanger);    
+	        TransMatrix(&PolyMatrixdanger, &MovVectordanger);  
+	        ScaleMatrix(&PolyMatrixdanger, &ScaleVectordanger);
+	        
+	        SetRotMatrix(&PolyMatrixdanger);                  
+	        SetTransMatrix(&PolyMatrixdanger);                
+	        
+	        setClut(polydanger, 960, 201);
+
+            setRGB0(polydanger, 128, 128, 128);
+
+	        setPolyFT4(polydanger);                           
+	        
+	        polydanger->tpage = getTPage(danger.mode&0x3, 0, 768, 256); 
+	        
+	        
+	        RotTransPers4(
+	                    &VertPosdanger[0],      &VertPosdanger[1],      &VertPosdanger[2],      &VertPosdanger[3],
+	                    (long*)&polydanger->x0, (long*)&polydanger->x1, (long*)&polydanger->x2, (long*)&polydanger->x3,
+	                    &polydepth,
+	                    &polyflag
+	                    );                               
+	        
+	        setUV4(polydanger, 0, 0, 0, 29, 34, 0, 34, 29);
+	            
+
+	        addPrim(ot[db], polydanger);                       
+	        
+	        nextpri += sizeof(POLY_FT4);    
+        }
+        if (BBlol) {
+	        polyBB = (POLY_FT4 *)nextpri;                 
+	                
+	        RotMatrix(&RotVectorBB, &PolyMatrixBB);    
+	        TransMatrix(&PolyMatrixBB, &MovVectorBB);  
+	        ScaleMatrix(&PolyMatrixBB, &ScaleVectorBB);
+	        
+	        SetRotMatrix(&PolyMatrixBB);                  
+	        SetTransMatrix(&PolyMatrixBB);                
+	        
+	        setClut(polyBB, 320, 491);
+
+	        setPolyFT4(polyBB);                           
+	        
+	        polyBB->tpage = getTPage(BB.mode&0x3, 0, 576, 256); 
+	        
+	        
+	        RotTransPers4(
+	                    &VertPosBB[0],      &VertPosBB[1],      &VertPosBB[2],      &VertPosBB[3],
+	                    (long*)&polyBB->x0, (long*)&polyBB->x1, (long*)&polyBB->x2, (long*)&polyBB->x3,
+	                    &polydepth,
+	                    &polyflag
+	                    );                               
+	        
+	        setUV4(polyBB, 0, 0, 0, 175, 152, 0, 152, 175);
+	            
+
+	        addPrim(ot[db], polyBB);                       
+	        
+	        nextpri += sizeof(POLY_FT4);    
         }
 
          //first
@@ -1809,8 +1900,7 @@ void makepoly(int num) {
                                     &polydepth,
                                     &polyflag
                                     );                               
-                        
-                            
+
                         addPrim(ot[db], polyofficefronttoybonnie);       
                         setUV4(polyofficefronttoybonnie, 2, 0, 2, 147, 109, 0, 109, 147);                
                         
@@ -1862,59 +1952,59 @@ void makepoly(int num) {
                   break;
               }
         }
-        if (lighthall == 1 && camera == 0) {
-                polyhallway = (POLY_FT4 *)nextpri;                 
-                        
-                RotMatrix(&RotVectorhallway, &PolyMatrixhallway); 
-                 
-                polyhallway->tpage = getTPage(animatronichallway.mode&0x3, 0, 320, 0);
-                if (foxylocation == 1) {
-                        setUV4(polyhallway, 0, 0, 0, 107, 38, 0, 38, 107); 
-                        TransMatrix(&PolyMatrixhallway, &MovVectorhallway4);  
-                        ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway3);
-                } else {
-                        if (toyfreddylocation == 2 || toyfreddylocation == 3) {
-                                setUV4(polyhallway, 0, 0, 0, 124, 56, 0, 56, 124); 
-                                TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
-                                ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
-                        } else {
-                                if (freddylocation == 3) {
-                                        setUV4(polyhallway, 0, 0, 0, 133, 70, 0, 70, 133); 
-                                        TransMatrix(&PolyMatrixhallway, &MovVectorhallway3);  
-                                        ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
-                                } else {
-                                        if (bonnielocation == 2) {
-                                                setUV4(polyhallway, 0, 0, 0, 123, 50, 0, 50, 123); 
-                                                TransMatrix(&PolyMatrixhallway, &MovVectorhallway2);  
-                                                ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
-                                        } else {
-                                                if (toychicalocation == 2) {
-                                                        setUV4(polyhallway, 0, 0, 0, 124, 56, 0, 56, 124); 
-                                                        TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
-                                                        ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);     
-                                                } else {
-                                                        setUV4(polyhallway, 0, 0, 0, 0, 0, 0, 0, 0); 
-                                                        TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
-                                                        ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);   
-                                                }
-                                        }         
-                                }
-                        }
-                }
-                SetRotMatrix(&PolyMatrixhallway);              
-                SetTransMatrix(&PolyMatrixhallway);            
-                setClut(polyhallway, 320, 500); 
-                setPolyFT4(polyhallway);                         
-                RotTransPers4(
-                            &VertPoshallway[0],      &VertPoshallway[1],      &VertPoshallway[2],      &VertPoshallway[3],
-                            (long*)&polyhallway->x0, (long*)&polyhallway->x1, (long*)&polyhallway->x2, (long*)&polyhallway->x3,
-                            &polydepth,
-                            &polyflag
-                            );                               
-                setRGB0(polyhallway, 128, 128, 128);
-                addPrim(ot[db], polyhallway);                     
-                 
-                nextpri += sizeof(POLY_FT4);      
+        if (lighthall == 1) {
+            polyhallway = (POLY_FT4 *)nextpri;                 
+                    
+            RotMatrix(&RotVectorhallway, &PolyMatrixhallway); 
+             
+            polyhallway->tpage = getTPage(animatronichallway.mode&0x3, 0, 320, 0);
+            if (foxylocation == 1) {
+                    setUV4(polyhallway, 0, 0, 0, 107, 38, 0, 38, 107); 
+                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway4);  
+                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway3);
+            } else {
+                    if (toyfreddylocation == 2 || toyfreddylocation == 3) {
+                            setUV4(polyhallway, 0, 0, 0, 144, 49, 0, 49, 144); 
+                            TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
+                            ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
+                    } else {
+                            if (freddylocation == 3) {
+                                    setUV4(polyhallway, 0, 0, 0, 133, 70, 0, 70, 133); 
+                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway3);  
+                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
+                            } else {
+                                    if (bonnielocation == 2) {
+                                            setUV4(polyhallway, 0, 0, 0, 123, 50, 0, 50, 123); 
+                                            TransMatrix(&PolyMatrixhallway, &MovVectorhallway2);  
+                                            ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
+                                    } else {
+                                            if (toychicalocation == 2) {
+                                                    setUV4(polyhallway, 0, 0, 0, 124, 56, 0, 56, 124); 
+                                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
+                                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);     
+                                            } else {
+                                                    setUV4(polyhallway, 0, 0, 0, 0, 0, 0, 0, 0); 
+                                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
+                                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);   
+                                            }
+                                    }         
+                            }
+                    }
+            }
+            SetRotMatrix(&PolyMatrixhallway);              
+            SetTransMatrix(&PolyMatrixhallway);            
+            setClut(polyhallway, 320, 500); 
+            setPolyFT4(polyhallway);                         
+            RotTransPers4(
+                        &VertPoshallway[0],      &VertPoshallway[1],      &VertPoshallway[2],      &VertPoshallway[3],
+                        (long*)&polyhallway->x0, (long*)&polyhallway->x1, (long*)&polyhallway->x2, (long*)&polyhallway->x3,
+                        &polydepth,
+                        &polyflag
+                        );                               
+            setRGB0(polyhallway, 128, 128, 128);
+            addPrim(ot[db], polyhallway);                     
+             
+            nextpri += sizeof(POLY_FT4);      
         }
 
          polyofficemiddle = (POLY_FT4 *)nextpri;                 

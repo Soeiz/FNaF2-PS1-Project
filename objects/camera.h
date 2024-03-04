@@ -3,6 +3,7 @@
 //(and also because it was harder to look for a specific thing and having to scroll like 100000 times to pass by the thing we want. Here, you know you are at the cam func.)
 // *copy-paste old comment and change three-four words* "Yeah, That'll work"
 // *change euros to rubies* "Yeah, I'm original"
+// *copy-paste old comment about changing euros to rubies* "I've done what's called a programmer move"
 
 void cameraloc(void) {
     //Gosh, This is gonna be long

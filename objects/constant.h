@@ -151,6 +151,7 @@ int frames = 500;
 
 int menuscreeninit = 0;
 int menu = 0;
+int helpwantedposter = 0;
 int maincustomnightmenu = 0;
 int AISetmenu = 0;
 int timermenu = 0;
@@ -192,7 +193,6 @@ int FrameCounterlimit = 0;
 int convertion = 60;
 int extramenu = 0;
 int infoscreen = 0;
-int bonniestared = 0;
 int seedrandom = 0;
 int unlimitedpower = 0;
 char unlimitedpowerstr[] = "OFF";
@@ -303,7 +303,7 @@ int puppetdifficulty = 0;
 int puppetlocation = 0;
 int puppetlocationframe = 60;
 
-int musicboxunwidingvalue = 0;
+int musicboxunwidingvalue = 2;
 int musicboxunwidingvaludemi = 0;
 int musicboxunwidingvaluthird = -2;
 int musicboxtimer = 2000;
@@ -312,10 +312,10 @@ int dangerlevel = 0;
 
 int windingframessound = 0; //30
 int windingframe = 1;
-
 int toychicaHere = 0;
 int toybonnieHere = 0;
 int mangleHere = 0;
+int BBHere = 0;
 
 int triggeralarm = 0;
 
@@ -383,7 +383,7 @@ int noisefootstepanimatronic = 0;
 int noisefootstepF = 0;
 int framenoisefootstepF = 0;
 
-int tensecondframe = 600;
+int fivesecondframe = 300;
 int ambiancesound = 1;
 int ambiancechance = 1;
 

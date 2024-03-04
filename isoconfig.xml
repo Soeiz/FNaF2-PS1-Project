@@ -88,26 +88,21 @@
             <!--Put all of the tim shit we need -->
             <file name="MENUS1.TIM"   type="data" source="tim/MENUS1.TIM"/>
             <file name="MENUS2.TIM"   type="data" source="tim/MENUS2.TIM"/>
-            <file name="ICONS.TIM"   type="data" source="tim/ICONS.TIM"/>
-            <file name="HWANTED.TIM"   type="data" source="tim/HWANTED.TIM"/>
             <file name="LOAD.TIM"   type="data" source="tim/LOAD.TIM"/>
-            <file name="OLEFTP1.TIM"   type="data" source="tim/oLEFTpart1.TIM"/>
-            <file name="ORIGHTP1.TIM"   type="data" source="tim/oRIGHTpart1.TIM"/>
-            <file name="GAMEOVER.TIM"   type="data" source="tim/GAMEOVER.TIM"/>
-            <file name="LAYOUT.TIM"   type="data" source="tim/LAYOUT.TIM"/>
-            <file name="OMID.TIM"   type="data" source="tim/OMID.TIM"/>
-            <file name="GOL.TIM"   type="data" source="tim/GOL.TIM"/>
-            <file name="GOLF.TIM"   type="data" source="tim/GOLF.TIM"/>
-            <!--<file name="BONST.TIM"   type="data" source="tim/BONST.TIM"/>
-            <file name="FREDDZ.TIM"   type="data" source="tim/FREDDZ.TIM"/>
-             <file name="TRAIL.STR"   type="data" source="STR/TRAILER.STR"/> -->
-            <file name="TCENTER.TIM"   type="data" source="tim/TCENTER.TIM"/>
-            <file name="TRIGHT.TIM"   type="data" source="tim/TABLERIGHT.TIM"/>
-            <file name="TLEFT.TIM"   type="data" source="tim/TABLELEFT.TIM"/>
-            <file name="MASK.TIM"   type="data" source="tim/MASK.TIM"/>
+            <file name="HWANTED.TIM"   type="data" source="tim/HWANTED.TIM"/>
+            <file name="OLEFTP1.TIM"   type="data" source="tim/office/oLEFTpart1.TIM"/>
+            <file name="ORIGHTP1.TIM"   type="data" source="tim/office/oRIGHTpart1.TIM"/>
+            <file name="LAYOUT.TIM"   type="data" source="tim/office/LAYOUT.TIM"/>
+            <file name="TCENTER.TIM"   type="data" source="tim/office/TCENTER.TIM"/>
+            <file name="TRIGHT.TIM"   type="data" source="tim/office/TABLERIGHT.TIM"/>
+            <file name="TLEFT.TIM"   type="data" source="tim/office/TABLELEFT.TIM"/>
+            <file name="MASK.TIM"   type="data" source="tim/office/MASK.TIM"/>
             <file name="GJSIX.TIM"   type="data" source="tim/GJSIX.TIM"/>
             <file name="GJFIV.TIM"   type="data" source="tim/GJFIV.TIM"/>
             <file name="GJSEV.TIM"   type="data" source="tim/GJSEV.TIM"/>
+            <file name="GAMEOVER.TIM"   type="data" source="tim/GAMEOVER.TIM"/>
+            <file name="GOL.TIM"   type="data" source="tim/GOL.TIM"/>
+            <file name="GOLF.TIM"   type="data" source="tim/GOLF.TIM"/>
 
             <dummy sectors="1024"/>
             
