@@ -120,7 +120,7 @@ void clearVRAMloading(void)
 void clearVRAMScreamer(void)
 {
     RECT rectTL;
-    setRECT(&rectTL, 576, 256, 102, 114); 
+    setRECT(&rectTL, 576, 256, 106, 175); 
     ClearImage2(&rectTL, 0, 0, 0);
     DrawSync(0);
 }
@@ -170,6 +170,7 @@ int toychicalocationframelock = 300;
 int manglelocationframelock = 300;
 
 int BBlocationframelock = 300;
+int GFlocationframelock = 300;
 //Everyone at 5 seconds !!!
 
 int presetselector = 1;
@@ -291,12 +292,16 @@ int BBfoolness = 0;
 int BBlol = 0;
 int BBlolonce = 0;
 
-int goldenfreddydifficulty = 0;
-int goldenfreddylocation = 0;
-int goldenfreddyframes = 0;
-int goldenfreddychances = 500;
-int goldenfreddyactivated = 0;
-int goldenfreddychancescrash = 2000;
+int GFdifficulty = 0;
+int GFlocationframehallway = 60;
+int GFlocationframe = 300;
+int GFactivated = 0;
+int GFnotactivatedyet = 0;
+int GFdeactivating = 0;
+int GFactivatedhallway = 0;
+int GFscreamerhallway = 0;
+int flashedonce = 0;
+
 int nolongerincam = 0;
 
 int puppetdifficulty = 0;
@@ -352,6 +357,8 @@ int limitercameraR = 0;
 int limitercameraL = 0;
 int animatronicscamera[] = {0,0,0,0,0,0,0,0,0}; //freddy, bonnie, chica, foxy, toy freddy, toy bonnie, toy chica, mangle, BB
 
+int flashlightbattery = 
+
 int officequeue[5] = {0,0,0,0,0}; // only 5 members can attack on front of you. WARNING 0 is 1, 1 is 2 etc (for animatronics)
 int officequeuetimer = 0;
 int occupiedoncam = 360;
@@ -363,9 +370,11 @@ int animatroniclocation[] = {0,0,0,0,0,0,0,0,0}; //Shit does nothing ??? Huh
 int blinkicon = 0;
 
 int checkframes = 0;
+int checklifelimit = 0;
 
 int weirdnight = 0;
 int fadeoffice = 128;
+int fadeGF = 128;
 int inorout = 0;
 int onetime = 0;
 int oldnight = 0;
@@ -406,7 +415,9 @@ int screamerframes = 47;
 int deadtoybonnie = 0;
 int dead = 0;
 int deadfrom = 0;
+int GFscaling = 1024;
 int spriteframes = 4;
+int spriteframesconst = 4;
 int spritesheet = 0;
 
 int nightwon = 0;

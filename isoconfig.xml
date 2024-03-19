@@ -96,10 +96,14 @@
             <file name="TCENTER.TIM"   type="data" source="tim/office/TCENTER.TIM"/>
             <file name="TRIGHT.TIM"   type="data" source="tim/office/TABLERIGHT.TIM"/>
             <file name="TLEFT.TIM"   type="data" source="tim/office/TABLELEFT.TIM"/>
+            <file name="BB.TIM"   type="data" source="tim/office/BB.TIM"/>
+            <file name="GF.TIM"   type="data" source="tim/office/GF.TIM"/>
+            <file name="OLTCHIC.TIM"   type="data" source="tim/office/officeLEFTlighttoychica.TIM"/>
+            <file name="OLTBB.TIM"   type="data" source="tim/office/officeLEFTlightballonboy.TIM"/>
+            <file name="ORTBON.TIM"   type="data" source="tim/office/officeRIGHTlighttoybonnie.TIM"/>
+            <file name="ORTMAN.TIM"   type="data" source="tim/office/officeRIGHTlightmangle.TIM"/>
             <file name="MASK.TIM"   type="data" source="tim/office/MASK.TIM"/>
-            <file name="GJSIX.TIM"   type="data" source="tim/GJSIX.TIM"/>
             <file name="GJFIV.TIM"   type="data" source="tim/GJFIV.TIM"/>
-            <file name="GJSEV.TIM"   type="data" source="tim/GJSEV.TIM"/>
             <file name="GAMEOVER.TIM"   type="data" source="tim/GAMEOVER.TIM"/>
             <file name="GOL.TIM"   type="data" source="tim/GOL.TIM"/>
             <file name="GOLF.TIM"   type="data" source="tim/GOLF.TIM"/>

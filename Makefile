@@ -10,14 +10,10 @@ TARGET = fnaf2
 SRCS = fnaf2.c \
 tim/office/oLEFTpart2.tim \
 tim/office/oLEFTpart2light.tim \
-tim/office/officeLEFTlighttoychica.tim \
-tim/office/officeLEFTlightballonboy.tim \
 tim/office/officeMIDDLE.tim \
 tim/office/officeMIDDLElight.tim \
 tim/office/oRIGHTpart2.tim \
 tim/office/oRIGHTpart2light.tim \
-tim/office/officeRIGHTlighttoybonnie.tim \
-tim/office/officeRIGHTlightmangle.tim \
 tim/office/fan1.tim \
 tim/office/fan2.tim \
 tim/office/fan3.tim \
@@ -29,12 +25,15 @@ tim/office/officeTOYFREDDY.tim \
 tim/office/officeTOYBONNIE.tim \
 tim/office/mutecall.tim \
 tim/office/manglehanging.tim \
-tim/office/BB.tim \
 tim/hallway/toychicahallway.tim \
 tim/hallway/foxyhallway.tim \
 tim/hallway/freddyhallway.tim \
 tim/hallway/toyfreddyhallway.tim \
 tim/hallway/bonniehallway.tim \
+tim/hallway/goldenhallway.tim \
+tim/hallway/foxanglhallway.tim \
+tim/hallway/foxbonnhallway.tim \
+tim/hallway/manglehallway.tim \
 tim/screamer/jumpC.tim \
 tim/screamer/jumpC2.tim \
 tim/screamer/jumpC3.tim \
@@ -120,8 +119,6 @@ tim/5am6/6AM5.tim \
 tim/5am6/6AM6.tim \
 tim/load.tim \
 tim/fnt.tim \
-tim/GJFIV.tim \
-tim/GJSEV.tim \
 tim/GJSIX.tim \
 tim/static1.tim \
 tim/itsme.tim \

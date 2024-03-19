@@ -15,10 +15,6 @@ extern unsigned long _binary_tim_office_officeRIGHTnolight_tim_start[];
 extern unsigned long _binary_tim_office_officeRIGHTnolight_tim_end[];
 extern unsigned long _binary_tim_office_officeRIGHTnolight_tim_length;
 
-extern unsigned long _binary_tim_office_officeRIGHTlighttoybonnie_tim_start[];
-extern unsigned long _binary_tim_office_officeRIGHTlighttoybonnie_tim_end[];
-extern unsigned long _binary_tim_office_officeRIGHTlighttoybonnie_tim_length;
-
 extern unsigned long _binary_tim_office_oLEFTpart2_tim_start[];
 extern unsigned long _binary_tim_office_oLEFTpart2_tim_end[];
 extern unsigned long _binary_tim_office_oLEFTpart2_tim_length;
@@ -26,14 +22,6 @@ extern unsigned long _binary_tim_office_oLEFTpart2_tim_length;
 extern unsigned long _binary_tim_office_oLEFTpart2light_tim_start[];
 extern unsigned long _binary_tim_office_oLEFTpart2light_tim_end[];
 extern unsigned long _binary_tim_office_oLEFTpart2light_tim_length;
-
-extern unsigned long _binary_tim_office_officeLEFTlighttoychica_tim_start[];
-extern unsigned long _binary_tim_office_officeLEFTlighttoychica_tim_end[];
-extern unsigned long _binary_tim_office_officeLEFTlighttoychica_tim_length;
-
-extern unsigned long _binary_tim_office_officeLEFTlightballonboy_tim_start[];
-extern unsigned long _binary_tim_office_officeLEFTlightballonboy_tim_end[];
-extern unsigned long _binary_tim_office_officeLEFTlightballonboy_tim_length;
 
 extern unsigned long _binary_tim_office_officeMIDDLE_tim_start[];
 extern unsigned long _binary_tim_office_officeMIDDLE_tim_end[];
@@ -82,14 +70,6 @@ extern unsigned long _binary_tim_office_fan3_tim_length;
 extern unsigned long _binary_tim_office_fan4_tim_start[];
 extern unsigned long _binary_tim_office_fan4_tim_end[];
 extern unsigned long _binary_tim_office_fan4_tim_length;
-
-extern unsigned long _binary_tim_office_officeRIGHTlightmangle_tim_start[];
-extern unsigned long _binary_tim_office_officeRIGHTlightmangle_tim_end[];
-extern unsigned long _binary_tim_office_officeRIGHTlightmangle_tim_length;
-
-extern unsigned long _binary_tim_office_BB_tim_start[];
-extern unsigned long _binary_tim_office_BB_tim_end[];
-extern unsigned long _binary_tim_office_BB_tim_length;
 
 extern unsigned long _binary_tim_5am6_FAM_tim_start[];
 extern unsigned long _binary_tim_5am6_FAM_tim_end[];
@@ -142,18 +122,6 @@ extern unsigned long _binary_tim_5am6_6AM5_tim_length;
 extern unsigned long _binary_tim_5am6_6AM6_tim_start[];
 extern unsigned long _binary_tim_5am6_6AM6_tim_end[];
 extern unsigned long _binary_tim_5am6_6AM6_tim_length;
-
-extern unsigned long _binary_tim_GJFIV_tim_start[];
-extern unsigned long _binary_tim_GJFIV_tim_end[];
-extern unsigned long _binary_tim_GJFIV_tim_length;
-
-extern unsigned long _binary_tim_GJSEV_tim_start[];
-extern unsigned long _binary_tim_GJSEV_tim_end[];
-extern unsigned long _binary_tim_GJSEV_tim_length;
-
-extern unsigned long _binary_tim_GJSIX_tim_start[];
-extern unsigned long _binary_tim_GJSIX_tim_end[];
-extern unsigned long _binary_tim_GJSIX_tim_length;
 
 extern unsigned long _binary_tim_load_tim_start[];
 extern unsigned long _binary_tim_load_tim_end[];
@@ -347,6 +315,10 @@ extern unsigned long _binary_tim_screamer_jumpTF3_tim_start[];
 extern unsigned long _binary_tim_screamer_jumpTF3_tim_end[];
 extern unsigned long _binary_tim_screamer_jumpTF3_tim_length;
 
+extern unsigned long _binary_tim_GJSIX_tim_start[];
+extern unsigned long _binary_tim_GJSIX_tim_end[];
+extern unsigned long _binary_tim_GJSIX_tim_length;
+
 extern unsigned long _binary_tim_screamer_jumpTF4_tim_start[];
 extern unsigned long _binary_tim_screamer_jumpTF4_tim_end[];
 extern unsigned long _binary_tim_screamer_jumpTF4_tim_length;
@@ -398,6 +370,22 @@ extern unsigned long _binary_tim_hallway_freddyhallway_tim_length;
 extern unsigned long _binary_tim_hallway_bonniehallway_tim_start[];
 extern unsigned long _binary_tim_hallway_bonniehallway_tim_end[];
 extern unsigned long _binary_tim_hallway_bonniehallway_tim_length;
+
+extern unsigned long _binary_tim_hallway_goldenhallway_tim_start[];
+extern unsigned long _binary_tim_hallway_goldenhallway_tim_end[];
+extern unsigned long _binary_tim_hallway_goldenhallway_tim_length;
+
+extern unsigned long _binary_tim_hallway_foxanglhallway_tim_start[];
+extern unsigned long _binary_tim_hallway_foxanglhallway_tim_end[];
+extern unsigned long _binary_tim_hallway_foxanglhallway_tim_length;
+
+extern unsigned long _binary_tim_hallway_foxbonnhallway_tim_start[];
+extern unsigned long _binary_tim_hallway_foxbonnhallway_tim_end[];
+extern unsigned long _binary_tim_hallway_foxbonnhallway_tim_length;
+
+extern unsigned long _binary_tim_hallway_manglehallway_tim_start[];
+extern unsigned long _binary_tim_hallway_manglehallway_tim_end[];
+extern unsigned long _binary_tim_hallway_manglehallway_tim_length;
 
 extern unsigned long _binary_tim_timer_timer0_tim_start[];
 extern unsigned long _binary_tim_timer_timer0_tim_end[];
@@ -534,6 +522,7 @@ TIM_IMAGE mutecall;
 TIM_IMAGE manglehanging;
 TIM_IMAGE danger;
 TIM_IMAGE BB;
+TIM_IMAGE GF;
 
 TIM_IMAGE officefrontanimatronic;
 
@@ -1066,10 +1055,10 @@ VECTOR  MovVectorgoodjob = {0, 0, CENTERX/2-10, 0};
 VECTOR  ScaleVectorgoodjob = {ONE, ONE, ONE};         
 
 SVECTOR VertPosgoodjob[4] = {                         
-        {-79, -56, 1 },                        
-        {-80,  56, 1 },                        
-        { 79, -56, 1 },                        
-        { 80,  56, 1  }                        
+        {-82, -60, 1 },                        
+        {-82,  61, 1 },                        
+        { 82, -60, 1 },                        
+        { 82,  61, 1  }                        
     };        
 
 MATRIX PolyMatrixgoodjob = {0};    
@@ -1149,13 +1138,19 @@ VECTOR  MovVectorhallway2 = {-10, -16, CENTERX/2-10, 0};
 
 VECTOR  MovVectorhallway3 = {0, -30, CENTERX/2-10, 0};  
 
+VECTOR  MovVectorhallway3bis = {10, -30, CENTERX/2-10, 0};  
+
 VECTOR  MovVectorhallway4 = {5, -12, CENTERX/2-10, 0};  
+
+VECTOR  MovVectorhallway5 = {30, -35, CENTERX/2-10, 0};  
 
 VECTOR  ScaleVectorhallway = {2198, 2198, 2198};    
 
-VECTOR  ScaleVectorhallway2 = {3024, 3024, 3024};   
+VECTOR  ScaleVectorhallway2 = {3224, 3024, 3024};   
 
 VECTOR  ScaleVectorhallway3 = {1792, 2510, 1792};    
+
+VECTOR  ScaleVectorhallway4 = {2710, 1792, 2198};    
 
 SVECTOR VertPoshallway[4] = {              
         {0, 0, 1 },                         
@@ -1230,8 +1225,8 @@ MATRIX PolyMatrixmutecall = {0};
 POLY_FT4 *polymanglehanging = {0};   
 
 SVECTOR RotVectormanglehanging = {0, 0, 0};                
-VECTOR  MovVectormanglehanging = {20, -70, CENTERX/2-10, 0}; 
-VECTOR  ScaleVectormanglehanging = {ONE, ONE, ONE};        
+VECTOR  MovVectormanglehanging = {20, -65, CENTERX/2-10, 0}; 
+VECTOR  ScaleVectormanglehanging = {2048, 2048, 2048};        
 
 SVECTOR VertPosmanglehanging[4] = {             
         {0, 0, 1 },                     
@@ -1263,7 +1258,7 @@ MATRIX PolyMatrixdanger = {0};
 POLY_FT4 *polyBB = {0};   
 
 SVECTOR RotVectorBB = {0, 0, 0};                
-VECTOR  MovVectorBB = {-90, -20, CENTERX/2-10, 0}; 
+VECTOR  MovVectorBB = {-90, -10, CENTERX/2-10, 0}; 
 VECTOR  ScaleVectorBB = {2048, 2048, 2048};      
 
 SVECTOR VertPosBB[4] = {             
@@ -1274,6 +1269,21 @@ SVECTOR VertPosBB[4] = {
     };                                        
 
 MATRIX PolyMatrixBB = {0};     
+
+POLY_FT4 *polyGF = {0};   
+
+SVECTOR RotVectorGF = {0, 0, 0};                
+VECTOR  MovVectorGF = {-90, -10, CENTERX/2-10, 0}; 
+VECTOR  ScaleVectorGF = {2048, 2048, 2048};      
+
+SVECTOR VertPosGF[4] = {             
+        {0, 0, 1 },                     
+        {0,  175, 1 },                     
+        { 152, 0, 1 },                      
+        { 152,  175, 1  }    
+    };                                        
+
+MATRIX PolyMatrixGF = {0};     
 
 //This function take in charge a specific polygon OR a set of polygon with related elements, depending on the var "num". (1 is for freddy on the menu for example)
 //Why ? It's Simple, because the game.c was LONG ASF. Longer than my lifetime I'd say. (11 rubies)
@@ -1507,7 +1517,7 @@ void makepoly(int num) {
 	}//Golden freddy on the office
 
 	if (num == 6) {
-        if (ismaskon == 1) {
+        if (ismaskon) {
                 polymask = (POLY_FT4 *)nextpri;                 
                         
                 RotMatrix(&RotVectormask, &PolyMatrixmask); 
@@ -1538,7 +1548,7 @@ void makepoly(int num) {
                 nextpri += sizeof(POLY_FT4);      
         }
 
-        if (light1 == 1 && toychicaHere == 1 || light1 == 1 && BBHere == 1) {
+        if (light1 && toychicaHere || light1 && BBHere) {
             //R.vent 
             polyRvent = (POLY_FT4 *)nextpri;                 
                     
@@ -1549,11 +1559,10 @@ void makepoly(int num) {
             SetRotMatrix(&PolyMatrixRvent);              
             SetTransMatrix(&PolyMatrixRvent);            
              
-            setClut(polyRvent, 320, 503); 
             setPolyFT4(polyRvent);                         
             
             polyRvent->tpage = getTPage(Rvent.mode&0x3, 0, 512, 0);
-             
+
             RotTransPers4(
                         &VertPosRvent[0],      &VertPosRvent[1],      &VertPosRvent[2],      &VertPosRvent[3],
                         (long*)&polyRvent->x0, (long*)&polyRvent->x1, (long*)&polyRvent->x2, (long*)&polyRvent->x3,
@@ -1562,13 +1571,21 @@ void makepoly(int num) {
                         );                               
             setRGB0(polyRvent, 128, 128, 128);
              
-            setUV4(polyRvent, 0, 163, 0, 255, 78, 163, 78, 255); 
+            if (toychicaHere) {
+            	setClut(polyRvent, 320, 487); 
+            	setUV4(polyRvent, 0, 163, 0, 255, 78, 163, 78, 255); 
+            }
+            if (BBHere) {
+            	setClut(polyRvent, 320, 488); 
+            	setUV4(polyRvent, 78, 163, 78, 255, 156, 163, 156, 255); 
+            }
+
             addPrim(ot[db], polyRvent);                     
              
             nextpri += sizeof(POLY_FT4);      
         }
 
-        if (light2 == 1 && toybonnieHere == 1 || light2 == 1 && mangleHere == 1) {
+        if (light2 && toybonnieHere || light2 && mangleHere) {
                 //L.vent 
                 polyLvent = (POLY_FT4 *)nextpri;                 
                         
@@ -1578,11 +1595,10 @@ void makepoly(int num) {
                  
                 SetRotMatrix(&PolyMatrixLvent);              
                 SetTransMatrix(&PolyMatrixLvent);            
-                 
-                setClut(polyLvent, 320, 503); 
+                
                 setPolyFT4(polyLvent);                         
                 
-                polyLvent->tpage = getTPage(Lvent.mode&0x3, 0, 576, 0);
+                polyLvent->tpage = getTPage(Lvent.mode&0x3, 0, 576, 256);
                  
                 RotTransPers4(
                             &VertPosLvent[0],      &VertPosLvent[1],      &VertPosLvent[2],      &VertPosLvent[3],
@@ -1591,8 +1607,15 @@ void makepoly(int num) {
                             &polyflag
                             );                               
                 setRGB0(polyLvent, 128, 128, 128);
-                 
-                setUV4(polyLvent, 0, 163, 0, 255, 78, 163, 78, 255); 
+
+                	setClut(polyLvent, 320, 503); 
+                	setUV4(polyLvent, 0, 0, 0, 93, 78, 0, 78, 93); 
+                if (toybonnieHere) {
+                }
+                if (mangleHere) {
+                	setClut(polyLvent, 320, 511); 
+                	setUV4(polyLvent, 78, 0, 78, 93, 156, 0, 156, 93); 
+                }
                 addPrim(ot[db], polyLvent);                     
                  
                 nextpri += sizeof(POLY_FT4);      
@@ -1627,7 +1650,7 @@ void makepoly(int num) {
 		 	
 		 	nextpri += sizeof(POLY_FT4);    
         }
-        if (manglelocation == 7) {
+        if (manglelocation == 8) {
 		 	polymanglehanging = (POLY_FT4 *)nextpri;                 
 		 	        
 		 	RotMatrix(&RotVectormanglehanging, &PolyMatrixmanglehanging);    
@@ -1641,7 +1664,7 @@ void makepoly(int num) {
 
 		 	setPolyFT4(polymanglehanging);                           
 		 	
-		 	polymanglehanging->tpage = getTPage(manglehanging.mode&0x3, 0, 576, 256); 
+		 	polymanglehanging->tpage = getTPage(manglehanging.mode&0x3, 0, 320, 256); 
 		 	
 		 	
 		 	RotTransPers4(
@@ -1651,7 +1674,7 @@ void makepoly(int num) {
 		 	            &polyflag
 		 	            );                               
 		 	
-		 	setUV4(polymanglehanging, 0, 0, 0, 86, 216, 0, 216, 86); // 8 diff (normaly 263 but can't go higher than 255, so 263-255 = 8)
+		 	setUV4(polymanglehanging, 0, 161, 0, 218, 154, 161, 154, 218); // 8 diff (normaly 263 but can't go higher than 255, so 263-255 = 8)
 		 	    
 		 	addPrim(ot[db], polymanglehanging);                       
 		 	
@@ -1700,11 +1723,11 @@ void makepoly(int num) {
 	        SetRotMatrix(&PolyMatrixBB);                  
 	        SetTransMatrix(&PolyMatrixBB);                
 	        
-	        setClut(polyBB, 320, 491);
+	        setClut(polyBB, 320, 489);
 
 	        setPolyFT4(polyBB);                           
 	        
-	        polyBB->tpage = getTPage(BB.mode&0x3, 0, 576, 256); 
+	        polyBB->tpage = getTPage(BB.mode&0x3, 0, 576, 0); 
 	        
 	        
 	        RotTransPers4(
@@ -1714,14 +1737,43 @@ void makepoly(int num) {
 	                    &polyflag
 	                    );                               
 	        
-	        setUV4(polyBB, 0, 0, 0, 175, 152, 0, 152, 175);
-	            
+	        setUV4(polyBB, 0, 0, 0, 175, 127, 0, 127, 175);
 
 	        addPrim(ot[db], polyBB);                       
 	        
 	        nextpri += sizeof(POLY_FT4);    
         }
+        if (GFactivated || GFdeactivating) {        	
+	        polyGF = (POLY_FT4 *)nextpri;                 
+	                
+	        RotMatrix(&RotVectorGF, &PolyMatrixGF);    
+	        TransMatrix(&PolyMatrixGF, &MovVectorGF);  
+	        ScaleMatrix(&PolyMatrixGF, &ScaleVectorGF);
+	        
+	        SetRotMatrix(&PolyMatrixGF);                  
+	        SetTransMatrix(&PolyMatrixGF);                
+	        
+	        setClut(polyGF, 320, 491);
 
+	        setPolyFT4(polyGF);                           
+	        
+	        polyGF->tpage = getTPage(GF.mode&0x3, 0, 384, 256); 
+
+	        setRGB0(polyGF, fadeGF, fadeGF, fadeGF);
+	        
+	        RotTransPers4(
+	                    &VertPosGF[0],      &VertPosGF[1],      &VertPosGF[2],      &VertPosGF[3],
+	                    (long*)&polyGF->x0, (long*)&polyGF->x1, (long*)&polyGF->x2, (long*)&polyGF->x3,
+	                    &polydepth,
+	                    &polyflag
+	                    );                               
+	        
+	        setUV4(polyGF, 60, 0, 60, 175, 235, 0, 235, 175);
+
+	        addPrim(ot[db], polyGF);                       
+	        
+	        nextpri += sizeof(POLY_FT4);    
+        }
          //first
          polytablemiddle = (POLY_FT4 *)nextpri;                 
                  
@@ -1902,7 +1954,7 @@ void makepoly(int num) {
                                     );                               
 
                         addPrim(ot[db], polyofficefronttoybonnie);       
-                        setUV4(polyofficefronttoybonnie, 2, 0, 2, 147, 109, 0, 109, 147);                
+                        setUV4(polyofficefronttoybonnie, 2, 0, 2, 147, 107, 0, 107, 147);                
                         
                         nextpri += sizeof(POLY_FT4);    
                 } else {
@@ -1958,38 +2010,64 @@ void makepoly(int num) {
             RotMatrix(&RotVectorhallway, &PolyMatrixhallway); 
              
             polyhallway->tpage = getTPage(animatronichallway.mode&0x3, 0, 320, 0);
-            if (foxylocation == 1) {
-                    setUV4(polyhallway, 0, 0, 0, 107, 38, 0, 38, 107); 
-                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway4);  
-                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway3);
+
+            //I'm doing it this way for "prioritizing" the animatronics (if we don't see foxy but toy chica, it'd be a shame)
+            if (animatronicshallway[7]) { //GF
+	            setUV4(polyhallway, 0, 0, 0, 88, 68, 0, 68, 88); 
+	            TransMatrix(&PolyMatrixhallway, &MovVectorhallway3);  
+	            ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway4);
             } else {
-                    if (toyfreddylocation == 2 || toyfreddylocation == 3) {
-                            setUV4(polyhallway, 0, 0, 0, 144, 49, 0, 49, 144); 
-                            TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
-                            ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
-                    } else {
-                            if (freddylocation == 3) {
-                                    setUV4(polyhallway, 0, 0, 0, 133, 70, 0, 70, 133); 
-                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway3);  
-                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
-                            } else {
-                                    if (bonnielocation == 2) {
-                                            setUV4(polyhallway, 0, 0, 0, 123, 50, 0, 50, 123); 
-                                            TransMatrix(&PolyMatrixhallway, &MovVectorhallway2);  
-                                            ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
-                                    } else {
-                                            if (toychicalocation == 2) {
-                                                    setUV4(polyhallway, 0, 0, 0, 124, 56, 0, 56, 124); 
-                                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
-                                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);     
-                                            } else {
-                                                    setUV4(polyhallway, 0, 0, 0, 0, 0, 0, 0, 0); 
-                                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
-                                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);   
-                                            }
-                                    }         
-                            }
-                    }
+	            if (animatronicshallway[3]) { //Foxy
+	            	if (animatronicshallway[6]) { // + Mangle
+		                setUV4(polyhallway, 0, 0, 0, 154, 98, 0, 98, 154); 
+		                TransMatrix(&PolyMatrixhallway, &MovVectorhallway3bis);  
+		                ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
+	            	} else {
+	            		if (animatronicshallway[1]) { // + Bonnie
+			                setUV4(polyhallway, 0, 0, 0, 153, 80, 0, 80, 153); 
+			                TransMatrix(&PolyMatrixhallway, &MovVectorhallway3bis);  
+			                ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
+	            		} else {
+		                	setUV4(polyhallway, 0, 0, 0, 107, 38, 0, 38, 107); 
+		                	TransMatrix(&PolyMatrixhallway, &MovVectorhallway4);  
+		                	ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway3);
+	            		}
+	            	}
+	            } else {
+	                if (animatronicshallway[4]) { // Toy freddy
+	                    setUV4(polyhallway, 0, 0, 0, 144, 49, 0, 49, 144); 
+	                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
+	                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
+	                } else {
+	                    if (animatronicshallway[0]) { //Freddy
+	                        setUV4(polyhallway, 0, 0, 0, 133, 70, 0, 70, 133); 
+	                        TransMatrix(&PolyMatrixhallway, &MovVectorhallway3);  
+	                        ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
+	                    } else {
+	                    	if (animatronicshallway[6]) { //Mangle
+	                            setUV4(polyhallway, 0, 0, 0, 123, 79, 0, 79, 123); 
+	                            TransMatrix(&PolyMatrixhallway, &MovVectorhallway5);  
+	                            ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
+	                    	} else {
+	                            if (animatronicshallway[1]) { //Bonnie
+	                                setUV4(polyhallway, 0, 0, 0, 123, 50, 0, 50, 123); 
+	                                TransMatrix(&PolyMatrixhallway, &MovVectorhallway2);  
+	                                ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
+	                            } else {
+	                                if (animatronicshallway[5]) { //Toy chica
+	                                    setUV4(polyhallway, 0, 0, 0, 124, 56, 0, 56, 124); 
+	                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
+	                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);     
+	                                } else { // Default
+	                                    setUV4(polyhallway, 0, 0, 0, 0, 0, 0, 0, 0); 
+	                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
+	                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);   
+	                                }
+	                            } 
+	                        }        
+	                    }
+	                }
+	            }
             }
             SetRotMatrix(&PolyMatrixhallway);              
             SetTransMatrix(&PolyMatrixhallway);            
@@ -2000,8 +2078,7 @@ void makepoly(int num) {
                         (long*)&polyhallway->x0, (long*)&polyhallway->x1, (long*)&polyhallway->x2, (long*)&polyhallway->x3,
                         &polydepth,
                         &polyflag
-                        );                               
-            setRGB0(polyhallway, 128, 128, 128);
+                        );                           
             addPrim(ot[db], polyhallway);                     
              
             nextpri += sizeof(POLY_FT4);      
@@ -2201,9 +2278,9 @@ void makepoly(int num) {
         setPolyFT4(polygoodjob);                             
         setRGB0(polygoodjob, 128,128,128);
         
-        setClut(polygoodjob, goodjob.crect->x, goodjob.crect->y);       
+        setClut(polygoodjob, 320, 490);       
 
-        polygoodjob->tpage = getTPage(goodjob.mode&0x3, 0, 384, goodjob.prect->y);
+        polygoodjob->tpage = getTPage(goodjob.mode&0x3, 0, 384, 0);
         
         RotTransPers4(
                     &VertPosgoodjob[0],      &VertPosgoodjob[1],      &VertPosgoodjob[2],      &VertPosgoodjob[3],
@@ -2302,7 +2379,7 @@ void makepoly(int num) {
                     &polyflag
                     );                                
         
-        setUV4(polyjump, 40, 0, 40, 125, 146, 0, 145, 126);
+        setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
             
         addPrim(ot[db], polyjump);                       
         nextpri += sizeof(POLY_FT4);                 
@@ -2323,7 +2400,7 @@ void makepoly(int num) {
         
         setClut(polystatic, statics.crect->x, statics.crect->y);       
 
-        polystatic->tpage = getTPage(statics.mode&0x3, 0, 576, 256);
+        polystatic->tpage = getTPage(statics.mode&0x3, 0, 320, 0);
         
         RotTransPers4(
                     &VertPosstatic[0],      &VertPosstatic[1],      &VertPosstatic[2],      &VertPosstatic[3],

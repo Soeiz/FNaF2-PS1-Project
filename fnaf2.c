@@ -1,28 +1,25 @@
 /*
     NOOOOO RAM ISSUESSSS
     TO FIX :
+        Lvent sprites not working
+
         Not important : 
 
         fan animation a bit weird
 
         (Really) not important :
 
-        Music box's winding down speed is incorrect on night 4 & 5 (only ~0.5/1 sec of diff)
-        office left need to be fixed (can not really be seen)
+        Music box's winding down speed is a little bit incorrect on night 4 & 5 (only ~0.5/1 sec of diff)
+        office left need to be fixed (can not really be seen ?)
         Finishing to fix the positions of the vents (hard asf and pos already almost fixed)
 
-    TO MAKE (doing ideas/partially implemented things) : 
-        RAM ISSUES RELATED :     
-          Mangle hallway
-
-          Implement GF & its screamer (& easter eggs animatronics ?) 
-
-          toy bonnie's screamer
-    
+    TO MAKE (doing ideas/partially implemented things) :     
+        Flashlight
+        Toy freddy hallway (test on diff night)
       Test the game on different hardware than PC and SCPH-9002 PS1
 
     TO DO (only ideas) :
-
+        Implement easter eggs animatronics ? 
     TO FIX ON THE PS1 :
 
     FIXED ? (it is not doing that anymore but I'm not sure if it's fixed) : 
@@ -33,7 +30,7 @@
 
     OTHER (info) :
       FNAF2 is a (heavily) modified version of FNAF1
-      V.0.9
+      V.1.0
 */
 
 #include "objects/constant.h"
@@ -439,6 +436,8 @@ void starting(void) {
     toybonnielocationframe = 300;
     toychicalocationframe = 300;
     manglelocationframe = 300;
+    GFlocationframehallway = 60;
+    GFlocationframe = 300;
     convertion = 60;
     customAM = 12;
     doescharlevelup = 1;
@@ -479,6 +478,7 @@ void finishednight(void) {
   fivetosixamframes++;
   if (fivetosixamframes == 1) {
     gamevictory();
+    mutedcall = 1;
   }
   makepoly(10); 
   if (fadeoffice > 0) {
@@ -488,8 +488,10 @@ void finishednight(void) {
       setRGB0(polyofficeright2, fadeoffice, fadeoffice, fadeoffice); 
       setRGB0(polyofficemiddle, fadeoffice, fadeoffice, fadeoffice);               
       setRGB0(polyofficeleft1, fadeoffice, fadeoffice, fadeoffice);                
-      setRGB0(polyofficeleft2, fadeoffice, fadeoffice, fadeoffice);        
-      setRGB0(polyhallway, fadeoffice, fadeoffice, fadeoffice);   
+      setRGB0(polyofficeleft2, fadeoffice, fadeoffice, fadeoffice);   
+      if (lighthall == 1 && issomeonehall == 1) {
+        setRGB0(polyhallway, fadeoffice, fadeoffice, fadeoffice);    
+      }                  
       setRGB0(polytablemiddle, fadeoffice, fadeoffice, fadeoffice);
       setRGB0(polytableleft, fadeoffice, fadeoffice, fadeoffice);
       setRGB0(polytableright, fadeoffice, fadeoffice, fadeoffice);
@@ -583,6 +585,11 @@ void checking(void) {
         case 6:
           LoadTexture(_binary_tim_office_officeTOYBONNIE_tim_start, &officefrontanimatronic);
           break;
+
+        if (phoneguytalking > 0) {
+            mutedcall = 1;
+            phoneguytalking = 0;
+        }
       }
     }
       checkframes++;
@@ -627,8 +634,10 @@ void checking(void) {
               setRGB0(polyofficemiddle, 128, 128, 128);     
               setRGB0(polyofficefront, 128, 128, 128);               
               setRGB0(polyofficeleft1, 128, 128, 128);               
-              setRGB0(polyofficeleft2, 128, 128, 128);        
-              setRGB0(polyhallway, 128, 128, 128);   
+              setRGB0(polyofficeleft2, 128, 128, 128);  
+              if (lighthall == 1 && issomeonehall == 1) {
+                  setRGB0(polyhallway, 108, 108, 108);     
+              }             
               setRGB0(polytableright, 108, 108, 108);
               setRGB0(polytableleft, 108, 108, 108);
               setRGB0(polytablemiddle, 108, 108, 108);    
@@ -653,7 +662,7 @@ void checking(void) {
           setRGB0(polymanglehanging, 0, 0, 0);    
           setRGB0(polyBB, 0, 0, 0);
       }
-      if (checkframes == 30) {
+      if (checkframes == checklifelimit) {
         if (ismaskon == 0) {
           isalreadydead = 3; //3 is by office attack
         }
@@ -685,6 +694,7 @@ void checking(void) {
               case 6:
                 toybonnielocation = 1;
                 toybonnielocationframe = 300;
+                MovVectorofficefronttoybonnie.vx = 0;
                 break;
             }
             officequeue[0] = 0;
@@ -825,6 +835,15 @@ int main(void) {
                     CDreadResult = CdReadSync(0, 0);
                     LoadTexture(dataBuffer, &gameover); 
                     free(dataBuffer);
+                    loadFile = "\\GJFIV.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &goodjob); 
+                    free(dataBuffer);
                     initstuff++;
                 }
                 CdControlF(CdlPause,0);
@@ -908,29 +927,18 @@ int main(void) {
 
             if (loadingframe == 500) {
                 Ran(10000);
-                if (night > 4) {
-                    if (night == 5) {
-                        LoadTexture(_binary_tim_GJFIV_tim_start, &goodjob); 
-                    }
-                    if (night == 6) {
-                        LoadTexture(_binary_tim_GJSIX_tim_start, &goodjob); 
-                    }
-                    if (night == 7) {
-                        LoadTexture(_binary_tim_GJSEV_tim_start, &goodjob); 
-                    }
-                }
             }
             if (loadingframe == 560) {
                 LoadTexture(_binary_tim_office_oLEFTpart2_tim_start, &officeLEFT);//Loading rest of the things
                 LoadTexture(_binary_tim_office_oRIGHTpart2_tim_start, &officeRIGHT);
                 LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE);
-                LoadTexture(_binary_tim_office_officeLEFTlighttoychica_tim_start, &Rvent);
                 LoadTexture(_binary_tim_hallway_toychicahallway_tim_start, &animatronichallway);
                 LoadTexture(_binary_tim_office_mutecall_tim_start, &mutecall);
                 LoadTexture(_binary_tim_office_officeFREDDY_tim_start, &officefrontanimatronic);
-                LoadTexture(_binary_tim_office_BB_tim_start, &BB);
-            }
+            }/* OLTchic.TIM
+                OLTBB.TIM*/
             if (loadingframe == 570) {
+                if (night == 6) {LoadTexture(_binary_tim_GJSIX_tim_start, &goodjob);}
                 if (initstuff == 1) {
                     loadFile = "\\OLEFTP1.TIM;1";
                     CdSearchFile( &filePos, loadFile);
@@ -996,11 +1004,67 @@ int main(void) {
                     CDreadResult = CdReadSync(0, 0);
                     LoadTexture(dataBuffer, &tableLEFT); 
                     free(dataBuffer);
-
-                    initstuff++;
                 }
            } 
             if (loadingframe == 580) {
+                if (initstuff) {
+                    loadFile = "\\BB.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &BB); 
+                    free(dataBuffer);
+                    loadFile = "\\GF.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &GF); 
+                    free(dataBuffer);
+                    loadFile = "\\OLTCHIC.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &Rvent); 
+                    free(dataBuffer);
+                    loadFile = "\\ORTBON.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &Lvent); 
+                    free(dataBuffer);
+                    loadFile = "\\ORTMAN.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &Lvent); 
+                    free(dataBuffer);
+                    loadFile = "\\OLTBB.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &Rvent); 
+                    free(dataBuffer);
+                    initstuff++;
+                }
+
                 CdSearchFile( &XAPos, loadXA);
                 soundBank.offset = CdPosToInt(&XAPos.pos);
                 XAsetup();  
@@ -1086,8 +1150,9 @@ int main(void) {
             if (camera == 1) { //Cam things
                 cameraloc();
             }
+            
             if (fivesecondframe == 0 && night != 725255) {
-                if (phoneguytalking == 0) {
+                if (phoneguytalking == 0 && AM != 6) {
                     Ran(10);
                     if (ambiancechance > RAN) {
                         if (ambiancesound == 1) {
@@ -1187,7 +1252,9 @@ int main(void) {
                       setRGB0(polyofficemiddle, fadeoffice, fadeoffice, fadeoffice);               
                       setRGB0(polyofficeleft1, fadeoffice, fadeoffice, fadeoffice);            
                       setRGB0(polyofficeleft2, fadeoffice, fadeoffice, fadeoffice);  
-                      setRGB0(polyhallway, fadeoffice, fadeoffice, fadeoffice);      
+                      if (lighthall == 1 && issomeonehall == 1) {
+                        setRGB0(polyhallway, fadeoffice, fadeoffice, fadeoffice);      
+                      }             
                       setRGB0(polytablefan, fadeoffice, fadeoffice, fadeoffice);   
                       setRGB0(polytablemiddle, fadeoffice, fadeoffice, fadeoffice);   
                       setRGB0(polytableright, fadeoffice, fadeoffice, fadeoffice);   
@@ -1203,8 +1270,10 @@ int main(void) {
                     setRGB0(polyofficemiddle, 128, 128, 128);           
                     setRGB0(polyofficefront, 128, 128, 128);                   
                     setRGB0(polyofficeleft1, 128, 128, 128);                    
-                    setRGB0(polyofficeleft2, 128, 128, 128);                  
-                    setRGB0(polyhallway, 128, 128, 128);     
+                    setRGB0(polyofficeleft2, 128, 128, 128);     
+                    if (lighthall == 1 && issomeonehall == 1) {
+                        setRGB0(polyhallway, 108, 108, 108);     
+                    }             
                     setRGB0(polytablefan, 128, 128, 128);   
                     setRGB0(polytablemiddle, 108, 108, 108);    
                     setRGB0(polytableright, 108, 108, 108);
@@ -1224,7 +1293,9 @@ int main(void) {
               deadfrom = officequeue[0];
             }
             
-            if (officequeuetimer > 0) {officequeuetimer--;}
+            if (officequeuetimer > 1) {officequeuetimer--;}
+
+            if (officequeuetimer == 1 && camera == 1) {officequeuetimer--;} //Like that, animatronics have to wait 
 
             if (ventbanging == 1) {
               ventbangingframes++;
@@ -1366,38 +1437,8 @@ int main(void) {
               }
             }
 
-            if (camera == 0) {
-
-                /*
-                if (goldenfreddyactivated == 1) {
-                    nolongerincam = 1;
-                    Ran(goldenfreddychancescrash);
-                    if (RAN == 1) {
-                        SpuSetKey(SPU_OFF, SPU_ALLCH);
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                        SpuSetKey(SPU_ON, SPU_9CH);
-
-                        loadFile = "\\E.DAT;1";
-                        CdSearchFile( &filePos, loadFile);
-                        dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
-                        CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
-                        CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
-                        CDreadResult = CdReadSync(0, 0);
-                        LoadTexture(dataBuffer, &officegoldenfreddy); //Crash time :'3
-                        goldenfreddychancescrash = 1;
-
-                    } else {goldenfreddychancescrash--;} //Each frame, it will do a rand.
-                }*/
-            }
             if (cooldowncamera > 0) {cooldowncamera--;}
             if (maskcooldown > 0) {maskcooldown--;}
-
-            if (camera == 1 && goldenfreddyactivated == 1 && nolongerincam == 1) {
-                goldenfreddyactivated = 0;
-                goldenfreddychancescrash = 2000;
-                nolongerincam = 0;
-            }
-
             if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0) {
 
               polymutecall = (POLY_FT4 *)nextpri;                 
@@ -1433,32 +1474,10 @@ int main(void) {
               nextpri += sizeof(POLY_FT4);    
             }
 
-            /*
-            if (returnframes == 60 || returnframes == 120 || returnframes == 180) {
-                returnbasevolume  = returnbasevolume + 2000;
-                SpuSetVoiceVolume(4, returnbasevolume, returnbasevolume);
-                SpuSetKey(SPU_ON, SPU_03CH);
-            }
-            if (returnframes == 210) {
-                menuscreeninit = 0;
-                resetgame();
-                SpuSetKey(SPU_OFF, SPU_ALLCH);
-                returnbasevolume = 0x1800;
-                SpuSetVoiceVolume(4, returnbasevolume, returnbasevolume);
-                menuselection = 3;
-                returnframes = 0;
-                limiterstart = 1;
-                menu = 0;
-            } //Enough is enough
-            */ 
-
-            if (goldenfreddied == 1) { //freddy's face ? No 
-                makepoly(3);
-            }
             if (camera == 0) {
                 makepoly(6);
 
-                if (goldenfreddyactivated == 1) {
+                if (GFactivated == 1) {
                     makepoly(5);
                 }
 
@@ -1469,6 +1488,7 @@ int main(void) {
                     if(pad & PADLleft || pad >> 16 & PADLleft && twoplayermode == 1) {
                         if (MovVectorofficemiddle.vx < 80) {
                             MovVectorBB.vx = MovVectorBB.vx + speedoffice;
+                            MovVectorGF.vx = MovVectorGF.vx + speedoffice;
                             MovVectorofficemiddle.vx = MovVectorofficemiddle.vx + speedoffice;
                             MovVectorofficeright1.vx = MovVectorofficeright1.vx + speedoffice;
                             MovVectorofficegolden.vx = MovVectorofficegolden.vx + speedoffice;
@@ -1477,7 +1497,9 @@ int main(void) {
                             MovVectorhallway2.vx = MovVectorhallway2.vx + speedoffice;
                             MovVectorhallway.vx = MovVectorhallway.vx + speedoffice;
                             MovVectorhallway3.vx = MovVectorhallway3.vx + speedoffice;
+                            MovVectorhallway3bis.vx = MovVectorhallway3bis.vx + speedoffice;
                             MovVectorhallway4.vx = MovVectorhallway4.vx + speedoffice;
+                            MovVectorhallway5.vx = MovVectorhallway5.vx + speedoffice;
                             MovVectortablemiddle.vx = MovVectortablemiddle.vx + speedoffice;
                             MovVectorRvent.vx = MovVectorRvent.vx + speedoffice;
                             MovVectorLvent.vx = MovVectorLvent.vx + speedoffice;
@@ -1487,12 +1509,15 @@ int main(void) {
                     if(pad & PADLright || pad >> 16 & PADLright && twoplayermode == 1) {
                         if (MovVectorofficemiddle.vx > -110) {
                             MovVectorBB.vx = MovVectorBB.vx - speedoffice;
+                            MovVectorGF.vx = MovVectorGF.vx - speedoffice;
                             MovVectorofficemiddle.vx = MovVectorofficemiddle.vx - speedoffice;
                             MovVectorofficegolden.vx = MovVectorofficegolden.vx - speedoffice;
                             MovVectorhallway2.vx = MovVectorhallway2.vx - speedoffice;
                             MovVectorhallway.vx = MovVectorhallway.vx - speedoffice;
                             MovVectorhallway3.vx = MovVectorhallway3.vx - speedoffice;
+                            MovVectorhallway3bis.vx = MovVectorhallway3bis.vx - speedoffice;
                             MovVectorhallway4.vx = MovVectorhallway4.vx - speedoffice;
+                            MovVectorhallway5.vx = MovVectorhallway5.vx - speedoffice;
                             MovVectorofficefront.vx = MovVectorofficefront.vx - speedoffice;
                             MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - speedoffice;
                             MovVectorRvent.vx = MovVectorRvent.vx - speedoffice;
@@ -1533,7 +1558,7 @@ int main(void) {
                   
                   nextpri += sizeof(POLY_F4);                
  
-                  if (phoneguytalkingconst - 1620 < phoneguytalking) {
+                  if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0) {
                     polymutecall = (POLY_FT4 *)nextpri;                 
                             
                     RotMatrix(&RotVectormutecall, &PolyMatrixmutecall);    
@@ -1900,7 +1925,6 @@ int main(void) {
                         nextpri += sizeof(POLY_F4);                 
                     }   
                 }  
-
             }
                 if (blinkicon < 61) {blinkicon++;}
                 if (blinkicon == 60) {blinkicon = 0;}
@@ -1916,7 +1940,7 @@ int main(void) {
                   SpuSetKey(SPU_OFF, SPU_13CH);
                 }
 
-                if (BBlol == 1 && nightwon == 0) {
+                if (BBlol && nightwon == 0) {
                     if (SpuGetKeyStatus(SPU_17CH) == SPU_OFF) {
                         SpuSetKey(SPU_ON, SPU_17CH);
                     }
@@ -1924,7 +1948,7 @@ int main(void) {
                     SpuSetKey(SPU_OFF, SPU_17CH);
                 }
 
-                if (BBlolonce == 1 && nightwon == 0) {
+                if (BBlolonce && nightwon == 0) {
                     Ran(10);
                     if (RAN < 5) {
                             SpuSetKey(SPU_ON, SPU_15CH);
@@ -2315,7 +2339,7 @@ int main(void) {
                         animatronicscamera[7] = 0;    
                     }
                 }
-                if (manglelocation == 3) { //West Hall
+                if (manglelocation == 3) { //Main Hall
                     MovVectormangle.vx = 0;
                     MovVectormangle.vy = -36;
                     if (curcam[0] == '0' && curcam[1] == '7') {
@@ -2329,7 +2353,11 @@ int main(void) {
                     }
                 }
                 //apparently mangle can be seen on cam 01
-                if (manglelocation == 4) { //Party Room 2
+                if (manglelocation == 4) { //Hallway
+                    animatronicscamera[7] = 0;
+                }
+                //apparently mangle can be seen on cam 01
+                if (manglelocation == 5) { //Party Room 2
                     MovVectormangle.vx = 0;
                     MovVectormangle.vy = 6;
                     if (curcam[0] == '0' && curcam[1] == '2') {
@@ -2342,7 +2370,7 @@ int main(void) {
                         animatronicscamera[7] = 0;
                     }
                 }
-                if (manglelocation == 5) { //R. Vent (in)
+                if (manglelocation == 6) { //R. Vent (in)
                     MovVectormangle.vx = 10;
                     MovVectormangle.vy = 33;
                     if (curcam[0] == '0' && curcam[1] == '6') {
@@ -2355,7 +2383,7 @@ int main(void) {
                         animatronicscamera[7] = 0;
                     }
                 }
-                if (manglelocation == 6 || manglelocation == 7) { //R. Vent (out)
+                if (manglelocation == 7 || manglelocation == 8) { //R. Vent (out)
                     animatronicscamera[7] = 0;
                 }
                 //Might do another route she can pick (hallway)
@@ -2402,8 +2430,7 @@ int main(void) {
 void timeFunc(void) {
       FrameCounter++;
 
-      seedrandom = seedrandom + FrameCounter; // This gonna be huge
-
+      seedrandom = seedrandom + FrameCounter + camera; // This gonna be huge //camera for additional random
       srand(seedrandom);
 
       Glitch++;
@@ -2431,7 +2458,7 @@ void resetgame(int hardreset) {
       toybonniedifficulty = 0;
       toychicadifficulty = 0;
       mangledifficulty = 0;
-      goldenfreddydifficulty = 0;
+      GFdifficulty = 0;
       puppetdifficulty = 0;
 
       musicboxunwidingvalue = 0;
@@ -2452,6 +2479,12 @@ void resetgame(int hardreset) {
       BBlocation = 0;
       BBlol = 0;
       puppetlocation = 0;
+
+    GFactivated = 0;
+    GFnotactivatedyet = 0;
+    GFactivatedhallway = 0;
+    GFscreamerhallway = 0;
+    fadeGF = 128;
   }
 
     ismusicboxatzero = 0;
@@ -2492,10 +2525,6 @@ void resetgame(int hardreset) {
     mascottune = 0;
     musicmascottune = 1248;
 
-    goldenfreddylocation = 0;
-    goldenfreddyframes = 0;
-    goldenfreddychances = 5000;
-
     isalreadydead = 0;
     isalreadydeadlow = 0;
     framedeadpossi = 60;
@@ -2509,6 +2538,8 @@ void resetgame(int hardreset) {
     deadtoybonnie = 0;
     dead = 0;
     deadfrom = 0;
+    spriteframesconst = 4;
+    GFscaling = 1024;
 
     fadeoffice = 128;
 
@@ -2563,6 +2594,7 @@ void print(int number) {
         FntPrint("\nBLocFrame %d & location %d,", bonnielocationframe, bonnielocation);
         FntPrint("\nCLocFrame %d & location %d,\nFOlocFrame %d & location %d. ismaskon %d",chicalocationframe, chicalocation, foxylocationframe, foxylocation, ismaskon);
         FntPrint("\nFoxy : alterval %d, flashcount %d, fattackcount %d", foxyalterablevalue, flashlightcounter, foxyattackcounter);
+        FntPrint("\nGF : Hlw %d, SCRhlw %d, OFFICE %d, notyet %d", GFactivatedhallway, GFscreamerhallway, GFactivated, GFnotactivatedyet);
         FntPrint("\nOLD AI F %d, B %d, C %d,Fo %d.\nTOY AI F %d, B %d, C %d, M %d.",freddydifficulty, bonniedifficulty, chicadifficulty, foxydifficulty, toyfreddydifficulty, toybonniedifficulty, toychicadifficulty, mangledifficulty);
     }
     if (number == 4) { // TOY Animatronic debug (with access to camera)
@@ -2955,16 +2987,16 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             if (menuselection == 2) {
                 if (pad & PADLright) { //Golden Freddy
                     if (limiterpadright == 0) {
-                        goldenfreddydifficulty++;
-                        if (goldenfreddydifficulty > 20) {goldenfreddydifficulty = 0;}
+                        GFdifficulty++;
+                        if (GFdifficulty > 20) {GFdifficulty = 0;}
                         limiterpadright = 1;
                         SpuSetKey(SPU_ON, SPU_10CH);
                     }
                 }
                 if (pad & PADLleft) { //Golden Freddy
                     if (limiterpadleft == 0) {
-                        goldenfreddydifficulty--;
-                        if (goldenfreddydifficulty < 0) {goldenfreddydifficulty = 20;}
+                        GFdifficulty--;
+                        if (GFdifficulty < 0) {GFdifficulty = 20;}
                         limiterpadleft = 1;
                         SpuSetKey(SPU_ON, SPU_10CH);
                     }
@@ -3077,7 +3109,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
                 toychicadifficulty = 3;
                 mangledifficulty = 3;
                 BBdifficulty = 3;
-                goldenfreddydifficulty = 0;
+                GFdifficulty = 0;
                 doescharlevelup = 1;
                 musicboxunwidingvaludemi = 0;
                 musicboxunwidingvalue = 1;
@@ -3098,7 +3130,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
                 toychicadifficulty = 0;
                 mangledifficulty = 0;
                 BBdifficulty = 1;
-                goldenfreddydifficulty = 0;
+                GFdifficulty = 0;
                 doescharlevelup = 1;
                 musicboxunwidingvaludemi = 0;
                 musicboxunwidingvalue = 1;
@@ -3119,7 +3151,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
                 toychicadifficulty = 0;
                 mangledifficulty = 5;
                 BBdifficulty = 3;
-                goldenfreddydifficulty = 0;
+                GFdifficulty = 0;
                 doescharlevelup = 1;
                 musicboxunwidingvalue = 4;
                 doescharlevelupstr[0] = 'O';
@@ -3138,7 +3170,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
                 toychicadifficulty = 2;
                 mangledifficulty = 1;
                 BBdifficulty = 5;
-                goldenfreddydifficulty = 0;
+                GFdifficulty = 0;
                 doescharlevelup = 1;
                 musicboxunwidingvalue = 5;
                 doescharlevelupstr[0] = 'O';
@@ -3157,7 +3189,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
                 toychicadifficulty = 0;
                 mangledifficulty = 3;
                 BBdifficulty = 5;
-                goldenfreddydifficulty = 0;
+                GFdifficulty = 0;
                 doescharlevelup = 1;
                 musicboxunwidingvaludemi = 0;
                 musicboxunwidingvalue = 2; 
@@ -3194,7 +3226,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             toychicadifficulty = 0;
             mangledifficulty = 0;
             BBdifficulty = 0;
-            goldenfreddydifficulty = 0;
+            GFdifficulty = 0;
             doescharlevelup = 0;
             doescharlevelupstr[0] = 'O';
             doescharlevelupstr[1] = 'F';
@@ -3225,7 +3257,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             toychicadifficulty = 10;
             mangledifficulty = 10;
             BBdifficulty = 10;
-            goldenfreddydifficulty = 0;
+            GFdifficulty = 0;
             doescharlevelup = 0;
             doescharlevelupstr[0] = 'O';
             doescharlevelupstr[1] = 'F';
@@ -3258,7 +3290,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             toychicadifficulty = 0;
             mangledifficulty = 0;
             BBdifficulty = 0;
-            goldenfreddydifficulty = 0;
+            GFdifficulty = 0;
             doescharlevelup = 0;
             doescharlevelupstr[0] = 'O';
             doescharlevelupstr[1] = 'F';
@@ -3282,7 +3314,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             presetselectorstr[14] = 't';
             presetselectorstr[15] = 's';
             mangledifficulty = 20;
-            goldenfreddydifficulty = 10;
+            GFdifficulty = 10;
             BBdifficulty = 20;
 
             freddydifficulty = 0;
@@ -3325,7 +3357,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             toybonniedifficulty = 0;
             toychicadifficulty = 0;
             BBdifficulty = 0;
-            goldenfreddydifficulty = 0;
+            GFdifficulty = 0;
             doescharlevelup = 0;
             doescharlevelupstr[0] = 'O';
             doescharlevelupstr[1] = 'F';
@@ -3357,7 +3389,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             toyfreddydifficulty = 0;
             toybonniedifficulty = 0;
             BBdifficulty = 0;
-            goldenfreddydifficulty = 0;
+            GFdifficulty = 0;
             doescharlevelup = 0;
             doescharlevelupstr[0] = 'O';
             doescharlevelupstr[1] = 'F';
@@ -3385,7 +3417,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             toyfreddydifficulty = 20;
             foxydifficulty = 10;
             BBdifficulty = 10;
-            goldenfreddydifficulty = 10;
+            GFdifficulty = 10;
 
             bonniedifficulty = 0;
             chicadifficulty = 0;
@@ -3424,7 +3456,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             toychicadifficulty = 5;
             mangledifficulty = 5;
             BBdifficulty = 5;
-            goldenfreddydifficulty = 5;
+            GFdifficulty = 5;
             doescharlevelup = 0;
             doescharlevelupstr[0] = 'O';
             doescharlevelupstr[1] = 'F';
@@ -3457,7 +3489,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             toychicadifficulty = 10;
             mangledifficulty = 10;
             BBdifficulty = 10;
-            goldenfreddydifficulty = 10;
+            GFdifficulty = 10;
             doescharlevelup = 0;
             doescharlevelupstr[0] = 'O';
             doescharlevelupstr[1] = 'F';
@@ -3486,7 +3518,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
             toychicadifficulty = 20;
             mangledifficulty = 20;
             BBdifficulty = 20;
-            goldenfreddydifficulty = 20;
+            GFdifficulty = 20;
             doescharlevelup = 0;
             doescharlevelupstr[0] = 'O';
             doescharlevelupstr[1] = 'F';
@@ -3904,8 +3936,8 @@ void menuPrint(void) {
         if (animatronicategorie == 3) {
             if (menuselection == 1) {FntPrint(">> Ballon Boy : %d\n\n", BBdifficulty );}
             else {FntPrint("   Ballon Boy : %d\n\n", BBdifficulty );}
-            if (menuselection == 2) {FntPrint(">> Golden Freddy : %d\n\n", goldenfreddydifficulty );}
-            else {FntPrint("   Golden Freddy : %d\n\n", goldenfreddydifficulty );}
+            if (menuselection == 2) {FntPrint(">> Golden Freddy : %d\n\n", GFdifficulty );}
+            else {FntPrint("   Golden Freddy : %d\n\n", GFdifficulty );}
             if (menuselection == 3) {FntPrint(">> Character leveling ? : %s \n\n", doescharlevelupstr );}
             else {FntPrint("   Character leveling ? : %s \n\n", doescharlevelupstr );}
             if (menuselection == 4) {FntPrint(">> \n\n");}
@@ -3972,7 +4004,7 @@ void menuPrint(void) {
 
         FntPrint("   Five Night at Freddy's 2 has been \n   released by Scott Cawton on 2014,\nand has been ported on the PS1 by Soeiz.\n         Again, Thank you, Scott, \n For feeding our imagination with this\n                  world.\n\n");
 
-        FntPrint(">> Back        BURNED CD N*7 V0.9\n"); //Don't even need to do condition, there's only one
+        FntPrint(">> Back                      V1.0\n"); //Don't even need to do condition, there's only one
     }
     if (unlockssubmenu == 1) {
         FntPrint("   Unlocks\n\n   Menu\n\n\n");  // print time
@@ -4058,15 +4090,16 @@ void animatronicFunc(int init) {
           chicadifficulty = 0;
           foxydifficulty = 0;
           BBdifficulty = 0;
-          goldenfreddydifficulty = 0;
+          GFdifficulty = 0;
           puppetdifficulty = 1;
           windingframe = 96857441;
+          checklifelimit = 100; 
       }
       if (night == 2 && FrameCounter == 0) { 
           freddydifficulty = 0;
           bonniedifficulty = 0;
           chicadifficulty = 0;
-          goldenfreddydifficulty = 0;
+          GFdifficulty = 0;
           puppetdifficulty = 5;
           toybonniedifficulty = 3;
           toychicadifficulty = 3;
@@ -4078,6 +4111,7 @@ void animatronicFunc(int init) {
           musicboxunwidingvaludemi = 1;
           musicboxunwidingvaluthird = -2; // OK
           windingframe = 2;
+          checklifelimit = 80; 
       }
       if (night == 3 && FrameCounter == 0) { 
           toyfreddydifficulty = 0;
@@ -4085,7 +4119,7 @@ void animatronicFunc(int init) {
           toychicadifficulty = 0;
           mangledifficulty = 0;
           freddydifficulty = 0;
-          goldenfreddydifficulty = 0;
+          GFdifficulty = 0;
           puppetdifficulty = 8;
           bonniedifficulty = 1;
           BBdifficulty = 1;
@@ -4095,6 +4129,7 @@ void animatronicFunc(int init) {
           musicboxunwidingvalue = 2;
           musicboxunwidingvaluthird = -2; // OK
           windingframe = 1;
+          checklifelimit = 60; 
       }
       if (night == 4 && FrameCounter == 0) { 
           toyfreddydifficulty = 0;
@@ -4102,7 +4137,7 @@ void animatronicFunc(int init) {
           toychicadifficulty = 0;
           freddydifficulty = 0;
           chicadifficulty = 0;
-          goldenfreddydifficulty = 0;
+          GFdifficulty = 0;
           puppetdifficulty = 9;
           bonniedifficulty = 1;
           foxydifficulty = 7;
@@ -4112,9 +4147,10 @@ void animatronicFunc(int init) {
           musicboxunwidingvalue = 2;
           musicboxunwidingvaluthird = 0; //Curr 26.54 / 25
           windingframe = 1;
+          checklifelimit = 55; 
       }
       if (night == 5 && FrameCounter == 0) { 
-          goldenfreddydifficulty = 0;
+          GFdifficulty = 0;
           puppetdifficulty = 10;
           freddydifficulty = 2;
           bonniedifficulty = 2;
@@ -4129,13 +4165,14 @@ void animatronicFunc(int init) {
           musicboxunwidingvalue = 3;
           musicboxunwidingvaluthird = 0; //Cur 19.13 / 20
           windingframe = 1;
+          checklifelimit = 50; 
       }
       if (night == 6 && FrameCounter == 0) { 
           toyfreddydifficulty = 0;
           toybonniedifficulty = 0;
           toychicadifficulty = 0;
           mangledifficulty = 0;
-          goldenfreddydifficulty = 0;
+          GFdifficulty = 0;
           puppetdifficulty = 15;
           freddydifficulty = 5;
           bonniedifficulty = 5;
@@ -4146,6 +4183,7 @@ void animatronicFunc(int init) {
           musicboxunwidingvaludemi = 0;
           musicboxunwidingvalue = 4; //Cur ~16.55 OK
           windingframe = 1;
+          checklifelimit = 50; 
       }
   } else {
     if (debugging == 1) {
@@ -4218,7 +4256,7 @@ void animatronicFunc(int init) {
             }
             if (night == 6) {
               toybonniedifficulty = toybonniedifficulty + 5;
-              goldenfreddydifficulty = goldenfreddydifficulty + 3;
+              GFdifficulty = GFdifficulty + 3;
               foxydifficulty = foxydifficulty + 5;
               toyfreddydifficulty = toyfreddydifficulty + 5;
               toychicadifficulty = toychicadifficulty + 5;
@@ -4250,10 +4288,10 @@ void animatronicFunc(int init) {
             dead = 1;
         }
     }
-    if (isalreadydeadlow == 1) { //Usually for freddy only
+    if (isalreadydeadlow == 1) { //Usually for GF only
         if (camera == 0) {
             dead = 1;
-            deadfrom = 1;
+            deadfrom = 9;
         }
     }
     if (nightwon == 0) {
@@ -4262,22 +4300,25 @@ void animatronicFunc(int init) {
   }
 }
 void AImoving(void) {
-    if (animatronicscamera[0] == 0) {freddylocationframe--;}
-    if (animatronicscamera[1] == 0) {bonnielocationframe--;}
-    if (animatronicscamera[2] == 0) {chicalocationframe--;}
+    if (animatronicscamera[0] == 0 && freddylocation < 4) {freddylocationframe--;}
+    if (animatronicscamera[1] == 0 && bonnielocation < 5) {bonnielocationframe--;}
+    if (animatronicscamera[2] == 0 && chicalocation < 5) {chicalocationframe--;}
     foxylocationframe--;
-    
+
     if (toychicalocation == 2) {animatronicshallway[5] = 1;} else {animatronicshallway[5] = 0;}
     if (toyfreddylocation == 2 || toyfreddylocation == 3) {animatronicshallway[4] = 1;} else {animatronicshallway[4] = 0;}
     if (bonnielocation == 2) {animatronicshallway[1] = 1;} else {animatronicshallway[1] = 0;}
     if (freddylocation == 3) {animatronicshallway[0] = 1;} else {animatronicshallway[0] = 0;}
     if (foxylocation == 1) {animatronicshallway[3] = 1;} else {animatronicshallway[3] = 0;}
+    if (manglelocation == 4) {animatronicshallway[6] = 1;} else {animatronicshallway[6] = 0;}
+
+    if (GFactivatedhallway == 1) {animatronicshallway[7] = 1;} else {animatronicshallway[7] = 0;}
 
     for (int i = 0; i < 7; i++){ if (animatronicshallway[i] == 1){ issomeonehall = 1; break;} else {issomeonehall = 0;}}
 
-    BBlocationframe--; 
-
-    
+    BBlocationframe--;
+    GFlocationframehallway--;
+    GFlocationframe--; 
 
     toyfreddylocationframe--; 
 
@@ -4287,49 +4328,90 @@ void AImoving(void) {
 
     toychicalocationframe--; 
 
-    if (manglelocation < 7) {
+    if (manglelocation < 8) {
       manglelocationframe--; 
     } else {
       mangleattack--;
-      if (mangleattack == 0) {
-        if (camera == 0) {
-            dead = 1;
-        } else {isalreadydead = 1;}
+      if (mangleattack <= 0) {
+        if (camera == 1) {
+            isalreadydead = 1;
+        }
         deadfrom = 8;
       }
     }
 
     if (toybonnielocation == 5) {toybonnieHere = 1;} else {toybonnieHere = 0;}
     if (toychicalocation == 6) {toychicaHere = 1;} else {toychicaHere = 0;}
-    if (manglelocation == 6) {mangleHere = 1;} else {mangleHere = 0;}
+    if (manglelocation == 7) {mangleHere = 1;} else {mangleHere = 0;}
     if (BBlocation == 5) {BBHere = 1;} else {BBHere = 0;}
 
-    if (toybonnielocation == 6) {
-      for (int i = 0; i < 5; i++){ if (officequeue[i] == 0){ officequeue[i] = 6; break;}}
-      toybonnielocation++;
-    }
-    if (bonnielocation == 5) {
-      for (int i = 0; i < 5; i++){ if (officequeue[i] == 0){ officequeue[i] = 2; break;}}
-      bonnielocation++;
-    }
-    if (freddylocation == 4) {
-      for (int i = 0; i < 5; i++){ if (officequeue[i] == 0){ officequeue[i] = 1; break;}}
-      freddylocation++;
-    }
-    if (chicalocation == 4) {
-      for (int i = 0; i < 5; i++){ if (officequeue[i] == 0){ officequeue[i] = 3; break;}}
-      chicalocation++;
-    }
-    if (toyfreddylocation == 4) {
-      for (int i = 0; i < 5; i++){ if (officequeue[i] == 0){ officequeue[i] = 5; break;}}
-      toyfreddylocation++;
+    if (camera == 0){
+        if (toybonnielocation == 6) {
+            for (int i = 0; i < 5; i++){ 
+                if (officequeue[i] != 6) {
+                    if (officequeue[i] == 0){ 
+                        officequeue[i] = 6; 
+                        break;
+                    }
+                }
+            }
+          toybonnielocation++;
+        }
+        if (bonnielocation == 5) {
+            for (int i = 0; i < 5; i++){ 
+                if (officequeue[i] != 2) {
+                    if (officequeue[i] == 0){ 
+                        officequeue[i] = 2; 
+                        officequeuetimer = officequeuetimer + 1;
+                        break;
+                    }
+                }
+            }
+          bonnielocation++;
+        }
+        if (freddylocation == 4) {
+            for (int i = 0; i < 5; i++){ 
+                if (officequeue[i] != 1) {
+                    if (officequeue[i] == 0){ 
+                        officequeue[i] = 1; 
+                        officequeuetimer = officequeuetimer + 1;
+                        break;
+                    }
+                }
+            }
+          freddylocation++;
+        }
+        if (chicalocation > 4) {
+            for (int i = 0; i < 5; i++) { 
+                if (officequeue[i] != 3) {
+                    if (officequeue[i] == 0) { 
+                        officequeue[i] = 3; 
+                        officequeuetimer = officequeuetimer + 1;
+                        break;
+                    }
+                } else {break;}
+            }
+            chicalocation++;
+        }
+        if (toyfreddylocation == 4) {
+            for (int i = 0; i < 5; i++){ 
+                if (officequeue[i] != 5) {
+                    if (officequeue[i] == 0){ 
+                        officequeue[i] = 5; 
+                        officequeuetimer = officequeuetimer + 1;
+                        break;
+                    }
+                }
+            }
+          toyfreddylocation++;
+        }        
     }
 
     //IDK Where to put the music box's AI Here, since it is not moving ?? 🤓 But technicaly it is, because hum you use the wrong combination of words, it is not moving but functionning !!§
 
     //if (musicboxframes == 0) {musicboxframes = 1;} else {musicboxframes--;} //Kinda dumb, I'll let it here
 
-    if (musicboxtimer > 0 ) {
+    if (musicboxtimer > 0) {
       if (windingframe == 0) {
         musicboxtimer = musicboxtimer - musicboxunwidingvalue;
         if (musicboxunwidingvaluthird == 1) {
@@ -4446,8 +4528,8 @@ void AImoving(void) {
         }
       }
     }
-    if (manglelocation == 6) {
-      if (ismaskon == 1) {
+    if (manglelocation == 7) {
+      if (ismaskon == 1 && manglefoolness < 700) {
         manglefoolness--;
         if (manglefoolness == 0) {
           manglelocation = 1;
@@ -4457,8 +4539,11 @@ void AImoving(void) {
         }
       } else {
         manglefoolness++;
-        if (manglefoolness > 700) {
+        if (manglefoolness > 700 && camera == 1) {
           manglelocation++;
+          Ran(6000);
+          mangleattack = 300 + RAN; //From 30 seconds to 2 minutes
+          LoadTexture(_binary_tim_office_manglehanging_tim_start, &manglehanging);
         }
       }
     }
@@ -4484,10 +4569,7 @@ void AImoving(void) {
             if (BBlocation < 5) {
                 BBlocation++;
                 if (BBlocation == 4) {ventbanging = 1;}
-                if (BBlocation == 5) {BBlolonce = 1;}
-                if (RAN == 1) {
-                    BBlolonce = 1;
-                }
+                BBlolonce = 1;
             }
         }
         BBlocationframe = BBlocationframelock;
@@ -4622,15 +4704,10 @@ void AImoving(void) {
     if (manglelocationframe < 0 && mangledifficulty != 0) {
         Ran(20);
         if (mangledifficulty > RAN) {
-          if (manglelocation < 8) {
+          if (manglelocation < 9) {
             manglelocation++;
           }
           if (manglelocation == 5) {ventbanging = 1;}
-          if (manglelocation == 7) { //ur dead
-            Ran(6000);
-            mangleattack = 300 + RAN; //From 30 seconds to 2 minutes
-            LoadTexture(_binary_tim_office_manglehanging_tim_start, &manglehanging);
-          }
         }
         manglelocationframe = manglelocationframelock;
     }
@@ -4684,6 +4761,67 @@ void AImoving(void) {
         }   
         foxylocationframe = foxylocationframelock;
     }
+    if (GFdifficulty > 0) {
+        if (GFlocationframehallway < 0) {
+            if (lighthall == 0 && issomeonehall == 0) {
+                Ran(10);
+                if (RAN == 1) {
+                    GFactivatedhallway = 1;
+                    LoadTexture(_binary_tim_hallway_goldenhallway_tim_start, &animatronichallway);
+                }
+            }
+            GFlocationframehallway = 60;
+        }
+        if (GFlocationframe < 0) {
+            if (camera == 1) {
+                Ran(20);
+                if (GFdifficulty > RAN) {
+                    GFnotactivatedyet = 1;
+                    fadeGF = 128;
+                }
+            }
+            GFlocationframe = 300;
+        }
+    }
+    if (GFnotactivatedyet) {
+        if (camera == 0) {GFactivated = 1; GFnotactivatedyet = 0;}
+    }
+    if (GFactivated) {
+        if (lighthall == 1) {
+            dead = 1;
+            deadfrom = 9;
+            GFactivated = 0;
+        }
+        if (camera == 1) { //If you raised down & up again but GF's here
+            isalreadydeadlow = 1;
+            GFactivated = 0;
+        }
+        if (ismaskon == 1) {
+            GFdeactivating = 1;
+            GFactivated = 0;
+        }
+    }
+    if (GFdeactivating == 1) {
+        if (fadeGF != 0) {fadeGF = fadeGF - 2;} else {GFdeactivating = 0;}
+    }
+
+    if (GFactivatedhallway == 1) {
+        if (flashedonce == 1) {
+            if (lighthall == 1) {
+                GFscreamerhallway++;
+                if (GFscreamerhallway == 100) {
+                    dead = 1;
+                    deadfrom = 9;
+                }
+            } else {
+                GFscreamerhallway = 0;
+                GFactivatedhallway = 0;
+                flashedonce = 0;
+            }
+        } else {
+            if (lighthall == 1) {flashedonce = 1;}
+        }
+    }
 }
 void screamer(void) {
     if (camera == 1) {
@@ -4695,16 +4833,17 @@ void screamer(void) {
         spritesheet++;
         switch(deadfrom) {
             case 1: 
-              if (spritesheet > 6) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 3;} break;
-            case 3: 
-              if (spritesheet > 5) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 3;} break;
-            case 7 :
-                if (spritesheet > 4) {spritesheet = 0; screamerframes = 0;} break;
+              if (spritesheet > 4) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 3;} break;
+            case 9:
+                spriteframesconst = 1;
+                break;
             default :
-                if (spritesheet > 5) {spritesheet = 0; screamerframes = 0;} break;
+                if (spritesheet > 3) {SpuSetKey(SPU_OFF, SPU_06CH); menu = 3;} break;
         } 
         if (spritesheet > 4 && deadfrom == 2 || spritesheet > 4 && deadfrom == 3) {spritesheet = 0;}
-        clearVRAMScreamer();
+        if (deadfrom != 9) {
+            clearVRAMScreamer();
+        }
         if (deadfrom == 1) {
           if (spritesheet == 1) {
               LoadTexture(_binary_tim_screamer_jumpF0_tim_start, &jumpscare);
@@ -4721,24 +4860,18 @@ void screamer(void) {
           if (spritesheet == 5) {
               LoadTexture(_binary_tim_screamer_jumpF4_tim_start, &jumpscare);
           }
-          if (spritesheet == 6) {
-              LoadTexture(_binary_tim_screamer_jumpF5_tim_start, &jumpscare);
-          }
         }
         if (deadfrom == 2) {
-            if (spritesheet == 1) {
+            if (spritesheet == 2) {
                 LoadTexture(_binary_tim_screamer_jumpB2_tim_start, &jumpscare);
             }
-            if (spritesheet == 2) {
+            if (spritesheet == 3) {
                 LoadTexture(_binary_tim_screamer_jumpB3_tim_start, &jumpscare);
             }
-            if (spritesheet == 3) {
+            if (spritesheet == 4) {
                 LoadTexture(_binary_tim_screamer_jumpB4_tim_start, &jumpscare);
             }
-            if (spritesheet == 4) {
-                LoadTexture(_binary_tim_screamer_jumpB5_tim_start, &jumpscare);
-            }
-            if (spritesheet == 0) {
+            if (spritesheet == 1) {
                 LoadTexture(_binary_tim_screamer_jumpB_tim_start, &jumpscare);
             } 
         }
@@ -4747,18 +4880,15 @@ void screamer(void) {
                 LoadTexture(_binary_tim_screamer_Cjump2_tim_start, &jumpscare);
             }
             if (spritesheet == 2) {
-                LoadTexture(_binary_tim_screamer_Cjump3_tim_start, &jumpscare);
-            }
-            if (spritesheet == 3) {
                 LoadTexture(_binary_tim_screamer_Cjump4_tim_start, &jumpscare);
             }
-            if (spritesheet == 4) {
+            if (spritesheet == 3) {
                 LoadTexture(_binary_tim_screamer_Cjump5_tim_start, &jumpscare);
             }
             if (spritesheet == 0) {
                 LoadTexture(_binary_tim_screamer_Cjump1_tim_start, &jumpscare);
             } 
-        }/*
+        }
         if (deadfrom == 4) {
             if (spritesheet == 1) {
                 LoadTexture(_binary_tim_screamer_jumpFO_tim_start, &jumpscare);
@@ -4772,9 +4902,6 @@ void screamer(void) {
             if (spritesheet == 4) {
                 LoadTexture(_binary_tim_screamer_jumpFO4_tim_start, &jumpscare);
             }
-            if (spritesheet == 5) {
-                LoadTexture(_binary_tim_screamer_jumpFO5_tim_start, &jumpscare);
-            }
         }
         if (deadfrom == 5) {
             if (spritesheet == 2) {
@@ -4786,9 +4913,6 @@ void screamer(void) {
             if (spritesheet == 4) {
                 LoadTexture(_binary_tim_screamer_jumpTF4_tim_start, &jumpscare);
             }
-            if (spritesheet == 5) {
-                LoadTexture(_binary_tim_screamer_jumpTF5_tim_start, &jumpscare);
-            }
             if (spritesheet == 1) {
                 LoadTexture(_binary_tim_screamer_jumpTF1_tim_start, &jumpscare);
             } 
@@ -4798,19 +4922,16 @@ void screamer(void) {
                 LoadTexture(_binary_tim_screamer_TBjump2_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_screamer_TBjump3_tim_start, &jumpscare);
-            }
-            if (spritesheet == 4) {
                 LoadTexture(_binary_tim_screamer_TBjump4_tim_start, &jumpscare);
             }
-            if (spritesheet == 5) {
+            if (spritesheet == 4) {
                 LoadTexture(_binary_tim_screamer_TBjump5_tim_start, &jumpscare);
             }
             if (spritesheet == 1) {
                 LoadTexture(_binary_tim_screamer_TBjump1_tim_start, &jumpscare);
             } 
         }
-        if (deadfrom == 7) { //don't like toy chica so only 4 frames 
+        if (deadfrom == 7) {
             if (spritesheet == 2) {
                 LoadTexture(_binary_tim_screamer_TCjump2_tim_start, &jumpscare);
             }
@@ -4829,20 +4950,28 @@ void screamer(void) {
                 LoadTexture(_binary_tim_screamer_Mjump2_tim_start, &jumpscare);
             }
             if (spritesheet == 3) {
-                LoadTexture(_binary_tim_screamer_Mjump3_tim_start, &jumpscare);
-            }
-            if (spritesheet == 4) {
                 LoadTexture(_binary_tim_screamer_Mjump4_tim_start, &jumpscare);
             }
-            if (spritesheet == 5) {
+            if (spritesheet == 4) {
                 LoadTexture(_binary_tim_screamer_Mjump5_tim_start, &jumpscare);
             }
             if (spritesheet == 1) {
                 LoadTexture(_binary_tim_screamer_Mjump1_tim_start, &jumpscare);
             } 
-        }*/
+        }
         if (deadfrom == 9) {
-            LoadTexture(_binary_tim_screamer_jumpGF_tim_start, &jumpscare);
+            if (spritesheet == 1) {
+                clearVRAMScreamer();
+                LoadTexture(_binary_tim_screamer_jumpGF_tim_start, &jumpscare);
+                ScaleVectorjump.vx = 1024;
+                ScaleVectorjump.vy = 1624;
+                MovVectorjump.vx = -20;
+            } else {
+                GFscaling = GFscaling + 448;
+                MovVectorjump.vx = MovVectorjump.vx - 4;
+                ScaleVectorjump.vx = GFscaling;
+                ScaleVectorjump.vy = GFscaling + 600;
+            }
         }
         if (deadfrom == 10) {
             if (spritesheet == 2) {
@@ -4852,9 +4981,6 @@ void screamer(void) {
                 LoadTexture(_binary_tim_screamer_jumpP3_tim_start, &jumpscare);
             }
             if (spritesheet == 4) {
-                LoadTexture(_binary_tim_screamer_jumpP4_tim_start, &jumpscare);
-            }
-            if (spritesheet == 5) {
                 LoadTexture(_binary_tim_screamer_jumpP5_tim_start, &jumpscare);
             }
             if (spritesheet == 1) {
@@ -4885,12 +5011,6 @@ void LightFunc(void) {
                     LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE); 
                     SpuSetKey(SPU_ON, SPU_00CH);
                     LoadTexture(_binary_tim_office_oLEFTpart2light_tim_start, &officeLEFTlight);
-                    if (toychicaHere == 1) {
-                        LoadTexture(_binary_tim_office_officeLEFTlighttoychica_tim_start, &Rvent);
-                    }
-                    if (BBHere == 1) {
-                        LoadTexture(_binary_tim_office_officeLEFTlightballonboy_tim_start, &Rvent);
-                    }
                 }
                 if (light1 >= 2) {
                     light1 = 0;
@@ -4907,12 +5027,6 @@ void LightFunc(void) {
                     LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE); 
                     LoadTexture(_binary_tim_office_oRIGHTpart2light_tim_start, &officeRIGHTlight);
                     SpuSetKey(SPU_ON, SPU_00CH);
-                    if (toybonnieHere == 1) {
-                        LoadTexture(_binary_tim_office_officeRIGHTlighttoybonnie_tim_start, &Lvent);
-                    }
-                    if (mangleHere == 1) {
-                        LoadTexture(_binary_tim_office_officeRIGHTlightmangle_tim_start, &Lvent);
-                    }
                 }
                 if (light2 >= 2) {
                     light2 = 0;
@@ -4927,47 +5041,57 @@ void LightFunc(void) {
     }
 }
 void LightFuncHall(void) {
-    if (limiterhall == 0) {
-        if (BBlol == 0) {
-            lighthall++;
-            if (lighthall == 1) {
-                light1 = 0;
-                light2 = 0;
-                SpuSetKey(SPU_ON, SPU_00CH);
-                  if (foxylocation == 1) {
-                    LoadTexture(_binary_tim_hallway_foxyhallway_tim_start, &animatronichallway); 
-                  }else {
-                  if (toyfreddylocation == 2 || toyfreddylocation == 3) {
-                    LoadTexture(_binary_tim_hallway_toyfreddyhallway_tim_start, &animatronichallway); 
-                  } else {
-                      if (freddylocation == 3) {
-                          LoadTexture(_binary_tim_hallway_freddyhallway_tim_start, &animatronichallway); 
-                      } else {
-                          if (bonnielocation == 2) {
-                              LoadTexture(_binary_tim_hallway_bonniehallway_tim_start, &animatronichallway); 
-                          } else {
-                              if (toychicalocation == 2) {
-                                  LoadTexture(_binary_tim_hallway_toychicahallway_tim_start, &animatronichallway); 
-                              }
-                          }
-                      }
-                  }
+if (limiterhall == 0) {
+    if (BBlol == 0) {
+        lighthall++;
+        if (lighthall == 1) {
+            light1 = 0;
+            light2 = 0;
+            SpuSetKey(SPU_ON, SPU_00CH);
+            if (animatronicshallway[3]) { //Foxy
+                if (animatronicshallway[6]) { // + Mangle
+                    LoadTexture(_binary_tim_hallway_foxanglhallway_tim_start, &animatronichallway);
+                } else { 
+                    if (animatronicshallway[1]) { // + Bonnie
+                    //LoadTexture(_binary_tim_hallway_foxbonnhallway_tim_start, &animatronichallway);
+                    }
                 }
-                LoadTexture(_binary_tim_office_oRIGHTpart2_tim_start, &officeRIGHT);
-                LoadTexture(_binary_tim_office_oLEFTpart2_tim_start, &officeLEFT);
-                LoadTexture(_binary_tim_office_officeMIDDLElight_tim_start, &officeMIDDLE); 
+            } else {
+                if (animatronicshallway[4]) { // Toy freddy
+                  LoadTexture(_binary_tim_hallway_toyfreddyhallway_tim_start, &animatronichallway); 
+                } else {
+                    if (animatronicshallway[0]) { // Freddy
+                        LoadTexture(_binary_tim_hallway_freddyhallway_tim_start, &animatronichallway); 
+                    } else {
+                        if (animatronicshallway[6]) { //Mangle
+                            LoadTexture(_binary_tim_hallway_manglehallway_tim_start, &animatronichallway); 
+                        } else {
+                            if (animatronicshallway[1]) { //Bonnie
+                                LoadTexture(_binary_tim_hallway_bonniehallway_tim_start, &animatronichallway); 
+                            } else {
+                                if (animatronicshallway[5]) { //Toy chica
+                                    LoadTexture(_binary_tim_hallway_toychicahallway_tim_start, &animatronichallway); 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            LoadTexture(_binary_tim_office_oRIGHTpart2_tim_start, &officeRIGHT);
+            LoadTexture(_binary_tim_office_oLEFTpart2_tim_start, &officeLEFT);
+            LoadTexture(_binary_tim_office_officeMIDDLElight_tim_start, &officeMIDDLE); 
 
-                if (foxyreadyattack == 1) {
-                      dead = 1;
-                      deadfrom = 4;
-                      foxyreadyattack = 0;
-                }
+            if (foxyreadyattack == 1) {
+                dead = 1;
+                deadfrom = 4;
+                foxyreadyattack = 0;
             }
-            if (lighthall >= 2) {
-                lighthall = 0;
-                SpuSetKey(SPU_OFF, SPU_00CH); 
-                LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE); 
-            }
+        }
+        if (lighthall >= 2) {
+            lighthall = 0;
+            SpuSetKey(SPU_OFF, SPU_00CH); 
+            LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE); 
+        }
         } else {
             SpuSetKey(SPU_ON, SPU_18CH);
         }
