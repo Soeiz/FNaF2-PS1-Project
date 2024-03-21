@@ -259,7 +259,7 @@ int toychicalocation = 0;
 int toychicalocationframe = 300;
 int toychicadifficulty = 0;
 int toychicaonetimeskip = 0;
-int toychicafoolness = 240;
+int toychicafoolness = 0;
 
 int foxyreadyattack = 0;
 int foxylocation = 0;
@@ -302,11 +302,14 @@ int GFactivatedhallway = 0;
 int GFscreamerhallway = 0;
 int flashedonce = 0;
 
+int onesecondvar = 60; //always one second for some random things (vents)
+
 int nolongerincam = 0;
 
 int puppetdifficulty = 0;
 int puppetlocation = 0;
 int puppetlocationframe = 60;
+int musicangerframe = 0;
 
 int musicboxunwidingvalue = 2;
 int musicboxunwidingvaludemi = 0;
@@ -357,7 +360,8 @@ int limitercameraR = 0;
 int limitercameraL = 0;
 int animatronicscamera[] = {0,0,0,0,0,0,0,0,0}; //freddy, bonnie, chica, foxy, toy freddy, toy bonnie, toy chica, mangle, BB
 
-int flashlightbattery = 
+int flashlightbattery = 3000;
+int batterypublic = 3;
 
 int officequeue[5] = {0,0,0,0,0}; // only 5 members can attack on front of you. WARNING 0 is 1, 1 is 2 etc (for animatronics)
 int officequeuetimer = 0;
@@ -378,12 +382,6 @@ int fadeGF = 128;
 int inorout = 0;
 int onetime = 0;
 int oldnight = 0;
-
-/*
-Rest of something I'd have liked to do, the "return" thing.
-int returnframes = 0;
-int returnbasevolume = 0x1800;
-*/ 
 
 int noisefootstep = 0;
 int framenoisefootstep = 0;

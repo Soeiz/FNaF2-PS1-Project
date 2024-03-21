@@ -1,7 +1,7 @@
 /*
     NOOOOO RAM ISSUESSSS
-    TO FIX :
-        Lvent sprites not working
+    TO FIX :   
+        Look at screamers*
 
         Not important : 
 
@@ -13,8 +13,7 @@
         office left need to be fixed (can not really be seen ?)
         Finishing to fix the positions of the vents (hard asf and pos already almost fixed)
 
-    TO MAKE (doing ideas/partially implemented things) :     
-        Flashlight
+    TO MAKE (doing ideas/partially implemented things) :  
         Toy freddy hallway (test on diff night)
       Test the game on different hardware than PC and SCPH-9002 PS1
 
@@ -31,6 +30,8 @@
     OTHER (info) :
       FNAF2 is a (heavily) modified version of FNAF1
       V.1.0
+
+      *last
 */
 
 #include "objects/constant.h"
@@ -161,8 +162,8 @@ XAbank soundBank = {
             {   10, 2284608,   1,     9 ,   0, 7816, -1  }, //Music End.xa 
             {   11, 2314976,   1,     9 ,   9312, 17232, -1  }, //phone guy Night 6.xa 
             {   12, 696128,   1,     9 ,   18728, 21104, -1  }, //golden freddy screamer.xa 
-            {   13, 677440,   1,     9 ,   22600, 24912, -1  }, //puppet music.xa 
-            {   14, 1546432,   1,     9 ,   26408, 31696, -1  } //checking.xa 
+            {   13, 1450656,   1,     9 ,   22600, 27560, -1  }, //puppet music.xa 
+            {   14, 1546432,   1,     9 ,   29056, 34344, -1  } //checking.xa 
         }
 };
 // XA file to load
@@ -453,12 +454,6 @@ void starting(void) {
   if (enablephoneguystr[1] == 'N') { // Й
       enablephoneguy = 1;
   } else {enablephoneguy = 0;}//I dunno why but it keep resetting it 
-  Ran(240);
-  toychicafoolness = RAN + 60;
-  Ran(240);
-  manglefoolness = RAN + 60;
-  Ran(240);
-  BBfoolness = RAN + 60;
 
   if (fastnights == 1) {
       FrameCounterlimit = FrameCounterlimit / 2;
@@ -1005,9 +1000,9 @@ int main(void) {
                     LoadTexture(dataBuffer, &tableLEFT); 
                     free(dataBuffer);
                 }
-           } 
+            } 
             if (loadingframe == 580) {
-                if (initstuff) {
+                if (initstuff == 1) {
                     loadFile = "\\BB.TIM;1";
                     CdSearchFile( &filePos, loadFile);
                     dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
@@ -1064,7 +1059,6 @@ int main(void) {
                     free(dataBuffer);
                     initstuff++;
                 }
-
                 CdSearchFile( &XAPos, loadXA);
                 soundBank.offset = CdPosToInt(&XAPos.pos);
                 XAsetup();  
@@ -1152,7 +1146,7 @@ int main(void) {
             }
             
             if (fivesecondframe == 0 && night != 725255) {
-                if (phoneguytalking == 0 && AM != 6) {
+                if (phoneguytalking == 0 && AM != 6 && ismusicboxatzero == 0) {
                     Ran(10);
                     if (ambiancechance > RAN) {
                         if (ambiancesound == 1) {
@@ -1190,6 +1184,25 @@ int main(void) {
               }
             }
               
+            if (ismusicboxatzero == 1) {
+                if (musicangerframe == 0) {
+                    if (phoneguytalking > 0) {
+                        mutedcall = 1;
+                        CdControlF(CdlPause,0);
+                        phoneguytalking = 0;
+                    }
+
+                    musicangerframe = 1984;
+                    sample = 13;
+                    filter.chan = soundBank.samples[sample].channel;
+                    filter.file = soundBank.samples[sample].file;
+                    CdControlF(CdlSetfilter, (u_char *)&filter);
+                    soundBank.samples[sample].cursor = 0;
+                } else {
+                    musicangerframe--;
+                }
+            }
+
             if (noisefootstep == 1) {
                 framenoisefootstep++;
                 int noise;
@@ -1284,14 +1297,11 @@ int main(void) {
                   }
                 }
 
-            if (ismaskon == 0 && isalreadydead == 3 && checkframes == 0) {
+            if (ismaskon == 0 && isalreadydead == 3 && checkframes == 0 || camera == 0 && isalreadydead == 4 && cooldowncamera != 0) {
               dead = 1;
               deadfrom = officequeue[0];
             }
-            if (camera == 0 && isalreadydead == 4 && cooldowncamera != 0) {
-              dead = 1;
-              deadfrom = officequeue[0];
-            }
+            if (camera == 0 && isalreadydead == 5 && cooldowncamera != 0) {dead = 1;}
             
             if (officequeuetimer > 1) {officequeuetimer--;}
 
@@ -1592,7 +1602,7 @@ int main(void) {
                     nextpri += sizeof(POLY_FT4);    
                   }
 
-                  if (dangerlevel > 0) {  
+                  if (dangerlevel > 0 && ismusicboxatzero == 0) {  
                       //first
                       polydanger = (POLY_FT4 *)nextpri;                 
                               
@@ -1671,8 +1681,6 @@ int main(void) {
                     SetTransMatrix(&PolyMatrixtimer);                  
                     
                     setPolyFT4(polytimer);                  
-
-                    setRGB0(polytimer,128,128,128);
 
                     setClut(polytimer,960,192);     
 
@@ -1929,7 +1937,7 @@ int main(void) {
                 if (blinkicon < 61) {blinkicon++;}
                 if (blinkicon == 60) {blinkicon = 0;}
                 //need to add golden freddy hallway 
-                if (freddylocation > 2 || foxylocation > 0 || toyfreddylocation > 1 || bonnielocation > 3 || chicalocation > 2 || toybonnielocation > 3 || toychicalocation > 4 || manglelocation > 3 || BBlocation > 3) { if (weirdnight == 0 && AM != 6) {triggeralarm = 1;}} else {triggeralarm = 0;}
+                if (freddylocation > 2 || foxylocation > 0 || toyfreddylocation > 1 || bonnielocation > 3 || chicalocation > 2 || toybonnielocation > 3 || toychicalocation > 3 || manglelocation > 3 || BBlocation > 3 || puppetlocation > 3) { if (weirdnight == 0 && AM != 6) {triggeralarm = 1;}} else {triggeralarm = 0;}
                 if (BBlocation == 6) {BBlol = 1;} else {BBlol = 0;}
 
                 if (triggeralarm == 1 && nightwon == 0) {
@@ -2254,20 +2262,7 @@ int main(void) {
                 if (toychicalocation == 2) { //hallway outside
                     animatronicscamera[6] = 0;   
                 }
-                if (toychicalocation == 3) { //Party room 4
-                    MovVectortoychica.vx = 12;
-                    MovVectortoychica.vy = -13;
-                    if (curcam[0] == '0' && curcam[1] == '4') {
-                      if (blinkicon > 30 || radar == 1) {
-                        animatronicscamera[6] = 2;
-                      } else {
-                        animatronicscamera[6] = 1;
-                      }
-                    } else {
-                        animatronicscamera[6] = 0;         
-                    } 
-                }
-                if (toychicalocation == 4) { //Party room 1
+                if (toychicalocation == 3) { //Party room 1
                     MovVectortoychica.vx = -46;
                     MovVectortoychica.vy = 12;
                     if (curcam[0] == '0' && curcam[1] == '1') {
@@ -2280,7 +2275,7 @@ int main(void) {
                         animatronicscamera[6] = 0;           
                     }
                 }
-                if (toychicalocation == 5) { //L.Vent (in)
+                if (toychicalocation == 4) { //L.Vent (in)
                     MovVectortoychica.vx = -46;
                     MovVectortoychica.vy = 33;
                     if (curcam[0] == '0' && curcam[1] == '5') {
@@ -2293,7 +2288,7 @@ int main(void) {
                         animatronicscamera[6] = 0;
                     }
                 }
-                if (toychicalocation == 6){ //L.Vent (out)
+                if (toychicalocation == 5){ //L.Vent (out)
                     animatronicscamera[6] = 0;
                 }
 
@@ -2428,6 +2423,16 @@ int main(void) {
     return 0;
 }
 void timeFunc(void) {
+    if (lighthall) {
+        flashlightbattery--;
+        if (flashlightbattery > 2000 && flashlightbattery < 3000) {batterypublic = 3;}
+        if (flashlightbattery > 1000 && flashlightbattery < 2000) {batterypublic = 2;}
+        if (flashlightbattery > 1000 && flashlightbattery < 2000) {batterypublic = 1;}
+        if (flashlightbattery == 0) {LightFuncHall();}
+    }
+    if (onesecondvar == 0) {
+        onesecondvar = 60;
+    } else {onesecondvar--;}
       FrameCounter++;
 
       seedrandom = seedrandom + FrameCounter + camera; // This gonna be huge //camera for additional random
@@ -2577,8 +2582,15 @@ void print(int number) {
         }
         FntPrint("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");  // For the text to go bottom LOL
         if (night != 725255) {
-          FntPrint("%d AM \n", AM);  // print time
-          FntPrint("Night %d \n", night);
+            FntPrint("%d AM \n", AM);  // print time
+            if (flashlightbattery > 500 ) {FntPrint("Flash Battery %d \n", batterypublic);}
+            if (flashlightbattery < 500 && flashlightbattery > 0) {
+                if (blinkicon > 30) {
+                    FntPrint("Flash Battery low \n");
+                } else {FntPrint(" \n");
+                }
+            }
+            FntPrint("Night %d \n", night);
         } else {
           if (phoneguytalking > 960) {
             FntPrint("Night ^') \n");
@@ -2598,11 +2610,11 @@ void print(int number) {
         FntPrint("\nOLD AI F %d, B %d, C %d,Fo %d.\nTOY AI F %d, B %d, C %d, M %d.",freddydifficulty, bonniedifficulty, chicadifficulty, foxydifficulty, toyfreddydifficulty, toybonniedifficulty, toychicadifficulty, mangledifficulty);
     }
     if (number == 4) { // TOY Animatronic debug (with access to camera)
-        FntPrint("%d AM, IAD %d, RAN %d, musicbox %d, pos %d\n",AM, isalreadydead, RAN, musicboxtimer, MovVectorofficemiddle);
-        FntPrint("TOY TFlocFrame %d & location %d,",toyfreddylocationframe, toyfreddylocation);
-        FntPrint("\nTBLocFrame %d & location %d %d,", toybonnielocationframe, toybonnielocation, toybonnieframevent);
-        FntPrint("\nTCLocFrame %d & location %d,\nMlocFrame %d & location %d. Mattack %d\n",toychicalocationframe, toychicalocation, manglelocationframe, manglelocation, mangleattack);
-        FntPrint("BBLocFrame %d & location %d sound %d %d\n",BBlocationframe, BBlocation, ambiancesound, ambiancechance);
+        FntPrint("%d AM, IAD %d, RAN %d, musicbox %d, pos %d, %d\n",AM, isalreadydead, RAN, musicboxtimer, MovVectorofficemiddle, flashlightbattery);
+        FntPrint("TOY TFlocFrame %d & loc %d,",toyfreddylocationframe, toyfreddylocation);
+        FntPrint("\nTBLocFrame %d & loc %d %d,", toybonnielocationframe, toybonnielocation, toybonnieframevent);
+        FntPrint("\nTCLocFrame %d & loc %d,\nMlocFrame %d & loc %d. Mattack %d\n",toychicalocationframe, toychicalocation, manglelocationframe, manglelocation, mangleattack);
+        FntPrint("BBLocFrame %d & loc %d sound %d %d\n",BBlocationframe, BBlocation, ambiancesound, ambiancechance);
         FntPrint("OLD AI F %d, B %d, C %d,Fo %d.\nTOY AI F %d, B %d, C %d, M %d.",freddydifficulty, bonniedifficulty, chicadifficulty, foxydifficulty, toyfreddydifficulty, toybonniedifficulty, toychicadifficulty, mangledifficulty);
     }
     if (number == 5) { // Almost same then vanilla but with officequeue array and some things too
@@ -3868,7 +3880,7 @@ void menuselectionfunc(void) { //LONG asf lmaoo
 }
 void menuPrint(void) {
     if (maincustomnightmenu == 0 && extramenu == 0 && infoscreen == 0 && unlockssubmenu == 0 && AISetmenu == 0 && timermenu == 0 && advancedmenu == 0) {
-        FntPrint("   Five\n\n   Nights\n\n   at\n\n   Freddy's\n\n   2\n\n\n");  // print time
+        FntPrint("   Five\n\n   Nights\n\n   at\n\n   Freddy's\n\n   2 \n\n\n");  // print time
 
         if (menuselection == 1) {FntPrint(">> New Game\n\n");}
         else {FntPrint("   New Game\n\n");}
@@ -4079,113 +4091,119 @@ void controllerinput(void) {
     if(pad & PADLright || pad >> 16 & PADLright && twoplayermode == 1) {sideFunc(1);}    
 }
 void animatronicFunc(int init) {
-  if (init == 1) {
-      if (night == 1 && FrameCounter == 0) { //Setting difficulties
-          toyfreddydifficulty = 0;
-          toybonniedifficulty = 0;
-          toychicadifficulty = 0;
-          mangledifficulty = 0;
-          freddydifficulty = 0;
-          bonniedifficulty = 0;
-          chicadifficulty = 0;
-          foxydifficulty = 0;
-          BBdifficulty = 0;
-          GFdifficulty = 0;
-          puppetdifficulty = 1;
-          windingframe = 96857441;
-          checklifelimit = 100; 
-      }
-      if (night == 2 && FrameCounter == 0) { 
-          freddydifficulty = 0;
-          bonniedifficulty = 0;
-          chicadifficulty = 0;
-          GFdifficulty = 0;
-          puppetdifficulty = 5;
-          toybonniedifficulty = 3;
-          toychicadifficulty = 3;
-          foxydifficulty = 1;
-          mangledifficulty = 3;
-          toyfreddydifficulty = 2;
-          BBdifficulty = 3;
-          musicboxunwidingvalue = 2;
-          musicboxunwidingvaludemi = 1;
-          musicboxunwidingvaluthird = -2; // OK
-          windingframe = 2;
-          checklifelimit = 80; 
-      }
-      if (night == 3 && FrameCounter == 0) { 
-          toyfreddydifficulty = 0;
-          toybonniedifficulty = 0;
-          toychicadifficulty = 0;
-          mangledifficulty = 0;
-          freddydifficulty = 0;
-          GFdifficulty = 0;
-          puppetdifficulty = 8;
-          bonniedifficulty = 1;
-          BBdifficulty = 1;
-          chicadifficulty = 1;
-          foxydifficulty = 2;
-          musicboxunwidingvaludemi = 0;
-          musicboxunwidingvalue = 2;
-          musicboxunwidingvaluthird = -2; // OK
-          windingframe = 1;
-          checklifelimit = 60; 
-      }
-      if (night == 4 && FrameCounter == 0) { 
-          toyfreddydifficulty = 0;
-          toybonniedifficulty = 0;
-          toychicadifficulty = 0;
-          freddydifficulty = 0;
-          chicadifficulty = 0;
-          GFdifficulty = 0;
-          puppetdifficulty = 9;
-          bonniedifficulty = 1;
-          foxydifficulty = 7;
-          BBdifficulty = 3;
-          mangledifficulty = 5;
-          musicboxunwidingvaludemi = 1;
-          musicboxunwidingvalue = 2;
-          musicboxunwidingvaluthird = 0; //Curr 26.54 / 25
-          windingframe = 1;
-          checklifelimit = 55; 
-      }
-      if (night == 5 && FrameCounter == 0) { 
-          GFdifficulty = 0;
-          puppetdifficulty = 10;
-          freddydifficulty = 2;
-          bonniedifficulty = 2;
-          chicadifficulty = 2;
-          foxydifficulty = 5;
-          BBdifficulty = 5;
-          toyfreddydifficulty = 5;
-          toybonniedifficulty = 2;
-          toychicadifficulty = 2;
-          mangledifficulty = 1;
-          musicboxunwidingvaludemi = 1;
-          musicboxunwidingvalue = 3;
-          musicboxunwidingvaluthird = 0; //Cur 19.13 / 20
-          windingframe = 1;
-          checklifelimit = 50; 
-      }
-      if (night == 6 && FrameCounter == 0) { 
-          toyfreddydifficulty = 0;
-          toybonniedifficulty = 0;
-          toychicadifficulty = 0;
-          mangledifficulty = 0;
-          GFdifficulty = 0;
-          puppetdifficulty = 15;
-          freddydifficulty = 5;
-          bonniedifficulty = 5;
-          chicadifficulty = 5;
-          foxydifficulty = 10;
-          mangledifficulty = 3;
-          BBdifficulty = 5;
-          musicboxunwidingvaludemi = 0;
-          musicboxunwidingvalue = 4; //Cur ~16.55 OK
-          windingframe = 1;
-          checklifelimit = 50; 
-      }
-  } else {
+    if (init == 1) {
+        if (night == 1 && FrameCounter == 0) { //Setting difficulties
+            toyfreddydifficulty = 0;
+            toybonniedifficulty = 0;
+            toychicadifficulty = 0;
+            mangledifficulty = 0;
+            freddydifficulty = 0;
+            bonniedifficulty = 0;
+            chicadifficulty = 0;
+            foxydifficulty = 0;
+            BBdifficulty = 0;
+            GFdifficulty = 0;
+            puppetdifficulty = 1;
+            windingframe = 96857441;
+            checklifelimit = 100; 
+            flashlightbattery = 7200; //6200 is 120 in seconds
+        }
+        if (night == 2 && FrameCounter == 0) { 
+            freddydifficulty = 0;
+            bonniedifficulty = 0;
+            chicadifficulty = 0;
+            GFdifficulty = 0;
+            puppetdifficulty = 5;
+            toybonniedifficulty = 3;
+            toychicadifficulty = 3;
+            foxydifficulty = 1;
+            mangledifficulty = 3;
+            toyfreddydifficulty = 2;
+            BBdifficulty = 3;
+            musicboxunwidingvalue = 2;
+            musicboxunwidingvaludemi = 1;
+            musicboxunwidingvaluthird = -2; // OK
+            windingframe = 2;
+            checklifelimit = 80; 
+            flashlightbattery = 6000; //6000 is 100 in seconds
+        }
+        if (night == 3 && FrameCounter == 0) { 
+            toyfreddydifficulty = 0;
+            toybonniedifficulty = 0;
+            toychicadifficulty = 0;
+            mangledifficulty = 0;
+            freddydifficulty = 0;
+            GFdifficulty = 0;
+            puppetdifficulty = 8;
+            bonniedifficulty = 1;
+            BBdifficulty = 1;
+            chicadifficulty = 1;
+            foxydifficulty = 2;
+            musicboxunwidingvaludemi = 0;
+            musicboxunwidingvalue = 2;
+            musicboxunwidingvaluthird = -2; // OK
+            windingframe = 1;
+            checklifelimit = 60; 
+            flashlightbattery = 4800; //4800 is 80 in seconds
+        }
+        if (night == 4 && FrameCounter == 0) { 
+            toyfreddydifficulty = 0;
+            toybonniedifficulty = 0;
+            toychicadifficulty = 0;
+            freddydifficulty = 0;
+            chicadifficulty = 0;
+            GFdifficulty = 0;
+            puppetdifficulty = 9;
+            bonniedifficulty = 1;
+            foxydifficulty = 7;
+            BBdifficulty = 3;
+            mangledifficulty = 5;
+            musicboxunwidingvaludemi = 1;
+            musicboxunwidingvalue = 2;
+            musicboxunwidingvaluthird = 0; //Curr 26.54 / 25
+            windingframe = 1;
+            checklifelimit = 55; 
+            flashlightbattery = 4500; //4500 is 75 in seconds
+        }
+        if (night == 5 && FrameCounter == 0) { 
+            GFdifficulty = 0;
+            puppetdifficulty = 10;
+            freddydifficulty = 2;
+            bonniedifficulty = 2;
+            chicadifficulty = 2;
+            foxydifficulty = 5;
+            BBdifficulty = 5;
+            toyfreddydifficulty = 5;
+            toybonniedifficulty = 2;
+            toychicadifficulty = 2;
+            mangledifficulty = 1;
+            musicboxunwidingvaludemi = 1;
+            musicboxunwidingvalue = 3;
+            musicboxunwidingvaluthird = 0; //Cur 19.13 / 20
+            windingframe = 1;
+            checklifelimit = 50; 
+            flashlightbattery = 3000; //3000 is 50 in seconds
+        }
+        if (night == 6 && FrameCounter == 0) { 
+            toyfreddydifficulty = 0;
+            toybonniedifficulty = 0;
+            toychicadifficulty = 0;
+            mangledifficulty = 0;
+            GFdifficulty = 0;
+            puppetdifficulty = 15;
+            freddydifficulty = 5;
+            bonniedifficulty = 5;
+            chicadifficulty = 5;
+            foxydifficulty = 10;
+            mangledifficulty = 3;
+            BBdifficulty = 5;
+            musicboxunwidingvaludemi = 0;
+            musicboxunwidingvalue = 4; //Cur ~16.55 OK
+            windingframe = 1;
+            checklifelimit = 50; 
+            flashlightbattery = 3000; //3000 is 50 in seconds
+        }
+    } else {
     if (debugging == 1) {
       if (FrameCounter == 0) {
         if (AM == 12) {
@@ -4341,11 +4359,11 @@ void AImoving(void) {
     }
 
     if (toybonnielocation == 5) {toybonnieHere = 1;} else {toybonnieHere = 0;}
-    if (toychicalocation == 6) {toychicaHere = 1;} else {toychicaHere = 0;}
+    if (toychicalocation == 5) {toychicaHere = 1;} else {toychicaHere = 0;}
     if (manglelocation == 7) {mangleHere = 1;} else {mangleHere = 0;}
     if (BBlocation == 5) {BBHere = 1;} else {BBHere = 0;}
 
-    if (camera == 0){
+    if (camera == 0 || camera == 1 && onesecondvar == 0){
         if (toybonnielocation == 6) {
             for (int i = 0; i < 5; i++){ 
                 if (officequeue[i] != 6) {
@@ -4440,42 +4458,42 @@ void AImoving(void) {
     if (camera == 1) {
       if (musicboxtimer < 0) {setRGB0(polytimer,0,0,0);} else {setRGB0(polytimer,128,128,128);}
 
-      if (musicboxtimer > 0 && musicboxtimer < 90) {
+      if (musicboxtimer < 190) {
         LoadTexture(_binary_tim_timer_timer0_tim_start, &timermusicbox);
         dangerlevel = 2;
     }
-      if (musicboxtimer > 90 && musicboxtimer < 180) {
+      if (musicboxtimer > 190 && musicboxtimer < 280) {
         LoadTexture(_binary_tim_timer_timer1_tim_start, &timermusicbox);
         dangerlevel = 2;
     }
-      if (musicboxtimer > 180 && musicboxtimer < 270) {
+      if (musicboxtimer > 280 && musicboxtimer < 370) {
         LoadTexture(_binary_tim_timer_timer2_tim_start, &timermusicbox);
         dangerlevel = 1;
     }
-      if (musicboxtimer > 270 && musicboxtimer < 360) {
+      if (musicboxtimer > 370 && musicboxtimer < 460) {
         LoadTexture(_binary_tim_timer_timer3_tim_start, &timermusicbox);
         dangerlevel = 1;
     }
-      if (musicboxtimer > 360 && musicboxtimer < 450) {
+      if (musicboxtimer > 460 && musicboxtimer < 550) {
         LoadTexture(_binary_tim_timer_timer4_tim_start, &timermusicbox);
         dangerlevel = 0;
     }
-      if (musicboxtimer > 450 && musicboxtimer < 540) {LoadTexture(_binary_tim_timer_timer5_tim_start, &timermusicbox);}
-      if (musicboxtimer > 540 && musicboxtimer < 630) {LoadTexture(_binary_tim_timer_timer6_tim_start, &timermusicbox);}
-      if (musicboxtimer > 630 && musicboxtimer < 720) {LoadTexture(_binary_tim_timer_timer7_tim_start, &timermusicbox);}
-      if (musicboxtimer > 720 && musicboxtimer < 810) {LoadTexture(_binary_tim_timer_timer8_tim_start, &timermusicbox);}
-      if (musicboxtimer > 810 && musicboxtimer < 900) {LoadTexture(_binary_tim_timer_timer9_tim_start, &timermusicbox);}
-      if (musicboxtimer > 900 && musicboxtimer < 990) {LoadTexture(_binary_tim_timer_timer10_tim_start, &timermusicbox);}
-      if (musicboxtimer > 990 && musicboxtimer < 1080) {LoadTexture(_binary_tim_timer_timer11_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1080 && musicboxtimer < 1170) {LoadTexture(_binary_tim_timer_timer12_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1170 && musicboxtimer < 1260) {LoadTexture(_binary_tim_timer_timer13_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1260 && musicboxtimer < 1350) {LoadTexture(_binary_tim_timer_timer14_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1350 && musicboxtimer < 1440) {LoadTexture(_binary_tim_timer_timer15_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1440 && musicboxtimer < 1530) {LoadTexture(_binary_tim_timer_timer16_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1530 && musicboxtimer < 1620) {LoadTexture(_binary_tim_timer_timer17_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1620 && musicboxtimer < 1710) {LoadTexture(_binary_tim_timer_timer18_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1710 && musicboxtimer < 1800) {LoadTexture(_binary_tim_timer_timer19_tim_start, &timermusicbox);}
-      if (musicboxtimer > 1800 && musicboxtimer < 1890) {LoadTexture(_binary_tim_timer_timer20_tim_start, &timermusicbox);}
+      if (musicboxtimer > 550 && musicboxtimer < 640) {LoadTexture(_binary_tim_timer_timer5_tim_start, &timermusicbox);}
+      if (musicboxtimer > 640 && musicboxtimer < 730) {LoadTexture(_binary_tim_timer_timer6_tim_start, &timermusicbox);}
+      if (musicboxtimer > 730 && musicboxtimer < 820) {LoadTexture(_binary_tim_timer_timer7_tim_start, &timermusicbox);}
+      if (musicboxtimer > 820 && musicboxtimer < 910) {LoadTexture(_binary_tim_timer_timer8_tim_start, &timermusicbox);}
+      if (musicboxtimer > 910 && musicboxtimer < 1000) {LoadTexture(_binary_tim_timer_timer9_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1000 && musicboxtimer < 1090) {LoadTexture(_binary_tim_timer_timer10_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1090 && musicboxtimer < 1180) {LoadTexture(_binary_tim_timer_timer11_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1180 && musicboxtimer < 1270) {LoadTexture(_binary_tim_timer_timer12_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1270 && musicboxtimer < 1360) {LoadTexture(_binary_tim_timer_timer13_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1360 && musicboxtimer < 1450) {LoadTexture(_binary_tim_timer_timer14_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1450 && musicboxtimer < 1540) {LoadTexture(_binary_tim_timer_timer15_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1540 && musicboxtimer < 1630) {LoadTexture(_binary_tim_timer_timer16_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1630 && musicboxtimer < 1720) {LoadTexture(_binary_tim_timer_timer17_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1720 && musicboxtimer < 1810) {LoadTexture(_binary_tim_timer_timer18_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1810 && musicboxtimer < 1900) {LoadTexture(_binary_tim_timer_timer19_tim_start, &timermusicbox);}
+      if (musicboxtimer > 1900 && musicboxtimer < 1990) {LoadTexture(_binary_tim_timer_timer20_tim_start, &timermusicbox);}
     } else {
       if (fanframes == 0) {LoadTexture(_binary_tim_office_fan1_tim_start, &tableFAN);}
       if (fanframes == 1) {LoadTexture(_binary_tim_office_fan2_tim_start, &tableFAN);}
@@ -4507,45 +4525,51 @@ void AImoving(void) {
       }
     }
 
-    if (toychicalocation == 6) {
-      if (ismaskon == 1) {
-        toychicafoolness--;
-        if (toychicafoolness == 0) {
-          toychicalocation = 1;
-          ventbanging = 1;
-          Ran(240);
-          toychicafoolness = RAN + 60;
+    if (toychicalocation == 5) {
+        if (onesecondvar == 0) {
+            Ran(10); 
+            if (RAN == 1) {
+                if (ismaskon == 1) {
+                    toychicalocation = 1;
+                    ventbanging = 1; 
+                } else {
+                    isalreadydead = 5;
+                    deadfrom = 7;
+                }
+            }
         }
-      } else {
-        toychicafoolness++;
-        if (toychicafoolness > 700) {
-          if (camera == 0) {
-            dead = 1; 
-          } else {
-            isalreadydead = 1;
+        if (ismaskon == 1) {
+          toychicafoolness++;
+          if (toychicafoolness > 300) {
+              toychicalocation = 1;
+              ventbanging = 1; 
+              toychicafoolness = 0;
           }
-          deadfrom = 7;
         }
-      }
     }
     if (manglelocation == 7) {
-      if (ismaskon == 1 && manglefoolness < 700) {
-        manglefoolness--;
-        if (manglefoolness == 0) {
-          manglelocation = 1;
-          ventbanging = 1;
-          Ran(240);
-          manglefoolness = RAN + 60;
+        if (onesecondvar == 0) {
+            Ran(10); 
+            if (RAN == 1) {
+                if (ismaskon == 1) {
+                    manglelocation = 1;
+                    ventbanging = 1; 
+                } else {
+                    manglelocation++;
+                    Ran(6000);
+                    mangleattack = 300 + RAN; //From 30 seconds to 2 minutes
+                    LoadTexture(_binary_tim_office_manglehanging_tim_start, &manglehanging);
+                }
+            }
         }
-      } else {
-        manglefoolness++;
-        if (manglefoolness > 700 && camera == 1) {
-          manglelocation++;
-          Ran(6000);
-          mangleattack = 300 + RAN; //From 30 seconds to 2 minutes
-          LoadTexture(_binary_tim_office_manglehanging_tim_start, &manglehanging);
+        if (ismaskon == 1) {
+          manglefoolness++;
+          if (manglefoolness > 300) {
+              manglelocation = 1;
+              ventbanging = 1; 
+              manglefoolness = 0;
+          }
         }
-      }
     }
 
     if (ismusicboxatzero == 1 && night != 725255) {
@@ -4576,23 +4600,25 @@ void AImoving(void) {
     }
 
     if (BBlocation == 5) {
-      if (ismaskon == 1) {
-        BBfoolness--;
-        if (BBfoolness == 0) {
-          BBlocation = 1;
-          ventbanging = 1;
-          Ran(240);
-          BBfoolness = RAN + 60;
+        if (onesecondvar == 0) {
+            Ran(10); 
+            if (RAN == 1) {
+                if (ismaskon == 1) {
+                    BBlocation = 1;
+                    ventbanging = 1; 
+                } else {
+                    BBlocation++;
+                }
+            }
         }
-      } else {
-        BBfoolness++;
-        if (BBfoolness > 700) {
-            BBlocation++;
-            BBfoolness = 0;
-            Ran(240);
-            BBfoolness = RAN + 60;
+        if (ismaskon == 1) {
+          BBfoolness++;
+          if (BBfoolness > 300) {
+              BBlocation = 1;
+              ventbanging = 1; 
+              BBfoolness = 0;
+          }
         }
-      }
     }
 
     if (freddylocationframe < 0 && freddydifficulty != 0) {
@@ -4651,16 +4677,18 @@ void AImoving(void) {
           if (toybonniedifficulty != 0) {
             Ran(20);
             if (toybonniedifficulty > RAN && !(toybonnielocation == 5 && ismaskon == 1)) {
-              toybonnielocation++;
-              if (toybonnielocation == 6 && ismaskon == 0) {
-                dead = 1;
-                deadfrom = 6;
-              }
-              if (toybonnielocation == 5 && light2 == 1) {
-                sideFunc(1);
-                LightFunc();
-              }
-              if (toybonnielocation == 4) {ventbanging = 1;}
+                if (toybonnielocation < 5) {
+                  toybonnielocation++;
+                  if (toybonnielocation == 6 && ismaskon == 0) {
+                    dead = 1;
+                    deadfrom = 6;
+                  }
+                  if (toybonnielocation == 5 && light2 == 1) {
+                    sideFunc(1);
+                    LightFunc();
+                  }
+                  if (toybonnielocation == 4) {ventbanging = 1;}
+                }
             }
           }
         if (!(toybonnielocation == 5 && ismaskon == 1)) {toybonnielocationframe = toybonnielocationframelock;}
@@ -4686,16 +4714,16 @@ void AImoving(void) {
     if (toychicalocationframe < 0 && toychicadifficulty != 0) {
         Ran(20);
         if (toychicadifficulty > RAN) {
-            if (toychicalocation < 6) {
+            if (toychicalocation < 5) {
                 if (toychicalocation == 1 && lighthall == 1) {
                   LightFuncHall();
                 }
               if (!(toychicalocation == 2 && lighthall == 1)) {toychicalocation++;}
-                if (toychicalocation == 6 && light1 == 1) {
+                if (toychicalocation == 5 && light1 == 1) {
                     sideFunc(0);
                     LightFunc();
                 }
-                if (toychicalocation == 5) {ventbanging = 1;}
+                if (toychicalocation == 4) {ventbanging = 1;}
 
             }
         }
@@ -5041,57 +5069,61 @@ void LightFunc(void) {
     }
 }
 void LightFuncHall(void) {
-if (limiterhall == 0) {
-    if (BBlol == 0) {
-        lighthall++;
-        if (lighthall == 1) {
-            light1 = 0;
-            light2 = 0;
-            SpuSetKey(SPU_ON, SPU_00CH);
-            if (animatronicshallway[3]) { //Foxy
-                if (animatronicshallway[6]) { // + Mangle
-                    LoadTexture(_binary_tim_hallway_foxanglhallway_tim_start, &animatronichallway);
-                } else { 
-                    if (animatronicshallway[1]) { // + Bonnie
-                    //LoadTexture(_binary_tim_hallway_foxbonnhallway_tim_start, &animatronichallway);
-                    }
-                }
-            } else {
-                if (animatronicshallway[4]) { // Toy freddy
-                  LoadTexture(_binary_tim_hallway_toyfreddyhallway_tim_start, &animatronichallway); 
-                } else {
-                    if (animatronicshallway[0]) { // Freddy
-                        LoadTexture(_binary_tim_hallway_freddyhallway_tim_start, &animatronichallway); 
-                    } else {
-                        if (animatronicshallway[6]) { //Mangle
-                            LoadTexture(_binary_tim_hallway_manglehallway_tim_start, &animatronichallway); 
-                        } else {
-                            if (animatronicshallway[1]) { //Bonnie
-                                LoadTexture(_binary_tim_hallway_bonniehallway_tim_start, &animatronichallway); 
+    if (limiterhall == 0) {
+        if (BBlol == 0) {
+            lighthall++;
+            if (lighthall == 1) {
+                if (flashlightbattery > 0) {
+                    light1 = 0;
+                    light2 = 0;
+                    SpuSetKey(SPU_ON, SPU_00CH);
+                    if (animatronicshallway[3]) { //Foxy
+                        if (animatronicshallway[6]) { // + Mangle
+                            LoadTexture(_binary_tim_hallway_foxanglhallway_tim_start, &animatronichallway);
+                        } else { 
+                            if (animatronicshallway[1]) { // + Bonnie
+                            //LoadTexture(_binary_tim_hallway_foxbonnhallway_tim_start, &animatronichallway);
                             } else {
-                                if (animatronicshallway[5]) { //Toy chica
-                                    LoadTexture(_binary_tim_hallway_toychicahallway_tim_start, &animatronichallway); 
+                                LoadTexture(_binary_tim_hallway_foxyhallway_tim_start, &animatronichallway);
+                            }
+                        }
+                    } else {
+                        if (animatronicshallway[4]) { // Toy freddy
+                          LoadTexture(_binary_tim_hallway_toyfreddyhallway_tim_start, &animatronichallway); 
+                        } else {
+                            if (animatronicshallway[0]) { // Freddy
+                                LoadTexture(_binary_tim_hallway_freddyhallway_tim_start, &animatronichallway); 
+                            } else {
+                                if (animatronicshallway[6]) { //Mangle
+                                    LoadTexture(_binary_tim_hallway_manglehallway_tim_start, &animatronichallway); 
+                                } else {
+                                    if (animatronicshallway[1]) { //Bonnie
+                                        LoadTexture(_binary_tim_hallway_bonniehallway_tim_start, &animatronichallway); 
+                                    } else {
+                                        if (animatronicshallway[5]) { //Toy chica
+                                            LoadTexture(_binary_tim_hallway_toychicahallway_tim_start, &animatronichallway); 
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            }
-            LoadTexture(_binary_tim_office_oRIGHTpart2_tim_start, &officeRIGHT);
-            LoadTexture(_binary_tim_office_oLEFTpart2_tim_start, &officeLEFT);
-            LoadTexture(_binary_tim_office_officeMIDDLElight_tim_start, &officeMIDDLE); 
+                    LoadTexture(_binary_tim_office_oRIGHTpart2_tim_start, &officeRIGHT);
+                    LoadTexture(_binary_tim_office_oLEFTpart2_tim_start, &officeLEFT);
+                    LoadTexture(_binary_tim_office_officeMIDDLElight_tim_start, &officeMIDDLE); 
 
-            if (foxyreadyattack == 1) {
-                dead = 1;
-                deadfrom = 4;
-                foxyreadyattack = 0;
+                    if (foxyreadyattack == 1) {
+                        dead = 1;
+                        deadfrom = 4;
+                        foxyreadyattack = 0;
+                    }
+                } else {lighthall++;}
             }
-        }
-        if (lighthall >= 2) {
-            lighthall = 0;
-            SpuSetKey(SPU_OFF, SPU_00CH); 
-            LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE); 
-        }
+            if (lighthall >= 2) {
+                lighthall = 0;
+                SpuSetKey(SPU_OFF, SPU_00CH); 
+                LoadTexture(_binary_tim_office_officeMIDDLE_tim_start, &officeMIDDLE); 
+            }
         } else {
             SpuSetKey(SPU_ON, SPU_18CH);
         }

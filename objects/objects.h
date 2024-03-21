@@ -548,27 +548,14 @@ SVECTOR VertPosselected[4] = {
 
 MATRIX PolyMatrixselected = {0};    
 
-//itsme bg
-POLY_FT4 *polyitsme = {0};                       
-
-SVECTOR RotVectoritsme = {0, 0, 0};              
-VECTOR  MovVectoritsme = {0, 0, CENTERX/2-10, 0};
-VECTOR  ScaleVectoritsme = {2048, 2048, 2048};   
-
-SVECTOR VertPositsme[4] = {                      
-        {-40, -25, 1 },                         
-        {-40,  26, 1 },                         
-        { 80, -25, 1 },                         
-        { 80,  26, 1  }                         
-    };        
-
-MATRIX PolyMatrixitsme = {0};    
-
 //Jumpscare
 POLY_FT4 *polyjump = {0};                        
 
 SVECTOR RotVectorjump = {0, 0, 0};               
-VECTOR  MovVectorjump = {-40, -4, CENTERX/2-10, 0};
+VECTOR  MovVectorjump = {-30, 5, CENTERX/2-10, 0};
+VECTOR  MovVectorjump2 = {-40, -4, CENTERX/2-10, 0};
+VECTOR  MovVectorjump3 = {-40, -10, CENTERX/2-10, 0};
+VECTOR  MovVectorjump4 = {-50, -4, CENTERX/2-10, 0};
 VECTOR  ScaleVectorjump = {ONE, ONE, ONE};       
 
 SVECTOR VertPosjump[4] = {                       
@@ -814,7 +801,6 @@ VECTOR  ScaleVectortableleft = {1536, 1536, 1536};
 SVECTOR RotVectortablefan = {0, 0, 0};                
 VECTOR  MovVectortablefan = {0, 0, CENTERX/2-10, 0}; 
 VECTOR  ScaleVectortablefan = {1536, 1536, 1536};        
-
 
 SVECTOR VertPostableright[4] = {             
         {288, 93, 1 },                        
@@ -1586,39 +1572,39 @@ void makepoly(int num) {
         }
 
         if (light2 && toybonnieHere || light2 && mangleHere) {
-                //L.vent 
-                polyLvent = (POLY_FT4 *)nextpri;                 
-                        
-                RotMatrix(&RotVectorLvent, &PolyMatrixLvent); 
-                TransMatrix(&PolyMatrixLvent, &MovVectorLvent);  
-                ScaleMatrix(&PolyMatrixLvent, &ScaleVectorLvent);
-                 
-                SetRotMatrix(&PolyMatrixLvent);              
-                SetTransMatrix(&PolyMatrixLvent);            
-                
-                setPolyFT4(polyLvent);                         
-                
-                polyLvent->tpage = getTPage(Lvent.mode&0x3, 0, 576, 256);
-                 
-                RotTransPers4(
-                            &VertPosLvent[0],      &VertPosLvent[1],      &VertPosLvent[2],      &VertPosLvent[3],
-                            (long*)&polyLvent->x0, (long*)&polyLvent->x1, (long*)&polyLvent->x2, (long*)&polyLvent->x3,
-                            &polydepth,
-                            &polyflag
-                            );                               
-                setRGB0(polyLvent, 128, 128, 128);
+            //L.vent 
+            polyLvent = (POLY_FT4 *)nextpri;                 
+                    
+            RotMatrix(&RotVectorLvent, &PolyMatrixLvent); 
+            TransMatrix(&PolyMatrixLvent, &MovVectorLvent);  
+            ScaleMatrix(&PolyMatrixLvent, &ScaleVectorLvent);
+             
+            SetRotMatrix(&PolyMatrixLvent);              
+            SetTransMatrix(&PolyMatrixLvent);            
+            
+            setPolyFT4(polyLvent);                         
+            
+            polyLvent->tpage = getTPage(Lvent.mode&0x3, 0, 576, 256);
+             
+            RotTransPers4(
+                        &VertPosLvent[0],      &VertPosLvent[1],      &VertPosLvent[2],      &VertPosLvent[3],
+                        (long*)&polyLvent->x0, (long*)&polyLvent->x1, (long*)&polyLvent->x2, (long*)&polyLvent->x3,
+                        &polydepth,
+                        &polyflag
+                        );                               
+            setRGB0(polyLvent, 128, 128, 128);
 
-                	setClut(polyLvent, 320, 503); 
-                	setUV4(polyLvent, 0, 0, 0, 93, 78, 0, 78, 93); 
-                if (toybonnieHere) {
-                }
-                if (mangleHere) {
-                	setClut(polyLvent, 320, 511); 
-                	setUV4(polyLvent, 78, 0, 78, 93, 156, 0, 156, 93); 
-                }
-                addPrim(ot[db], polyLvent);                     
-                 
-                nextpri += sizeof(POLY_FT4);      
+            if (toybonnieHere) {
+            	setClut(polyLvent, 320, 503); 
+            	setUV4(polyLvent, 0, 163, 0, 255, 78, 163, 78, 255); 
+            }
+            if (mangleHere) {
+            	setClut(polyLvent, 320, 511); 
+            	setUV4(polyLvent, 78, 163, 78, 255, 156, 163, 156, 255); 
+            }
+            addPrim(ot[db], polyLvent);                     
+             
+            nextpri += sizeof(POLY_FT4);      
         }       
         if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0) {
 		 	polymutecall = (POLY_FT4 *)nextpri;                 
@@ -2359,7 +2345,48 @@ void makepoly(int num) {
         polyjump = (POLY_FT4 *)nextpri;             
                 
         RotMatrix(&RotVectorjump, &PolyMatrixjump);    
-        TransMatrix(&PolyMatrixjump, &MovVectorjump);  
+        switch(deadfrom) {
+        	case 1 : 
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump2);  
+        		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
+        	break;
+        	case 2 :
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump);  
+        		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
+        	break;
+        	case 3 :
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump3);  
+        		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
+        	break;
+        	case 4 :
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump4); 
+        		setUV4(polyjump, 0, 0, 0, 139, 188, 0, 188, 139); 
+        	break;
+        	case 5:
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump);  
+        		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
+        	break;
+        	case 6:
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump);  
+        		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
+        	break;
+        	case 7:
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump);  
+        		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
+        	break;
+        	case 8:
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump);  
+        		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
+        	break;
+        	case 9:
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump);  
+        		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
+        	break;
+        	case 10:
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump);  
+        		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
+        	break;
+        }
         ScaleMatrix(&PolyMatrixjump, &ScaleVectorjump);
         
         SetRotMatrix(&PolyMatrixjump);                    
@@ -2379,7 +2406,6 @@ void makepoly(int num) {
                     &polyflag
                     );                                
         
-        setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
             
         addPrim(ot[db], polyjump);                       
         nextpri += sizeof(POLY_FT4);                 
