@@ -71,10 +71,6 @@ extern unsigned long _binary_tim_office_fan4_tim_start[];
 extern unsigned long _binary_tim_office_fan4_tim_end[];
 extern unsigned long _binary_tim_office_fan4_tim_length;
 
-extern unsigned long _binary_tim_5am6_FAM_tim_start[];
-extern unsigned long _binary_tim_5am6_FAM_tim_end[];
-extern unsigned long _binary_tim_5am6_FAM_tim_length;
-
 extern unsigned long _binary_tim_5am6_SAM_tim_start[];
 extern unsigned long _binary_tim_5am6_SAM_tim_end[];
 extern unsigned long _binary_tim_5am6_SAM_tim_length;
@@ -362,6 +358,10 @@ extern unsigned long _binary_tim_hallway_toychicahallway_tim_length;
 extern unsigned long _binary_tim_hallway_toyfreddyhallway_tim_start[];
 extern unsigned long _binary_tim_hallway_toyfreddyhallway_tim_end[];
 extern unsigned long _binary_tim_hallway_toyfreddyhallway_tim_length;
+
+extern unsigned long _binary_tim_hallway_toyfreddyhallwaysecond_tim_start[];
+extern unsigned long _binary_tim_hallway_toyfreddyhallwaysecond_tim_end[];
+extern unsigned long _binary_tim_hallway_toyfreddyhallwaysecond_tim_length;
 
 extern unsigned long _binary_tim_hallway_freddyhallway_tim_start[];
 extern unsigned long _binary_tim_hallway_freddyhallway_tim_end[];
@@ -1130,6 +1130,8 @@ VECTOR  MovVectorhallway4 = {5, -12, CENTERX/2-10, 0};
 
 VECTOR  MovVectorhallway5 = {30, -35, CENTERX/2-10, 0};  
 
+VECTOR  MovVectorhallway6 = {15, -30, CENTERX/2-10, 0};  
+
 VECTOR  ScaleVectorhallway = {2198, 2198, 2198};    
 
 VECTOR  ScaleVectorhallway2 = {3224, 3024, 3024};   
@@ -1196,7 +1198,7 @@ MATRIX PolyMatrixofficefronttoybonnie = {0};
 POLY_FT4 *polymutecall = {0};   
 
 SVECTOR RotVectormutecall = {0, 0, 0};                
-VECTOR  MovVectormutecall = {-80, 40, CENTERX/2-10, 0}; 
+VECTOR  MovVectormutecall = {-80, 45, CENTERX/2-10, 0}; 
 VECTOR  ScaleVectormutecall = {ONE, ONE, ONE};        
 
 SVECTOR VertPosmutecall[4] = {             
@@ -1666,7 +1668,7 @@ void makepoly(int num) {
 		 	
 		 	nextpri += sizeof(POLY_FT4);    
         }
-        if (dangerlevel > 0 && blinkicon > 30) {	
+        if (dangerlevel > 0 && blinkicon > 30 && ismusicboxatzero == 0) {	
 	        polydanger = (POLY_FT4 *)nextpri;                 
 	                
 	        RotMatrix(&RotVectordanger, &PolyMatrixdanger);    
@@ -2010,7 +2012,7 @@ void makepoly(int num) {
 		                ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
 	            	} else {
 	            		if (animatronicshallway[1]) { // + Bonnie
-			                setUV4(polyhallway, 0, 0, 0, 153, 80, 0, 80, 153); 
+			                setUV4(polyhallway, 0, 0, 0, 153, 79, 0, 79, 153); 
 			                TransMatrix(&PolyMatrixhallway, &MovVectorhallway3bis);  
 			                ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
 	            		} else {
@@ -2020,39 +2022,45 @@ void makepoly(int num) {
 	            		}
 	            	}
 	            } else {
-	                if (animatronicshallway[4]) { // Toy freddy
+	                if (animatronicshallway[4] == 1) { // Toy freddy
 	                    setUV4(polyhallway, 0, 0, 0, 144, 49, 0, 49, 144); 
 	                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
 	                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
 	                } else {
-	                    if (animatronicshallway[0]) { //Freddy
-	                        setUV4(polyhallway, 0, 0, 0, 133, 70, 0, 70, 133); 
-	                        TransMatrix(&PolyMatrixhallway, &MovVectorhallway3);  
-	                        ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
-	                    } else {
-	                    	if (animatronicshallway[6]) { //Mangle
-	                            setUV4(polyhallway, 0, 0, 0, 123, 79, 0, 79, 123); 
-	                            TransMatrix(&PolyMatrixhallway, &MovVectorhallway5);  
-	                            ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
-	                    	} else {
-	                            if (animatronicshallway[1]) { //Bonnie
-	                                setUV4(polyhallway, 0, 0, 0, 123, 50, 0, 50, 123); 
-	                                TransMatrix(&PolyMatrixhallway, &MovVectorhallway2);  
-	                                ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
-	                            } else {
-	                                if (animatronicshallway[5]) { //Toy chica
-	                                    setUV4(polyhallway, 0, 0, 0, 124, 56, 0, 56, 124); 
-	                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
-	                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);     
-	                                } else { // Default
-	                                    setUV4(polyhallway, 0, 0, 0, 0, 0, 0, 0, 0); 
-	                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
-	                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);   
-	                                }
-	                            } 
-	                        }        
-	                    }
-	                }
+		                if (animatronicshallway[4] == 2) { // Toy freddy closer
+		                    setUV4(polyhallway, 0, 0, 0, 158, 68, 0, 68, 158); 
+		                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway6);  
+		                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
+		                } else {
+		                    if (animatronicshallway[0]) { //Freddy
+		                        setUV4(polyhallway, 0, 0, 0, 133, 70, 0, 70, 133); 
+		                        TransMatrix(&PolyMatrixhallway, &MovVectorhallway3);  
+		                        ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway2);
+		                    } else {
+		                    	if (animatronicshallway[6]) { //Mangle
+		                            setUV4(polyhallway, 0, 0, 0, 123, 79, 0, 79, 123); 
+		                            TransMatrix(&PolyMatrixhallway, &MovVectorhallway5);  
+		                            ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
+		                    	} else {
+		                            if (animatronicshallway[1]) { //Bonnie
+		                                setUV4(polyhallway, 0, 0, 0, 123, 50, 0, 50, 123); 
+		                                TransMatrix(&PolyMatrixhallway, &MovVectorhallway2);  
+		                                ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);
+		                            } else {
+		                                if (animatronicshallway[5]) { //Toy chica
+		                                    setUV4(polyhallway, 0, 0, 0, 124, 56, 0, 56, 124); 
+		                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
+		                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);     
+		                                } else { // Default
+		                                    setUV4(polyhallway, 0, 0, 0, 0, 0, 0, 0, 0); 
+		                                    TransMatrix(&PolyMatrixhallway, &MovVectorhallway);  
+		                                    ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway);   
+		                                }
+		                            } 
+		                        }        
+		                    }
+		                }
+		            }
 	            }
             }
             SetRotMatrix(&PolyMatrixhallway);              
@@ -2335,7 +2343,7 @@ void makepoly(int num) {
                     &polyflag
                     );                                
         
-        setUV4(polyicon, 0, 50, 0, 126, 50, 50, 50, 126);
+        setUV4(polyicon, 0, 50, 0, 110, 50, 50, 50, 110);
             
         addPrim(ot[db], polyicon);                       
         nextpri += sizeof(POLY_FT4);         
@@ -2371,7 +2379,7 @@ void makepoly(int num) {
         		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
         	break;
         	case 7:
-        		TransMatrix(&PolyMatrixjump, &MovVectorjump);  
+        		TransMatrix(&PolyMatrixjump, &MovVectorjump2);  
         		setUV4(polyjump, 40, 0, 40, 133, 146, 0, 145, 133);
         	break;
         	case 8:

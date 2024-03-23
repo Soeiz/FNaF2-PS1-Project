@@ -29,6 +29,7 @@ tim/hallway/toychicahallway.tim \
 tim/hallway/foxyhallway.tim \
 tim/hallway/freddyhallway.tim \
 tim/hallway/toyfreddyhallway.tim \
+tim/hallway/toyfreddyhallwaysecond.tim \
 tim/hallway/bonniehallway.tim \
 tim/hallway/goldenhallway.tim \
 tim/hallway/foxanglhallway.tim \
@@ -105,7 +106,6 @@ tim/timer/timer18.tim \
 tim/timer/timer19.tim \
 tim/timer/timer20.tim \
 tim/5am6/SAM.tim \
-tim/5am6/FAM.tim \
 tim/5am6/5AM1.tim \
 tim/5am6/5AM2.tim \
 tim/5am6/5AM3.tim \
@@ -121,8 +121,6 @@ tim/load.tim \
 tim/fnt.tim \
 tim/GJSIX.tim \
 tim/static1.tim \
-tim/itsme.tim \
-tim/gameover.tim \
 tim/danger1.tim \
 tim/danger2.tim \
 vag/light.vag \

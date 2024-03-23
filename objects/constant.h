@@ -236,7 +236,7 @@ int toyfreddycountdownactivation = 0;
 int toyfreddycountdown = -1;
 int toyfreddydifficulty = 0;
 
-int bonnielocation = 0;
+int bonnielocation = 2;
 int bonnieliljumpscare = 0;
 int bonnieliljumpscarecooldown = 0;
 int bonnielocationframe = 300;
@@ -262,7 +262,7 @@ int toychicaonetimeskip = 0;
 int toychicafoolness = 0;
 
 int foxyreadyattack = 0;
-int foxylocation = 0;
+int foxylocation = 1;
 int foxylocationframe = 300;
 int foxydifficulty = 0;
 int foxyalterablevalue = 0;
@@ -361,6 +361,7 @@ int limitercameraL = 0;
 int animatronicscamera[] = {0,0,0,0,0,0,0,0,0}; //freddy, bonnie, chica, foxy, toy freddy, toy bonnie, toy chica, mangle, BB
 
 int flashlightbattery = 3000;
+int flashlightbatteryfixed = 3000;
 int batterypublic = 3;
 
 int officequeue[5] = {0,0,0,0,0}; // only 5 members can attack on front of you. WARNING 0 is 1, 1 is 2 etc (for animatronics)

@@ -14,8 +14,7 @@
         Finishing to fix the positions of the vents (hard asf and pos already almost fixed)
 
     TO MAKE (doing ideas/partially implemented things) :  
-        Toy freddy hallway (test on diff night)
-      Test the game on different hardware than PC and SCPH-9002 PS1
+        Test the game on different hardware than PC and SCPH-9002 PS1
 
     TO DO (only ideas) :
         Implement easter eggs animatronics ? 
@@ -367,7 +366,7 @@ void setVoiceAttr(unsigned int pitch, long channel, unsigned long soundAddr ){
     SpuSetVoiceVolume(10, 0x2000, 0x2000); //coin (blip)
     SpuSetVoiceVolume(11, 0x2000, 0x2000); //vent banging 1
     SpuSetVoiceVolume(12, 0x2000, 0x2000); //vent banging 2
-    SpuSetVoiceVolume(13, 0x4000, 0x4000); //alarm
+    SpuSetVoiceVolume(13, 0x2500, 0x2500); //alarm
     SpuSetVoiceVolume(14, 0x2000, 0x2000); //wind up
     SpuSetVoiceVolume(15, 0x2000, 0x2000); //BB1
     SpuSetVoiceVolume(16, 0x2000, 0x2000); //BB2
@@ -445,7 +444,7 @@ void starting(void) {
   }
   if (initstuff == 1) {
     clearVRAMMenu();
-  } else {clearVRAMloading();}
+  } else {clearVRAMloading(); clearVRAMScreamer();}
 
   LoadTexture(_binary_tim_load_tim_start, &load);
   
@@ -999,6 +998,15 @@ int main(void) {
                     CDreadResult = CdReadSync(0, 0);
                     LoadTexture(dataBuffer, &tableLEFT); 
                     free(dataBuffer);
+                    loadFile = "\\FAM.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &fiveam); 
+                    free(dataBuffer);
                 }
             } 
             if (loadingframe == 580) {
@@ -1146,7 +1154,7 @@ int main(void) {
             }
             
             if (fivesecondframe == 0 && night != 725255) {
-                if (phoneguytalking == 0 && AM != 6 && ismusicboxatzero == 0) {
+                if (phoneguytalking == 0 && AM != 6 && ismusicboxatzero == 0 && checkframes == 0) {
                     Ran(10);
                     if (ambiancechance > RAN) {
                         if (ambiancesound == 1) {
@@ -1510,6 +1518,7 @@ int main(void) {
                             MovVectorhallway3bis.vx = MovVectorhallway3bis.vx + speedoffice;
                             MovVectorhallway4.vx = MovVectorhallway4.vx + speedoffice;
                             MovVectorhallway5.vx = MovVectorhallway5.vx + speedoffice;
+                            MovVectorhallway6.vx = MovVectorhallway6.vx + speedoffice;
                             MovVectortablemiddle.vx = MovVectortablemiddle.vx + speedoffice;
                             MovVectorRvent.vx = MovVectorRvent.vx + speedoffice;
                             MovVectorLvent.vx = MovVectorLvent.vx + speedoffice;
@@ -1528,6 +1537,7 @@ int main(void) {
                             MovVectorhallway3bis.vx = MovVectorhallway3bis.vx - speedoffice;
                             MovVectorhallway4.vx = MovVectorhallway4.vx - speedoffice;
                             MovVectorhallway5.vx = MovVectorhallway5.vx - speedoffice;
+                            MovVectorhallway6.vx = MovVectorhallway6.vx - speedoffice;
                             MovVectorofficefront.vx = MovVectorofficefront.vx - speedoffice;
                             MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - speedoffice;
                             MovVectorRvent.vx = MovVectorRvent.vx - speedoffice;
@@ -2425,9 +2435,9 @@ int main(void) {
 void timeFunc(void) {
     if (lighthall) {
         flashlightbattery--;
-        if (flashlightbattery > 2000 && flashlightbattery < 3000) {batterypublic = 3;}
-        if (flashlightbattery > 1000 && flashlightbattery < 2000) {batterypublic = 2;}
-        if (flashlightbattery > 1000 && flashlightbattery < 2000) {batterypublic = 1;}
+        if (flashlightbattery > flashlightbatteryfixed - flashlightbatteryfixed / 3 && flashlightbattery < flashlightbatteryfixed) {batterypublic = 3;} // Example for 3000: flashlightbatteryfixed - flashlightbatteryfixed / 3 = 2000
+        if (flashlightbattery > flashlightbatteryfixed / 3 && flashlightbattery < flashlightbatteryfixed - flashlightbatteryfixed / 3) {batterypublic = 2;} // Example for 3000: flashlightbatteryfixed / 3 = 1000
+        if (flashlightbattery > flashlightbatteryfixed / 6 && flashlightbattery < flashlightbatteryfixed / 3) {batterypublic = 1;} // Example for 3000: flashlightbatteryfixed / 6 = 500
         if (flashlightbattery == 0) {LightFuncHall();}
     }
     if (onesecondvar == 0) {
@@ -2491,7 +2501,7 @@ void resetgame(int hardreset) {
     GFscreamerhallway = 0;
     fadeGF = 128;
   }
-
+    musicangerframe = 0;
     ismusicboxatzero = 0;
 
     foxyalterablevalue = 0;
@@ -2583,8 +2593,8 @@ void print(int number) {
         FntPrint("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");  // For the text to go bottom LOL
         if (night != 725255) {
             FntPrint("%d AM \n", AM);  // print time
-            if (flashlightbattery > 500 ) {FntPrint("Flash Battery %d \n", batterypublic);}
-            if (flashlightbattery < 500 && flashlightbattery > 0) {
+            if (flashlightbattery > flashlightbatteryfixed / 6 ) {FntPrint("Flash Battery %d %d\n", flashlightbattery, batterypublic);}
+            if (flashlightbattery < flashlightbatteryfixed / 6 && flashlightbattery > 0) {
                 if (blinkicon > 30) {
                     FntPrint("Flash Battery low \n");
                 } else {FntPrint(" \n");
@@ -4107,6 +4117,7 @@ void animatronicFunc(int init) {
             windingframe = 96857441;
             checklifelimit = 100; 
             flashlightbattery = 7200; //6200 is 120 in seconds
+            flashlightbatteryfixed = 7200;
         }
         if (night == 2 && FrameCounter == 0) { 
             freddydifficulty = 0;
@@ -4126,6 +4137,7 @@ void animatronicFunc(int init) {
             windingframe = 2;
             checklifelimit = 80; 
             flashlightbattery = 6000; //6000 is 100 in seconds
+            flashlightbatteryfixed = 6000;
         }
         if (night == 3 && FrameCounter == 0) { 
             toyfreddydifficulty = 0;
@@ -4145,6 +4157,7 @@ void animatronicFunc(int init) {
             windingframe = 1;
             checklifelimit = 60; 
             flashlightbattery = 4800; //4800 is 80 in seconds
+            flashlightbatteryfixed = 4800;
         }
         if (night == 4 && FrameCounter == 0) { 
             toyfreddydifficulty = 0;
@@ -4164,6 +4177,7 @@ void animatronicFunc(int init) {
             windingframe = 1;
             checklifelimit = 55; 
             flashlightbattery = 4500; //4500 is 75 in seconds
+            flashlightbatteryfixed = 4500;
         }
         if (night == 5 && FrameCounter == 0) { 
             GFdifficulty = 0;
@@ -4183,6 +4197,7 @@ void animatronicFunc(int init) {
             windingframe = 1;
             checklifelimit = 50; 
             flashlightbattery = 3000; //3000 is 50 in seconds
+            flashlightbatteryfixed = 3000;
         }
         if (night == 6 && FrameCounter == 0) { 
             toyfreddydifficulty = 0;
@@ -4202,6 +4217,7 @@ void animatronicFunc(int init) {
             windingframe = 1;
             checklifelimit = 50; 
             flashlightbattery = 3000; //3000 is 50 in seconds
+            flashlightbatteryfixed = 3000;
         }
     } else {
     if (debugging == 1) {
@@ -4324,7 +4340,7 @@ void AImoving(void) {
     foxylocationframe--;
 
     if (toychicalocation == 2) {animatronicshallway[5] = 1;} else {animatronicshallway[5] = 0;}
-    if (toyfreddylocation == 2 || toyfreddylocation == 3) {animatronicshallway[4] = 1;} else {animatronicshallway[4] = 0;}
+    if (toyfreddylocation == 2) {animatronicshallway[4] = 1;} else {if (toyfreddylocation == 3) {animatronicshallway[4] = 2;} else {animatronicshallway[4] = 0;}}
     if (bonnielocation == 2) {animatronicshallway[1] = 1;} else {animatronicshallway[1] = 0;}
     if (freddylocation == 3) {animatronicshallway[0] = 1;} else {animatronicshallway[0] = 0;}
     if (foxylocation == 1) {animatronicshallway[3] = 1;} else {animatronicshallway[3] = 0;}
@@ -4355,6 +4371,7 @@ void AImoving(void) {
             isalreadydead = 1;
         }
         deadfrom = 8;
+        manglelocation = 0;
       }
     }
 
@@ -5082,26 +5099,30 @@ void LightFuncHall(void) {
                             LoadTexture(_binary_tim_hallway_foxanglhallway_tim_start, &animatronichallway);
                         } else { 
                             if (animatronicshallway[1]) { // + Bonnie
-                            //LoadTexture(_binary_tim_hallway_foxbonnhallway_tim_start, &animatronichallway);
+                                LoadTexture(_binary_tim_hallway_foxbonnhallway_tim_start, &animatronichallway);
                             } else {
                                 LoadTexture(_binary_tim_hallway_foxyhallway_tim_start, &animatronichallway);
                             }
                         }
                     } else {
-                        if (animatronicshallway[4]) { // Toy freddy
+                        if (animatronicshallway[4] == 1) { // Toy freddy
                           LoadTexture(_binary_tim_hallway_toyfreddyhallway_tim_start, &animatronichallway); 
                         } else {
-                            if (animatronicshallway[0]) { // Freddy
-                                LoadTexture(_binary_tim_hallway_freddyhallway_tim_start, &animatronichallway); 
+                            if (animatronicshallway[4] == 2) { // Toy freddy
+                              LoadTexture(_binary_tim_hallway_toyfreddyhallwaysecond_tim_start, &animatronichallway); 
                             } else {
-                                if (animatronicshallway[6]) { //Mangle
-                                    LoadTexture(_binary_tim_hallway_manglehallway_tim_start, &animatronichallway); 
+                                if (animatronicshallway[0]) { // Freddy
+                                    LoadTexture(_binary_tim_hallway_freddyhallway_tim_start, &animatronichallway); 
                                 } else {
-                                    if (animatronicshallway[1]) { //Bonnie
-                                        LoadTexture(_binary_tim_hallway_bonniehallway_tim_start, &animatronichallway); 
+                                    if (animatronicshallway[6]) { //Mangle
+                                        LoadTexture(_binary_tim_hallway_manglehallway_tim_start, &animatronichallway); 
                                     } else {
-                                        if (animatronicshallway[5]) { //Toy chica
-                                            LoadTexture(_binary_tim_hallway_toychicahallway_tim_start, &animatronichallway); 
+                                        if (animatronicshallway[1]) { //Bonnie
+                                            LoadTexture(_binary_tim_hallway_bonniehallway_tim_start, &animatronichallway); 
+                                        } else {
+                                            if (animatronicshallway[5]) { //Toy chica
+                                                LoadTexture(_binary_tim_hallway_toychicahallway_tim_start, &animatronichallway); 
+                                            }
                                         }
                                     }
                                 }
@@ -5184,6 +5205,5 @@ void gamevictory(void) {
     camera = 0;
   }
   SpuSetKey(SPU_OFF, SPU_ALLCH);
-  LoadTexture(_binary_tim_5am6_FAM_tim_start, &fiveam); 
   FrameCounter++;
 }
