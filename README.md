@@ -12,9 +12,8 @@ The game has unique things that were not on the OG game, such as two player mode
 
 Unfortunately, there's no minigames in this port because of memory issues.
 
-([Discord server] (https://discord.gg/DQbWVtKHnw)) 
+[Discord server](https://discord.gg/DQbWVtKHnw) 
 
+[Gamejolt Page](https://gamejolt.com/games/FNAF2PSX/864126)
 
-([Gamejolt Page] (https://gamejolt.com/games/FNAF2PSX/864126))
-
-This project has been made using ([psyq + nugget] (https://github.com/ABelliqueux/nolibgs_hello_worlds)) !
+This project has been made using [psyq + nugget](https://github.com/ABelliqueux/nolibgs_hello_worlds) !
