@@ -11,3 +11,10 @@ If you want to play on real hardware, you'd have to modchip it, use the disc swa
 The game has unique things that were not on the OG game, such as two player mode, Custom night with far more options, easter eggs, and more !
 
 Unfortunately, there's no minigames in this port because of memory issues.
+
+([Discord server] (https://discord.gg/DQbWVtKHnw)) 
+
+
+([Gamejolt Page] (https://gamejolt.com/games/FNAF2PSX/864126))
+
+This project has been made using ([psyq + nugget] (https://github.com/ABelliqueux/nolibgs_hello_worlds)) !
