@@ -1,7 +1,6 @@
 /*
     NOOOOO RAM ISSUESSSS
     TO FIX :   
-        Look at screamers*
 
         Not important : 
 
@@ -17,7 +16,7 @@
         Test the game on different hardware than PC and SCPH-9002 PS1
 
     TO DO (only ideas) :
-        Implement easter eggs animatronics ? 
+
     TO FIX ON THE PS1 :
 
     FIXED ? (it is not doing that anymore but I'm not sure if it's fixed) : 
@@ -29,8 +28,6 @@
     OTHER (info) :
       FNAF2 is a (heavily) modified version of FNAF1
       V.1.0
-
-      *last
 */
 
 #include "objects/constant.h"
@@ -199,22 +196,7 @@ void gamevictory(void);
 void menuPrint(void);
 void animatronicFunc(int init);
 void AImoving(void);
-/*
-void FntColor(CVECTOR fgcol, CVECTOR bgcol )
-{
-    // The debug font clut is at tx, ty + 128
-    // tx = bg color
-    // tx + 1 = fg color
-    // We can override the color by drawing a rect at these coordinates
-    // 
-    // Define 1 pixel at 960,128 (background color) and 1 pixel at 961, 128 (foreground color)
-    RECT fg = { FONTX+1, FONTY + 128, 1, 1 };
-    RECT bg = { FONTX, FONTY + 128, 1, 1 };
-    // Set colors
-    ClearImage(&fg, fgcol.r, fgcol.g, fgcol.b);
-    ClearImage(&bg, bgcol.r, bgcol.g, bgcol.b);
-}
-*/
+
 void LoadTexture(u_long * tim, TIM_IMAGE * tparam){     // This part is from Lameguy64's tutorial series : lameguy64.net/svn/pstutorials/chapter1/3-textures.html login/pw: annoyingmous
         OpenTIM(tim);                                   // Open the tim binary data, feed it the address of the data in memory
         ReadTIM(tparam);                                // This read the header of the TIM data and sets the corresponding members of the TIM_IMAGE structure
@@ -450,9 +432,6 @@ void starting(void) {
   
 
   musicframes = 0;
-  if (enablephoneguystr[1] == 'N') { // Й
-      enablephoneguy = 1;
-  } else {enablephoneguy = 0;}//I dunno why but it keep resetting it 
 
   if (fastnights == 1) {
       FrameCounterlimit = FrameCounterlimit / 2;
@@ -839,32 +818,25 @@ int main(void) {
                     LoadTexture(dataBuffer, &goodjob); 
                     free(dataBuffer);
                     initstuff++;
-                }
-                CdControlF(CdlPause,0);
-                          
-                // Load XA file from cd
-                // Find XA file pos
-                CdSearchFile( &XAPos, loadXA);
-                // Set cd head to start of file
-                soundBank.offset = CdPosToInt(&XAPos.pos);
-                // Set cd XA playback parameters and pause cd
-                XAsetup();
-                // Keep track of XA Sample currently playing
+                    CdControlF(CdlPause,0);
 
+                    CdSearchFile( &XAPos, loadXA);
+                    soundBank.offset = CdPosToInt(&XAPos.pos);
+                    XAsetup();
+                }
                 menuscreeninit = 1;
-                musicframes = 4431;
                 }
                 if (menuscreeninit == 1) {
 
                 seedrandom++;
-                //TIM toys
-                makepoly(1);
+                if (notoys == 0) {makepoly(1);}
                 }
             } else {
+                if (notoys) {loadingframe = 360;}
                 loadingframe++;
 
                 if (loadingframe == 1) {
-                    musicframes = 3787;
+                    musicframes = 4430;
                     if (ambiancesound > 3) {ambiancesound = 1;}
                 }
                 if (loadingframe < 360) {
@@ -880,13 +852,10 @@ int main(void) {
                 }
                 if (loadingframe > 240) {
                     if (fadeoffice < 128) {fadeoffice++;}
-
-                    setRGB0(polyhelpwanted, 128 - fadeoffice, 128 - fadeoffice, 128 - fadeoffice);   
                 } else {
                     if (fadeoffice > 0) {fadeoffice--;}
-
-                    setRGB0(polyhelpwanted, 128 - fadeoffice, 128 - fadeoffice, 128 - fadeoffice);   
                 }
+                setRGB0(polyhelpwanted, 128 - fadeoffice, 128 - fadeoffice, 128 - fadeoffice);   
                 if (loadingframe > 360) {
                     menu = 1;
                     helpwantedposter = 0;
@@ -980,37 +949,6 @@ int main(void) {
                     CDreadResult = CdReadSync(0, 0);
                     LoadTexture(dataBuffer, &layout); 
                     free(dataBuffer);
-                    loadFile = "\\TRIGHT.TIM;1";
-                    CdSearchFile( &filePos, loadFile);
-                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
-                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
-                    // Read data and load it to dataBuffer
-                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
-                    CDreadResult = CdReadSync(0, 0);
-                    LoadTexture(dataBuffer, &tableRIGHT); 
-                    free(dataBuffer);
-                    loadFile = "\\TLEFT.TIM;1";
-                    CdSearchFile( &filePos, loadFile);
-                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
-                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
-                    // Read data and load it to dataBuffer
-                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
-                    CDreadResult = CdReadSync(0, 0);
-                    LoadTexture(dataBuffer, &tableLEFT); 
-                    free(dataBuffer);
-                    loadFile = "\\FAM.TIM;1";
-                    CdSearchFile( &filePos, loadFile);
-                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
-                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
-                    // Read data and load it to dataBuffer
-                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
-                    CDreadResult = CdReadSync(0, 0);
-                    LoadTexture(dataBuffer, &fiveam); 
-                    free(dataBuffer);
-                }
-            } 
-            if (loadingframe == 580) {
-                if (initstuff == 1) {
                     loadFile = "\\BB.TIM;1";
                     CdSearchFile( &filePos, loadFile);
                     dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
@@ -1029,6 +967,19 @@ int main(void) {
                     CDreadResult = CdReadSync(0, 0);
                     LoadTexture(dataBuffer, &GF); 
                     free(dataBuffer);
+                    loadFile = "\\TRIGHT.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &tableRIGHT); 
+                    free(dataBuffer);
+                }
+            } 
+            if (loadingframe == 580) {
+                if (initstuff == 1) {
                     loadFile = "\\OLTCHIC.TIM;1";
                     CdSearchFile( &filePos, loadFile);
                     dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
@@ -1064,6 +1015,24 @@ int main(void) {
                     CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
                     CDreadResult = CdReadSync(0, 0);
                     LoadTexture(dataBuffer, &Rvent); 
+                    free(dataBuffer);
+                    loadFile = "\\TLEFT.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &tableLEFT); 
+                    free(dataBuffer);
+                    loadFile = "\\FAM.TIM;1";
+                    CdSearchFile( &filePos, loadFile);
+                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                    // Read data and load it to dataBuffer
+                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                    CDreadResult = CdReadSync(0, 0);
+                    LoadTexture(dataBuffer, &fiveam); 
                     free(dataBuffer);
                     initstuff++;
                 }
@@ -1126,6 +1095,30 @@ int main(void) {
                     nextnightframes = 0;
                     menu = 1; //Load into next night
                 }
+            }
+
+            if (returnframes == 60 || returnframes == 120 || returnframes == 180) {
+                returnbasevolume  = returnbasevolume + 2000;
+                SpuSetVoiceVolume(3, returnbasevolume, returnbasevolume);
+                SpuSetKey(SPU_ON, SPU_03CH);
+            }
+            if (returnframes == 210) {
+                isingame = 1;
+                menuscreeninit = 0;
+                SpuSetKey(SPU_OFF, SPU_ALLCH);
+                returnbasevolume = 0x1800;
+                SpuSetVoiceVolume(3, returnbasevolume, returnbasevolume);
+                menuselection = 3;
+                menuselectionmax = 2;
+                returnframes = 0;
+                musicframes = 4430;
+                menu = 0;
+                notoys = 1;
+            }
+            if (returnedingame) {
+                CdControlF(CdlPause,0);
+                SpuSetKey(SPU_ON, SPU_02CH);
+                returnedingame = 0;
             }
 
             if (dead == 1) {
@@ -1342,7 +1335,7 @@ int main(void) {
                 CdControlF(CdlPause,0);
                 LoadTexture(_binary_tim_timer_timer20_tim_start, &timermusicbox); 
             }
-            if (enablephoneguy == 1) {
+            if (phoneguytalking == 0 && enablephoneguy) {
                 if (night == 1) {
                     phoneguytalking = 11172;
                     phoneguytalkingconst = 11172;
@@ -1382,12 +1375,12 @@ int main(void) {
                 filter.file = soundBank.samples[sample].file;
                 CdControlF(CdlSetfilter, (u_char *)&filter);
                 soundBank.samples[sample].cursor = 0;
-                enablephoneguy = 0;
             }
             if (phoneguytalking > 0) {phoneguytalking--;}
             if (phoneguytalking == 1) {
               sample = 0;
               CdControlF(CdlPause,0);
+              enablephoneguy = 0;
             }
 
             if (night == 725255) {
@@ -1457,7 +1450,7 @@ int main(void) {
 
             if (cooldowncamera > 0) {cooldowncamera--;}
             if (maskcooldown > 0) {maskcooldown--;}
-            if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0) {
+            if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0 && enablephoneguy == 1) {
 
               polymutecall = (POLY_FT4 *)nextpri;                 
                       
@@ -1486,7 +1479,6 @@ int main(void) {
               
               setUV4(polymutecall, 0, 0, 0, 31, 122, 0, 122, 31); // 8 diff (normaly 263 but can't go higher than 255, so 263-255 = 8)
                   
-  
               addPrim(ot[db], polymutecall);                       
               
               nextpri += sizeof(POLY_FT4);    
@@ -1558,7 +1550,7 @@ int main(void) {
                           
                   RotMatrix(&RotVectorpolycamgreyogreen, &PolyMatrixpolycamgreyogreen);    
                   TransMatrix(&PolyMatrixpolycamgreyogreen, &MovVectorpolycamgreyogreen);
-                  ScaleMatrix(&PolyMatrixpolycamgreyogreen, &ScaleVectorpolycamWoutline);  
+                  ScaleMatrix(&PolyMatrixpolycamgreyogreen, &ScaleVectorpolycamgreyogreen);  
                   
                   SetRotMatrix(&PolyMatrixpolycamgreyogreen);            
                   SetTransMatrix(&PolyMatrixpolycamgreyogreen);          
@@ -1578,7 +1570,7 @@ int main(void) {
                   
                   nextpri += sizeof(POLY_F4);                
  
-                  if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0) {
+                  if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0 && enablephoneguy == 1) {
                     polymutecall = (POLY_FT4 *)nextpri;                 
                             
                     RotMatrix(&RotVectormutecall, &PolyMatrixmutecall);    
@@ -1590,7 +1582,7 @@ int main(void) {
                     
                     setClut(polymutecall, 960, 200);
         
-                          setRGB0(polymutecall, 128, 128, 128); 
+                    setRGB0(polymutecall, 128, 128, 128); 
 
                     setPolyFT4(polymutecall);                           
                     
@@ -1606,7 +1598,6 @@ int main(void) {
                     
                     setUV4(polymutecall, 0, 0, 0, 31, 122, 0, 122, 31); // 8 diff (normaly 263 but can't go higher than 255, so 263-255 = 8)
                         
-        
                     addPrim(ot[db], polymutecall);                       
                     
                     nextpri += sizeof(POLY_FT4);    
@@ -1726,7 +1717,7 @@ int main(void) {
                         setPolyF4(polyfreddy);                             
                         
                         RotTransPers4(
-                                    &VertPosfreddy[0],      &VertPosfreddy[1],      &VertPosfreddy[2],      &VertPosfreddy[3],
+                                    &VertPosicons[0],      &VertPosicons[1],      &VertPosicons[2],      &VertPosicons[3],
                                     (long*)&polyfreddy->x0, (long*)&polyfreddy->x1, (long*)&polyfreddy->x2, (long*)&polyfreddy->x3,
                                     &polydepth,
                                     &polyflag
@@ -1750,7 +1741,7 @@ int main(void) {
                         setPolyF4(polybonnie);                             
                         
                         RotTransPers4(
-                                    &VertPosbonnie[0],      &VertPosbonnie[1],      &VertPosbonnie[2],      &VertPosbonnie[3],
+                                    &VertPosicons[0],      &VertPosicons[1],      &VertPosicons[2],      &VertPosicons[3],
                                     (long*)&polybonnie->x0, (long*)&polybonnie->x1, (long*)&polybonnie->x2, (long*)&polybonnie->x3,
                                     &polydepth,
                                     &polyflag
@@ -1776,7 +1767,7 @@ int main(void) {
                         setPolyF4(polychica);                            
                         
                         RotTransPers4(
-                                    &VertPoschica[0],      &VertPoschica[1],      &VertPoschica[2],      &VertPoschica[3],
+                                    &VertPosicons[0],      &VertPosicons[1],      &VertPosicons[2],      &VertPosicons[3],
                                     (long*)&polychica->x0, (long*)&polychica->x1, (long*)&polychica->x2, (long*)&polychica->x3,
                                     &polydepth,
                                     &polyflag
@@ -1801,7 +1792,7 @@ int main(void) {
                         setPolyF4(polyfoxy);                           
                         
                         OTz = RotTransPers4(
-                                    &VertPosfoxy[0],      &VertPosfoxy[1],      &VertPosfoxy[2],      &VertPosfoxy[3],
+                                    &VertPosicons[0],      &VertPosicons[1],      &VertPosicons[2],      &VertPosicons[3],
                                     (long*)&polyfoxy->x0, (long*)&polyfoxy->x1, (long*)&polyfoxy->x2, (long*)&polyfoxy->x3,
                                     &polydepth,
                                     &polyflag
@@ -1827,7 +1818,7 @@ int main(void) {
                         setPolyF4(polytoybonnie);                             
                         
                         RotTransPers4(
-                                    &VertPostoybonnie[0],      &VertPostoybonnie[1],      &VertPostoybonnie[2],      &VertPostoybonnie[3],
+                                    &VertPosicons[0],      &VertPosicons[1],      &VertPosicons[2],      &VertPosicons[3],
                                     (long*)&polytoybonnie->x0, (long*)&polytoybonnie->x1, (long*)&polytoybonnie->x2, (long*)&polytoybonnie->x3,
                                     &polydepth,
                                     &polyflag
@@ -1854,7 +1845,7 @@ int main(void) {
                         setPolyF4(polytoyfreddy);                             
                         
                         RotTransPers4(
-                                    &VertPostoyfreddy[0],      &VertPostoyfreddy[1],      &VertPostoyfreddy[2],      &VertPostoyfreddy[3],
+                                    &VertPosicons[0],      &VertPosicons[1],      &VertPosicons[2],      &VertPosicons[3],
                                     (long*)&polytoyfreddy->x0, (long*)&polytoyfreddy->x1, (long*)&polytoyfreddy->x2, (long*)&polytoyfreddy->x3,
                                     &polydepth,
                                     &polyflag
@@ -1880,7 +1871,7 @@ int main(void) {
                         setPolyF4(polytoychica);                            
                         
                         RotTransPers4(
-                                    &VertPostoychica[0],      &VertPostoychica[1],      &VertPostoychica[2],      &VertPostoychica[3],
+                                    &VertPosicons[0],      &VertPosicons[1],      &VertPosicons[2],      &VertPosicons[3],
                                     (long*)&polytoychica->x0, (long*)&polytoychica->x1, (long*)&polytoychica->x2, (long*)&polytoychica->x3,
                                     &polydepth,
                                     &polyflag
@@ -1906,7 +1897,7 @@ int main(void) {
                         setPolyF4(polymangle);                           
                         
                         OTz = RotTransPers4(
-                                    &VertPosmangle[0],      &VertPosmangle[1],      &VertPosmangle[2],      &VertPosmangle[3],
+                                    &VertPosicons[0],      &VertPosicons[1],      &VertPosicons[2],      &VertPosicons[3],
                                     (long*)&polymangle->x0, (long*)&polymangle->x1, (long*)&polymangle->x2, (long*)&polymangle->x3,
                                     &polydepth,
                                     &polyflag
@@ -1932,7 +1923,7 @@ int main(void) {
                         setPolyF4(polygoldenf);                          
                         setRGB0(polygoldenf,204,204,0);
                         OTz = RotTransPers4(
-                                    &VertPosgoldenf[0],      &VertPosgoldenf[1],      &VertPosgoldenf[2],      &VertPosgoldenf[3],
+                                    &VertPosicons[0],      &VertPosicons[1],      &VertPosicons[2],      &VertPosicons[3],
                                     (long*)&polygoldenf->x0, (long*)&polygoldenf->x1, (long*)&polygoldenf->x2, (long*)&polygoldenf->x3,
                                     &polydepth,
                                     &polyflag
@@ -1960,6 +1951,9 @@ int main(void) {
 
                 if (BBlol && nightwon == 0) {
                     if (SpuGetKeyStatus(SPU_17CH) == SPU_OFF) {
+                        light1 = 0;
+                        light2 = 0;
+                        lighthall = 0;
                         SpuSetKey(SPU_ON, SPU_17CH);
                     }
                 } else {
@@ -2504,6 +2498,8 @@ void resetgame(int hardreset) {
     musicangerframe = 0;
     ismusicboxatzero = 0;
 
+    if (enablephoneguystr[1] == 'N') {enablephoneguy = 1;}
+
     foxyalterablevalue = 0;
 
     toychicaHere = 0;
@@ -2526,7 +2522,10 @@ void resetgame(int hardreset) {
 
     light1 = 0;
     light2 = 0;
+    lighthall = 0;
     lightframe = 0;
+    flashlightbattery = flashlightbatteryfixed;
+    batterypublic = 3;
 
     camera = 0;
     curcam[0] = '0';
@@ -2571,7 +2570,11 @@ void resetgame(int hardreset) {
     AM = 12;
     FrameCounter = 0;
 
+    isingame = 0;
+
     mutedcall = 0;
+
+    checkframes = 0;
 }
 void print(int number) {
     if (camera == 0) {
@@ -2593,7 +2596,7 @@ void print(int number) {
         FntPrint("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");  // For the text to go bottom LOL
         if (night != 725255) {
             FntPrint("%d AM \n", AM);  // print time
-            if (flashlightbattery > flashlightbatteryfixed / 6 ) {FntPrint("Flash Battery %d %d\n", flashlightbattery, batterypublic);}
+            if (flashlightbattery > flashlightbatteryfixed / 6 ) {FntPrint("Flash Battery %d\n", batterypublic);}
             if (flashlightbattery < flashlightbatteryfixed / 6 && flashlightbattery > 0) {
                 if (blinkicon > 30) {
                     FntPrint("Flash Battery low \n");
@@ -2700,65 +2703,84 @@ void menuselectionfunc(void) { //LONG asf lmaoo
     if (!(pad & PADRdown)) {limiterbuttondown = 0;}
 
     if (maincustomnightmenu == 0 && extramenu == 0 && infoscreen == 0 && unlockssubmenu == 0 && AISetmenu == 0 && timermenu == 0 && advancedmenu == 0) {  
-        if (menuselection == 1) {//"Starting" night
-            if (pad & PADstart) {
-                night = 1;
-                helpwantedposter = 1;
-            } 
-        }
-
-        if (menuselection == 2) { //Continue nights
-            if (pad & PADstart) {
-                loadingframe = 360;
-                menu = 1;
-            }//Or...
-            if (pad & PADRup && pad & PADRright && pad & PADR1 && pad & PADL2 && activatedmenudebug == 0) //Activate debug !
-            {
-                activatedmenudebug = 1;
-                menuselectionmax = menuselectionmax + 1;
+        if (isingame) {
+            if (menuselection == 1) {//Continue night
+                if (pad & PADstart) {
+                    menu = 2;
+                    returnedingame = 1;
+                } 
             }
-        }
 
-        if (menuselection == 3) { //EXTRA MENU
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    extramenu = 1;
-                    menuselection = 1;
+            if (menuselection == 2) {//Abandon night
+                if (pad & PADstart && limiterstart == 0) {
+                    resetgame(0);
                     limiterstart++;
-                    if (activatedmenudebug == 0) {
-                        menuselectionmax = 5;
-                    }
-                    if (activatedmenudebug == 1) {
-                        menuselectionmax = 7;
-                    }
-                }
+                    menuselection = 3;
+                    if (activatedmenudebug == 0) {menuselectionmax = 4;} else {menuselectionmax = 5;}
+                    
+                } 
             }
-        }
-        if (menuselection == 4) { //CUSTOM NIGHT MENU
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    maincustomnightmenu = 1;
-                    menuselection = 1;
-                    menuselectionmax = 6;
-                    limiterstart++;
-                }
+        } else {
+            if (menuselection == 1) {//"Starting" night
+                if (pad & PADstart) {
+                    night = 1;
+                    helpwantedposter = 1;
+                } 
             }
-        }
 
-        if (activatedmenudebug == 1) {
-            if (menuselection == 5) {
-                if (pad & PADLright) {
-                    if (limiterpadright == 0) {
-                        printnumber++;
-                        if (printnumber > 5) {printnumber = 1;}
-                        limiterpadright = 1;
+            if (menuselection == 2) { //Continue nights
+                if (pad & PADstart) {
+                    loadingframe = 360;
+                    menu = 1;
+                }//Or...
+                if (pad & PADRup && pad & PADRright && pad & PADR1 && pad & PADL2 && activatedmenudebug == 0) //Activate debug !
+                {
+                    activatedmenudebug = 1;
+                    menuselectionmax = menuselectionmax + 1;
+                }
+            }
+
+            if (menuselection == 3) { //EXTRA MENU
+                if (pad & PADstart) {
+                    if (limiterstart == 0) {
+                        extramenu = 1;
+                        menuselection = 1;
+                        limiterstart++;
+                        if (activatedmenudebug == 0) {
+                            menuselectionmax = 5;
+                        }
+                        if (activatedmenudebug == 1) {
+                            menuselectionmax = 6;
+                        }
                     }
                 }
-                if (pad & PADLleft) {
-                    if (limiterpadleft == 0) {
-                        printnumber--;
-                        if (printnumber < 1) {printnumber = 5;}
-                        limiterpadleft = 1;
+            }
+            if (menuselection == 4) { //CUSTOM NIGHT MENU
+                if (pad & PADstart) {
+                    if (limiterstart == 0) {
+                        maincustomnightmenu = 1;
+                        menuselection = 1;
+                        menuselectionmax = 6;
+                        limiterstart++;
+                    }
+                }
+            }
+
+            if (activatedmenudebug == 1) {
+                if (menuselection == 5) {
+                    if (pad & PADLright) {
+                        if (limiterpadright == 0) {
+                            printnumber++;
+                            if (printnumber > 5) {printnumber = 1;}
+                            limiterpadright = 1;
+                        }
+                    }
+                    if (pad & PADLleft) {
+                        if (limiterpadleft == 0) {
+                            printnumber--;
+                            if (printnumber < 1) {printnumber = 5;}
+                            limiterpadleft = 1;
+                        }
                     }
                 }
             }
@@ -3224,6 +3246,10 @@ void menuselectionfunc(void) { //LONG asf lmaoo
           musicboxunwidingvaludemi = 0;
           musicboxunwidingvalue = 2;
           windingframe = 1;
+          enablephoneguy = 0;
+          enablephoneguystr[0] = 'O';
+          enablephoneguystr[1] = 'F';
+          enablephoneguystr[2] = 'F';
         }
         if (presetselector == 7) {
             presetselectorstr[0] = '4';
@@ -3890,28 +3916,34 @@ void menuselectionfunc(void) { //LONG asf lmaoo
 }
 void menuPrint(void) {
     if (maincustomnightmenu == 0 && extramenu == 0 && infoscreen == 0 && unlockssubmenu == 0 && AISetmenu == 0 && timermenu == 0 && advancedmenu == 0) {
-        FntPrint("   Five\n\n   Nights\n\n   at\n\n   Freddy's\n\n   2 \n\n\n");  // print time
+        if (isingame) {
+            FntPrint("   Five\n\n   Nights\n\n   at\n\n   Freddy's\n\n   2 \n\n   Pause Menu\n\n\n");  // print time
 
-        if (menuselection == 1) {FntPrint(">> New Game\n\n");}
-        else {FntPrint("   New Game\n\n");}
+            if (menuselection == 1) {FntPrint(">> Continue Night %d\n\n", night);}
+            else {FntPrint("   Continue Night %d\n\n", night);}
 
-        if (activatedmenudebug == 0) {
+            if (menuselection == 2) {FntPrint(">> Abandon The Night \n\n");}
+            else {FntPrint("   Abandon The Night \n\n");}
+        } else {
+
+            FntPrint("   Five\n\n   Nights\n\n   at\n\n   Freddy's\n\n   2 \n\n\n");  // print time
+
+            if (menuselection == 1) {FntPrint(">> New Game\n\n");}
+            else {FntPrint("   New Game\n\n");}
+
             if (menuselection == 2) {FntPrint(">> Continue Night %d\n\n", night);}
             else {FntPrint("   Continue Night %d\n\n", night);}
-        } else {
-            if (menuselection == 2) {FntPrint(">> Continue Night %d (AI level forceset)\n\n", night);}
-            else {FntPrint("   Continue Night %d\n\n", night);}
-        }
 
-        if (menuselection == 3) {FntPrint(">> Extra menu \n\n");}
-        else {FntPrint("   Extra menu \n\n");}
+            if (menuselection == 3) {FntPrint(">> Extra menu \n\n");}
+            else {FntPrint("   Extra menu \n\n");}
 
-        if (menuselection == 4) {FntPrint(">> Custom Night \n\n");}
-        else {FntPrint("   Custom Night \n\n");}
+            if (menuselection == 4) {FntPrint(">> Custom Night \n\n");}
+            else {FntPrint("   Custom Night \n\n");}
 
-        if (activatedmenudebug == 1) {
-            if (menuselection == 5) {FntPrint(">> Debugprint %d\n\n", printnumber);}
-            else {FntPrint("   Debugprint \n\n");}
+            if (activatedmenudebug == 1) {
+                if (menuselection == 5) {FntPrint(">> Debugprint %d\n\n", printnumber);}
+                else {FntPrint("   Debugprint \n\n");}
+            }
         }
     }
     if (maincustomnightmenu == 1) {
@@ -4093,6 +4125,15 @@ void controllerinput(void) {
                   CameraFunc(0);
             }
             if(!(pad & PADR1 || pad >> 16 & PADR1 && twoplayermode == 1)) {camlimiter = 0;}
+        }
+
+        if (pad & PADstart || pad >> 16 & PADstart && twoplayermode == 1) {returnframes++;}
+        if (!(pad & PADstart || pad >> 16 & PADstart && twoplayermode == 1)) {
+            if (returnframes != 0) {
+                returnframes = 0;
+                returnbasevolume = 0x1800;
+                SpuSetVoiceVolume(4, returnbasevolume, returnbasevolume);
+            }
         }
   }
     //Left
@@ -4812,7 +4853,6 @@ void AImoving(void) {
                 Ran(10);
                 if (RAN == 1) {
                     GFactivatedhallway = 1;
-                    LoadTexture(_binary_tim_hallway_goldenhallway_tim_start, &animatronichallway);
                 }
             }
             GFlocationframehallway = 60;
@@ -4851,6 +4891,11 @@ void AImoving(void) {
     }
 
     if (GFactivatedhallway == 1) {
+        if (issomeonehall == 1 && animatronicshallway[7] == 0) {
+            GFscreamerhallway = 0;
+            GFactivatedhallway = 0;
+            flashedonce = 0;
+        }
         if (flashedonce == 1) {
             if (lighthall == 1) {
                 GFscreamerhallway++;
@@ -4864,7 +4909,10 @@ void AImoving(void) {
                 flashedonce = 0;
             }
         } else {
-            if (lighthall == 1) {flashedonce = 1;}
+            if (lighthall == 1) {
+                flashedonce = 1;
+                LoadTexture(_binary_tim_hallway_goldenhallway_tim_start, &animatronichallway);
+            }
         }
     }
 }

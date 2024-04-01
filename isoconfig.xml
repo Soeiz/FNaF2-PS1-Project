@@ -107,6 +107,7 @@
             <file name="GAMEOVER.TIM"   type="data" source="tim/GAMEOVER.TIM"/>
             <file name="GOL.TIM"   type="data" source="tim/GOL.TIM"/>
             <file name="GOLF.TIM"   type="data" source="tim/GOLF.TIM"/>
+            <file name="FAM.TIM"   type="data" source="tim/5am6/FAM.TIM"/>
 
             <dummy sectors="1024"/>
             
