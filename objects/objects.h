@@ -922,61 +922,13 @@ SVECTOR RotVectorgoldenf = {0, 0, 0};
 VECTOR  MovVectorgoldenf = {0, 0, CENTERX/2-10, 0};
 VECTOR  ScaleVectorgoldenf = {1024, 1024, 1024};      
 
-SVECTOR VertPosfreddy[4] = {               
+SVECTOR VertPosicons[4] = {               
         {-10, -10, 1 },                    
         {-10,  10, 1 },                    
         {10, -10, 1 },                     
         {10,  10, 1  }                     
-    };            
-SVECTOR VertPosbonnie[4] = {               
-        {-10, -10, 1 },                    
-        {-10,  10, 1 },                    
-        {10, -10, 1 },                     
-        {10,  10, 1  }                     
-    };            
-SVECTOR VertPoschica[4] = {                
-        {-10, -10, 1 },                    
-        {-10,  10, 1 },                    
-        {10, -10, 1 },                     
-        {10,  10, 1  }                     
-    };            
-SVECTOR VertPosfoxy[4] = {                 
-        {-10, -10, 1 },                    
-        {-10,  10, 1 },                    
-        {10, -10, 1 },                     
-        {10,  10, 1  }                     
-    };               
+    };   
 
-SVECTOR VertPostoyfreddy[4] = {               
-        {-10, -10, 1 },                    
-        {-10,  10, 1 },                    
-        {10, -10, 1 },                     
-        {10,  10, 1  }                     
-    };            
-SVECTOR VertPostoybonnie[4] = {               
-        {-10, -10, 1 },                    
-        {-10,  10, 1 },                    
-        {10, -10, 1 },                     
-        {10,  10, 1  }                     
-    };            
-SVECTOR VertPostoychica[4] = {                
-        {-10, -10, 1 },                    
-        {-10,  10, 1 },                    
-        {10, -10, 1 },                     
-        {10,  10, 1  }                     
-    };            
-SVECTOR VertPosmangle[4] = {                 
-        {-10, -10, 1 },                    
-        {-10,  10, 1 },                    
-        {10, -10, 1 },                     
-        {10,  10, 1  }                     
-    };                
-SVECTOR VertPosgoldenf[4] = {              
-        {-10, -10, 1 },                    
-        {-10,  10, 1 },                    
-        {10, -10, 1 },                     
-        {10,  10, 1  }                     
-    };                                     
 MATRIX PolyMatrixfreddy = {0};    
 MATRIX PolyMatrixbonnie = {0};    
 MATRIX PolyMatrixchica = {0};    
@@ -1561,11 +1513,11 @@ void makepoly(int num) {
              
             if (toychicaHere) {
             	setClut(polyRvent, 320, 487); 
-            	setUV4(polyRvent, 0, 163, 0, 255, 78, 163, 78, 255); 
+            	setUV4(polyRvent, 10, 163, 10, 255, 88, 163, 88, 255); 
             }
             if (BBHere) {
             	setClut(polyRvent, 320, 488); 
-            	setUV4(polyRvent, 78, 163, 78, 255, 156, 163, 156, 255); 
+            	setUV4(polyRvent, 88, 163, 88, 255, 166, 163, 166, 255); 
             }
 
             addPrim(ot[db], polyRvent);                     
@@ -1608,36 +1560,6 @@ void makepoly(int num) {
              
             nextpri += sizeof(POLY_FT4);      
         }       
-        if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0) {
-		 	polymutecall = (POLY_FT4 *)nextpri;                 
-		 	        
-		 	RotMatrix(&RotVectormutecall, &PolyMatrixmutecall);    
-		 	TransMatrix(&PolyMatrixmutecall, &MovVectormutecall);  
-		 	ScaleMatrix(&PolyMatrixmutecall, &ScaleVectormutecall);
-		 	
-		 	SetRotMatrix(&PolyMatrixmutecall);                  
-		 	SetTransMatrix(&PolyMatrixmutecall);                
-		 	
-		 	setClut(polymutecall, 960, 200);
-            setRGB0(polymutecall, 128, 128, 128); 
-		 	setPolyFT4(polymutecall);                           
-		 	
-		 	polymutecall->tpage = getTPage(mutecall.mode&0x3, 0, 704, 256); 
-		 	
-		 	
-		 	RotTransPers4(
-		 	            &VertPosmutecall[0],      &VertPosmutecall[1],      &VertPosmutecall[2],      &VertPosmutecall[3],
-		 	            (long*)&polymutecall->x0, (long*)&polymutecall->x1, (long*)&polymutecall->x2, (long*)&polymutecall->x3,
-		 	            &polydepth,
-		 	            &polyflag
-		 	            );                               
-		 	
-		 	setUV4(polymutecall, 0, 0, 0, 31, 122, 0, 122, 31); // 8 diff (normaly 263 but can't go higher than 255, so 263-255 = 8)
-		 	    
-		 	addPrim(ot[db], polymutecall);                       
-		 	
-		 	nextpri += sizeof(POLY_FT4);    
-        }
         if (manglelocation == 8) {
 		 	polymanglehanging = (POLY_FT4 *)nextpri;                 
 		 	        
@@ -1702,6 +1624,7 @@ void makepoly(int num) {
 	        nextpri += sizeof(POLY_FT4);    
         }
         if (BBlol) {
+
 	        polyBB = (POLY_FT4 *)nextpri;                 
 	                
 	        RotMatrix(&RotVectorBB, &PolyMatrixBB);    
@@ -1997,14 +1920,17 @@ void makepoly(int num) {
                     
             RotMatrix(&RotVectorhallway, &PolyMatrixhallway); 
              
-            polyhallway->tpage = getTPage(animatronichallway.mode&0x3, 0, 320, 0);
 
             //I'm doing it this way for "prioritizing" the animatronics (if we don't see foxy but toy chica, it'd be a shame)
             if (animatronicshallway[7]) { //GF
-	            setUV4(polyhallway, 0, 0, 0, 88, 68, 0, 68, 88); 
+            	polyhallway->tpage = getTPage(animatronichallway.mode&0x3, 0, 704, 256);
+
+	            setUV4(polyhallway, 124, 0, 124, 88, 199, 0, 199, 88); 
 	            TransMatrix(&PolyMatrixhallway, &MovVectorhallway3);  
 	            ScaleMatrix(&PolyMatrixhallway, &ScaleVectorhallway4);
             } else {
+            	polyhallway->tpage = getTPage(animatronichallway.mode&0x3, 0, 320, 0);
+
 	            if (animatronicshallway[3]) { //Foxy
 	            	if (animatronicshallway[6]) { // + Mangle
 		                setUV4(polyhallway, 0, 0, 0, 154, 98, 0, 98, 154); 

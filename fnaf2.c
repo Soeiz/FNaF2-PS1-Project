@@ -159,7 +159,9 @@ XAbank soundBank = {
             {   11, 2314976,   1,     9 ,   9312, 17232, -1  }, //phone guy Night 6.xa 
             {   12, 696128,   1,     9 ,   18728, 21104, -1  }, //golden freddy screamer.xa 
             {   13, 1450656,   1,     9 ,   22600, 27560, -1  }, //puppet music.xa 
-            {   14, 1546432,   1,     9 ,   29056, 34344, -1  } //checking.xa 
+            {   14, 1546432,   1,     9 ,   29056, 34344, -1  }, //checking.xa 
+            //Channel 10
+            {   15, 6283840,   1,     10 ,   0, 21512, -1  } //ambiance3.xa 
         }
 };
 // XA file to load
@@ -691,14 +693,7 @@ void checking(void) {
     }
   }
 }
-/*
-int makestring(char * test, char * var) {
-  for (int i; i < 10; i++) {
-    var[i] = ' ';
-  }
-  var = strcpy(malloc(strlen(test)+1),test);
-}
-*/
+
 int main(void) {
     //controller
     TILE * PADL;                    // Tile primitives
@@ -1158,6 +1153,10 @@ int main(void) {
                             sample = 3;
                             fivesecondframe = 3600;
                         }
+                        if (ambiancesound == 3) {
+                            sample = 15;
+                            fivesecondframe = 8580;
+                        }
                         ambiancesound++;
                         ambiancechance = 1;
                         filter.chan = soundBank.samples[sample].channel;
@@ -1169,7 +1168,7 @@ int main(void) {
                         fivesecondframe = 300;
                         ambiancechance++;
                     }   
-                    if (ambiancesound > 2) {
+                    if (ambiancesound > 3) {
                         ambiancesound = 1;
                     }
                 }
@@ -2534,7 +2533,7 @@ void resetgame(int hardreset) {
     noisefootstep = 0;
     framenoisefootstep = 0;
 
-    fivesecondframe = 600;
+    fivesecondframe = 300;
 
     mascottune = 0;
     musicmascottune = 1248;
@@ -4056,9 +4055,9 @@ void menuPrint(void) {
     if (infoscreen == 1) {
         FntPrint("           Information Screen\n\n");
 
-        FntPrint("   Five Night at Freddy's 2 has been \n   released by Scott Cawton on 2014,\nand has been ported on the PS1 by Soeiz.\n         Again, Thank you, Scott, \n For feeding our imagination with this\n                  world.\n\n");
+        FntPrint("   Five Night at Freddy's 2 has been \n   released by Scott Cawton on 2014,\n  and has been ported on PS1 by Soeiz.\n\n         Again, Thank you Scott, \n For feeding our imagination with this\n                  world.\n\n");
 
-        FntPrint(">> Back                      V1.0\n"); //Don't even need to do condition, there's only one
+        FntPrint(">> Back                      V1.0.1\n"); //Don't even need to do condition, there's only one
     }
     if (unlockssubmenu == 1) {
         FntPrint("   Unlocks\n\n   Menu\n\n\n");  // print time
@@ -4825,7 +4824,7 @@ void AImoving(void) {
 
         if (foxylocation == 1) {
             if (lighthall == 1) {flashlightcounter++; foxyattackcounter = 50;}
-            if (flashlightcounter > night * 100) {
+            if (flashlightcounter > night * 100 && checkframes == 0) {
                 foxylocation--;
                 flashlightcounter = 0;
                 foxyalterablevalue = 0;
@@ -4840,10 +4839,11 @@ void AImoving(void) {
         }
     }
 
-    if (foxylocationframe < 0 && foxydifficulty != 0)  {
+    if (foxylocationframe < 0 && foxydifficulty != 0) {
         foxysran = (21 + Ran(5)) - foxyalterablevalue;
         if (foxydifficulty > foxysran && foxylocation == 0) {
             foxylocation++;
+            LightFuncHall();
         }   
         foxylocationframe = foxylocationframelock;
     }

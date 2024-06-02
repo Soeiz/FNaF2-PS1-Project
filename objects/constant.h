@@ -181,7 +181,7 @@ int animatronicategorie = 1;
 
 int menuselection = 2;
 int menuselectionmax = 4;
-int musicframes = 3788;
+int musicframes = 4431;
 int limitermenuL = 0;
 int limitermenuR = 0;
 int toyslightframe = 0;
@@ -371,7 +371,6 @@ int occupiedoncam = 360;
 int animatronicsoffice[] = {0,0,0,0,0,0,0,0,0}; //freddy, bonnie, chica, foxy, toy freddy, toy bonnie, toy chica, mangle, BB
 int animatronicshallway[] = {0,0,0,0,0,0,0}; //Freddy, bonnie, foxy, toy freddy, toy chica, mangle, GF
 
-int animatroniclocation[] = {0,0,0,0,0,0,0,0,0}; //Shit does nothing ??? Huh
 int blinkicon = 0;
 
 int checkframes = 0;
@@ -383,6 +382,12 @@ int fadeGF = 128;
 int inorout = 0;
 int onetime = 0;
 int oldnight = 0;
+
+int isingame = 0;
+int returnedingame = 0;
+int notoys = 0;
+int returnframes = 0;
+int returnbasevolume = 0x1800;
 
 int noisefootstep = 0;
 int framenoisefootstep = 0;
