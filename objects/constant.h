@@ -12,6 +12,7 @@
 
 #include <libcd.h>
 #include <malloc.h>
+#include <stdbool.h>
 
 #define BtoS(len) ( ( len + CD_SECTOR_SIZE - 1 ) / CD_SECTOR_SIZE ) 
 // Name of file to load
@@ -152,10 +153,33 @@ int frames = 500;
 int menuscreeninit = 0;
 int menu = 0;
 int helpwantedposter = 0;
+
 int maincustomnightmenu = 0;
 int AISetmenu = 0;
 int timermenu = 0;
 int advancedmenu = 0;
+int extramenu = 0;
+int infoscreen = 0;
+int unlockssubmenu = 0;
+
+int currentmenu[2] = {0,0};
+
+//First index, 1 Is main menu, 2 is extra menu, 3 is custom night menu.
+/*
+    second index (submenu) :
+
+    submenu in extra menu :
+
+    1 : unlocks menu
+    2 : Info screen
+
+    submenu in custom night menu :
+
+    1 : AI set menu
+    2 : timer menu
+    3 : Advanced menu
+*/
+
 int freddyfacechanged = 0;
 int freddyfacechangedchances = 400;
 
@@ -187,26 +211,22 @@ int limitermenuR = 0;
 int toyslightframe = 0;
 int ranmenu = 128;
 int activatedmenudebug = 0;
-int printnumber = 3;
+int printnumber = 1;
 int FrameCounterlimiterup = 0;
 int FrameCounterlimiterdown = 0;
 int FrameCounterlimit = 0;
 int convertion = 60;
-int extramenu = 0;
-int infoscreen = 0;
 int seedrandom = 0;
 int unlimitedpower = 0;
 char unlimitedpowerstr[] = "OFF";
 char radarstr[] = "OFF";
 char fastnightsstr[] = "OFF";
 int radar = 0;
-int unlockssubmenu = 0;
 int limiterunlimitedpower = 0;
 int limiterfastnights = 0;
 int limiterradar = 0;
 int fastnights = 0;
 int cheating = 0;
-int savemenu = 0;
 
 int twoplayermode = 0;
 char twoplayermodestr[] = "OFF";
@@ -223,6 +243,8 @@ int limiterpaddown = 0;
 int limiterpadup = 0;
 int limiterbuttondown = 0;
 int limiterstart = 0;
+bool blockallcommands = false;
+int blockcommandtimer = 0;
 
 int freddylocation = 0;
 int freddylocationframe = 300;
@@ -237,28 +259,22 @@ int toyfreddycountdown = -1;
 int toyfreddydifficulty = 0;
 
 int bonnielocation = 2;
-int bonnieliljumpscare = 0;
-int bonnieliljumpscarecooldown = 0;
 int bonnielocationframe = 300;
 int bonniedifficulty = 0;
-int bonnieonetimeskip = 0;
 
 int toybonnielocation = 0;
 int toybonnielocationframe = 300;
 int toybonnieframevent = 30;
 int toybran = 0;
 int toybonniedifficulty = 0;
-int toybonnieonetimeskip = 0;
 
 int chicalocation = 0;
 int chicalocationframe = 300;
 int chicadifficulty = 0;
-int chicaonetimeskip = 0;
 
 int toychicalocation = 0;
 int toychicalocationframe = 300;
-int toychicadifficulty = 0;
-int toychicaonetimeskip = 0;
+int toychicadifficulty = 0; 
 int toychicafoolness = 0;
 
 int foxyreadyattack = 0;
@@ -272,17 +288,12 @@ int halfsecondframefoxy = 30;
 int flashlightcounter = 0;
 int foxysran = 0;
 int foxyattackcounter = 0;
+int foxystun = 0;
 
 int manglelocation = 0;
 int manglelocationframe = 300;
 int manglefoolness = 240;
-int manglerunningframes = 0;
 int mangledifficulty = 0;
-int manglelocked = 0;
-int manglelockeduration = 16;
-int mangleoxy = 0;
-int manglesknock = 0;
-int mangleknockframe = 0;
 int mangleattack = 0;
 
 int BBdifficulty = 0;
@@ -392,9 +403,6 @@ int returnbasevolume = 0x1800;
 int noisefootstep = 0;
 int framenoisefootstep = 0;
 int noisefootstepanimatronic = 0;
-
-int noisefootstepF = 0;
-int framenoisefootstepF = 0;
 
 int fivesecondframe = 300;
 int ambiancesound = 1;

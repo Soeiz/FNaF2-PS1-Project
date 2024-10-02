@@ -542,150 +542,146 @@ void finishednight(void) {
 }
 
 void checking(void) {
-  if (camera == 0) {
-    if (checkframes == 0) {
-      switch(officequeue[0]) {
-        case 1:
-          LoadTexture(_binary_tim_office_officeFREDDY_tim_start, &officefrontanimatronic);
-          break;
-        case 2:
-          LoadTexture(_binary_tim_office_officeBONNIE_tim_start, &officefrontanimatronic);
-          break;
-        case 3:
-          LoadTexture(_binary_tim_office_officeCHICA_tim_start, &officefrontanimatronic);
-          break;
-        case 5:
-          LoadTexture(_binary_tim_office_officeTOYFREDDY_tim_start, &officefrontanimatronic);
-          break;
-        case 6:
-          LoadTexture(_binary_tim_office_officeTOYBONNIE_tim_start, &officefrontanimatronic);
-          break;
-
-        if (phoneguytalking > 0) {
-            mutedcall = 1;
-            phoneguytalking = 0;
-        }
-      }
-    }
-      checkframes++;
-      if (checkframes < 100) {
-          MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - 1;
-      }
-      if (checkframes > 100 && checkframes < 125) {
-          if (checkframes %2 == 0) {
-              MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - 1;
-          }
-      }
-      if (checkframes > 125) {
-          if (checkframes %3 == 0) {
-              MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - 1;
-          }
-      }
-      Ran(8);
-      if (RAN == 1 && MovVectorofficefronttoybonnie.vy < -54) {MovVectorofficefronttoybonnie.vy++;}
-      if (RAN == 2 && MovVectorofficefronttoybonnie.vy > -56) {MovVectorofficefronttoybonnie.vy--;}
-      if (checkframes < 240) {
-          if (checkframes %3 == 0) {         
-              setRGB0(polyofficeright1, 0, 0, 0); 
-              setRGB0(polyofficeright2, 0, 0, 0); 
-
-              setRGB0(polyofficemiddle, 0, 0, 0);   
-
-              setRGB0(polyofficefront, 0, 0, 0);            
-              setRGB0(polyofficeleft1, 0, 0, 0);            
-              setRGB0(polyofficeleft2, 0, 0, 0);    
-
-              setRGB0(polyhallway, 0, 0, 0);       
-              setRGB0(polytablefan, 0, 0, 0);     
-              setRGB0(polytablemiddle, 0, 0, 0);    
-              setRGB0(polytableright, 0,0,0);  
-              setRGB0(polytableleft, 0,0,0);
-              setRGB0(polytablemiddle2, 0, 0, 0);
-              setRGB0(polymanglehanging, 0, 0, 0);
-              setRGB0(polyBB, 0, 0, 0);
-          } else {
-              setRGB0(polyofficeright1, 128, 128, 128); 
-              setRGB0(polyofficeright2, 128, 128, 128); 
-              setRGB0(polyofficemiddle, 128, 128, 128);     
-              setRGB0(polyofficefront, 128, 128, 128);               
-              setRGB0(polyofficeleft1, 128, 128, 128);               
-              setRGB0(polyofficeleft2, 128, 128, 128);  
-              if (lighthall == 1 && issomeonehall == 1) {
-                  setRGB0(polyhallway, 108, 108, 108);     
-              }             
-              setRGB0(polytableright, 108, 108, 108);
-              setRGB0(polytableleft, 108, 108, 108);
-              setRGB0(polytablemiddle, 108, 108, 108);    
-              setRGB0(polytablemiddle2, 108, 108, 108);
-              setRGB0(polytablefan, 108, 108, 108);    
-              setRGB0(polymanglehanging, 128,128,128);
-              setRGB0(polyBB, 128,128,128);
-          }
-      } else {
-          setRGB0(polyofficeright1, 0, 0, 0); 
-          setRGB0(polyofficeright2, 0, 0, 0); 
-          setRGB0(polyofficemiddle, 0, 0, 0);               
-          setRGB0(polyofficefront, 0, 0, 0);            
-          setRGB0(polyofficeleft1, 0, 0, 0);             
-          setRGB0(polyofficeleft2, 0, 0, 0);            
-          setRGB0(polyhallway, 0, 0, 0);    
-          setRGB0(polytablemiddle, 0, 0, 0);       
-          setRGB0(polytableright, 0,0,0); 
-          setRGB0(polytableleft, 0,0,0);
-          setRGB0(polytablemiddle2, 0, 0, 0);
-          setRGB0(polytablefan, 0, 0, 0);
-          setRGB0(polymanglehanging, 0, 0, 0);    
-          setRGB0(polyBB, 0, 0, 0);
-      }
-      if (checkframes == checklifelimit) {
-        if (ismaskon == 0) {
-          isalreadydead = 3; //3 is by office attack
-        }
-      }
-      if (checkframes == 300) {
-        if (ismaskon == 0) {
-            isalreadydead = 4; //Office attack too but only when you lower the cam down
-        }
-          officequeuetimer = 600;
-          checkframes = 0;
-          if (ismaskon == 1 && isalreadydead != 3) {
-            switch(officequeue[0]) {
-              case 1:
-                freddylocation = 0;
-                freddylocationframe = 300;
-                break;
-              case 2:
-                bonnielocation = 1;
-                bonnielocationframe = 300;
-                break;
-              case 3:
-                chicalocation = 1;
-                chicalocationframe = 300;
-                break;
-              case 5:
-                toyfreddylocation = 0;
-                toyfreddylocationframe = 300;
-                break;
-              case 6:
-                toybonnielocation = 1;
-                toybonnielocationframe = 300;
-                MovVectorofficefronttoybonnie.vx = 0;
-                break;
+    if (camera == 0) {
+        if (checkframes == 0) {
+          switch(officequeue[0]) {
+            case 1:
+              LoadTexture(_binary_tim_office_officeFREDDY_tim_start, &officefrontanimatronic);
+              break;
+            case 2:
+              LoadTexture(_binary_tim_office_officeBONNIE_tim_start, &officefrontanimatronic);
+              break;
+            case 3:
+              LoadTexture(_binary_tim_office_officeCHICA_tim_start, &officefrontanimatronic);
+              break;
+            case 5:
+              LoadTexture(_binary_tim_office_officeTOYFREDDY_tim_start, &officefrontanimatronic);
+              break;
+            case 6:
+              LoadTexture(_binary_tim_office_officeTOYBONNIE_tim_start, &officefrontanimatronic);
+              break;
+    
+            if (phoneguytalking > 0) {
+                mutedcall = 1;
+                phoneguytalking = 0;
             }
-            officequeue[0] = 0;
-            for (int i = 0; i < 4; i++){ officequeue[i] = officequeue[i + 1];}
-            officequeue[4] = 0;
           }
-          CdControlF(CdlPause,0);
-          /*
-          for (int i = 0; i<10;i++) {
-              if(animatronicsoffice[i] == 1)
-              {
-                  animatronicsoffice[i] = 0;
-              } // TO-DO After the loc array
-          }*/ 
-          fadeoffice = 0;
-      }
+        }
+        checkframes++;
+        
+        if (officequeue[0] == 5) { 
+            if (checkframes < 100) {
+                MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - 1;
+            }
+            if (checkframes > 100 && checkframes < 125) {
+                if (checkframes %2 == 0) {
+                    MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - 1;
+                }
+            }
+            if (checkframes > 125) {
+                if (checkframes %3 == 0) {
+                    MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - 1;
+                }
+            }
+          Ran(8);
+            if (RAN == 1 && MovVectorofficefronttoybonnie.vy < -54) {MovVectorofficefronttoybonnie.vy++;}
+            if (RAN == 2 && MovVectorofficefronttoybonnie.vy > -56) {MovVectorofficefronttoybonnie.vy--;}
+          }
+        if (checkframes < 240) {
+            if (checkframes %3 == 0) {         
+                setRGB0(polyofficeright1, 0, 0, 0); 
+                setRGB0(polyofficeright2, 0, 0, 0); 
+    
+                setRGB0(polyofficemiddle, 0, 0, 0);   
+    
+                setRGB0(polyofficefront, 0, 0, 0);            
+                setRGB0(polyofficeleft1, 0, 0, 0);            
+                setRGB0(polyofficeleft2, 0, 0, 0);    
+    
+                setRGB0(polyhallway, 0, 0, 0);       
+                setRGB0(polytablefan, 0, 0, 0);     
+                setRGB0(polytablemiddle, 0, 0, 0);    
+                setRGB0(polytableright, 0,0,0);  
+                setRGB0(polytableleft, 0,0,0);
+                setRGB0(polytablemiddle2, 0, 0, 0);
+                setRGB0(polymanglehanging, 0, 0, 0);
+                setRGB0(polyBB, 0, 0, 0);
+            } else {
+                setRGB0(polyofficeright1, 128, 128, 128); 
+                setRGB0(polyofficeright2, 128, 128, 128); 
+                setRGB0(polyofficemiddle, 128, 128, 128);     
+                setRGB0(polyofficefront, 128, 128, 128);               
+                setRGB0(polyofficeleft1, 128, 128, 128);               
+                setRGB0(polyofficeleft2, 128, 128, 128);  
+                if (lighthall == 1 && issomeonehall == 1) {
+                    setRGB0(polyhallway, 108, 108, 108);     
+                }             
+                setRGB0(polytableright, 108, 108, 108);
+                setRGB0(polytableleft, 108, 108, 108);
+                setRGB0(polytablemiddle, 108, 108, 108);    
+                setRGB0(polytablemiddle2, 108, 108, 108);
+                setRGB0(polytablefan, 108, 108, 108);    
+                setRGB0(polymanglehanging, 128,128,128);
+                setRGB0(polyBB, 128,128,128);
+            }
+        } else {
+            setRGB0(polyofficeright1, 0, 0, 0); 
+            setRGB0(polyofficeright2, 0, 0, 0); 
+            setRGB0(polyofficemiddle, 0, 0, 0);               
+            setRGB0(polyofficefront, 0, 0, 0);            
+            setRGB0(polyofficeleft1, 0, 0, 0);             
+            setRGB0(polyofficeleft2, 0, 0, 0);            
+            setRGB0(polyhallway, 0, 0, 0);    
+            setRGB0(polytablemiddle, 0, 0, 0);       
+            setRGB0(polytableright, 0,0,0); 
+            setRGB0(polytableleft, 0,0,0);
+            setRGB0(polytablemiddle2, 0, 0, 0);
+            setRGB0(polytablefan, 0, 0, 0);
+            setRGB0(polymanglehanging, 0, 0, 0);    
+            setRGB0(polyBB, 0, 0, 0);
+        }
+        if (checkframes == checklifelimit) {
+            if (ismaskon == 0) {
+              isalreadydead = 3; //3 is by office attack
+            }
+        }   
+        if (checkframes == 300) {
+            if (ismaskon == 0) {
+                isalreadydead = 4; //Office attack too but only when you lower the cam down
+            }
+            officequeuetimer = 600;
+            checkframes = 0;
+            if (ismaskon == 1 && isalreadydead != 3) {
+              switch(officequeue[0]) {
+                case 1:
+                    freddylocation = 0;
+                    freddylocationframe = 300;
+                break;
+                case 2:
+                    bonnielocation = 1;
+                    bonnielocationframe = 300;
+                break;
+                case 3:
+                    chicalocation = 1;
+                    chicalocationframe = 300;
+                break;
+                case 5:
+                    toyfreddylocation = 0;
+                    toyfreddylocationframe = 300;
+                break;
+                case 6:
+                    toybonnielocation = 1;
+                    toybonnielocationframe = 300;
+                    MovVectorofficefronttoybonnie.vx = 0;
+                break;
+              }
+              officequeue[0] = 0;
+              for (int i = 0; i < 4; i++){ officequeue[i] = officequeue[i + 1];}
+              officequeue[4] = 0;
+            }
+            CdControlF(CdlPause,0);
+            fadeoffice = 0;
+        }
     } else {
     occupiedoncam--;
     if (occupiedoncam == 0) {
@@ -750,6 +746,7 @@ int main(void) {
             }
         }
         if (menu == 0) { //Menu Screen
+            if (blockcommandtimer > 0) {blockcommandtimer--;} else {if (blockallcommands == true) {blockallcommands = false;}}
             if (helpwantedposter == 0) {
 
                 menuPrint();
@@ -766,59 +763,59 @@ int main(void) {
                 } else {musicframes++;}
     
                 if (menuscreeninit == 0) {
-                loadFile = "\\MENUS1.TIM;1";
-                CdSearchFile( &filePos, loadFile);
-                dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
-                CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
-                // Read data and load it to dataBuffer
-                CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
-                CDreadResult = CdReadSync(0, 0);
-                LoadTexture(dataBuffer, &menus1); 
-                free(dataBuffer);
-                loadFile = "\\MENUS2.TIM;1";
-                CdSearchFile( &filePos, loadFile);
-                dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
-                CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
-                // Read data and load it to dataBuffer
-                CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
-                CDreadResult = CdReadSync(0, 0);
-                LoadTexture(dataBuffer, &menus2); 
-                free(dataBuffer);
-                if (initstuff == 0) {
-                    loadFile = "\\HWANTED.TIM;1";
+                    loadFile = "\\MENUS1.TIM;1";
                     CdSearchFile( &filePos, loadFile);
                     dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
                     CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
                     // Read data and load it to dataBuffer
                     CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
                     CDreadResult = CdReadSync(0, 0);
-                    LoadTexture(dataBuffer, &helpwanted); 
+                    LoadTexture(dataBuffer, &menus1); 
                     free(dataBuffer);
-                    loadFile = "\\GAMEOVER.TIM;1";
+                    loadFile = "\\MENUS2.TIM;1";
                     CdSearchFile( &filePos, loadFile);
                     dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
                     CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
                     // Read data and load it to dataBuffer
                     CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
                     CDreadResult = CdReadSync(0, 0);
-                    LoadTexture(dataBuffer, &gameover); 
+                    LoadTexture(dataBuffer, &menus2); 
                     free(dataBuffer);
-                    loadFile = "\\GJFIV.TIM;1";
-                    CdSearchFile( &filePos, loadFile);
-                    dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
-                    CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
-                    // Read data and load it to dataBuffer
-                    CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
-                    CDreadResult = CdReadSync(0, 0);
-                    LoadTexture(dataBuffer, &goodjob); 
-                    free(dataBuffer);
-                    initstuff++;
-                    CdControlF(CdlPause,0);
+                    if (initstuff == 0) {
+                        loadFile = "\\HWANTED.TIM;1";
+                        CdSearchFile( &filePos, loadFile);
+                        dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                        CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                        // Read data and load it to dataBuffer
+                        CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                        CDreadResult = CdReadSync(0, 0);
+                        LoadTexture(dataBuffer, &helpwanted); 
+                        free(dataBuffer);
+                        loadFile = "\\GAMEOVER.TIM;1";
+                        CdSearchFile( &filePos, loadFile);
+                        dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                        CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                        // Read data and load it to dataBuffer
+                        CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                        CDreadResult = CdReadSync(0, 0);
+                        LoadTexture(dataBuffer, &gameover); 
+                        free(dataBuffer);
+                        loadFile = "\\GJFIV.TIM;1";
+                        CdSearchFile( &filePos, loadFile);
+                        dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
+                        CdControl(CdlSetloc, (u_char *)&filePos.pos, CtrlResult);
+                        // Read data and load it to dataBuffer
+                        CDreadOK = CdRead( (int)BtoS(filePos.size), (u_long *)dataBuffer, CdlModeSpeed );
+                        CDreadResult = CdReadSync(0, 0);
+                        LoadTexture(dataBuffer, &goodjob); 
+                        free(dataBuffer);
+                        initstuff++;
+                        CdControlF(CdlPause,0);
 
-                    CdSearchFile( &XAPos, loadXA);
-                    soundBank.offset = CdPosToInt(&XAPos.pos);
-                    XAsetup();
-                }
+                        CdSearchFile( &XAPos, loadXA);
+                        soundBank.offset = CdPosToInt(&XAPos.pos);
+                        XAsetup();
+                    }
                 menuscreeninit = 1;
                 }
                 if (menuscreeninit == 1) {
@@ -1098,17 +1095,20 @@ int main(void) {
                 SpuSetKey(SPU_ON, SPU_03CH);
             }
             if (returnframes == 210) {
+                maincustomnightmenu = 0;
                 isingame = 1;
-                menuscreeninit = 0;
+                triggeralarm = 0;
                 SpuSetKey(SPU_OFF, SPU_ALLCH);
                 returnbasevolume = 0x1800;
                 SpuSetVoiceVolume(3, returnbasevolume, returnbasevolume);
-                menuselection = 3;
+                menuselection = 1;
                 menuselectionmax = 2;
                 returnframes = 0;
-                musicframes = 4430;
+                musicframes = 4330;
                 menu = 0;
                 notoys = 1;
+                blockallcommands = true;
+                blockcommandtimer = 60;
             }
             if (returnedingame) {
                 CdControlF(CdlPause,0);
@@ -1179,8 +1179,10 @@ int main(void) {
             if (phoneguytalkingconst - 1620 < phoneguytalking && mutedcall == 0) {
               if (pad & PADselect || pad >> 16 & PADselect) {
                 mutedcall = 1;
-                CdControlF(CdlPause,0);
                 phoneguytalking = 0;
+                enablephoneguy = 0;
+                sample = 0;
+                CdControlF(CdlPause,0);
               }
             }
               
@@ -1225,15 +1227,6 @@ int main(void) {
                 }
             }
 
-            if (noisefootstepF == 1) {
-                int noisef;
-                noisef = 0x800;
-                noisef = noisef + freddylocation * 1000;
-                SpuSetVoiceVolume(13, noisef, noisef);
-                SpuSetKey(SPU_ON, SPU_13CH);
-                noisefootstepF--;
-                noisef = 0;
-            }
             if (jamlight == 1) {
                 jamlightframes++;
                 if (jamlightframes == 1) {SpuSetKey(SPU_ON, SPU_12CH);}
@@ -1245,56 +1238,56 @@ int main(void) {
             }
 
             if (officequeue[0] != 0 && officequeuetimer == 0) {
-              checking();
-              if (checkframes == 1) {
-                if (sample != 14) {
-                 sample = 14;
+                checking();
+                if (checkframes == 1) {
+                  if (sample != 14) {
+                   sample = 14;
+                  }
+                  filter.chan = soundBank.samples[sample].channel;
+                  filter.file = soundBank.samples[sample].file;
+                  CdControlF(CdlSetfilter, (u_char *)&filter);
+                  soundBank.samples[sample].cursor = 0;  
                 }
-                filter.chan = soundBank.samples[sample].channel;
-                filter.file = soundBank.samples[sample].file;
-                CdControlF(CdlSetfilter, (u_char *)&filter);
-                soundBank.samples[sample].cursor = 0;  
-              }
-              if (checkframes == 300) {sample = 0;}
+                if (checkframes == 300) {sample = 0;}
             }
 
                 if (fadeoffice != 128 && officequeuetimer != 0) {
                     fadeoffice++;
-                      setRGB0(polyofficeright1, fadeoffice, fadeoffice, fadeoffice); 
-                      setRGB0(polyofficeright2, fadeoffice, fadeoffice, fadeoffice); 
-                      setRGB0(polyofficemiddle, fadeoffice, fadeoffice, fadeoffice);               
-                      setRGB0(polyofficeleft1, fadeoffice, fadeoffice, fadeoffice);            
-                      setRGB0(polyofficeleft2, fadeoffice, fadeoffice, fadeoffice);  
-                      if (lighthall == 1 && issomeonehall == 1) {
-                        setRGB0(polyhallway, fadeoffice, fadeoffice, fadeoffice);      
-                      }             
-                      setRGB0(polytablefan, fadeoffice, fadeoffice, fadeoffice);   
-                      setRGB0(polytablemiddle, fadeoffice, fadeoffice, fadeoffice);   
-                      setRGB0(polytableright, fadeoffice, fadeoffice, fadeoffice);   
-                      setRGB0(polytableleft, fadeoffice, fadeoffice, fadeoffice);   
-                      setRGB0(polytablemiddle2, fadeoffice, fadeoffice, fadeoffice);
-                      setRGB0(polymanglehanging, fadeoffice, fadeoffice, fadeoffice);
-                      setRGB0(polyBB, fadeoffice, fadeoffice, fadeoffice);
+                        setRGB0(polyofficeright1, fadeoffice, fadeoffice, fadeoffice); 
+                        setRGB0(polyofficeright2, fadeoffice, fadeoffice, fadeoffice); 
+                        setRGB0(polyofficemiddle, fadeoffice, fadeoffice, fadeoffice);               
+                        setRGB0(polyofficeleft1, fadeoffice, fadeoffice, fadeoffice);            
+                        setRGB0(polyofficeleft2, fadeoffice, fadeoffice, fadeoffice);  
+                        if (lighthall == 1 && issomeonehall == 1) {
+                          setRGB0(polyhallway, fadeoffice, fadeoffice, fadeoffice);      
+                        }             
+                        setRGB0(polytablefan, fadeoffice, fadeoffice, fadeoffice);   
+                        setRGB0(polytablemiddle, fadeoffice, fadeoffice, fadeoffice);   
+                        setRGB0(polytableright, fadeoffice, fadeoffice, fadeoffice);   
+                        setRGB0(polytableleft, fadeoffice, fadeoffice, fadeoffice);   
+                        setRGB0(polytablemiddle2, fadeoffice, fadeoffice, fadeoffice);
+                        setRGB0(polymanglehanging, fadeoffice, fadeoffice, fadeoffice);
+                        setRGB0(polyBB, fadeoffice, fadeoffice, fadeoffice);
                 } else {
 
-                  if (night != 725255 && fivetosixamframes == 0 && checkframes == 0) {
-                    setRGB0(polyofficeright1, 128, 128, 128); 
-                    setRGB0(polyofficeright2, 128, 128, 128); 
-                    setRGB0(polyofficemiddle, 128, 128, 128);           
-                    setRGB0(polyofficefront, 128, 128, 128);                   
-                    setRGB0(polyofficeleft1, 128, 128, 128);                    
-                    setRGB0(polyofficeleft2, 128, 128, 128);     
-                    if (lighthall == 1 && issomeonehall == 1) {
-                        setRGB0(polyhallway, 108, 108, 108);     
-                    }             
-                    setRGB0(polytablefan, 128, 128, 128);   
-                    setRGB0(polytablemiddle, 108, 108, 108);    
-                    setRGB0(polytableright, 108, 108, 108);
-                    setRGB0(polytableleft, 108, 108, 108);    
-                    setRGB0(polytablemiddle2, 108, 108, 108);    
-                    setRGB0(polymanglehanging, 128, 128, 128);
-                    setRGB0(polyBB, 128, 128, 128);
-                  }
+                    if (night != 725255 && fivetosixamframes == 0 && checkframes == 0) {
+                        setRGB0(polyofficeright1, 128, 128, 128); 
+                        setRGB0(polyofficeright2, 128, 128, 128); 
+                        setRGB0(polyofficemiddle, 128, 128, 128);           
+                        setRGB0(polyofficefront, 128, 128, 128);                   
+                        setRGB0(polyofficeleft1, 128, 128, 128);                    
+                        setRGB0(polyofficeleft2, 128, 128, 128);     
+                        if (lighthall == 1 && issomeonehall == 1) {
+                            setRGB0(polyhallway, 108, 108, 108);     
+                        }             
+                        setRGB0(polytablefan, 128, 128, 128);   
+                        setRGB0(polytablemiddle, 108, 108, 108);    
+                        setRGB0(polytableright, 108, 108, 108);
+                        setRGB0(polytableleft, 108, 108, 108);    
+                        setRGB0(polytablemiddle2, 108, 108, 108);    
+                        setRGB0(polymanglehanging, 128, 128, 128);
+                        setRGB0(polyBB, 128, 128, 128);
+                    }
                 }
 
             if (ismaskon == 0 && isalreadydead == 3 && checkframes == 0 || camera == 0 && isalreadydead == 4 && cooldowncamera != 0) {
@@ -2576,72 +2569,63 @@ void resetgame(int hardreset) {
     checkframes = 0;
 }
 void print(int number) {
-    if (camera == 0) {
-        if (number == 1) { //Basic debug (without access to camera)
-            FntPrint("AM : %d, current RAN : %d", AM, RAN);  // print time
-            if (side == 0) { //print lights
-                FntPrint("\nleft Light: %d", light1);
-            }
-            if (side == 1) {
-                FntPrint("\nRight Light: %d", light2);
-            }
-            FntPrint("\n\nphoneguytalking %d, ambiancechance %d, fivesecondframe %d", phoneguytalking, ambiancechance, fivesecondframe); //print cam     
-        }
-    }
-    if (number == 3) { //Vanilla debug (with access to camera)
-        if (camera == 0) {
-            FntPrint("\n");
-        }
-        FntPrint("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");  // For the text to go bottom LOL
-        if (night != 725255) {
-            FntPrint("%d AM \n", AM);  // print time
-            if (flashlightbattery > flashlightbatteryfixed / 6 ) {FntPrint("Flash Battery %d\n", batterypublic);}
-            if (flashlightbattery < flashlightbatteryfixed / 6 && flashlightbattery > 0) {
-                if (blinkicon > 30) {
-                    FntPrint("Flash Battery low \n");
-                } else {FntPrint(" \n");
-                }
-            }
-            FntPrint("Night %d \n", night);
-        } else {
-          if (phoneguytalking > 960) {
-            FntPrint("Night ^') \n");
-          }
-        }
-    }
-    if (camera == 1 && number != 2) {
+    if (camera == 1) {
         FntPrint("Camera :               %s,%s", curcam, curcamname);  // print time
     }
-    if (number == 2) { // OLD Animatronic debug (with access to camera)
-        FntPrint("%d AM, IAD %d, RAN %d\n",AM, isalreadydead, RAN);
-        FntPrint("OLD FlocFrame %d & location %d,",freddylocationframe, freddylocation);
-        FntPrint("\nBLocFrame %d & location %d,", bonnielocationframe, bonnielocation);
-        FntPrint("\nCLocFrame %d & location %d,\nFOlocFrame %d & location %d. ismaskon %d",chicalocationframe, chicalocation, foxylocationframe, foxylocation, ismaskon);
-        FntPrint("\nFoxy : alterval %d, flashcount %d, fattackcount %d", foxyalterablevalue, flashlightcounter, foxyattackcounter);
-        FntPrint("\nGF : Hlw %d, SCRhlw %d, OFFICE %d, notyet %d", GFactivatedhallway, GFscreamerhallway, GFactivated, GFnotactivatedyet);
-        FntPrint("\nOLD AI F %d, B %d, C %d,Fo %d.\nTOY AI F %d, B %d, C %d, M %d.",freddydifficulty, bonniedifficulty, chicadifficulty, foxydifficulty, toyfreddydifficulty, toybonniedifficulty, toychicadifficulty, mangledifficulty);
+    switch(number) {
+        case 1: 
+            if (camera == 0) {
+                FntPrint("\n");
+            }
+            FntPrint("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");  // For the text to go bottom LOL || i regret this
+            if (night != 725255) {
+                FntPrint("%d AM \n", AM);  // print time
+                if (flashlightbattery > flashlightbatteryfixed / 6 ) {FntPrint("Flash Battery %d\n", batterypublic);}
+                if (flashlightbattery < flashlightbatteryfixed / 6 && flashlightbattery > 0) {
+                    if (blinkicon > 30) {
+                        FntPrint("Flash Battery low \n");
+                    } else {FntPrint(" \n");
+                    }
+                }
+                FntPrint("Night %d \n", night);
+            } else {
+              if (phoneguytalking > 960) {
+                FntPrint("Night ^') \n");
+              }
+            }
+        break;
+        case 2:
+            FntPrint("%d AM, IAD %d, RAN %d\n",AM, isalreadydead, RAN);
+            FntPrint("OLD FlocFrame %d & location %d,",freddylocationframe, freddylocation);
+            FntPrint("\nBLocFrame %d & location %d,", bonnielocationframe, bonnielocation);
+            FntPrint("\nCLocFrame %d & location %d,\nFOlocFrame %d & location %d. ismaskon %d",chicalocationframe, chicalocation, foxylocationframe, foxylocation, ismaskon);
+            FntPrint("\nFOXY alterval %d,flashcount %d,FATKcount %d, foxystun %d", foxyalterablevalue, flashlightcounter, foxyattackcounter, foxystun);
+            FntPrint("\nGF : Hlw %d, SCRhlw %d, OFFICE %d, notyet %d", GFactivatedhallway, GFscreamerhallway, GFactivated, GFnotactivatedyet);
+            FntPrint("\nOLD AI F %d, B %d, C %d,Fo %d",freddydifficulty, bonniedifficulty, chicadifficulty, foxydifficulty, toyfreddydifficulty, toybonniedifficulty, toychicadifficulty, mangledifficulty);
+        break;
+        case 3:
+            FntPrint("%d AM, IAD %d, RAN %d, musicbox %d, pos %d, %d\n",AM, isalreadydead, RAN, musicboxtimer, MovVectorofficemiddle, flashlightbattery);
+            FntPrint("TOY TFlocFrame %d & loc %d,",toyfreddylocationframe, toyfreddylocation);
+            FntPrint("\nTBLocFrame %d & loc %d %d,", toybonnielocationframe, toybonnielocation, toybonnieframevent);
+            FntPrint("\nTCLocFrame %d & loc %d,\nMlocFrame %d & loc %d. Mattack %d\n",toychicalocationframe, toychicalocation, manglelocationframe, manglelocation, mangleattack);
+            FntPrint("BBLocFrame %d & loc %d sound %d %d\n",BBlocationframe, BBlocation, ambiancesound, ambiancechance);
+            FntPrint("OLD AI F %d, B %d, C %d,Fo %d.\nTOY AI F %d, B %d, C %d, M %d.",freddydifficulty, bonniedifficulty, chicadifficulty, foxydifficulty, toyfreddydifficulty, toybonniedifficulty, toychicadifficulty, mangledifficulty);
+        break;
+        case 4:
+            FntPrint("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            if (night != 725255) {
+              FntPrint("%dAM, RAN%d, MUS.B %d,CKF.%d,QT.%d\n", AM, RAN, musicboxtimer,checkframes, officequeuetimer);  // print time
+              FntPrint("Night %d \n", night);
+              FntPrint("Queue array :  %d %d %d %d %d\n", officequeue[0], officequeue[1], officequeue[2], officequeue[3], officequeue[4]);
+              FntPrint("Loc :  %d %d %d %d %d\n", freddylocation, bonnielocation, chicalocation, toyfreddylocation, toybonnielocation);
+            } else {
+              if (phoneguytalking > 960) {
+                FntPrint("Night ^') \n");
+              }
+            }
+
+        break;
     }
-    if (number == 4) { // TOY Animatronic debug (with access to camera)
-        FntPrint("%d AM, IAD %d, RAN %d, musicbox %d, pos %d, %d\n",AM, isalreadydead, RAN, musicboxtimer, MovVectorofficemiddle, flashlightbattery);
-        FntPrint("TOY TFlocFrame %d & loc %d,",toyfreddylocationframe, toyfreddylocation);
-        FntPrint("\nTBLocFrame %d & loc %d %d,", toybonnielocationframe, toybonnielocation, toybonnieframevent);
-        FntPrint("\nTCLocFrame %d & loc %d,\nMlocFrame %d & loc %d. Mattack %d\n",toychicalocationframe, toychicalocation, manglelocationframe, manglelocation, mangleattack);
-        FntPrint("BBLocFrame %d & loc %d sound %d %d\n",BBlocationframe, BBlocation, ambiancesound, ambiancechance);
-        FntPrint("OLD AI F %d, B %d, C %d,Fo %d.\nTOY AI F %d, B %d, C %d, M %d.",freddydifficulty, bonniedifficulty, chicadifficulty, foxydifficulty, toyfreddydifficulty, toybonniedifficulty, toychicadifficulty, mangledifficulty);
-    }
-    if (number == 5) { // Almost same then vanilla but with officequeue array and some things too
-        FntPrint("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");  // For the text to go bottom LOL
-        if (night != 725255) {
-          FntPrint("%d AM , RAN %d, musicbox %d\n", AM, RAN, musicboxtimer);  // print time
-          FntPrint("Night %d \n", night);
-          FntPrint("Queue array :  %d %d %d %d %d\n", officequeue[0], officequeue[1], officequeue[2], officequeue[3], officequeue[4]);
-          FntPrint("Loc :  %d %d %d %d %d\n", freddylocation, bonnielocation, chicalocation, toyfreddylocation, toybonnielocation);
-        } else {
-          if (phoneguytalking > 960) {
-            FntPrint("Night ^') \n");
-          }
-        }
-  }
 }
 void printNightInfo(void) { //print night information (1st, 2nd, 3rd, etc)
     if (night == 1) {
@@ -2662,6 +2646,9 @@ void printNightInfo(void) { //print night information (1st, 2nd, 3rd, etc)
     if (night == 6) {
         FntPrint("\n\n\n\n\n\n\n\n\n               %d:00 AM\n\n              6th  night", AM);
     }
+    if (night == 7) {
+        FntPrint("\n\n\n\n\n\n\n\n\n               %d:00 AM\n\n              7th  night", AM);
+    }
     if (night == 725255) {
         FntPrint("\n\n\n\n\n\n\n\n\n               `e:ç^ ¤*\n\n              @[#  night", AM);
     }
@@ -2670,1409 +2657,1243 @@ void printNightInfo(void) { //print night information (1st, 2nd, 3rd, etc)
     if (cheating == 1) {FntPrint("\n\n            Cheat Activate");}  // cheat time
 }
 void menuselectionfunc(void) { //LONG asf lmaoo
-    if (pad & PADLup) {
-        if (limiterpadup == 0) {
-            if (menuselection > 1) {
-                menuselection--;
-            }
-            else {
-                menuselection = menuselectionmax;
-            }
-            SpuSetKey(SPU_ON, SPU_03CH);
-            limiterpadup = 1;
-        }
-    }
-    if (pad & PADLdown) {
-        if (limiterpaddown == 0) {
-            if (menuselection < menuselectionmax) {
-                menuselection++;
-            }
-            else {
-                menuselection = 1;
-            }
-            SpuSetKey(SPU_ON, SPU_03CH);
-            limiterpaddown = 1;
-        }
-    }
-    if (!(pad & PADLright)) {limiterpadright = 0;}
-    if (!(pad & PADLleft)) {limiterpadleft = 0;}
-    if (!(pad & PADLdown)) {limiterpaddown = 0;}
-    if (!(pad & PADLup)) {limiterpadup = 0;}
-    if (!(pad & PADstart)) {limiterstart = 0;}
-    if (!(pad & PADRdown)) {limiterbuttondown = 0;}
-
-    if (maincustomnightmenu == 0 && extramenu == 0 && infoscreen == 0 && unlockssubmenu == 0 && AISetmenu == 0 && timermenu == 0 && advancedmenu == 0) {  
-        if (isingame) {
-            if (menuselection == 1) {//Continue night
-                if (pad & PADstart) {
-                    menu = 2;
-                    returnedingame = 1;
-                } 
-            }
-
-            if (menuselection == 2) {//Abandon night
-                if (pad & PADstart && limiterstart == 0) {
-                    resetgame(0);
-                    limiterstart++;
-                    menuselection = 3;
-                    if (activatedmenudebug == 0) {menuselectionmax = 4;} else {menuselectionmax = 5;}
-                    
-                } 
-            }
-        } else {
-            if (menuselection == 1) {//"Starting" night
-                if (pad & PADstart) {
-                    night = 1;
-                    helpwantedposter = 1;
-                } 
-            }
-
-            if (menuselection == 2) { //Continue nights
-                if (pad & PADstart) {
-                    loadingframe = 360;
-                    menu = 1;
-                }//Or...
-                if (pad & PADRup && pad & PADRright && pad & PADR1 && pad & PADL2 && activatedmenudebug == 0) //Activate debug !
-                {
-                    activatedmenudebug = 1;
-                    menuselectionmax = menuselectionmax + 1;
+    if (blockallcommands == false) {
+        if (pad & PADLup) {
+            if (limiterpadup == 0) {
+                if (menuselection > 1) {
+                    menuselection--;
                 }
-            }
-
-            if (menuselection == 3) { //EXTRA MENU
-                if (pad & PADstart) {
-                    if (limiterstart == 0) {
-                        extramenu = 1;
-                        menuselection = 1;
-                        limiterstart++;
-                        if (activatedmenudebug == 0) {
-                            menuselectionmax = 5;
-                        }
-                        if (activatedmenudebug == 1) {
-                            menuselectionmax = 6;
-                        }
-                    }
+                else {
+                    menuselection = menuselectionmax;
                 }
-            }
-            if (menuselection == 4) { //CUSTOM NIGHT MENU
-                if (pad & PADstart) {
-                    if (limiterstart == 0) {
-                        maincustomnightmenu = 1;
-                        menuselection = 1;
-                        menuselectionmax = 6;
-                        limiterstart++;
-                    }
-                }
-            }
-
-            if (activatedmenudebug == 1) {
-                if (menuselection == 5) {
-                    if (pad & PADLright) {
-                        if (limiterpadright == 0) {
-                            printnumber++;
-                            if (printnumber > 5) {printnumber = 1;}
-                            limiterpadright = 1;
-                        }
-                    }
-                    if (pad & PADLleft) {
-                        if (limiterpadleft == 0) {
-                            printnumber--;
-                            if (printnumber < 1) {printnumber = 5;}
-                            limiterpadleft = 1;
-                        }
-                    }
-                }
+                SpuSetKey(SPU_ON, SPU_03CH);
+                limiterpadup = 1;
             }
         }
-    }
-
-    if (maincustomnightmenu == 1) {
-        if (menuselection == 1) {
-            if (pad & PADLright) {
-                if (limiterpadright == 0) {
-                    night++;
-                    if (night > 6) {night = 1;}
-                    limiterpadright = 1;
+        if (pad & PADLdown) {
+            if (limiterpaddown == 0) {
+                if (menuselection < menuselectionmax) {
+                    menuselection++;
                 }
-            }
-            if (pad & PADLleft) {
-                if (limiterpadleft == 0) {
-                    night--;
-                    if (night < 1) {night = 6;}
-                    limiterpadleft = 1;
-                }
-            } //Change night's var
-        }
-
-        if (menuselection == 2) { // AI SET MENU
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    maincustomnightmenu = 0;
-                    AISetmenu = 1;
-                    menuselection = 7;
-                    menuselectionmax = 7;
-                    limiterstart = 1;
-                }
-            }
-        }
-        if (menuselection == 3) { // TIMER ETC MENU
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    maincustomnightmenu = 0;
-                    timermenu = 1;
-                    menuselection = 3;
-                    menuselectionmax = 3;
-                    limiterstart = 1;
-                }
-            }
-        }
-        if (menuselection == 4) { // ADV MENU
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    maincustomnightmenu = 0;
-                    advancedmenu = 1;
-                    menuselection = 3;
-                    menuselectionmax = 3;
-                    limiterstart = 1;
-                }
-            }
-        }
-        if (menuselection == 5) { // LAUNCH NIGHT
-            if (pad & PADstart) {
-              if (limiterstart == 0) {
-                menu = 1;
-                customnightactivated = 1;
-              }
-            }
-        }
-        if (menuselection == 6) { // RETURN TO MAIN MENU
-            if (pad & PADstart) {
-                if (limiterstart == 0)  {
-                    maincustomnightmenu = 0;
-                    menuselection = 4;
-                    limiterstart++;
-                    if (activatedmenudebug == 0) {menuselectionmax = 4;}
-                    else {menuselectionmax = 5;}
-                }
-            }
-        }
-    }
-    if (AISetmenu == 1) {
-        if (animatronicategorie == 1) {
-            if (menuselection == 1) {
-                if (pad & PADLright) { //Freddy
-                    if (limiterpadright == 0) {
-                        freddydifficulty++;
-                        if (freddydifficulty > 20) {freddydifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //Freddy
-                    if (limiterpadleft == 0) {
-                        freddydifficulty--;
-                        if (freddydifficulty < 0) {freddydifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-            if (menuselection == 2) {
-                if (pad & PADLright) { //Bonnie
-                    if (limiterpadright == 0) {
-                        bonniedifficulty++;
-                        if (bonniedifficulty > 20) {bonniedifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //Bonnie
-                    if (limiterpadleft == 0) {
-                        bonniedifficulty--;
-                        if (bonniedifficulty < 0) {bonniedifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-            if (menuselection == 3) {
-                if (pad & PADLright) { //Chica
-                    if (limiterpadright == 0) {
-                        chicadifficulty++;
-                        if (chicadifficulty > 20) {chicadifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //Chica
-                    if (limiterpadleft == 0) {
-                        chicadifficulty--;
-                        if (chicadifficulty < 0) {chicadifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-            if (menuselection == 4) {
-                if (pad & PADLright) { //Foxy
-                    if (limiterpadright == 0) {
-                        foxydifficulty++;
-                        if (foxydifficulty > 20) {foxydifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //Foxy
-                    if (limiterpadleft == 0) {
-                        foxydifficulty--;
-                        if (foxydifficulty < 0) {foxydifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-        }
-
-        if (animatronicategorie == 2) {
-            if (menuselection == 1) {
-                if (pad & PADLright) { //Toy Freddy
-                    if (limiterpadright == 0) {
-                        toyfreddydifficulty++;
-                        if (toyfreddydifficulty > 20) {toyfreddydifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //Toy Freddy
-                    if (limiterpadleft == 0) {
-                        toyfreddydifficulty--;
-                        if (toyfreddydifficulty < 0) {toyfreddydifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-            if (menuselection == 2) {
-                if (pad & PADLright) { //Toy Bonnie
-                    if (limiterpadright == 0) {
-                        toybonniedifficulty++;
-                        if (toybonniedifficulty > 20) {toybonniedifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //Toy Bonnie
-                    if (limiterpadleft == 0) {
-                        toybonniedifficulty--;
-                        if (toybonniedifficulty < 0) {toybonniedifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-            if (menuselection == 3) {
-                if (pad & PADLright) { //Toy Chica
-                    if (limiterpadright == 0) {
-                        toychicadifficulty++;
-                        if (toychicadifficulty > 20) {toychicadifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //Toy Chica
-                    if (limiterpadleft == 0) {
-                        toychicadifficulty--;
-                        if (toychicadifficulty < 0) {toychicadifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-            if (menuselection == 4) {
-                if (pad & PADLright) { //Toy Foxy (mangle)
-                    if (limiterpadright == 0) {
-                        mangledifficulty++;
-                        if (mangledifficulty > 20) {mangledifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //Toy Foxy (mangle)
-                    if (limiterpadleft == 0) {
-                        mangledifficulty--;
-                        if (mangledifficulty < 0) {mangledifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-        }
-
-        if (animatronicategorie == 3) {
-            if (menuselection == 1) {
-                if (pad & PADLright) { //BB
-                    if (limiterpadright == 0) {
-                        BBdifficulty++;
-                        if (BBdifficulty > 20) {BBdifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //BB
-                    if (limiterpadleft == 0) {
-                        BBdifficulty--;
-                        if (BBdifficulty < 0) {BBdifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-            if (menuselection == 2) {
-                if (pad & PADLright) { //Golden Freddy
-                    if (limiterpadright == 0) {
-                        GFdifficulty++;
-                        if (GFdifficulty > 20) {GFdifficulty = 0;}
-                        limiterpadright = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-                if (pad & PADLleft) { //Golden Freddy
-                    if (limiterpadleft == 0) {
-                        GFdifficulty--;
-                        if (GFdifficulty < 0) {GFdifficulty = 20;}
-                        limiterpadleft = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-            if (menuselection == 3) {
-                if (pad & PADRdown) { //Character level up ?
-                    if (limiterbuttondown == 0) {
-                      if (doescharlevelup == 0) {
-                        doescharlevelup = 1;
-                        doescharlevelupstr[0] = 'O';
-                        doescharlevelupstr[1] = 'n';
-                        doescharlevelupstr[2] = ' ';
-                      } else {
-                        doescharlevelup = 0;
-                        doescharlevelupstr[0] = 'O';
-                        doescharlevelupstr[1] = 'f';
-                        doescharlevelupstr[2] = 'f';
-                      }
-                      limiterbuttondown = 1;
-                        SpuSetKey(SPU_ON, SPU_10CH);
-                    }
-                }
-            }
-        }
-
-        if (menuselection == 5) {
-            if (pad & PADLleft) {
-                if (limiterpadleft == 0) {
-                    animatronicategorie--;
-                    if (animatronicategorie < 1) {animatronicategorie = 1;}
-                    limiterpadleft = 1;
-                }
-            }
-            if (pad & PADLright) {
-                if (limiterpadright == 0) {
-                    animatronicategorie++;
-                    if (animatronicategorie > 3) {animatronicategorie = 3;}
-                    limiterpadright = 1;
-                }
-            }
-        }
-
-        if (menuselection == 6) {
-            if (pad & PADLleft) {
-                if (limiterpadleft == 0) {
-                    presetselector--;
-                    if (presetselector < 1) {presetselector = 16;}
-                    limiterpadleft = 1;
-                }
-                SpuSetKey(SPU_ON, SPU_10CH);
-            }
-            if (pad & PADLright) {
-                if (limiterpadright == 0) {
-                    presetselector++;
-                    if (presetselector > 16) {presetselector = 1;}
-                    limiterpadright = 1;
-                }
-                SpuSetKey(SPU_ON, SPU_10CH);
-            }
-        }
-
-        if (menuselection == 7) {
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    maincustomnightmenu = 1;
-                    AISetmenu = 0;
-                    menuselection = 2;
-                    menuselectionmax = 6;
-                    limiterstart++;
-                }
-            }
-        }
-        if (presetselector == 1) {
-            presetselectorstr[0] = 'C';
-            presetselectorstr[1] = 'u';
-            presetselectorstr[2] = 's';
-            presetselectorstr[3] = 't';
-            presetselectorstr[4] = 'o';
-            presetselectorstr[5] = 'm';
-            presetselectorstr[6] = ' ';
-            presetselectorstr[7] = ' ';
-            presetselectorstr[8] = ' ';
-            presetselectorstr[9] = ' ';
-            presetselectorstr[10] = ' ';
-            presetselectorstr[11] = ' ';
-            presetselectorstr[12] = ' ';
-
-            puppetdifficulty = 15;
-            musicboxunwidingvaludemi = 0;
-            musicboxunwidingvalue = 2;
-            windingframe = 1;
-        }
-        if (presetselector > 1 && presetselector < 7) {
-            presetselectorstr[0] = 'N';
-            presetselectorstr[1] = 'i';
-            presetselectorstr[2] = 'g';
-            presetselectorstr[3] = 'h';
-            presetselectorstr[4] = 't';
-            presetselectorstr[5] = ' ';
-            if (presetselector == 2) {
-                presetselectorstr[6] = '2';
-                freddydifficulty = 0;
-                bonniedifficulty = 0;
-                chicadifficulty = 0;
-                foxydifficulty = 1;
-                puppetdifficulty = 5;
-                toyfreddydifficulty = 2;
-                toybonniedifficulty = 3;
-                toychicadifficulty = 3;
-                mangledifficulty = 3;
-                BBdifficulty = 3;
-                GFdifficulty = 0;
-                doescharlevelup = 1;
-                musicboxunwidingvaludemi = 0;
-                musicboxunwidingvalue = 1;
-                musicboxunwidingvaluthird = -2; // OK
-                doescharlevelupstr[0] = 'O';
-                doescharlevelupstr[1] = 'N';
-                doescharlevelupstr[2] = ' ';
-            }
-            if (presetselector == 3) {
-                presetselectorstr[6] = '3';
-                freddydifficulty = 0;
-                bonniedifficulty = 1;
-                chicadifficulty = 1;
-                foxydifficulty = 2;
-                puppetdifficulty = 8;
-                toyfreddydifficulty = 0;
-                toybonniedifficulty = 0;
-                toychicadifficulty = 0;
-                mangledifficulty = 0;
-                BBdifficulty = 1;
-                GFdifficulty = 0;
-                doescharlevelup = 1;
-                musicboxunwidingvaludemi = 0;
-                musicboxunwidingvalue = 1;
-                musicboxunwidingvaluthird = -2;
-                doescharlevelupstr[0] = 'O';
-                doescharlevelupstr[1] = 'N';
-                doescharlevelupstr[2] = ' ';
-            }
-            if (presetselector == 4) {
-                presetselectorstr[6] = '4';
-                freddydifficulty = 0;
-                bonniedifficulty = 1;
-                chicadifficulty = 0;
-                foxydifficulty = 7;
-                puppetdifficulty = 9;
-                toyfreddydifficulty = 0;
-                toybonniedifficulty = 0;
-                toychicadifficulty = 0;
-                mangledifficulty = 5;
-                BBdifficulty = 3;
-                GFdifficulty = 0;
-                doescharlevelup = 1;
-                musicboxunwidingvalue = 4;
-                doescharlevelupstr[0] = 'O';
-                doescharlevelupstr[1] = 'N';
-                doescharlevelupstr[2] = ' ';
-            }
-            if (presetselector == 5) {
-                presetselectorstr[6] = '5';
-                freddydifficulty = 2;
-                bonniedifficulty = 2;
-                chicadifficulty = 2;
-                foxydifficulty = 5;
-                puppetdifficulty = 10;
-                toyfreddydifficulty = 5;
-                toybonniedifficulty = 2;
-                toychicadifficulty = 2;
-                mangledifficulty = 1;
-                BBdifficulty = 5;
-                GFdifficulty = 0;
-                doescharlevelup = 1;
-                musicboxunwidingvalue = 5;
-                doescharlevelupstr[0] = 'O';
-                doescharlevelupstr[1] = 'N';
-                doescharlevelupstr[2] = ' ';
-            }
-            if (presetselector == 6) {
-                presetselectorstr[6] = '6';
-                freddydifficulty = 5;
-                bonniedifficulty = 5;
-                chicadifficulty = 5;
-                foxydifficulty = 10;
-                puppetdifficulty = 15;
-                toyfreddydifficulty = 0;
-                toybonniedifficulty = 0;
-                toychicadifficulty = 0;
-                mangledifficulty = 3;
-                BBdifficulty = 5;
-                GFdifficulty = 0;
-                doescharlevelup = 1;
-                musicboxunwidingvaludemi = 0;
-                musicboxunwidingvalue = 2; 
-                windingframe = 1;
-                doescharlevelupstr[0] = 'O';
-                doescharlevelupstr[1] = 'N';
-                doescharlevelupstr[2] = ' ';
-            }
-        } else {
-          musicboxunwidingvaludemi = 0;
-          musicboxunwidingvalue = 2;
-          windingframe = 1;
-          enablephoneguy = 0;
-          enablephoneguystr[0] = 'O';
-          enablephoneguystr[1] = 'F';
-          enablephoneguystr[2] = 'F';
-        }
-        if (presetselector == 7) {
-            presetselectorstr[0] = '4';
-            presetselectorstr[1] = '/';
-            presetselectorstr[2] = '2';
-            presetselectorstr[3] = '0';
-            presetselectorstr[4] = ' ';
-            presetselectorstr[5] = ' ';
-            presetselectorstr[6] = ' ';
-            presetselectorstr[7] = ' ';
-            presetselectorstr[8] = ' ';
-            presetselectorstr[9] = ' ';
-            presetselectorstr[10] = ' ';
-            presetselectorstr[11] = ' ';
-            presetselectorstr[12] = ' ';
-            freddydifficulty = 20;
-            bonniedifficulty = 20;
-            chicadifficulty = 20;
-            foxydifficulty = 20;
-            toyfreddydifficulty = 0;
-            toybonniedifficulty = 0;
-            toychicadifficulty = 0;
-            mangledifficulty = 0;
-            BBdifficulty = 0;
-            GFdifficulty = 0;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-        if (presetselector == 8) {
-            presetselectorstr[0] = 'N';
-            presetselectorstr[1] = 'e';
-            presetselectorstr[2] = 'w';
-            presetselectorstr[3] = ' ';
-            presetselectorstr[4] = 'a';
-            presetselectorstr[5] = 'n';
-            presetselectorstr[6] = 'd';
-            presetselectorstr[7] = ' ';
-            presetselectorstr[8] = 'S';
-            presetselectorstr[9] = 'h';
-            presetselectorstr[10] = 'i';
-            presetselectorstr[11] = 'n';
-            presetselectorstr[12] = 'y';
-            presetselectorstr[13] = ' ';
-            presetselectorstr[14] = ' ';
-            freddydifficulty = 0;
-            bonniedifficulty = 0;
-            chicadifficulty = 0;
-            foxydifficulty = 0;
-            toyfreddydifficulty = 10;
-            toybonniedifficulty = 10;
-            toychicadifficulty = 10;
-            mangledifficulty = 10;
-            BBdifficulty = 10;
-            GFdifficulty = 0;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-        if (presetselector == 9) {
-            presetselectorstr[0] = 'D';
-            presetselectorstr[1] = 'o';
-            presetselectorstr[2] = 'u';
-            presetselectorstr[3] = 'b';
-            presetselectorstr[4] = 'l';
-            presetselectorstr[5] = 'e';
-            presetselectorstr[6] = ' ';
-            presetselectorstr[7] = 'T';
-            presetselectorstr[8] = 'r';
-            presetselectorstr[9] = 'o';
-            presetselectorstr[10] = 'u';
-            presetselectorstr[11] = 'b';
-            presetselectorstr[12] = 'l';
-            presetselectorstr[13] = 'e';
-            presetselectorstr[14] = ' ';
-            presetselectorstr[15] = ' ';
-            bonniedifficulty = 20;
-            foxydifficulty = 5;
-            toybonniedifficulty = 20;
-
-            freddydifficulty = 0;
-            chicadifficulty = 0;
-            toyfreddydifficulty = 0;
-            toychicadifficulty = 0;
-            mangledifficulty = 0;
-            BBdifficulty = 0;
-            GFdifficulty = 0;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-        if (presetselector == 10) {
-            presetselectorstr[0] = 'N';
-            presetselectorstr[1] = 'i';
-            presetselectorstr[2] = 'g';
-            presetselectorstr[3] = 'h';
-            presetselectorstr[4] = 't';
-            presetselectorstr[5] = ' ';
-            presetselectorstr[6] = 'o';
-            presetselectorstr[7] = 'f';
-            presetselectorstr[8] = ' ';
-            presetselectorstr[9] = 'm';
-            presetselectorstr[10] = 'i';
-            presetselectorstr[11] = 's';
-            presetselectorstr[12] = 'f';
-            presetselectorstr[13] = 'i';
-            presetselectorstr[14] = 't';
-            presetselectorstr[15] = 's';
-            mangledifficulty = 20;
-            GFdifficulty = 10;
-            BBdifficulty = 20;
-
-            freddydifficulty = 0;
-            bonniedifficulty = 0;
-            chicadifficulty = 0;
-            foxydifficulty = 0;
-            toyfreddydifficulty = 0;
-            toybonniedifficulty = 0;
-            toychicadifficulty = 0;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-        if (presetselector == 11) {
-            presetselectorstr[0] = 'F';
-            presetselectorstr[1] = 'o';
-            presetselectorstr[2] = 'x';
-            presetselectorstr[3] = 'y';
-            presetselectorstr[4] = ' ';
-            presetselectorstr[5] = 'F';
-            presetselectorstr[6] = 'o';
-            presetselectorstr[7] = 'x';
-            presetselectorstr[8] = 'y';
-            presetselectorstr[9] = ' ';
-            presetselectorstr[10] = ' ';
-            presetselectorstr[11] = ' ';
-            presetselectorstr[12] = ' ';
-            presetselectorstr[13] = ' ';
-            presetselectorstr[14] = ' ';
-            presetselectorstr[15] = ' ';
-            presetselectorstr[16] = ' ';
-            mangledifficulty = 20;
-            foxydifficulty = 20;
-
-            freddydifficulty = 0;
-            bonniedifficulty = 0;
-            chicadifficulty = 0;
-            toyfreddydifficulty = 0;
-            toybonniedifficulty = 0;
-            toychicadifficulty = 0;
-            BBdifficulty = 0;
-            GFdifficulty = 0;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-        if (presetselector == 12) {
-            presetselectorstr[0] = 'L';
-            presetselectorstr[1] = 'a';
-            presetselectorstr[2] = 'd';
-            presetselectorstr[3] = 'i';
-            presetselectorstr[4] = 'e';
-            presetselectorstr[5] = 's';
-            presetselectorstr[6] = ' ';
-            presetselectorstr[7] = 'N';
-            presetselectorstr[8] = 'i';
-            presetselectorstr[9] = 'g';
-            presetselectorstr[10] = 'h';
-            presetselectorstr[11] = 't';
-            presetselectorstr[12] = ' ';
-            presetselectorstr[13] = ' ';
-            presetselectorstr[14] = ' ';
-            mangledifficulty = 20;
-            chicadifficulty = 20;
-            toychicadifficulty = 20;
-
-            freddydifficulty = 0;
-            bonniedifficulty = 0;
-            foxydifficulty = 0;
-            toyfreddydifficulty = 0;
-            toybonniedifficulty = 0;
-            BBdifficulty = 0;
-            GFdifficulty = 0;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-        if (presetselector == 13) {
-            presetselectorstr[0] = 'F';
-            presetselectorstr[1] = 'r';
-            presetselectorstr[2] = 'e';
-            presetselectorstr[3] = 'd';
-            presetselectorstr[4] = 'd';
-            presetselectorstr[5] = 'y';
-            presetselectorstr[6] = '"';
-            presetselectorstr[7] = 's';
-            presetselectorstr[8] = ' ';
-            presetselectorstr[9] = 'C';
-            presetselectorstr[10] = 'i';
-            presetselectorstr[11] = 'r';
-            presetselectorstr[12] = 'c';
-            presetselectorstr[13] = 'u';
-            presetselectorstr[14] = 's';
-            presetselectorstr[15] = ' ';
-            presetselectorstr[16] = ' ';
-            freddydifficulty = 20;
-            toyfreddydifficulty = 20;
-            foxydifficulty = 10;
-            BBdifficulty = 10;
-            GFdifficulty = 10;
-
-            bonniedifficulty = 0;
-            chicadifficulty = 0;
-            toybonniedifficulty = 0;
-            toychicadifficulty = 0;
-            mangledifficulty = 0;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-        if (presetselector == 14) {
-            presetselectorstr[0] = 'C';
-            presetselectorstr[1] = 'u';
-            presetselectorstr[2] = 'p';
-            presetselectorstr[3] = 'c';
-            presetselectorstr[4] = 'a';
-            presetselectorstr[5] = 'k';
-            presetselectorstr[6] = 'e';
-            presetselectorstr[7] = ' ';
-            presetselectorstr[8] = 'C';
-            presetselectorstr[9] = 'h';
-            presetselectorstr[10] = 'a';
-            presetselectorstr[11] = 'l';
-            presetselectorstr[12] = 'l';
-            presetselectorstr[13] = 'e';
-            presetselectorstr[14] = 'n';
-            presetselectorstr[15] = 'g';
-            presetselectorstr[16] = 'e';
-            freddydifficulty = 5;
-            bonniedifficulty = 5;
-            chicadifficulty = 5;
-            foxydifficulty = 5;
-            toyfreddydifficulty = 5;
-            toybonniedifficulty = 5;
-            toychicadifficulty = 5;
-            mangledifficulty = 5;
-            BBdifficulty = 5;
-            GFdifficulty = 5;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-        if (presetselector == 15) {
-            presetselectorstr[0] = 'F';
-            presetselectorstr[1] = 'a';
-            presetselectorstr[2] = 'z';
-            presetselectorstr[3] = 'b';
-            presetselectorstr[4] = 'e';
-            presetselectorstr[5] = 'a';
-            presetselectorstr[6] = 'r';
-            presetselectorstr[7] = ' ';
-            presetselectorstr[8] = 'F';
-            presetselectorstr[9] = 'e';
-            presetselectorstr[10] = 'v';
-            presetselectorstr[11] = 'e';
-            presetselectorstr[12] = 'r';
-            presetselectorstr[13] = ' ';
-            presetselectorstr[14] = ' ';
-            presetselectorstr[15] = ' ';
-            presetselectorstr[16] = ' ';
-            freddydifficulty = 10;
-            bonniedifficulty = 10;
-            chicadifficulty = 10;
-            foxydifficulty = 10;
-            toyfreddydifficulty = 10;
-            toybonniedifficulty = 10;
-            toychicadifficulty = 10;
-            mangledifficulty = 10;
-            BBdifficulty = 10;
-            GFdifficulty = 10;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-        if (presetselector == 16) {
-            presetselectorstr[0] = 'G';
-            presetselectorstr[1] = 'o';
-            presetselectorstr[2] = 'l';
-            presetselectorstr[3] = 'd';
-            presetselectorstr[4] = 'e';
-            presetselectorstr[5] = 'n';
-            presetselectorstr[6] = ' ';
-            presetselectorstr[7] = 'F';
-            presetselectorstr[8] = 'r';
-            presetselectorstr[9] = 'e';
-            presetselectorstr[10] = 'd';
-            presetselectorstr[11] = 'd';
-            presetselectorstr[12] = 'y';
-            freddydifficulty = 20;
-            bonniedifficulty = 20;
-            chicadifficulty = 20;
-            foxydifficulty = 20;
-            toyfreddydifficulty = 20;
-            toybonniedifficulty = 20;
-            toychicadifficulty = 20;
-            mangledifficulty = 20;
-            BBdifficulty = 20;
-            GFdifficulty = 20;
-            doescharlevelup = 0;
-            doescharlevelupstr[0] = 'O';
-            doescharlevelupstr[1] = 'F';
-            doescharlevelupstr[2] = 'F';
-        }
-    }
-    if (timermenu == 1) {
-        advancedmenu = 0;
-        if (menuselection == 1) {
-            //AM
-            if (pad & PADLright) {
-                if (limiterpadright == 0) {
-                    customAM++;
-                    if (customAM < 12 && customAM > 6) {customAM = 12;}
-                    if (customAM > 12) {customAM = 0;}
-                    limiterpadright = 1;
-                }
-            }
-            if (pad & PADLleft) {
-                if (limiterpadleft == 0) {
-                    customAM--;
-                    if (customAM < 12 && customAM > 6) {customAM = 6;}
-                    if (customAM < 0) {customAM = 12;}
-                    limiterpadleft = 1;
-                }
-            }
-        }
-        if (menuselection == 2) {
-            //FrameCounterlimit (via the convertion var)
-            if (pad & PADLright) {
-                if (limiterpadright == 0) {
-                    convertion++;
-                    limiterpadright = 1;
-                }
-            }
-            if (pad & PADLleft) {
-                if (limiterpadleft == 0) {
-                    convertion--;
-                    if (convertion < 0) {convertion = 0;}
-                    limiterpadleft = 1;
-                }
-            }
-            //For quick change
-            if (pad & PADR1) {
-                convertion++;
-            }
-            if (pad & PADL1) {
-                convertion--;
-                if (convertion < 0) {convertion = 0;}
-            }
-            //For reset
-            if (pad & PADstart) {
-                convertion = 60;
-            }
-            //For 0
-            if (pad & PADselect) {
-                convertion = 0;
-            }
-            //For 120
-            if (pad & PADstart && pad & PADselect) {
-                convertion = 120;
-            }
-        }
-        if (menuselection == 3) {
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    maincustomnightmenu = 1;
-                    timermenu = 0;
-                    menuselection = 3;
-                    menuselectionmax = 6;
-                    limiterstart++;
-                }
-            }
-        }
-    }
-    if (advancedmenu == 1) {
-        if (menuselection == 1) { //Old animatronic's frame lock
-            if (pad & PADRright) { //Foxy 
-                foxylocationframelock++;
-            }
-            if (pad & PADRleft) { //Foxy 
-                foxylocationframelock--;
-                if (foxylocationframelock < 1) {foxylocationframelock = 1;}
-            }
-            if (pad & PADLright) { //Freddy 
-                freddylocationframelock++;
-            }
-            if (pad & PADLleft) { //Freddy 
-                freddylocationframelock--;
-                if (freddylocationframelock < 1) {freddylocationframelock = 1;}
-            }
-            if (pad & PADL1) { //Bonnie 
-                bonnielocationframelock--;
-                if (bonnielocationframelock < 1) {bonnielocationframelock = 1;}
-            }
-            if (pad & PADL2) { //Bonnie 
-                bonnielocationframelock++;
-            }
-            if (pad & PADR1) { //Chica 
-                chicalocationframelock--;
-                if (chicalocationframelock < 1) {chicalocationframelock = 1;}
-            }
-            if (pad & PADR2) { //Chica 
-                chicalocationframelock++;
-            }
-            if (pad & PADstart) {
-                freddylocationframe = 300;
-                bonnielocationframe = 300;
-                chicalocationframe = 300;
-                foxylocationframe = 300;
-                freddylocationframelock = 300;
-                bonnielocationframelock = 300;
-                chicalocationframelock = 300;
-                foxylocationframelock = 300;
-            }
-        }
-        if (menuselection == 2) {
-            if (pad & PADRright) { //Mangle 
-                manglelocationframelock++;
-            }
-            if (pad & PADRleft) { //Foxy 
-                manglelocationframelock--;
-                if (manglelocationframelock < 1) {manglelocationframelock = 1;}
-            }
-            if (pad & PADLright) { //Freddy 
-                toyfreddylocationframelock++;
-            }
-            if (pad & PADLleft) { //Freddy 
-                toyfreddylocationframelock--;
-                if (toyfreddylocationframelock < 1) {toyfreddylocationframelock = 1;}
-            }
-            if (pad & PADL1) { //Bonnie 
-                toybonnielocationframelock--;
-                if (toybonnielocationframelock < 1) {toybonnielocationframelock = 1;}
-            }
-            if (pad & PADL2) { //Bonnie 
-                toybonnielocationframelock++;
-            }
-            if (pad & PADR1) { //Chica 
-                toychicalocationframelock--;
-                if (toychicalocationframelock < 1) {toychicalocationframelock = 1;}
-            }
-            if (pad & PADR2) { //Chica 
-                toychicalocationframelock++;
-            }
-            if (pad & PADstart) {
-                toyfreddylocationframe = 300;
-                toybonnielocationframe = 300;
-                toychicalocationframe = 300;
-                manglelocationframe = 300;
-                toyfreddylocationframelock = 300;
-                toybonnielocationframelock = 300;
-                toychicalocationframelock = 300;
-                manglelocationframelock = 300;
-            }
-        }
-        if (menuselection == 3) {
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    maincustomnightmenu = 1;
-                    advancedmenu = 0;
-                    menuselection = 4;
-                    menuselectionmax = 6;
-                    limiterstart++; 
-                }
-            }
-        }
-    }
-    if (extramenu == 1) {
-        if (menuselection == 1) { //Phone guy
-            if (pad & PADRdown) {
-                if (limiterbuttondown == 0) {
-                    enablephoneguy++;
-                    enablephoneguystr[0] = 'O';
-                    enablephoneguystr[1] = 'N';
-                    enablephoneguystr[2] = ' ';
-                    if (enablephoneguy > 1) {
-                        enablephoneguy = 0;
-                        enablephoneguystr[0] = 'O';
-                        enablephoneguystr[1] = 'F';
-                        enablephoneguystr[2] = 'F';
-                    }
-                    limiterbuttondown = 1;
-                }
-            }
-        }
-        if (menuselection == 2) { //Unlocks menu
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    extramenu = 0;
-                    unlockssubmenu = 1;
+                else {
                     menuselection = 1;
-                    menuselectionmax = 4;
-                    limiterstart = 1;
                 }
+                SpuSetKey(SPU_ON, SPU_03CH);
+                limiterpaddown = 1;
             }
         }
-        if (menuselection == 3) { //Informations on the game
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    extramenu = 0;
-                    infoscreen = 1;
-                    menuselection = 1;
-                    menuselectionmax = 1;
-                    limiterstart = 1;
-                }
-            }
-        }
-        if (menuselection == 4) {//Two players mode
-            if (pad & PADRdown) {
-                if (limiterbuttondown == 0) {
-                    twoplayermode++;
-                    if (twoplayermode > 1) {twoplayermode = 0;}
-                    
-                    if (twoplayermode == 0) {
-                        twoplayermodestr[1] = 'F';
-                        twoplayermodestr[2] = 'F';
-                    } else {
-                        twoplayermodestr[1] = 'N';
-                        twoplayermodestr[2] = ' ';
+        if (!(pad & PADLright)) {limiterpadright = 0;}
+        if (!(pad & PADLleft)) {limiterpadleft = 0;}
+        if (!(pad & PADLdown)) {limiterpaddown = 0;}
+        if (!(pad & PADLup)) {limiterpadup = 0;}
+        if (!(pad & PADstart)) {limiterstart = 0;}
+        if (!(pad & PADRdown)) {limiterbuttondown = 0;}
+
+        switch(currentmenu[0]) {
+            case 0:
+                if (isingame) {
+                    if (menuselection == 1) {//Continue night
+                        if (pad & PADstart) {
+                            menu = 2;
+                            returnedingame = 1;
+                        } 
                     }
-                    limiterbuttondown = 1;
-                }
-            }
-        }
-        if (menuselection == 5) { //Return
-            if (pad & PADstart) {
-                if (limiterstart == 0)  {
-                    extramenu = 0;
-                    menuselection = 3;
-                    limiterstart++;
-                    if (activatedmenudebug == 0) {menuselectionmax = 4;}
-                    else {menuselectionmax = 5;}
-                }
-            }
-        }
-        if (menuselection == 6) { //Toggle Weird night
-            if (pad & PADstart) {
-                if (limiterstart == 0)  {
-                  weirdnight = 1;
-                  oldnight = night;
-                  night = 725255;
-                  onetime++;
-                  limiterstart++;
-                  menu = 1;
-                }
-            }
-        }
-        if (menuselection == 7) { //Toggle debug mode
-            if (pad & PADstart) {
-                if (limiterstart == 0)  {
-                  debugging = 1;
-                }
-            }
-        }
-    }
-    if (infoscreen == 1) {
-        if (menuselection == 1) {
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    extramenu = 1;
-                    infoscreen = 0;
-                    menuselection = 1;
-                    if (activatedmenudebug == 0) {
-                        menuselectionmax = 5;
+
+                    if (menuselection == 2) {//Abandon night
+                        if (pad & PADstart && limiterstart == 0) {
+                            resetgame(0);
+                            limiterstart++;
+                            menuselection = 3;
+                            if (activatedmenudebug == 0) {menuselectionmax = 4;} else {menuselectionmax = 5;}
+                            
+                        } 
                     }
+                } else {
+                    if (menuselection == 1) {//"Starting" night
+                        if (pad & PADstart) {
+                            night = 1;
+                            helpwantedposter = 1;
+                        } 
+                    }
+
+                    if (menuselection == 2) { //Continue nights
+                        if (pad & PADstart) {
+                            loadingframe = 360;
+                            menu = 1;
+                        }//Or...
+                        if (pad & PADRup && pad & PADRright && pad & PADR1 && pad & PADL2 && activatedmenudebug == 0) //Activate debug !
+                        {
+                            activatedmenudebug = 1;
+                            menuselectionmax = menuselectionmax + 1;
+                        }
+                    }
+
+                    if (menuselection == 3) { //EXTRA MENU
+                        if (pad & PADstart) {
+                            if (limiterstart == 0) {
+                                currentmenu[0] = 1;
+                                currentmenu[1] = 0;
+                                menuselection = 1;
+                                limiterstart++;
+                                if (activatedmenudebug == 0) {
+                                    menuselectionmax = 5;
+                                } else {
+                                    menuselectionmax = 6;
+                                }
+                            }
+                        }
+                    }
+                    if (menuselection == 4) { //CUSTOM NIGHT MENU
+                        if (pad & PADstart) {
+                            if (limiterstart == 0) {
+                                currentmenu[0] = 2;
+                                menuselection = 1;
+                                menuselectionmax = 6;
+                                limiterstart++;
+                            }
+                        }
+                    }
+
                     if (activatedmenudebug == 1) {
-                        menuselectionmax = 5;
+                        if (menuselection == 5) {
+                            if (pad & PADLright) {
+                                if (limiterpadright == 0) {
+                                    printnumber++;
+                                    if (printnumber > 4) {printnumber = 1;}
+                                    limiterpadright = 1;
+                                }
+                            }
+                            if (pad & PADLleft) {
+                                if (limiterpadleft == 0) {
+                                    printnumber--;
+                                    if (printnumber < 1) {printnumber = 4;}
+                                    limiterpadleft = 1;
+                                }
+                            }
+                        }
                     }
-                    limiterstart = 1;
                 }
-            }
-        }
-    }
-    if (unlockssubmenu == 1) {
-        if (menuselection == 1) {
-            if (pad & PADRdown) {
-                if (limiterbuttondown == 0) {
-                    unlimitedpower++;
-                    unlimitedpowerstr[0] = 'O';
-                    unlimitedpowerstr[1] = 'N';
-                    unlimitedpowerstr[2] = ' ';
-                    if (unlimitedpower > 1) {
-                        unlimitedpower = 0;
-                        unlimitedpowerstr[0] = 'O';
-                        unlimitedpowerstr[1] = 'F';
-                        unlimitedpowerstr[2] = 'F';
-                    }
-                    cheating = 1;
-                    limiterbuttondown = 1;
+            break;
+            
+            case 1:
+                switch(currentmenu[1]) {
+                    case 0:
+                        if (menuselection == 1) { //Phone guy
+                            if (pad & PADRdown) {
+                                if (limiterbuttondown == 0) {
+                                    enablephoneguy++;
+
+                                    sprintf(enablephoneguystr, "ON");
+                                    if (enablephoneguy > 1) {
+                                        enablephoneguy = 0;
+
+                                        sprintf(enablephoneguystr, "OFF");
+                                    }
+                                    limiterbuttondown = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 2) { //Unlocks menu
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 1;
+                                    menuselection = 1;
+                                    menuselectionmax = 4;
+                                    limiterstart = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 3) { //Informations on the game
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 2;
+                                    menuselection = 1;
+                                    menuselectionmax = 1;
+                                    limiterstart = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 4) {//Two players mode
+                            if (pad & PADRdown) {
+                                if (limiterbuttondown == 0) {
+                                    twoplayermode++;
+                                    if (twoplayermode > 1) {twoplayermode = 0;}
+                                    
+                                    if (twoplayermode == 0) {
+                                        sprintf(twoplayermodestr, "OFF");
+                                    } else {
+                                        sprintf(twoplayermodestr, "ON");
+                                    }
+                                    limiterbuttondown = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 5) { //Return
+                            if (pad & PADstart) {
+                                if (limiterstart == 0)  {
+                                    currentmenu[0] = 0;
+                                    menuselection = 3;
+                                    limiterstart++;
+                                    if (activatedmenudebug == 0) {menuselectionmax = 4;}
+                                    else {menuselectionmax = 5;}
+                                }
+                            }
+                        }
+                        if (menuselection == 6) { //Toggle Weird night
+                            if (pad & PADstart) {
+                                if (limiterstart == 0)  {
+                                  weirdnight = 1;
+                                  oldnight = night;
+                                  night = 725255;
+                                  onetime++;
+                                  limiterstart++;
+                                  menu = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 7) { //Toggle debug mode
+                            if (pad & PADstart) {
+                                if (limiterstart == 0)  {
+                                  debugging = 1;
+                                }
+                            }
+                        }
+                    break;
+                    case 1:
+                        if (menuselection == 1) {
+                            if (pad & PADRdown) {
+                                if (limiterbuttondown == 0) {
+                                    unlimitedpower++;
+                                    sprintf(unlimitedpowerstr, "ON");
+                                    if (unlimitedpower > 1) {
+                                        unlimitedpower = 0;
+                                        sprintf(unlimitedpowerstr, "OFF");
+                                    }
+                                    cheating = 1;
+                                    limiterbuttondown = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 2) {
+                            if (pad & PADRdown) {
+                                if (limiterbuttondown == 0) {
+                                    fastnights++;
+                                    sprintf(fastnightsstr, "ON");
+                                    if (fastnights > 1) {
+                                        fastnights = 0;
+                                        sprintf(fastnightsstr, "OFF");
+                                    }
+                                    cheating = 1;
+                                    limiterbuttondown = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 3) {
+                            if (pad & PADRdown) {
+                                if (limiterbuttondown == 0) {
+                                    radar++;
+                                    sprintf(radarstr, "ON");
+                                    if (radar > 1) {
+                                        radar = 0;
+                                        sprintf(radarstr, "OFF");
+                                    }
+                                    cheating = 1;
+                                    limiterbuttondown = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 4) {
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 0;
+                                    menuselection = 1;
+                                    if (activatedmenudebug == 0) {
+                                        menuselectionmax = 5;
+                                    }
+                                    if (activatedmenudebug == 1) {
+                                        menuselectionmax = 6;
+                                    }
+                                    limiterstart = 1;
+                                }
+                            }
+                        }
+                    break;
+                    case 2:
+                        if (menuselection == 1) {
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 0;
+                                    menuselection = 1;
+                                    if (activatedmenudebug == 0) {
+                                        menuselectionmax = 5;
+                                    }
+                                    if (activatedmenudebug == 1) {
+                                        menuselectionmax = 5;
+                                    }
+                                    limiterstart = 1;
+                                }
+                            }
+                        }
+                    break;
                 }
-            }
-        }
-        if (menuselection == 2) {
-            if (pad & PADRdown) {
-                if (limiterbuttondown == 0) {
-                    fastnights++;
-                    fastnightsstr[0] = 'O';
-                    fastnightsstr[1] = 'N';
-                    fastnightsstr[2] = ' ';
-                    if (fastnights > 1) {
-                        fastnights = 0;
-                        fastnightsstr[0] = 'O';
-                        fastnightsstr[1] = 'F';
-                        fastnightsstr[2] = 'F';
-                    }
-                    cheating = 1;
-                    limiterbuttondown = 1;
+            break;
+
+            case 2:
+                switch(currentmenu[1]) {
+                    case 0:
+                        if (menuselection == 1) {
+                            if (pad & PADLright) {
+                                if (limiterpadright == 0) {
+                                    night++;
+                                    if (night > 6) {night = 1;}
+                                    limiterpadright = 1;
+                                }
+                            }
+                            if (pad & PADLleft) {
+                                if (limiterpadleft == 0) {
+                                    night--;
+                                    if (night < 1) {night = 6;}
+                                    limiterpadleft = 1;
+                                }
+                            } //Change night's var
+                        }
+
+                        if (menuselection == 2) { // AI SET MENU
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 1;
+                                    menuselection = 7;
+                                    menuselectionmax = 7;
+                                    limiterstart = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 3) { // TIMER ETC MENU
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 2;
+                                    menuselection = 3;
+                                    menuselectionmax = 3;
+                                    limiterstart = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 4) { // ADV MENU
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 3;
+                                    menuselection = 3;
+                                    menuselectionmax = 3;
+                                    limiterstart = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 5) { // LAUNCH NIGHT
+                            if (pad & PADstart) {
+                              if (limiterstart == 0) {
+                                menu = 1;
+                                customnightactivated = 1;
+                              }
+                            }
+                        }
+                        if (menuselection == 6) { // RETURN TO MAIN MENU
+                            if (pad & PADstart) {
+                                if (limiterstart == 0)  {
+                                    currentmenu[0] = 0;
+                                    menuselection = 4;
+                                    limiterstart++;
+                                    if (activatedmenudebug == 0) {menuselectionmax = 4;}
+                                    else {menuselectionmax = 5;}
+                                }
+                            }
+                        }
+                    break;
+                    case 1:
+                        if (animatronicategorie == 1) {
+                            if (menuselection == 1) {
+                                if (pad & PADLright) { //Freddy
+                                    if (limiterpadright == 0) {
+                                        freddydifficulty++;
+                                        if (freddydifficulty > 20) {freddydifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //Freddy
+                                    if (limiterpadleft == 0) {
+                                        freddydifficulty--;
+                                        if (freddydifficulty < 0) {freddydifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                            if (menuselection == 2) {
+                                if (pad & PADLright) { //Bonnie
+                                    if (limiterpadright == 0) {
+                                        bonniedifficulty++;
+                                        if (bonniedifficulty > 20) {bonniedifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //Bonnie
+                                    if (limiterpadleft == 0) {
+                                        bonniedifficulty--;
+                                        if (bonniedifficulty < 0) {bonniedifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                            if (menuselection == 3) {
+                                if (pad & PADLright) { //Chica
+                                    if (limiterpadright == 0) {
+                                        chicadifficulty++;
+                                        if (chicadifficulty > 20) {chicadifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //Chica
+                                    if (limiterpadleft == 0) {
+                                        chicadifficulty--;
+                                        if (chicadifficulty < 0) {chicadifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                            if (menuselection == 4) {
+                                if (pad & PADLright) { //Foxy
+                                    if (limiterpadright == 0) {
+                                        foxydifficulty++;
+                                        if (foxydifficulty > 20) {foxydifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //Foxy
+                                    if (limiterpadleft == 0) {
+                                        foxydifficulty--;
+                                        if (foxydifficulty < 0) {foxydifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                        }
+
+                        if (animatronicategorie == 2) {
+                            if (menuselection == 1) {
+                                if (pad & PADLright) { //Toy Freddy
+                                    if (limiterpadright == 0) {
+                                        toyfreddydifficulty++;
+                                        if (toyfreddydifficulty > 20) {toyfreddydifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //Toy Freddy
+                                    if (limiterpadleft == 0) {
+                                        toyfreddydifficulty--;
+                                        if (toyfreddydifficulty < 0) {toyfreddydifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                            if (menuselection == 2) {
+                                if (pad & PADLright) { //Toy Bonnie
+                                    if (limiterpadright == 0) {
+                                        toybonniedifficulty++;
+                                        if (toybonniedifficulty > 20) {toybonniedifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //Toy Bonnie
+                                    if (limiterpadleft == 0) {
+                                        toybonniedifficulty--;
+                                        if (toybonniedifficulty < 0) {toybonniedifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                            if (menuselection == 3) {
+                                if (pad & PADLright) { //Toy Chica
+                                    if (limiterpadright == 0) {
+                                        toychicadifficulty++;
+                                        if (toychicadifficulty > 20) {toychicadifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //Toy Chica
+                                    if (limiterpadleft == 0) {
+                                        toychicadifficulty--;
+                                        if (toychicadifficulty < 0) {toychicadifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                            if (menuselection == 4) {
+                                if (pad & PADLright) { //Toy Foxy (mangle)
+                                    if (limiterpadright == 0) {
+                                        mangledifficulty++;
+                                        if (mangledifficulty > 20) {mangledifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //Toy Foxy (mangle)
+                                    if (limiterpadleft == 0) {
+                                        mangledifficulty--;
+                                        if (mangledifficulty < 0) {mangledifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                        }
+
+                        if (animatronicategorie == 3) {
+                            if (menuselection == 1) {
+                                if (pad & PADLright) { //BB
+                                    if (limiterpadright == 0) {
+                                        BBdifficulty++;
+                                        if (BBdifficulty > 20) {BBdifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //BB
+                                    if (limiterpadleft == 0) {
+                                        BBdifficulty--;
+                                        if (BBdifficulty < 0) {BBdifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                            if (menuselection == 2) {
+                                if (pad & PADLright) { //Golden Freddy
+                                    if (limiterpadright == 0) {
+                                        GFdifficulty++;
+                                        if (GFdifficulty > 20) {GFdifficulty = 0;}
+                                        limiterpadright = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                                if (pad & PADLleft) { //Golden Freddy
+                                    if (limiterpadleft == 0) {
+                                        GFdifficulty--;
+                                        if (GFdifficulty < 0) {GFdifficulty = 20;}
+                                        limiterpadleft = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                            if (menuselection == 3) {
+                                if (pad & PADRdown) { //Character level up ?
+                                    if (limiterbuttondown == 0) {
+                                      if (doescharlevelup == 0) {
+                                        doescharlevelup = 1;
+                                        doescharlevelupstr[0] = 'O';
+                                        doescharlevelupstr[1] = 'n';
+                                        doescharlevelupstr[2] = ' ';
+                                      } else {
+                                        doescharlevelup = 0;
+                                        doescharlevelupstr[0] = 'O';
+                                        doescharlevelupstr[1] = 'f';
+                                        doescharlevelupstr[2] = 'f';
+                                      }
+                                      limiterbuttondown = 1;
+                                        SpuSetKey(SPU_ON, SPU_10CH);
+                                    }
+                                }
+                            }
+                        }
+
+                        if (menuselection == 5) {
+                            if (pad & PADLleft) {
+                                if (limiterpadleft == 0) {
+                                    animatronicategorie--;
+                                    if (animatronicategorie < 1) {animatronicategorie = 1;}
+                                    limiterpadleft = 1;
+                                }
+                            }
+                            if (pad & PADLright) {
+                                if (limiterpadright == 0) {
+                                    animatronicategorie++;
+                                    if (animatronicategorie > 3) {animatronicategorie = 3;}
+                                    limiterpadright = 1;
+                                }
+                            }
+                        }
+
+                        if (menuselection == 6) {
+                            if (pad & PADLleft) {
+                                if (limiterpadleft == 0) {
+                                    presetselector--;
+                                    if (presetselector < 1) {presetselector = 16;}
+                                    limiterpadleft = 1;
+                                }
+                                SpuSetKey(SPU_ON, SPU_10CH);
+                            }
+                            if (pad & PADLright) {
+                                if (limiterpadright == 0) {
+                                    presetselector++;
+                                    if (presetselector > 16) {presetselector = 1;}
+                                    limiterpadright = 1;
+                                }
+                                SpuSetKey(SPU_ON, SPU_10CH);
+                            }
+                        }
+
+                        if (menuselection == 7) {
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 0;
+                                    menuselection = 2;
+                                    menuselectionmax = 6;
+                                    limiterstart++;
+                                }
+                            }
+                        }
+                        if (presetselector == 1) {
+                            sprintf(presetselectorstr, "Custom");
+
+                            puppetdifficulty = 15;
+                            musicboxunwidingvaludemi = 0;
+                            musicboxunwidingvalue = 2;
+                            windingframe = 1;
+                            night = 1;
+                        }
+                        if (presetselector > 1 && presetselector < 7) {
+                            sprintf(doescharlevelupstr, "ON");
+
+                            if (presetselector == 2) {
+                                sprintf(presetselectorstr, "Night 2");
+                                freddydifficulty = 0;
+                                bonniedifficulty = 0;
+                                chicadifficulty = 0;
+                                foxydifficulty = 1;
+                                puppetdifficulty = 5;
+                                toyfreddydifficulty = 2;
+                                toybonniedifficulty = 3;
+                                toychicadifficulty = 3;
+                                mangledifficulty = 3;
+                                BBdifficulty = 3;
+                                GFdifficulty = 0;
+                                doescharlevelup = 1;
+                                musicboxunwidingvaludemi = 0;
+                                musicboxunwidingvalue = 1;
+                                musicboxunwidingvaluthird = -2; // OK
+                                night = 2;
+                            }
+                            if (presetselector == 3) {
+                                sprintf(presetselectorstr, "Night 3");
+                                freddydifficulty = 0;
+                                bonniedifficulty = 1;
+                                chicadifficulty = 1;
+                                foxydifficulty = 2;
+                                puppetdifficulty = 8;
+                                toyfreddydifficulty = 0;
+                                toybonniedifficulty = 0;
+                                toychicadifficulty = 0;
+                                mangledifficulty = 0;
+                                BBdifficulty = 1;
+                                GFdifficulty = 0;
+                                doescharlevelup = 1;
+                                musicboxunwidingvaludemi = 0;
+                                musicboxunwidingvalue = 1;
+                                musicboxunwidingvaluthird = -2;
+                                night = 3;
+                            }
+                            if (presetselector == 4) {
+                                sprintf(presetselectorstr, "Night 4");
+                                freddydifficulty = 0;
+                                bonniedifficulty = 1;
+                                chicadifficulty = 0;
+                                foxydifficulty = 7;
+                                puppetdifficulty = 9;
+                                toyfreddydifficulty = 0;
+                                toybonniedifficulty = 0;
+                                toychicadifficulty = 0;
+                                mangledifficulty = 5;
+                                BBdifficulty = 3;
+                                GFdifficulty = 0;
+                                doescharlevelup = 1;
+                                musicboxunwidingvalue = 4; 
+                                night = 4;
+                            }
+                            if (presetselector == 5) {
+                                sprintf(presetselectorstr, "Night 5");
+                                freddydifficulty = 2;
+                                bonniedifficulty = 2;
+                                chicadifficulty = 2;
+                                foxydifficulty = 5;
+                                puppetdifficulty = 10;
+                                toyfreddydifficulty = 5;
+                                toybonniedifficulty = 2;
+                                toychicadifficulty = 2;
+                                mangledifficulty = 1;
+                                BBdifficulty = 5;
+                                GFdifficulty = 0;
+                                doescharlevelup = 1;
+                                musicboxunwidingvalue = 5; 
+                                night = 5;
+                            }
+                            if (presetselector == 6) {
+                                sprintf(presetselectorstr, "Night 6");
+                                freddydifficulty = 5;
+                                bonniedifficulty = 5;
+                                chicadifficulty = 5;
+                                foxydifficulty = 10;
+                                puppetdifficulty = 15;
+                                toyfreddydifficulty = 0;
+                                toybonniedifficulty = 0;
+                                toychicadifficulty = 0;
+                                mangledifficulty = 3;
+                                BBdifficulty = 5;
+                                GFdifficulty = 0;
+                                doescharlevelup = 1;
+                                musicboxunwidingvaludemi = 0;
+                                musicboxunwidingvalue = 2; 
+                                windingframe = 1; 
+                                night = 6;
+                            }
+                        } else {
+                          musicboxunwidingvaludemi = 0;
+                          musicboxunwidingvalue = 2;
+                          windingframe = 1;
+                          enablephoneguy = 0;
+                          sprintf(doescharlevelupstr, "OFF"); 
+                        }
+                        if (presetselector == 7) {
+                            sprintf(presetselectorstr,"4/20");
+                            freddydifficulty = 20;
+                            bonniedifficulty = 20;
+                            chicadifficulty = 20;
+                            foxydifficulty = 20;
+                            toyfreddydifficulty = 0;
+                            toybonniedifficulty = 0;
+                            toychicadifficulty = 0;
+                            mangledifficulty = 0;
+                            BBdifficulty = 0;
+                            GFdifficulty = 0;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                        if (presetselector == 8) {
+                            sprintf(presetselectorstr,"New and Shiny");
+                            freddydifficulty = 0;
+                            bonniedifficulty = 0;
+                            chicadifficulty = 0;
+                            foxydifficulty = 0;
+                            toyfreddydifficulty = 10;
+                            toybonniedifficulty = 10;
+                            toychicadifficulty = 10;
+                            mangledifficulty = 10;
+                            BBdifficulty = 10;
+                            GFdifficulty = 0;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                        if (presetselector == 9) {
+                            sprintf(presetselectorstr,"Double Trouble");
+                            bonniedifficulty = 20;
+                            foxydifficulty = 5;
+                            toybonniedifficulty = 20;
+
+                            freddydifficulty = 0;
+                            chicadifficulty = 0;
+                            toyfreddydifficulty = 0;
+                            toychicadifficulty = 0;
+                            mangledifficulty = 0;
+                            BBdifficulty = 0;
+                            GFdifficulty = 0;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                        if (presetselector == 10) {
+                            sprintf(presetselectorstr,"Night of Misfits");
+                            mangledifficulty = 20;
+                            GFdifficulty = 10;
+                            BBdifficulty = 20;
+
+                            freddydifficulty = 0;
+                            bonniedifficulty = 0;
+                            chicadifficulty = 0;
+                            foxydifficulty = 0;
+                            toyfreddydifficulty = 0;
+                            toybonniedifficulty = 0;
+                            toychicadifficulty = 0;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                        if (presetselector == 11) {
+                            sprintf(presetselectorstr,"Foxy Foxy");
+                            mangledifficulty = 20;
+                            foxydifficulty = 20;
+
+                            freddydifficulty = 0;
+                            bonniedifficulty = 0;
+                            chicadifficulty = 0;
+                            toyfreddydifficulty = 0;
+                            toybonniedifficulty = 0;
+                            toychicadifficulty = 0;
+                            BBdifficulty = 0;
+                            GFdifficulty = 0;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                        if (presetselector == 12) {
+                            sprintf(presetselectorstr,"Ladies Night");
+                            mangledifficulty = 20;
+                            chicadifficulty = 20;
+                            toychicadifficulty = 20;
+
+                            freddydifficulty = 0;
+                            bonniedifficulty = 0;
+                            foxydifficulty = 0;
+                            toyfreddydifficulty = 0;
+                            toybonniedifficulty = 0;
+                            BBdifficulty = 0;
+                            GFdifficulty = 0;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                        if (presetselector == 13) {
+                            sprintf(presetselectorstr,"Freddy's circus");
+                            freddydifficulty = 20;
+                            toyfreddydifficulty = 20;
+                            foxydifficulty = 10;
+                            BBdifficulty = 10;
+                            GFdifficulty = 10;
+
+                            bonniedifficulty = 0;
+                            chicadifficulty = 0;
+                            toybonniedifficulty = 0;
+                            toychicadifficulty = 0;
+                            mangledifficulty = 0;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                        if (presetselector == 14) {
+                            sprintf(presetselectorstr,"Cupcake Challenge");
+                            freddydifficulty = 5;
+                            bonniedifficulty = 5;
+                            chicadifficulty = 5;
+                            foxydifficulty = 5;
+                            toyfreddydifficulty = 5;
+                            toybonniedifficulty = 5;
+                            toychicadifficulty = 5;
+                            mangledifficulty = 5;
+                            BBdifficulty = 5;
+                            GFdifficulty = 5;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                        if (presetselector == 15) {
+                            sprintf(presetselectorstr,"Fazbear Fever");
+                            freddydifficulty = 10;
+                            bonniedifficulty = 10;
+                            chicadifficulty = 10;
+                            foxydifficulty = 10;
+                            toyfreddydifficulty = 10;
+                            toybonniedifficulty = 10;
+                            toychicadifficulty = 10;
+                            mangledifficulty = 10;
+                            BBdifficulty = 10;
+                            GFdifficulty = 10;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                        if (presetselector == 16) {
+                            sprintf(presetselectorstr,"Golden Freddy");
+                            freddydifficulty = 20;
+                            bonniedifficulty = 20;
+                            chicadifficulty = 20;
+                            foxydifficulty = 20;
+                            toyfreddydifficulty = 20;
+                            toybonniedifficulty = 20;
+                            toychicadifficulty = 20;
+                            mangledifficulty = 20;
+                            BBdifficulty = 20;
+                            GFdifficulty = 20;
+                            doescharlevelup = 0;
+                            sprintf(doescharlevelupstr, "OFF"); 
+                            night = 7;
+                        }
+                    break;
+                    case 2:
+                        if (menuselection == 1) {
+                            //AM
+                            if (pad & PADLright) {
+                                if (limiterpadright == 0) {
+                                    customAM++;
+                                    if (customAM < 12 && customAM > 6) {customAM = 12;}
+                                    if (customAM > 12) {customAM = 0;}
+                                    limiterpadright = 1;
+                                }
+                            }
+                            if (pad & PADLleft) {
+                                if (limiterpadleft == 0) {
+                                    customAM--;
+                                    if (customAM < 12 && customAM > 6) {customAM = 6;}
+                                    if (customAM < 0) {customAM = 12;}
+                                    limiterpadleft = 1;
+                                }
+                            }
+                        }
+                        if (menuselection == 2) {
+                            //FrameCounterlimit (via the convertion var)
+                            if (pad & PADLright) {
+                                if (limiterpadright == 0) {
+                                    convertion++;
+                                    limiterpadright = 1;
+                                }
+                            }
+                            if (pad & PADLleft) {
+                                if (limiterpadleft == 0) {
+                                    convertion--;
+                                    if (convertion < 0) {convertion = 0;}
+                                    limiterpadleft = 1;
+                                }
+                            }
+                            //For quick change
+                            if (pad & PADR1) {
+                                convertion++;
+                            }
+                            if (pad & PADL1) {
+                                convertion--;
+                                if (convertion < 0) {convertion = 0;}
+                            }
+                            //For reset
+                            if (pad & PADstart) {
+                                convertion = 60;
+                            }
+                            //For 0
+                            if (pad & PADselect) {
+                                convertion = 0;
+                            }
+                            //For 120
+                            if (pad & PADstart && pad & PADselect) {
+                                convertion = 120;
+                            }
+                        }
+                        if (menuselection == 3) {
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 0;
+                                    menuselection = 3;
+                                    menuselectionmax = 6;
+                                    limiterstart++;
+                                }
+                            }
+                        }
+                    break;
+                    case 3:
+                        if (menuselection == 1) { //Old animatronic's frame lock
+                            if (pad & PADRright) { //Foxy 
+                                foxylocationframelock++;
+                            }
+                            if (pad & PADRleft) { //Foxy 
+                                foxylocationframelock--;
+                                if (foxylocationframelock < 1) {foxylocationframelock = 1;}
+                            }
+                            if (pad & PADLright) { //Freddy 
+                                freddylocationframelock++;
+                            }
+                            if (pad & PADLleft) { //Freddy 
+                                freddylocationframelock--;
+                                if (freddylocationframelock < 1) {freddylocationframelock = 1;}
+                            }
+                            if (pad & PADL1) { //Bonnie 
+                                bonnielocationframelock--;
+                                if (bonnielocationframelock < 1) {bonnielocationframelock = 1;}
+                            }
+                            if (pad & PADL2) { //Bonnie 
+                                bonnielocationframelock++;
+                            }
+                            if (pad & PADR1) { //Chica 
+                                chicalocationframelock--;
+                                if (chicalocationframelock < 1) {chicalocationframelock = 1;}
+                            }
+                            if (pad & PADR2) { //Chica 
+                                chicalocationframelock++;
+                            }
+                            if (pad & PADstart) {
+                                freddylocationframe = 300;
+                                bonnielocationframe = 300;
+                                chicalocationframe = 300;
+                                foxylocationframe = 300;
+                                freddylocationframelock = 300;
+                                bonnielocationframelock = 300;
+                                chicalocationframelock = 300;
+                                foxylocationframelock = 300;
+                            }
+                        }
+                        if (menuselection == 2) {
+                            if (pad & PADRright) { //Mangle 
+                                manglelocationframelock++;
+                            }
+                            if (pad & PADRleft) { //Foxy 
+                                manglelocationframelock--;
+                                if (manglelocationframelock < 1) {manglelocationframelock = 1;}
+                            }
+                            if (pad & PADLright) { //Freddy 
+                                toyfreddylocationframelock++;
+                            }
+                            if (pad & PADLleft) { //Freddy 
+                                toyfreddylocationframelock--;
+                                if (toyfreddylocationframelock < 1) {toyfreddylocationframelock = 1;}
+                            }
+                            if (pad & PADL1) { //Bonnie 
+                                toybonnielocationframelock--;
+                                if (toybonnielocationframelock < 1) {toybonnielocationframelock = 1;}
+                            }
+                            if (pad & PADL2) { //Bonnie 
+                                toybonnielocationframelock++;
+                            }
+                            if (pad & PADR1) { //Chica 
+                                toychicalocationframelock--;
+                                if (toychicalocationframelock < 1) {toychicalocationframelock = 1;}
+                            }
+                            if (pad & PADR2) { //Chica 
+                                toychicalocationframelock++;
+                            }
+                            if (pad & PADstart) {
+                                toyfreddylocationframe = 300;
+                                toybonnielocationframe = 300;
+                                toychicalocationframe = 300;
+                                manglelocationframe = 300;
+                                toyfreddylocationframelock = 300;
+                                toybonnielocationframelock = 300;
+                                toychicalocationframelock = 300;
+                                manglelocationframelock = 300;
+                            }
+                        }
+                        if (menuselection == 3) {
+                            if (pad & PADstart) {
+                                if (limiterstart == 0) {
+                                    currentmenu[1] = 0;
+                                    menuselection = 4;
+                                    menuselectionmax = 6;
+                                    limiterstart++; 
+                                }
+                            }
+                        }
+                    break;
                 }
-            }
-        }
-        if (menuselection == 3) {
-            if (pad & PADRdown) {
-                if (limiterbuttondown == 0) {
-                    radar++;
-                    radarstr[0] = 'O';
-                    radarstr[1] = 'N';
-                    radarstr[2] = ' ';
-                    if (radar > 1) {
-                        radar = 0;
-                        radarstr[0] = 'O';
-                        radarstr[1] = 'F';
-                        radarstr[2] = 'F';
-                    }
-                    cheating = 1;
-                    limiterbuttondown = 1;
-                }
-            }
-        }
-        if (menuselection == 4) {
-            if (pad & PADstart) {
-                if (limiterstart == 0) {
-                    extramenu = 1;
-                    unlockssubmenu = 0;
-                    menuselection = 1;
-                    if (activatedmenudebug == 0) {
-                        menuselectionmax = 5;
-                    }
-                    if (activatedmenudebug == 1) {
-                        menuselectionmax = 6;
-                    }
-                    limiterstart = 1;
-                }
-            }
+            break;
         }
     }
 }
 void menuPrint(void) {
-    if (maincustomnightmenu == 0 && extramenu == 0 && infoscreen == 0 && unlockssubmenu == 0 && AISetmenu == 0 && timermenu == 0 && advancedmenu == 0) {
-        if (isingame) {
-            FntPrint("   Five\n\n   Nights\n\n   at\n\n   Freddy's\n\n   2 \n\n   Pause Menu\n\n\n");  // print time
+    switch(currentmenu[0]) {
 
-            if (menuselection == 1) {FntPrint(">> Continue Night %d\n\n", night);}
-            else {FntPrint("   Continue Night %d\n\n", night);}
+        case 0:
+            if (isingame) {
+                FntPrint("   Five\n\n   Nights\n\n   at\n\n   Freddy's\n\n   2 \n\n   Pause Menu\n\n\n");  // print time
 
-            if (menuselection == 2) {FntPrint(">> Abandon The Night \n\n");}
-            else {FntPrint("   Abandon The Night \n\n");}
-        } else {
+                if (menuselection == 1) {FntPrint(">> Continue Night %d\n\n", night);}
+                else {FntPrint("   Continue Night %d\n\n", night);}
 
-            FntPrint("   Five\n\n   Nights\n\n   at\n\n   Freddy's\n\n   2 \n\n\n");  // print time
+                if (menuselection == 2) {FntPrint(">> Abandon The Night \n\n");}
+                else {FntPrint("   Abandon The Night \n\n");}
+            } else {
 
-            if (menuselection == 1) {FntPrint(">> New Game\n\n");}
-            else {FntPrint("   New Game\n\n");}
+                FntPrint("   Five\n\n   Nights\n\n   at\n\n   Freddy's\n\n   2 \n\n\n");  // print time
 
-            if (menuselection == 2) {FntPrint(">> Continue Night %d\n\n", night);}
-            else {FntPrint("   Continue Night %d\n\n", night);}
+                if (menuselection == 1) {FntPrint(">> New Game\n\n");}
+                else {FntPrint("   New Game\n\n");}
 
-            if (menuselection == 3) {FntPrint(">> Extra menu \n\n");}
-            else {FntPrint("   Extra menu \n\n");}
+                if (menuselection == 2) {FntPrint(">> Continue Night %d\n\n", night);}
+                else {FntPrint("   Continue Night %d\n\n", night);}
 
-            if (menuselection == 4) {FntPrint(">> Custom Night \n\n");}
-            else {FntPrint("   Custom Night \n\n");}
+                if (menuselection == 3) {FntPrint(">> Extra menu \n\n");}
+                else {FntPrint("   Extra menu \n\n");}
 
-            if (activatedmenudebug == 1) {
-                if (menuselection == 5) {FntPrint(">> Debugprint %d\n\n", printnumber);}
-                else {FntPrint("   Debugprint \n\n");}
+                if (menuselection == 4) {FntPrint(">> Custom Night \n\n");}
+                else {FntPrint("   Custom Night \n\n");}
+
+                if (activatedmenudebug == 1) {
+                    if (menuselection == 5) {
+                        switch(printnumber) {
+                            case 1:
+                                FntPrint(">> Debugprint %d, Vanilla\n\n", printnumber);
+                            break;
+                            case 2:
+                                FntPrint(">> Debugprint %d, Old AI debug\n\n", printnumber);
+                            break;
+                            case 3:
+                                FntPrint(">> Debugprint %d, Toy AI debug\n\n", printnumber);
+                            break;
+                            case 4:
+                                FntPrint(">> Debugprint %d, Office intruder debug\n\n", printnumber);
+                            break;
+                        }
+                    }
+                    else {
+                        FntPrint("   Debugprint \n\n");
+                    }
+                }
             }
-        }
-    }
-    if (maincustomnightmenu == 1) {
-        FntPrint("   Custom\n\n   Night\n\n\n");  // print time
 
-        FntPrint("   Welcome! What do you want to modify?\n\n\n\n");
+        break;
+        case 1:
+            switch(currentmenu[1]) {
+                case 0:
+                    FntPrint("   Extra\n\n   Menu\n\n\n");  // print time
 
-        if (menuselection == 1) {FntPrint(">> Night : %d\n\n", night);}
-        else {FntPrint("   Night : %d\n\n", night);}
-        if (menuselection == 2) {FntPrint(">> Set AI levels\n\n");}
-        else {FntPrint("   Set AI levels\n\n");}
-        if (menuselection == 3) {FntPrint(">> Set Timer, ect.\n\n");}
-        else {FntPrint("   Set Timer, ect.\n\n");}
-        if (menuselection == 4) {FntPrint(">> Advanced settings\n\n");}
-        else {FntPrint("   Advanced settings\n\n");}
-        if (menuselection == 5) {FntPrint(">> Launch custom night\n\n");}
-        else {FntPrint("   Launch custom night\n\n");}
-        if (menuselection == 6) {FntPrint(">> Return to main menu\n\n");}
-        else {FntPrint("   Return to main menu\n\n");}
-    }
-    if (AISetmenu == 1) {
-        FntPrint("   Custom\n\n   Night\n\n\n");  // print time
-        FntPrint("   Set Ai Level Menu\n\n\n");
-        if (animatronicategorie == 1) {
-            if (menuselection == 1) {FntPrint(">> Freddy : %d\n\n", freddydifficulty );}
-            else {FntPrint("   Freddy : %d\n\n", freddydifficulty );}
-            if (menuselection == 2) {FntPrint(">> Bonnie : %d\n\n", bonniedifficulty );}
-            else {FntPrint("   Bonnie : %d\n\n", bonniedifficulty );}
-            if (menuselection == 3) {FntPrint(">> Chica : %d\n\n", chicadifficulty );}
-            else {FntPrint("   Chica : %d\n\n", chicadifficulty );}
-            if (menuselection == 4) {FntPrint(">> Foxy : %d\n\n", foxydifficulty );}
-            else {FntPrint("   Foxy : %d\n\n", foxydifficulty );}
-        }
-        if (animatronicategorie == 2) {
-            if (menuselection == 1) {FntPrint(">> Toy Freddy : %d\n\n", toyfreddydifficulty );}
-            else {FntPrint("   Toy Freddy : %d\n\n", toyfreddydifficulty );}
-            if (menuselection == 2) {FntPrint(">> Toy Bonnie : %d\n\n", toybonniedifficulty );}
-            else {FntPrint("   Toy Bonnie : %d\n\n", toybonniedifficulty );}
-            if (menuselection == 3) {FntPrint(">> Toy Chica : %d\n\n", toychicadifficulty );}
-            else {FntPrint("   Toy Chica : %d\n\n", toychicadifficulty );}
-            if (menuselection == 4) {FntPrint(">> Mangle : %d\n\n", mangledifficulty );}
-            else {FntPrint("   Mangle : %d\n\n", mangledifficulty );}
-        }
-        if (animatronicategorie == 3) {
-            if (menuselection == 1) {FntPrint(">> Ballon Boy : %d\n\n", BBdifficulty );}
-            else {FntPrint("   Ballon Boy : %d\n\n", BBdifficulty );}
-            if (menuselection == 2) {FntPrint(">> Golden Freddy : %d\n\n", GFdifficulty );}
-            else {FntPrint("   Golden Freddy : %d\n\n", GFdifficulty );}
-            if (menuselection == 3) {FntPrint(">> Character leveling ? : %s \n\n", doescharlevelupstr );}
-            else {FntPrint("   Character leveling ? : %s \n\n", doescharlevelupstr );}
-            if (menuselection == 4) {FntPrint(">> \n\n");}
-            else {FntPrint("   \n\n" );}
-        }
-        if (menuselection == 5) {FntPrint(">> Categorie %d\n\n",animatronicategorie);}
-        else {FntPrint("   Categorie %d \n\n", animatronicategorie);}
-        if (menuselection == 6) {FntPrint(">> Preset : %s\n\n", presetselectorstr);}
-        else {FntPrint("   Preset : %s\n\n",presetselectorstr);}
-        if (menuselection == 7) {FntPrint(">> Return to Custom night menu\n\n");}
-        else {FntPrint("   Return to Custom night menu\n\n");}
-    }
-    if (timermenu == 1) {
-        FntPrint("   Custom\n\n   Night\n\n\n");  // print time
-        FntPrint("   Set timer, ect Menu\n\n\n");
+                    if (menuselection == 1) {FntPrint(">> Enable phone guy ? %s\n\n", enablephoneguystr);}
+                    else {FntPrint("   Enable phone guy ? %s\n\n", enablephoneguystr);}
 
-        if (menuselection == 1) {FntPrint(">> Set beginning AM %d\n\n", customAM );}
-        else {FntPrint("   Set beginning AM %d\n\n", customAM );}
-        if (menuselection == 2) {FntPrint(">> 1 Hour = %d seconds in game\n\n", convertion );}
-        else {FntPrint("   1 Hour = %d seconds in game\n\n", convertion );}
-        if (menuselection == 3) {FntPrint(">> Return to Custom night menu\n\n");}
-        else {FntPrint("   Return to Custom night menu\n\n");}
-        //Maybe put end AM
-    }
-    if (advancedmenu == 1) {
-        FntPrint("   Custom\n\n   Night\n\n\n");  // print time
-        FntPrint("   Advanced Settings Menu\n\n\n");
+                    if (menuselection == 2) {FntPrint(">> Unlocks menu\n\n");}
+                    else {FntPrint("   Unlocks menu\n\n");}
 
-        if (menuselection == 1) {FntPrint(">> Cooldown FBCFo : %d %d %d %d\n\n", freddylocationframelock, bonnielocationframelock, chicalocationframelock, foxylocationframelock );}
-        else {FntPrint("   Cooldown of old animatronics : ...\n\n" );}
-        if (menuselection == 2) {FntPrint(">> Cooldown FBCM : %d %d %d %d\n\n", toyfreddylocationframelock, toybonnielocationframelock, toychicalocationframelock, manglelocationframelock );}
-        else {FntPrint("   Cooldown of toy animatronics : ...\n\n" );}
-        if (menuselection == 3) {FntPrint(">> Return to Custom night menu\n\n");}
-        else {FntPrint("   Return to Custom night menu\n\n");}
-    }
-    if (extramenu == 1) {
-        FntPrint("   Extra\n\n   Menu\n\n\n");  // print time
+                    if (menuselection == 3) {FntPrint(">> Info screen\n\n");}
+                    else {FntPrint("   Info screen\n\n");}
 
-        if (menuselection == 1) {FntPrint(">> Enable phone guy ? %s\n\n", enablephoneguystr);}
-        else {FntPrint("   Enable phone guy ? %s\n\n", enablephoneguystr);}
+                    if (menuselection == 4) {FntPrint(">> Two Player Mode : %s\n\n", twoplayermodestr);}
+                    else {FntPrint("   Two Player Mode : %s\n\n", twoplayermodestr);}
 
-        if (menuselection == 2) {FntPrint(">> Unlocks menu\n\n");}
-        else {FntPrint("   Unlocks menu\n\n");}
+                    if (menuselection == 5) {FntPrint(">> Return to main menu\n\n");}
+                    else {FntPrint("   Return to main menu\n\n");}
 
-        if (menuselection == 3) {FntPrint(">> Info screen\n\n");}
-        else {FntPrint("   Info screen\n\n");}
+                    if (activatedmenudebug == 1) {
+                        if (menuselection == 6) {FntPrint(">> Toggle weird night\n\n");}
+                        else {FntPrint("   Toggle weird night\n\n");}
 
-        if (menuselection == 4) {FntPrint(">> Two Player Mode : %s\n\n", twoplayermodestr);}
-        else {FntPrint("   Two Player Mode : %s\n\n", twoplayermodestr);}
+                        if (menuselection == 7) {FntPrint(">> Toggle debugging\n\n");}
+                        else {FntPrint("   Toggle debugging\n\n");}
+                    }
+                break;
+                case 1:
+                    FntPrint("   Unlocks\n\n   Menu\n\n\n");  // print time
 
-        if (menuselection == 5) {FntPrint(">> Return to main menu\n\n");}
-        else {FntPrint("   Return to main menu\n\n");}
+                    if (menuselection == 1) {FntPrint(">> Unlimited Power : %s\n\n", unlimitedpowerstr);}
+                    else {FntPrint("   Unlimited Power : %s\n\n", unlimitedpowerstr);}
 
-        if (activatedmenudebug == 1) {
-            if (menuselection == 6) {FntPrint(">> Toggle weird night\n\n");}
-            else {FntPrint("   Toggle weird night\n\n");}
+                    if (menuselection == 2) {FntPrint(">> Fast Nights : %s\n\n", fastnightsstr);}
+                    else {FntPrint("   Fast Nights : %s\n\n", fastnightsstr);}
 
-            if (menuselection == 7) {FntPrint(">> Toggle debugging\n\n");}
-            else {FntPrint("   Toggle debugging\n\n");}
-        }
-    }
-    if (infoscreen == 1) {
-        FntPrint("           Information Screen\n\n");
+                    if (menuselection == 3) {FntPrint(">> Radar Map : %s\n\n", radarstr);}
+                    else {FntPrint("   Radar Map : %s\n\n", radarstr);}
 
-        FntPrint("   Five Night at Freddy's 2 has been \n   released by Scott Cawton on 2014,\n  and has been ported on PS1 by Soeiz.\n\n         Again, Thank you Scott, \n For feeding our imagination with this\n                  world.\n\n");
+                    if (menuselection == 4) {FntPrint(">> Back \n\n");}
+                    else {FntPrint("   Back \n\n");}
 
-        FntPrint(">> Back                      V1.0.1\n"); //Don't even need to do condition, there's only one
-    }
-    if (unlockssubmenu == 1) {
-        FntPrint("   Unlocks\n\n   Menu\n\n\n");  // print time
+                break;
+                case 2:
+                    FntPrint("           Information Screen\n\n");
 
-        if (menuselection == 1) {FntPrint(">> Unlimited Power : %s\n\n", unlimitedpowerstr);}
-        else {FntPrint("   Unlimited Power : %s\n\n", unlimitedpowerstr);}
+                    FntPrint("   Five Night at Freddy's 2 has been \n   released by Scott Cawton on 2014,\n  and has been ported on PS1 by Soeiz.\n\n         Again, Thank you Scott, \n For feeding our imagination with this\n                  world.\n\n");
 
-        if (menuselection == 2) {FntPrint(">> Fast Nights : %s\n\n", fastnightsstr);}
-        else {FntPrint("   Fast Nights : %s\n\n", fastnightsstr);}
+                    FntPrint(">> Back                      V1.0.2\n"); //Don't even need to do condition, there's only one
+                break;
+            }
 
-        if (menuselection == 3) {FntPrint(">> Radar Map : %s\n\n", radarstr);}
-        else {FntPrint("   Radar Map : %s\n\n", radarstr);}
+        break;
+        case 2:
+            switch (currentmenu[1]) {
+                case 0 :
+                    FntPrint("   Custom\n\n   Night\n\n\n");  // print time
 
-        if (menuselection == 4) {FntPrint(">> Back \n\n");}
-        else {FntPrint("   Back \n\n");}
+                    FntPrint("   Welcome! What do you want to modify?\n\n\n\n");
+
+                    if (menuselection == 1) {FntPrint(">> Night : %d\n\n", night);}
+                    else {FntPrint("   Night : %d\n\n", night);}
+                    if (menuselection == 2) {FntPrint(">> Set AI levels\n\n");}
+                    else {FntPrint("   Set AI levels\n\n");}
+                    if (menuselection == 3) {FntPrint(">> Set Timer, ect.\n\n");}
+                    else {FntPrint("   Set Timer, ect.\n\n");}
+                    if (menuselection == 4) {FntPrint(">> Advanced settings\n\n");}
+                    else {FntPrint("   Advanced settings\n\n");}
+                    if (menuselection == 5) {FntPrint(">> Launch custom night\n\n");}
+                    else {FntPrint("   Launch custom night\n\n");}
+                    if (menuselection == 6) {FntPrint(">> Return to main menu\n\n");}
+                    else {FntPrint("   Return to main menu\n\n");}
+                break;
+                case 1:
+                    FntPrint("   Custom\n\n   Night\n\n\n");  // print time
+                    FntPrint("   Set Ai Level Menu\n\n\n");
+                    if (animatronicategorie == 1) {
+                        if (menuselection == 1) {FntPrint(">> Freddy : %d\n\n", freddydifficulty );}
+                        else {FntPrint("   Freddy : %d\n\n", freddydifficulty );}
+                        if (menuselection == 2) {FntPrint(">> Bonnie : %d\n\n", bonniedifficulty );}
+                        else {FntPrint("   Bonnie : %d\n\n", bonniedifficulty );}
+                        if (menuselection == 3) {FntPrint(">> Chica : %d\n\n", chicadifficulty );}
+                        else {FntPrint("   Chica : %d\n\n", chicadifficulty );}
+                        if (menuselection == 4) {FntPrint(">> Foxy : %d\n\n", foxydifficulty );}
+                        else {FntPrint("   Foxy : %d\n\n", foxydifficulty );}
+                    }
+                    if (animatronicategorie == 2) {
+                        if (menuselection == 1) {FntPrint(">> Toy Freddy : %d\n\n", toyfreddydifficulty );}
+                        else {FntPrint("   Toy Freddy : %d\n\n", toyfreddydifficulty );}
+                        if (menuselection == 2) {FntPrint(">> Toy Bonnie : %d\n\n", toybonniedifficulty );}
+                        else {FntPrint("   Toy Bonnie : %d\n\n", toybonniedifficulty );}
+                        if (menuselection == 3) {FntPrint(">> Toy Chica : %d\n\n", toychicadifficulty );}
+                        else {FntPrint("   Toy Chica : %d\n\n", toychicadifficulty );}
+                        if (menuselection == 4) {FntPrint(">> Mangle : %d\n\n", mangledifficulty );}
+                        else {FntPrint("   Mangle : %d\n\n", mangledifficulty );}
+                    }
+                    if (animatronicategorie == 3) {
+                        if (menuselection == 1) {FntPrint(">> Ballon Boy : %d\n\n", BBdifficulty );}
+                        else {FntPrint("   Ballon Boy : %d\n\n", BBdifficulty );}
+                        if (menuselection == 2) {FntPrint(">> Golden Freddy : %d\n\n", GFdifficulty );}
+                        else {FntPrint("   Golden Freddy : %d\n\n", GFdifficulty );}
+                        if (menuselection == 3) {FntPrint(">> Character leveling ? : %s \n\n", doescharlevelupstr );}
+                        else {FntPrint("   Character leveling ? : %s \n\n", doescharlevelupstr );}
+                        if (menuselection == 4) {FntPrint(">> \n\n");}
+                        else {FntPrint("   \n\n" );}
+                    }
+                    if (menuselection == 5) {FntPrint(">> Categorie %d\n\n",animatronicategorie);}
+                    else {FntPrint("   Categorie %d \n\n", animatronicategorie);}
+                    if (menuselection == 6) {FntPrint(">> Preset : %s\n\n", presetselectorstr);}
+                    else {FntPrint("   Preset : %s\n\n",presetselectorstr);}
+                    if (menuselection == 7) {FntPrint(">> Return to Custom night menu\n\n");}
+                    else {FntPrint("   Return to Custom night menu\n\n");}
+                break;
+                case 2:
+                    FntPrint("   Custom\n\n   Night\n\n\n");  // print time
+                    FntPrint("   Set timer, ect Menu\n\n\n");
+
+                    if (menuselection == 1) {FntPrint(">> Set beginning AM %d\n\n", customAM );}
+                    else {FntPrint("   Set beginning AM %d\n\n", customAM );}
+                    if (menuselection == 2) {FntPrint(">> 1 Hour = %d seconds in game\n\n", convertion );}
+                    else {FntPrint("   1 Hour = %d seconds in game\n\n", convertion );}
+                    if (menuselection == 3) {FntPrint(">> Return to Custom night menu\n\n");}
+                    else {FntPrint("   Return to Custom night menu\n\n");}
+                    //Maybe put end AM
+                break;
+                case 3:
+                    FntPrint("   Custom\n\n   Night\n\n\n");  // print time
+                    FntPrint("   Advanced Settings Menu\n\n\n");
+
+                    if (menuselection == 1) {FntPrint(">> Cooldown FBCFo : %d %d %d %d\n\n", freddylocationframelock, bonnielocationframelock, chicalocationframelock, foxylocationframelock );}
+                    else {FntPrint("   Cooldown of old animatronics : ...\n\n" );}
+                    if (menuselection == 2) {FntPrint(">> Cooldown FBCM : %d %d %d %d\n\n", toyfreddylocationframelock, toybonnielocationframelock, toychicalocationframelock, manglelocationframelock );}
+                    else {FntPrint("   Cooldown of toy animatronics : ...\n\n" );}
+                    if (menuselection == 3) {FntPrint(">> Return to Custom night menu\n\n");}
+                    else {FntPrint("   Return to Custom night menu\n\n");}
+                break;
+            }
+        break;
     }
 }
 void gameoverprint(void) {
@@ -4420,7 +4241,7 @@ void AImoving(void) {
     if (manglelocation == 7) {mangleHere = 1;} else {mangleHere = 0;}
     if (BBlocation == 5) {BBHere = 1;} else {BBHere = 0;}
 
-    if (camera == 0 || camera == 1 && onesecondvar == 0){
+    if ((camera == 0 || camera == 1 && onesecondvar == 0) && checkframes == 0){
         if (toybonnielocation == 6) {
             for (int i = 0; i < 5; i++){ 
                 if (officequeue[i] != 6) {
@@ -4430,7 +4251,7 @@ void AImoving(void) {
                     }
                 }
             }
-          toybonnielocation++;
+            toybonnielocation++;
         }
         if (bonnielocation == 5) {
             for (int i = 0; i < 5; i++){ 
@@ -4444,7 +4265,7 @@ void AImoving(void) {
             }
           bonnielocation++;
         }
-        if (freddylocation == 4) {
+        if (freddylocation == 4 && checkframes == 0) {
             for (int i = 0; i < 5; i++){ 
                 if (officequeue[i] != 1) {
                     if (officequeue[i] == 0){ 
@@ -4456,7 +4277,7 @@ void AImoving(void) {
             }
           freddylocation++;
         }
-        if (chicalocation > 4) {
+        if (chicalocation == 4) {
             for (int i = 0; i < 5; i++) { 
                 if (officequeue[i] != 3) {
                     if (officequeue[i] == 0) { 
@@ -4464,7 +4285,7 @@ void AImoving(void) {
                         officequeuetimer = officequeuetimer + 1;
                         break;
                     }
-                } else {break;}
+                }
             }
             chicalocation++;
         }
@@ -4806,7 +4627,7 @@ void AImoving(void) {
             } 
         } else {secondframefoxy = 60;}
 
-        if (officequeue[0] == 0 && ismaskon == 1 && toybonnielocation != 5 && toychicalocation != 6 && manglelocation != 6) {
+        if (checkframes == 0 && ismaskon == 1 && toybonnielocation != 5 && toychicalocation != 5 && manglelocation != 6) {
             secondframefoxymask--; 
             if (secondframefoxymask == 0) {
                 foxyalterablevalue++;
@@ -4814,7 +4635,7 @@ void AImoving(void) {
             } 
         } else {secondframefoxymask = 60;}
 
-        if (lighthall == 1) {
+        if (foxylocation == 0 && lighthall == 1) {
             halfsecondframefoxy--; 
             if (halfsecondframefoxy == 0 && foxyalterablevalue > 0) {
                 foxyalterablevalue--;
@@ -4823,30 +4644,37 @@ void AImoving(void) {
         } else {halfsecondframefoxy = 30;}
 
         if (foxylocation == 1) {
-            if (lighthall == 1) {flashlightcounter++; foxyattackcounter = 50;}
-            if (flashlightcounter > night * 100 && checkframes == 0) {
+            if (lighthall == 1) {flashlightcounter++; foxyattackcounter = 50; foxyalterablevalue = 0;}
+            if (flashlightcounter > night * 100) {
                 foxylocation--;
                 flashlightcounter = 0;
                 foxyalterablevalue = 0;
-                foxyattackcounter = 500 + Ran(500);
+                foxyattackcounter = 500 + Ran(499);
                 LightFuncHall();
             }
-            if (foxyattackcounter > 0) {foxyattackcounter--;}
+            if (foxyattackcounter > 0 && checkframes == 0 && foxystun == 0) {foxyattackcounter--;}
 
-            if (foxyattackcounter == 0 && foxylocationframe == 0) {
-                foxyreadyattack = 1;
+            if (lighthall == 1 && foxyattackcounter == 49) {
+                foxystun = 50;
             }
         }
     }
-
     if (foxylocationframe < 0 && foxydifficulty != 0) {
         foxysran = (21 + Ran(5)) - foxyalterablevalue;
-        if (foxydifficulty > foxysran && foxylocation == 0) {
-            foxylocation++;
-            LightFuncHall();
+        if (foxydifficulty > foxysran) {
+            if (foxylocation == 0) {
+                foxylocation++;
+                if (lighthall == 1) {
+                    LightFuncHall();
+                }
+            } else {
+                if (foxyattackcounter == 0) {foxyreadyattack = 1;}
+            }
         }   
         foxylocationframe = foxylocationframelock;
     }
+    if (foxystun > 0 && lighthall == 0) {foxystun--;}
+
     if (GFdifficulty > 0) {
         if (GFlocationframehallway < 0) {
             if (lighthall == 0 && issomeonehall == 0) {
@@ -4939,18 +4767,15 @@ void screamer(void) {
         }
         if (deadfrom == 1) {
           if (spritesheet == 1) {
-              LoadTexture(_binary_tim_screamer_jumpF0_tim_start, &jumpscare);
-          }
-          if (spritesheet == 2) {
               LoadTexture(_binary_tim_screamer_jumpF1_tim_start, &jumpscare);
           }
-          if (spritesheet == 3) {
+          if (spritesheet == 2) {
               LoadTexture(_binary_tim_screamer_jumpF2_tim_start, &jumpscare);
           }
-          if (spritesheet == 4) {
+          if (spritesheet == 3) {
               LoadTexture(_binary_tim_screamer_jumpF3_tim_start, &jumpscare);
           }
-          if (spritesheet == 5) {
+          if (spritesheet == 4) {
               LoadTexture(_binary_tim_screamer_jumpF4_tim_start, &jumpscare);
           }
         }
@@ -5254,4 +5079,4 @@ void gamevictory(void) {
   }
   SpuSetKey(SPU_OFF, SPU_ALLCH);
   FrameCounter++;
-}
+} //Old 5276
