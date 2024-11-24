@@ -1513,11 +1513,11 @@ void makepoly(int num) {
              
             if (toychicaHere) {
             	setClut(polyRvent, 320, 487); 
-            	setUV4(polyRvent, 10, 163, 10, 255, 88, 163, 88, 255); 
+            	setUV4(polyRvent, 0, 163, 0, 255, 78, 163, 78, 255); 
             }
             if (BBHere) {
             	setClut(polyRvent, 320, 488); 
-            	setUV4(polyRvent, 88, 163, 88, 255, 166, 163, 166, 255); 
+            	setUV4(polyRvent, 78, 163, 78, 255, 156, 163, 156, 255); 
             }
 
             addPrim(ot[db], polyRvent);                     

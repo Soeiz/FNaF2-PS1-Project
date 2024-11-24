@@ -266,6 +266,7 @@ int toybonnielocation = 0;
 int toybonnielocationframe = 300;
 int toybonnieframevent = 30;
 int toybran = 0;
+int toybonniewait = 0;
 int toybonniedifficulty = 0;
 
 int chicalocation = 0;

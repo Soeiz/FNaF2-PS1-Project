@@ -27,7 +27,7 @@
 
     OTHER (info) :
       FNAF2 is a (heavily) modified version of FNAF1
-      V.1.0
+      V1.0.3
 */
 
 #include "objects/constant.h"
@@ -569,7 +569,7 @@ void checking(void) {
         }
         checkframes++;
         
-        if (officequeue[0] == 5) { 
+        if (officequeue[0] == 6) { 
             if (checkframes < 100) {
                 MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - 1;
             }
@@ -583,10 +583,10 @@ void checking(void) {
                     MovVectorofficefronttoybonnie.vx = MovVectorofficefronttoybonnie.vx - 1;
                 }
             }
-          Ran(8);
+            Ran(8);
             if (RAN == 1 && MovVectorofficefronttoybonnie.vy < -54) {MovVectorofficefronttoybonnie.vy++;}
             if (RAN == 2 && MovVectorofficefronttoybonnie.vy > -56) {MovVectorofficefronttoybonnie.vy--;}
-          }
+        }
         if (checkframes < 240) {
             if (checkframes %3 == 0) {         
                 setRGB0(polyofficeright1, 0, 0, 0); 
@@ -672,7 +672,7 @@ void checking(void) {
                 case 6:
                     toybonnielocation = 1;
                     toybonnielocationframe = 300;
-                    MovVectorofficefronttoybonnie.vx = 0;
+                    MovVectorofficefronttoybonnie.vx = 150;
                 break;
               }
               officequeue[0] = 0;
@@ -3804,7 +3804,7 @@ void menuPrint(void) {
 
                     FntPrint("   Five Night at Freddy's 2 has been \n   released by Scott Cawton on 2014,\n  and has been ported on PS1 by Soeiz.\n\n         Again, Thank you Scott, \n For feeding our imagination with this\n                  world.\n\n");
 
-                    FntPrint(">> Back                      V1.0.2\n"); //Don't even need to do condition, there's only one
+                    FntPrint(">> Back                      V1.0.3\n"); //Don't even need to do condition, there's only one
                 break;
             }
 
@@ -4404,6 +4404,14 @@ void AImoving(void) {
     }
 
     if (toychicalocation == 5) {
+        if (ismaskon == 1) {
+          toychicafoolness++;
+          if (toychicafoolness > 300) {
+              toychicalocation = 1;
+              ventbanging = 1; 
+              toychicafoolness = 0;
+          }
+        }
         if (onesecondvar == 0) {
             Ran(10); 
             if (RAN == 1) {
@@ -4416,16 +4424,21 @@ void AImoving(void) {
                 }
             }
         }
+    }
+    if (toychicalocation != 5 && isalreadydead == 5 && deadfrom == 7) {isalreadydead = 0;}
+
+    if (manglelocation == 7) {
         if (ismaskon == 1) {
-          toychicafoolness++;
-          if (toychicafoolness > 300) {
-              toychicalocation = 1;
+          manglefoolness++;
+          if (manglefoolness > 300) {
+              manglelocation = 1;
               ventbanging = 1; 
-              toychicafoolness = 0;
+              manglefoolness = 0;
           }
         }
-    }
-    if (manglelocation == 7) {
+
+        if (!camera) {return;}
+
         if (onesecondvar == 0) {
             Ran(10); 
             if (RAN == 1) {
@@ -4439,14 +4452,6 @@ void AImoving(void) {
                     LoadTexture(_binary_tim_office_manglehanging_tim_start, &manglehanging);
                 }
             }
-        }
-        if (ismaskon == 1) {
-          manglefoolness++;
-          if (manglefoolness > 300) {
-              manglelocation = 1;
-              ventbanging = 1; 
-              manglefoolness = 0;
-          }
         }
     }
 
@@ -4478,6 +4483,17 @@ void AImoving(void) {
     }
 
     if (BBlocation == 5) {
+        if (ismaskon == 1) {
+          BBfoolness++;
+          if (BBfoolness > 300) {
+              BBlocation = 1;
+              ventbanging = 1; 
+              BBfoolness = 0;
+          }
+        }
+
+        if (!camera) {return;}
+
         if (onesecondvar == 0) {
             Ran(10); 
             if (RAN == 1) {
@@ -4486,16 +4502,9 @@ void AImoving(void) {
                     ventbanging = 1; 
                 } else {
                     BBlocation++;
+                    if (light1) {LightFunc();}
                 }
             }
-        }
-        if (ismaskon == 1) {
-          BBfoolness++;
-          if (BBfoolness > 300) {
-              BBlocation = 1;
-              ventbanging = 1; 
-              BBfoolness = 0;
-          }
         }
     }
 
@@ -4917,6 +4926,7 @@ void screamer(void) {
     }
 }
 void sideFunc(int number) {side = number;}
+
 void LightFunc(void) {
     if (limiter2 == 0) {
         if (BBlol == 0) {
