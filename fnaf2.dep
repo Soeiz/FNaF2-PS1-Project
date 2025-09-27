@@ -1,0 +1,20 @@
+fnaf2.o: fnaf2.c objects/constant.h \
+ D:/nolibgs_hello_worlds/psyq/include/sys/types.h \
+ D:/nolibgs_hello_worlds/psyq/include/stdio.h \
+ D:/nolibgs_hello_worlds/psyq/include/libgte.h \
+ D:/nolibgs_hello_worlds/psyq/include/libetc.h \
+ D:/nolibgs_hello_worlds/psyq/include/libgpu.h \
+ D:/nolibgs_hello_worlds/psyq/include/libsnd.h \
+ D:/nolibgs_hello_worlds/psyq/include/libspu.h \
+ D:/nolibgs_hello_worlds/psyq/include/rand.h \
+ D:/nolibgs_hello_worlds/psyq/include/libapi.h \
+ D:/nolibgs_hello_worlds/psyq/include/kernel.h \
+ D:/nolibgs_hello_worlds/psyq/include/r3000.h \
+ D:/nolibgs_hello_worlds/psyq/include/asm.h \
+ D:/nolibgs_hello_worlds/psyq/include/string.h \
+ D:/nolibgs_hello_worlds/psyq/include/strings.h \
+ D:/nolibgs_hello_worlds/psyq/include/memory.h \
+ D:/nolibgs_hello_worlds/psyq/include/libcd.h \
+ D:/nolibgs_hello_worlds/psyq/include/malloc.h \
+ c:\users\erwan\appdata\roaming\mips\mips\lib\gcc\mipsel-none-elf\11.2.0\include\stdbool.h \
+ objects/objects.h objects/camera.h objects/PATH.h

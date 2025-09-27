@@ -10,35 +10,19 @@ void cameraloc(void) {
     if (curcam[0] == '0' && curcam[1] == '1') { //6
         MovVectorpolycamgreyogreen.vx = -66;
         MovVectorpolycamgreyogreen.vy = 24;  
-        curcamname[0] = 'P';
-        curcamname[1] = 'a';
-        curcamname[2] = 'r';
-        curcamname[3] = 't';
-        curcamname[4] = 'y';
-        curcamname[5] = ' ';
-        curcamname[6] = 'R';
-        curcamname[7] = 'o';
-        curcamname[8] = 'o';
-        curcamname[9] = 'm';
-        curcamname[10] = ' ';
-        curcamname[11] = '1';
-        curcamname[12] = ' ';
-        curcamname[13] = ' '; 
+        sprintf(curcamname, "Party Room 1");
         if (limitercameraR == 0 && pad & PADLright || limitercameraR == 0 && pad >> 16 & PADLright && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '2';
+            sprintf(curcam, "02");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraR = 1;
         }
         if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '3';
+            sprintf(curcam, "03");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraU = 1;
         }
         if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '5';
+            sprintf(curcam, "05");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
@@ -47,41 +31,24 @@ void cameraloc(void) {
     if (curcam[0] == '0' && curcam[1] == '2') {         //5
         MovVectorpolycamgreyogreen.vx = -5;
         MovVectorpolycamgreyogreen.vy = 24;  
-        curcamname[0] = 'P';
-        curcamname[1] = 'a';
-        curcamname[2] = 'r';
-        curcamname[3] = 't';
-        curcamname[4] = 'y';
-        curcamname[5] = ' ';
-        curcamname[6] = 'R';
-        curcamname[7] = 'o';
-        curcamname[8] = 'o';
-        curcamname[9] = 'm';
-        curcamname[10] = ' ';
-        curcamname[11] = '2';
-        curcamname[12] = ' ';
-        curcamname[13] = ' '; 
+        sprintf(curcamname, "Party Room 2");
         if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '4';
+            sprintf(curcam, "04");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraU = 1;
         }
         if (limitercameraL == 0 && pad & PADLleft || limitercameraL == 0 && pad >> 16 & PADLleft && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '1';
+            sprintf(curcam, "01");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraL = 1;
         }
         if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '6';
+            sprintf(curcam, "06");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
         if (limitercameraR == 0 && pad & PADLright || limitercameraR == 0 && pad >> 16 & PADLright && twoplayermode == 1) { 
-            curcam[0] = '1';
-            curcam[1] = '0';
+            sprintf(curcam, "10");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraR = 1;
         }
@@ -90,36 +57,19 @@ void cameraloc(void) {
     if (curcam[0] == '0' && curcam[1] == '3') {   
         MovVectorpolycamgreyogreen.vx = -66;
         MovVectorpolycamgreyogreen.vy = -18;  
-        curcamname[0] = 'P';
-        curcamname[1] = 'a';
-        curcamname[2] = 'r';
-        curcamname[3] = 't';
-        curcamname[4] = 'y';
-        curcamname[5] = ' ';
-        curcamname[6] = 'R';
-        curcamname[7] = 'o';
-        curcamname[8] = 'o';
-        curcamname[9] = 'm';
-        curcamname[10] = ' ';
-        curcamname[11] = '3';
-        curcamname[12] = ' ';
-        curcamname[13] = ' '; 
-        curcamname[14] = ' '; 
+        sprintf(curcamname, "Party Room 3");
         if (limitercameraR == 0 && pad & PADLright || limitercameraR == 0 && pad >> 16 & PADLright && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '4';
+            sprintf(curcam, "04");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraR = 1;
         }
-        if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '1';
+        if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) {  
+            sprintf(curcam, "01");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
-        if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '8';
+        if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) {  
+            sprintf(curcam, "08");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraU = 1;
         }
@@ -128,41 +78,24 @@ void cameraloc(void) {
     if (curcam[0] == '0' && curcam[1] == '4') {     //2B      
         MovVectorpolycamgreyogreen.vx = -5;
         MovVectorpolycamgreyogreen.vy = -18;  
-        curcamname[0] = 'P';
-        curcamname[1] = 'a';
-        curcamname[2] = 'r';
-        curcamname[3] = 't';
-        curcamname[4] = 'y';
-        curcamname[5] = ' ';
-        curcamname[6] = 'R';
-        curcamname[7] = 'o';
-        curcamname[8] = 'o';
-        curcamname[9] = 'm';
-        curcamname[10] = ' ';
-        curcamname[11] = '4';
-        curcamname[12] = ' ';
-        curcamname[13] = ' '; 
+        sprintf(curcamname, "Party Room 4");
         if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '7';
+            sprintf(curcam, "07");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraU = 1;
         }
         if (limitercameraL == 0 && pad & PADLleft || limitercameraL == 0 && pad >> 16 & PADLleft && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '3';
+            sprintf(curcam, "03");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraL = 1;
         }
         if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '2';
+            sprintf(curcam, "02");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
         if (limitercameraR == 0 && pad & PADLright || limitercameraR == 0 && pad >> 16 & PADLright && twoplayermode == 1) { 
-            curcam[0] = '1';
-            curcam[1] = '0';
+            sprintf(curcam, "10");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraR = 1;
         }
@@ -171,27 +104,14 @@ void cameraloc(void) {
     if (curcam[0] == '0' && curcam[1] == '5') {     //4B
         MovVectorpolycamgreyogreen.vx = -62;
         MovVectorpolycamgreyogreen.vy = 72;  
-        curcamname[0] = 'L';
-        curcamname[1] = '.';
-        curcamname[2] = ' ';
-        curcamname[3] = 'V';
-        curcamname[4] = 'e';
-        curcamname[5] = 'n';
-        curcamname[6] = 't';
-        curcamname[7] = ' ';
-        curcamname[8] = ' ';
-        curcamname[9] = ' ';
-        curcamname[10] = ' ';
-        curcamname[11] = ' ';
+        sprintf(curcamname, "L. VENT");
         if (limitercameraR == 0 && pad & PADLright || limitercameraR == 0 && pad >> 16 & PADLright && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '6';
+            sprintf(curcam, "06");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraR = 1;
         }
         if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '1';
+            sprintf(curcam, "01");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraU = 1;
         }
@@ -200,27 +120,14 @@ void cameraloc(void) {
     if (curcam[0] == '0' && curcam[1] == '6') {    
         MovVectorpolycamgreyogreen.vx = -9;
         MovVectorpolycamgreyogreen.vy = 71;  
-        curcamname[0] = 'R';
-        curcamname[1] = '.';
-        curcamname[2] = ' ';
-        curcamname[3] = 'V';
-        curcamname[4] = 'e';
-        curcamname[5] = 'n';
-        curcamname[6] = 't';
-        curcamname[7] = ' ';
-        curcamname[8] = ' ';
-        curcamname[9] = ' ';
-        curcamname[10] = ' ';
-        curcamname[11] = ' ';
+        sprintf(curcamname, "R. VENT");
         if (limitercameraL == 0 && pad & PADLleft || limitercameraL == 0 && pad >> 16 & PADLleft && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '5';
+            sprintf(curcam, "05");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraL = 1;
         }
-        if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '2';
+        if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) {
+            sprintf(curcam, "02"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraU = 1;
         }
@@ -229,36 +136,19 @@ void cameraloc(void) {
     if (curcam[0] == '0' && curcam[1] == '7') {     
         MovVectorpolycamgreyogreen.vx = 14;
         MovVectorpolycamgreyogreen.vy = -60;  
-        curcamname[0] = 'M';
-        curcamname[1] = 'a';
-        curcamname[2] = 'i';
-        curcamname[3] = 'n';
-        curcamname[4] = ' ';
-        curcamname[5] = 'H';
-        curcamname[6] = 'a';
-        curcamname[7] = 'l';
-        curcamname[8] = 'l';
-        curcamname[9] = ' ';
-        curcamname[10] = ' ';
-        curcamname[11] = ' ';
-        curcamname[12] = ' ';
-        curcamname[13] = ' ';
-        curcamname[14] = ' '; 
+        sprintf(curcamname, "Main Hall");
         if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '4';
+            sprintf(curcam, "04"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
         if (limitercameraR == 0 && pad & PADLright || limitercameraR == 0 && pad >> 16 & PADLright && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '9';
+            sprintf(curcam, "09"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraR = 1;
         }
         if (limitercameraL == 0 && pad & PADLleft || limitercameraL == 0 && pad >> 16 & PADLleft && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '8';
+            sprintf(curcam, "08"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraL = 1;
         }
@@ -267,30 +157,14 @@ void cameraloc(void) {
     if (curcam[0] == '0' && curcam[1] == '8') {   
         MovVectorpolycamgreyogreen.vx = -66;
         MovVectorpolycamgreyogreen.vy = -70;  
-        curcamname[0] = 'P';
-        curcamname[1] = 'a';
-        curcamname[2] = 'r';
-        curcamname[3] = 't';
-        curcamname[4] = ' ';
-        curcamname[5] = '&';
-        curcamname[6] = ' ';
-        curcamname[7] = 's';
-        curcamname[8] = 'e';
-        curcamname[9] = 'r';
-        curcamname[10] = 'v';
-        curcamname[11] = 'i';
-        curcamname[12] = 'c';
-        curcamname[13] = 'e';
-        curcamname[14] = ' '; 
+        sprintf(curcamname, "Part & Service");
         if (limitercameraR == 0 && pad & PADLright || limitercameraR == 0 && pad >> 16 & PADLright && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '7';
+            sprintf(curcam, "07"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraR = 1;
         }
         if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '3';
+            sprintf(curcam, "03"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
@@ -299,29 +173,14 @@ void cameraloc(void) {
     if (curcam[0] == '0' && curcam[1] == '9') {      
         MovVectorpolycamgreyogreen.vx = 105;
         MovVectorpolycamgreyogreen.vy = -87;  
-        curcamname[0] = 'S';
-        curcamname[1] = 'h';
-        curcamname[2] = 'o';
-        curcamname[3] = 'w';
-        curcamname[4] = ' ';
-        curcamname[5] = 'S';
-        curcamname[6] = 't';
-        curcamname[7] = 'a';
-        curcamname[8] = 'g';
-        curcamname[9] = 'e';
-        curcamname[10] = ' '; //Need to put little spaces like that in case the old name is longer
-        curcamname[11] = ' ';
-        curcamname[12] = ' ';
-        curcamname[13] = ' ';
+        sprintf(curcamname, "Show Stage");
         if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
-            curcam[0] = '1';
-            curcam[1] = '1';
+            sprintf(curcam, "11"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
         if (limitercameraL == 0 && pad & PADLleft || limitercameraL == 0 && pad >> 16 & PADLleft && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '7';
+            sprintf(curcam, "07"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraL = 1;
         }
@@ -330,42 +189,24 @@ void cameraloc(void) {
     if (curcam[0] == '1' && curcam[1] == '0') {    
         MovVectorpolycamgreyogreen.vx = 65;
         MovVectorpolycamgreyogreen.vy = -6;  
-        curcamname[0] = 'G';
-        curcamname[1] = 'a';
-        curcamname[2] = 'm';
-        curcamname[3] = 'e';
-        curcamname[4] = ' ';
-        curcamname[5] = 'a';
-        curcamname[6] = 'r';
-        curcamname[7] = 'e';
-        curcamname[8] = 'a';
-        curcamname[9] = ' ';
-        curcamname[10] = ' ';
-        curcamname[11] = ' ';
-        curcamname[12] = ' ';
-        curcamname[13] = ' ';
-
+        sprintf(curcamname, "Game Area");
         if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) { 
-            curcam[0] = '1';
-            curcam[1] = '1';
+            sprintf(curcam, "11");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraU = 1;
         }
         if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
-            curcam[0] = '1';
-            curcam[1] = '2';
+            sprintf(curcam, "12");
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
         if (limitercameraL == 0 && pad & PADLleft || limitercameraL == 0 && pad >> 16 & PADLleft && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '4';
+            sprintf(curcam, "04"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraL = 1;
         }
         if (limitercameraR == 0 && pad & PADLright || limitercameraR == 0 && pad >> 16 & PADLright && twoplayermode == 1) { 
-            curcam[0] = '1';
-            curcam[1] = '2';
+            sprintf(curcam, "12"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraR = 1;
         }
@@ -374,35 +215,19 @@ void cameraloc(void) {
     if (curcam[0] == '1' && curcam[1] == '1') {   
         MovVectorpolycamgreyogreen.vx = 117;
         MovVectorpolycamgreyogreen.vy = -38;  
-        curcamname[0] = 'P';
-        curcamname[1] = 'r';
-        curcamname[2] = 'i';
-        curcamname[3] = 'z';
-        curcamname[4] = 'e';
-        curcamname[5] = ' ';
-        curcamname[6] = 'c';
-        curcamname[7] = 'o';
-        curcamname[8] = 'r';
-        curcamname[9] = 'n';
-        curcamname[10] = 'e';
-        curcamname[11] = 'r';
-        curcamname[12] = ' ';
-        curcamname[13] = ' ';
+        sprintf(curcamname, "Prize Corner");
         if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) {
-            curcam[0] = '0';
-            curcam[1] = '9';
+            sprintf(curcam, "09"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraU = 1;
         }
         if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
-            curcam[0] = '1';
-            curcam[1] = '0';
+            sprintf(curcam, "10"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
         if (limitercameraL == 0 && pad & PADLleft || limitercameraL == 0 && pad >> 16 & PADLleft && twoplayermode == 1) { 
-            curcam[0] = '0';
-            curcam[1] = '7';
+            sprintf(curcam, "07"); 
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraL = 1;
         }
@@ -422,28 +247,23 @@ void cameraloc(void) {
     if (curcam[0] == '1' && curcam[1] == '2') {  
         MovVectorpolycamgreyogreen.vx = 114;
         MovVectorpolycamgreyogreen.vy = 17;  
-        curcamname[0] = 'K';
-        curcamname[1] = 'i';
-        curcamname[2] = 'd';
-        curcamname[3] = 's';
-        curcamname[4] = ' ';
-        curcamname[5] = 'C';
-        curcamname[6] = 'o';
-        curcamname[7] = 'v';
-        curcamname[8] = 'e';
+        sprintf(curcamname, "Kid's Cove");
         if (limitercameraU == 0 && pad & PADLup || limitercameraU == 0 && pad >> 16 & PADLup && twoplayermode == 1) { 
+            sprintf(curcam, "10"); 
             curcam[0] = '1';
             curcam[1] = '0';
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraU = 1;
         }
         if (limitercameraD == 0 && pad & PADLdown || limitercameraD == 0 && pad >> 16 & PADLdown && twoplayermode == 1) { 
+            sprintf(curcam, "07"); 
             curcam[0] = '0';
             curcam[1] = '7';
             SpuSetKey(SPU_ON, SPU_03CH);
             limitercameraD = 1;
         }
         if (limitercameraL == 0 && pad & PADLleft || limitercameraL == 0 && pad >> 16 & PADLleft && twoplayermode == 1) { 
+            sprintf(curcam, "02"); 
             curcam[0] = '0';
             curcam[1] = '2';
             SpuSetKey(SPU_ON, SPU_03CH);
@@ -463,4 +283,4 @@ void cameraloc(void) {
     if (!(pad & PADLup || pad >> 16 & PADLup) && limitercameraU == 1) {limitercameraU = 0;}
     if (!(pad & PADLright || pad >> 16 & PADLright) && limitercameraR == 1) {limitercameraR = 0;}
     if (!(pad & PADLleft || pad >> 16 & PADLleft) && limitercameraL == 1) {limitercameraL = 0;}
-}
+} //old 467
